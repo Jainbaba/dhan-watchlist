@@ -53,6 +53,27 @@ returns nothing useful, so the script primes a cookie jar and reuses it.
 
 `symbols` is newest-first and capped at 250, the Dhan watchlist limit.
 
+## Extension
+
+`extension/` is an unpacked MV3 Chrome/Brave extension. Load it via
+`brave://extensions` (or `chrome://extensions`) with Developer mode on and
+**Load unpacked**.
+
+It runs a single content script in the `MAIN` world on `https://tv.dhan.co/*`. That
+placement is not incidental: the API pins CORS to the `tv.dhan.co` origin, so a request
+from a background service worker is refused, and the page's own `CryptoJS` and session
+object are only reachable from the main world.
+
+On page load it fetches `watchlist.json`, compares `generated_on` against the last build
+applied (remembered in `localStorage`), and does nothing if they match. When the list is
+newer it resolves every symbol first, then clears **6-Month Stocks** and refills it, so a
+failed lookup leaves the watchlist untouched. The target is matched by name and never
+created — if it is missing, the sync stops and says so.
+
+A floating panel offers the same sync on demand plus an ad-hoc "paste symbols and add"
+box. `node extension/test.mjs` covers the pure logic and the crypto round trip; pass it a
+HAR of real traffic to additionally verify the payload format end to end.
+
 ## Schedule
 
 `.github/workflows/update.yml` runs at 03:30 UTC (09:00 IST) daily and commits only when

@@ -1,0 +1,87 @@
+// node test.mjs            -> pure logic + crypto self-consistency
+// node test.mjs /tmp/dhan.har -> also decrypts real captured traffic (decisive)
+import assert from "node:assert";
+import crypto from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
+
+const SALT = "498960e491150a0fc0f21822a147fd62";
+const IVH = "320ef7705d1030f0a1a55b3dcf676cb8";
+const KEY = crypto.pbkdf2Sync("DHAN", Buffer.from(SALT, "hex"), 1000, 16, "sha1");
+const IV = Buffer.from(IVH, "hex");
+
+const decrypt = (b64) => {
+  const d = crypto.createDecipheriv("aes-128-cbc", KEY, IV);
+  return Buffer.concat([d.update(Buffer.from(b64, "base64")), d.final()]).toString("utf8");
+};
+const encrypt = (text) => {
+  const c = crypto.createCipheriv("aes-128-cbc", KEY, IV);
+  return Buffer.concat([c.update(text, "utf8"), c.final()]).toString("base64");
+};
+
+// --- load main.js without a DOM so whenReady() never mounts ---
+globalThis.window = {};
+globalThis.document = { documentElement: null };
+const src = fs.readFileSync(
+  path.join(import.meta.dirname, "main.js"),
+  "utf8"
+);
+(0, eval)(src);
+const wl = globalThis.window.dhanWL;
+
+assert.deepStrictEqual(
+  wl.parseSymbols("hdfcbank, RELIANCE\ninfy  hdfcbank;TCS"),
+  ["HDFCBANK", "RELIANCE", "INFY", "TCS"],
+  "parseSymbols: split, uppercase, dedupe"
+);
+assert.deepStrictEqual(wl.parseSymbols("   \n , ; "), []);
+
+assert.strictEqual(wl.segOf("NSE", "E"), 1);
+assert.strictEqual(wl.segOf("NSE", "M"), 10);
+assert.strictEqual(wl.segOf("BSE", "E"), 4);
+assert.strictEqual(wl.segOf("BSE", "D"), 8);
+assert.strictEqual(wl.segOf("MCX", "M"), 5);
+assert.strictEqual(wl.segOf("NCDEX", "M"), 6);
+assert.strictEqual(wl.segOf("IDX", "E"), 0, "IDX ignores the segment letter");
+assert.strictEqual(wl.segOf("NSE", "I"), 0, "seg 0 must survive the lookup, not fall to -1");
+assert.strictEqual(wl.segOf("MCX", "E"), -1);
+assert.strictEqual(wl.segOf("NOPE", "E"), -1);
+
+assert.strictEqual(KEY.length, 16, "keySize 4 words = 128-bit");
+assert.strictEqual(decrypt(encrypt('{"a":1}')), '{"a":1}');
+assert.strictEqual(
+  encrypt('{"client_id":"X"}').slice(0, 12),
+  encrypt('{"client_id":"X"}').slice(0, 12),
+  "fixed IV means a fixed plaintext prefix yields a fixed ciphertext prefix"
+);
+
+console.log("logic + crypto self-consistency: ok");
+
+// --- decisive check: decrypt captured traffic ---
+const har = process.argv[2];
+if (!har) {
+  console.log("no HAR given - skipping the live-traffic check");
+  process.exit(0);
+}
+const log = JSON.parse(fs.readFileSync(har, "utf8")).log;
+let checked = 0;
+for (const entry of log.entries) {
+  if (!entry.request.url.includes("/watchlist/")) continue;
+  const name = entry.request.url.split("/").pop();
+
+  const sent = entry.request.postData?.text;
+  if (sent) {
+    const cipher = JSON.parse(decodeURIComponent(JSON.parse(sent)));
+    console.log(`  ${name} request  ->`, decrypt(cipher).slice(0, 200));
+    checked++;
+  }
+  const body = entry.response.content?.text;
+  if (body) {
+    const plain = decrypt(JSON.parse(body).data);
+    JSON.parse(plain); // throws if the key is wrong
+    console.log(`  ${name} response ->`, plain.slice(0, 200));
+    checked++;
+  }
+}
+assert.ok(checked > 0, "HAR contained no /watchlist/ bodies");
+console.log(`live-traffic check: ok (${checked} bodies decrypted)`);
