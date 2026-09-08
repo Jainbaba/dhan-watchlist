@@ -46,18 +46,6 @@
     return key in row ? row[key] : -1;
   }
 
-  function parseSymbols(text) {
-    const seen = new Set();
-    const out = [];
-    for (const raw of String(text).split(/[\s,;]+/)) {
-      const name = raw.trim().toUpperCase();
-      if (!name || seen.has(name)) continue;
-      seen.add(name);
-      out.push(name);
-    }
-    return out;
-  }
-
   let key = null;
   function cryptoKey() {
     if (!key) {
@@ -175,22 +163,6 @@
       stockDetail.push({ security_id: String(hit.security_id), seg });
     }
     return { stockDetail, unmapped };
-  }
-
-  async function addSymbols(wId, names, minConfidence = MIN_CONFIDENCE) {
-    const hits = (await scan(names)).filter((h) => h.confidence > minConfidence);
-    const { stockDetail, unmapped } = resolveHits(hits);
-    if (!stockDetail.length) throw new Error("no symbols resolved");
-    const added = await api("AddMultipleStock", {
-      w_id: wId,
-      stock_detail: stockDetail,
-    });
-    return {
-      requested: names.length,
-      resolved: stockDetail.length,
-      unmapped,
-      added,
-    };
   }
 
   async function fetchPublishedList() {
@@ -339,10 +311,6 @@
       padding: 6px 10px; cursor: pointer; font-size: 12px; }
     button.ghost { background: #2a2e39; }
     button:disabled { opacity: .5; cursor: default; }
-    select, textarea { width: 100%; box-sizing: border-box; background: #131722;
-      color: #e8e8ea; border: 1px solid #363a45; border-radius: 4px; padding: 6px;
-      font: inherit; }
-    textarea { height: 110px; resize: vertical; font-family: ui-monospace, monospace; }
     .log { margin-top: 8px; max-height: 120px; overflow: auto; white-space: pre-wrap;
       font-family: ui-monospace, monospace; font-size: 11px; color: #b2b5be; }
     .err { color: #ff6b6b; }
@@ -358,25 +326,16 @@
     root.innerHTML = `
       <style>${CSS}</style>
       <div class="wrap">
-        <button class="launch" id="launch">Bulk add</button>
+        <button class="launch" id="launch">Watchlist sync</button>
         <div class="panel" id="panel" hidden>
           <div class="row">
-            <h1>Bulk add to watchlist</h1>
+            <h1>${TARGET_NAME}</h1>
             <button class="ghost" id="close">&times;</button>
           </div>
-          <div class="row"><select id="lists"><option>loading…</option></select></div>
-          <div class="row">
-            <textarea id="symbols" placeholder="HDFCBANK, RELIANCE
-INFY
-TCS"></textarea>
-          </div>
-          <div class="row">
-            <button id="add" disabled>Add</button>
-            <button class="ghost" id="refresh">Refresh</button>
-          </div>
+          <div class="row"><span class="hint" id="status">checking…</span></div>
           <div class="row">
             <button id="sync" disabled>Update watchlist</button>
-            <span class="hint" id="synchint">replaces "${TARGET_NAME}"</span>
+            <button class="ghost" id="refresh">Refresh</button>
           </div>
           <div class="log" id="log"></div>
         </div>
@@ -389,7 +348,6 @@ TCS"></textarea>
     const root = buildPanel();
     const $ = (id) => root.getElementById(id);
     const panel = $("panel");
-    const lists = $("lists");
     const logEl = $("log");
 
     const log = (msg, cls) => {
@@ -401,30 +359,26 @@ TCS"></textarea>
     };
 
     const setBusy = (busy) => {
-      for (const id of ["add", "sync", "refresh"]) $(id).disabled = busy;
+      for (const id of ["sync", "refresh"]) $(id).disabled = busy;
     };
 
-    async function loadLists() {
+    // Reports the target watchlist's current size, and doubles as the self-check:
+    // reaching it means the session, the crypto and the envelope all still work.
+    async function refreshStatus() {
       setBusy(true);
-      lists.innerHTML = "<option>loading…</option>";
+      $("status").textContent = "checking…";
       try {
-        const all = (await selfCheck()).filter((w) => w.w_id > 0);
-        lists.innerHTML = "";
-        for (const w of all) {
-          const opt = document.createElement("option");
-          opt.value = w.w_id;
-          const used = (w.s_list || []).length;
-          opt.textContent = `${w.w_name} (${used}/${MAX_PER_WATCHLIST})`;
-          opt.dataset.used = used;
-          lists.appendChild(opt);
-        }
+        const target = findTarget(await selfCheck());
+        const used = (target.s_list || []).length;
+        $("status").textContent = `${used} of ${MAX_PER_WATCHLIST} symbols`;
         setBusy(false);
-        $("add").disabled = $("sync").disabled = all.length === 0;
-        log(`self-check ok - ${all.length} watchlists`, "ok");
+        return target;
       } catch (err) {
-        lists.innerHTML = "<option>unavailable</option>";
+        $("status").textContent = "unavailable";
         $("refresh").disabled = false;
-        log("self-check FAILED: " + err.message, "err");
+        log(err.message, "err");
+        raiseWarning();
+        return null;
       }
     }
 
@@ -436,33 +390,7 @@ TCS"></textarea>
       panel.hidden = true;
       $("launch").hidden = false;
     });
-    $("refresh").addEventListener("click", loadLists);
-
-    $("add").addEventListener("click", async () => {
-      const names = parseSymbols($("symbols").value);
-      const selected = lists.options[lists.selectedIndex];
-      if (!names.length) return log("nothing to add", "err");
-      const used = Number(selected.dataset.used || 0);
-      if (used + names.length > MAX_PER_WATCHLIST) {
-        log(
-          `warning: ${used} + ${names.length} exceeds the ${MAX_PER_WATCHLIST} cap; the API may reject some`,
-          "err"
-        );
-      }
-      setBusy(true);
-      log(`resolving ${names.length} symbols…`);
-      try {
-        const result = await addSymbols(Number(selected.value), names);
-        log(`added ${result.resolved} of ${result.requested}`, "ok");
-        for (const miss of result.unmapped) {
-          log("unmapped segment: " + JSON.stringify(miss), "err");
-        }
-        await loadLists();
-      } catch (err) {
-        log("failed: " + err.message, "err");
-        setBusy(false);
-      }
-    });
+    $("refresh").addEventListener("click", refreshStatus);
 
     $("sync").addEventListener("click", async () => {
       setBusy(true);
@@ -515,7 +443,7 @@ TCS"></textarea>
         }
         if (result.missing.length || result.unmapped.length) raiseWarning();
         log("reload the page to see it in the sidebar");
-        await loadLists();
+        await refreshStatus();
         return true;
       } catch (err) {
         log("sync failed: " + err.message, "err");
@@ -556,7 +484,7 @@ TCS"></textarea>
       await runSync("auto", list);
     }
 
-    loadLists().then(autoSync);
+    refreshStatus().then(autoSync);
   }
 
   function whenReady() {
@@ -582,7 +510,6 @@ TCS"></textarea>
     decrypt,
     getWatchlists,
     scan,
-    addSymbols,
     syncFromRepo,
     fetchPublishedList,
     findMissing,
@@ -591,7 +518,6 @@ TCS"></textarea>
     releaseSyncLock,
     selfCheck,
     segOf,
-    parseSymbols,
   };
   whenReady();
 })();

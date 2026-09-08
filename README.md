@@ -75,8 +75,8 @@ sync claims a timestamped lock in `localStorage` first and a second tab stands d
 Symbols that come back with no confident match are named individually in the log rather
 than quietly dropped, and any failure badges the launcher instead of passing silently.
 
-A floating panel offers the same sync on demand plus an ad-hoc "paste symbols and add"
-box. `node extension/test.mjs` covers the pure logic, the cross-tab lock and the crypto
+A floating panel shows the target watchlist's current size and offers the same sync on
+demand. `node extension/test.mjs` covers the pure logic, the cross-tab lock and the crypto
 round trip; pass it a HAR of real traffic to additionally verify the payload format end
 to end.
 

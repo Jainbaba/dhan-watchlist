@@ -36,13 +36,6 @@ const src = fs.readFileSync(
 (0, eval)(src);
 const wl = globalThis.window.dhanWL;
 
-assert.deepStrictEqual(
-  wl.parseSymbols("hdfcbank, RELIANCE\ninfy  hdfcbank;TCS"),
-  ["HDFCBANK", "RELIANCE", "INFY", "TCS"],
-  "parseSymbols: split, uppercase, dedupe"
-);
-assert.deepStrictEqual(wl.parseSymbols("   \n , ; "), []);
-
 assert.strictEqual(wl.segOf("NSE", "E"), 1);
 assert.strictEqual(wl.segOf("NSE", "M"), 10);
 assert.strictEqual(wl.segOf("BSE", "E"), 4);
