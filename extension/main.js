@@ -265,14 +265,18 @@
   // Mirrors the published list into the target watchlist: whatever aged out of
   // the 6-month window disappears. Destructive by design, so it resolves the
   // target by name itself rather than trusting a caller-supplied id.
-  // Names the requested symbols that no confident hit came back for. Matches on
-  // display_name, which is the trading symbol for equities; anything Dhan names
-  // differently would show up here as a false miss rather than being hidden.
+  // Names the requested symbols that no confident hit came back for. The scan
+  // response does not echo the query, and display_name is not the plain ticker,
+  // so match against every string field on the hit and err toward silence: a
+  // missed report is better than accusing 48 of 53 symbols of not existing.
   function findMissing(requested, hits) {
-    const found = new Set(
-      hits.map((h) => String(h.display_name || "").trim().toUpperCase())
-    );
-    return requested.filter((name) => !found.has(name.toUpperCase()));
+    const found = new Set();
+    for (const hit of hits) {
+      for (const value of Object.values(hit || {})) {
+        if (typeof value === "string") found.add(value.trim().toUpperCase());
+      }
+    }
+    return requested.filter((name) => !found.has(name.trim().toUpperCase()));
   }
 
   async function syncFromRepo(log = () => {}, prefetched = null) {
@@ -556,7 +560,16 @@ TCS"></textarea>
   }
 
   function whenReady() {
-    if (window.CryptoJS && window.reqObjectOG && document.documentElement) {
+    // reqObjectOG appears as an empty object before the app populates it, so
+    // wait for the identity fields themselves rather than the bare object.
+    const session = window.reqObjectOG;
+    if (
+      window.CryptoJS &&
+      session &&
+      session.entity_id &&
+      session.token_id &&
+      document.documentElement
+    ) {
       mountUI();
       return;
     }

@@ -69,6 +69,16 @@ assert.deepStrictEqual(
   ["BBB"],
   "findMissing: case- and space-insensitive, reports only the absent"
 );
+assert.deepStrictEqual(
+  wl.findMissing(["AAA"], [{ display_name: "Alpha Ltd", symbol: "AAA" }]),
+  [],
+  "matches on any string field, not just display_name"
+);
+assert.deepStrictEqual(
+  wl.findMissing(["AAA"], [{ security_id: 42, display_name: "Alpha Ltd" }]),
+  ["AAA"],
+  "non-string fields do not blow up the scan"
+);
 assert.deepStrictEqual(wl.findMissing(["AAA"], []), ["AAA"]);
 assert.deepStrictEqual(wl.findMissing([], [{ display_name: "AAA" }]), []);
 
