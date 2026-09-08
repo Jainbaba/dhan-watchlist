@@ -50,6 +50,13 @@ assert.strictEqual(wl.segOf("BSE", "D"), 8);
 assert.strictEqual(wl.segOf("MCX", "M"), 5);
 assert.strictEqual(wl.segOf("NCDEX", "M"), 6);
 assert.strictEqual(wl.segOf("IDX", "E"), 0, "IDX ignores the segment letter");
+assert.strictEqual(
+  wl.segOf("IDX", ""),
+  -1,
+  "bundle's T() rejects a falsy segment before its IDX shortcut"
+);
+assert.strictEqual(wl.segOf("NSE", ""), -1);
+assert.strictEqual(wl.segOf("NSE", undefined), -1);
 assert.strictEqual(wl.segOf("NSE", "I"), 0, "seg 0 must survive the lookup, not fall to -1");
 assert.strictEqual(wl.segOf("MCX", "E"), -1);
 assert.strictEqual(wl.segOf("NOPE", "E"), -1);

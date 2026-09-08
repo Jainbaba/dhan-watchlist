@@ -35,6 +35,11 @@
   };
 
   function segOf(exchange, segment) {
+    // Mirrors fn T() in the bundle, guard order included: T tests the segment
+    // letter for falsiness BEFORE its IDX shortcut, so T("IDX", "") is -1 and
+    // not 0. Diverging here would silently map a segment-less index row onto
+    // NSE/I instead of rejecting it.
+    if (!segment) return -1;
     const row = SEG[exchange];
     if (!row) return -1;
     const key = exchange === "IDX" ? "*" : segment;
