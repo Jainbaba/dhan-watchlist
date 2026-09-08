@@ -1,0 +1,32 @@
+name: Update watchlist
+
+on:
+  schedule:
+    # 03:30 UTC = 09:00 IST. GitHub runs cron on UTC and may delay a run
+    # under load, so treat the time as "shortly after 9am", not exact.
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rebuild the list
+        run: python3 build_list.py
+
+      - name: Commit if it changed
+        run: |
+          if git diff --quiet -- watchlist.json; then
+            echo "no change today"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add watchlist.json
+          git commit -m "chore: refresh NSE listings ($(date -u +%F))"
+          git push

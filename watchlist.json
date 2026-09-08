@@ -1,0 +1,1185 @@
+{
+  "generated_on": "2026-09-09",
+  "source": "https://nsearchives.nseindia.com/content/equities/EQUITY_L.csv",
+  "window_days": 365,
+  "count": 167,
+  "excluded_migration_days": [
+    "2026-04-20",
+    "2026-08-17"
+  ],
+  "count_before_migration_filter": 386,
+  "truncated_to_cap": false,
+  "symbols": [
+    "DEEPA",
+    "PERNIASPOP",
+    "ESDS",
+    "LUMINO",
+    "SYMBIOTEC",
+    "SKYWAYS",
+    "AUGMONT",
+    "TEMPSENS",
+    "GAJA",
+    "SUNSHINE",
+    "SHANKESH",
+    "LALITHAA",
+    "HORIZONIND",
+    "SHIPROCKET",
+    "BLEL",
+    "MILKYMIST",
+    "TECHNOCRAF",
+    "SHUKRAPHAR",
+    "LEAPIND",
+    "ARDEE",
+    "ANNAPURNA",
+    "MVELECTRO",
+    "JNPR",
+    "MANIPALHOS",
+    "FERMENTA",
+    "XTRANET",
+    "LCL",
+    "INDOMIM",
+    "CMLL",
+    "CPL",
+    "SBIFUNDS",
+    "ALPINETEX",
+    "RIR",
+    "LASERPOWER",
+    "KUSUMGAR",
+    "GYFTR",
+    "KNACK",
+    "AASTHA",
+    "AGL",
+    "CSM",
+    "VOEPL",
+    "RAMBHAJO",
+    "CORDELIA",
+    "TURTLEMINT",
+    "VOGL",
+    "VISL",
+    "VEDPOWER",
+    "VAML",
+    "CMRGREEN",
+    "VIVIANA",
+    "MERCURYEV",
+    "KISSHT",
+    "GRADIENTE",
+    "OMPOWER",
+    "SAHLIBHFI",
+    "NIMBSPROJ",
+    "SAIPARENT",
+    "POWERICA",
+    "AEROPLANE",
+    "RMC",
+    "CMPDI",
+    "BCPL",
+    "GSPCROP",
+    "INNOVISION",
+    "SINGERIND",
+    "RSL",
+    "MARSONS",
+    "AEPL",
+    "VITAL",
+    "SEDEMAC",
+    "INA",
+    "OMNI",
+    "PNGSREVA",
+    "SRTL",
+    "CLEANMAX",
+    "TCC",
+    "BONLON",
+    "CEINSYS",
+    "GICL",
+    "DCMSIL",
+    "KWIL",
+    "FRACTAL",
+    "AYE",
+    "SHADOWFAX",
+    "AMAGI",
+    "ADVAIT",
+    "HALDER",
+    "BHARATCOAL",
+    "BUILDPRO",
+    "ALGOQUANT",
+    "KRISHNADEF",
+    "GKSL",
+    "KSHINTL",
+    "RUDRA",
+    "ICICIAMC",
+    "PARKHOSPS",
+    "NEPHROPLUS",
+    "WAKEFIT",
+    "CORONA",
+    "LEMERITE",
+    "MODINATUR",
+    "VIDYAWIRES",
+    "MEESHO",
+    "AEQUS",
+    "KNAGRI",
+    "SKFINDUS",
+    "JAYKAY",
+    "PAUSHAKLTD",
+    "SUDEEPPHRM",
+    "KSR",
+    "EXCELSOFT",
+    "SHILCTECH",
+    "BETA",
+    "CAPILLARY",
+    "UTLSOLAR",
+    "TENNIND",
+    "PWL",
+    "EMMVEE",
+    "SHIVAUM",
+    "PINELABS",
+    "MODIS",
+    "ADVENTHTL",
+    "TMCV",
+    "GROWW",
+    "LENSKART",
+    "STUDDS",
+    "PIRAMALFIN",
+    "ORKLAINDIA",
+    "MIDWESTLTD",
+    "CANHLIFE",
+    "RUBICON",
+    "CRAMC",
+    "MONEYBOXX",
+    "MARKOLINES",
+    "LGEINDIA",
+    "TATACAP",
+    "WEWORK",
+    "SOLEX",
+    "ADVANCE",
+    "GLOTTIS",
+    "FABTECH",
+    "PACEDIGITK",
+    "TRUALT",
+    "JKIPL",
+    "JAINREC",
+    "FINKURVE",
+    "EPACKPEB",
+    "BMWVENTLTD",
+    "STYL",
+    "SOLARWORLD",
+    "JARO",
+    "ARSSBL",
+    "GANESHCP",
+    "ATLANTAELE",
+    "SAATVIKGL",
+    "RHETAN",
+    "GKENERGY",
+    "IVALUE",
+    "VMSTMT",
+    "ABCOTS",
+    "EUROPRATIK",
+    "TIGERLOGS",
+    "MWL",
+    "URBANCO",
+    "SHRINGARMS",
+    "DEVX",
+    "SGMART"
+  ],
+  "listings": [
+    {
+      "symbol": "DEEPA",
+      "name": "Deepa Jewellers Limited",
+      "listed_on": "2026-09-08",
+      "isin": "INE1M2N01020"
+    },
+    {
+      "symbol": "PERNIASPOP",
+      "name": "Purple Style Labs Limited",
+      "listed_on": "2026-09-07",
+      "isin": "INE0I1B01016"
+    },
+    {
+      "symbol": "ESDS",
+      "name": "ESDS Software Solution Limited",
+      "listed_on": "2026-09-04",
+      "isin": "INE0DRI01029"
+    },
+    {
+      "symbol": "LUMINO",
+      "name": "Lumino Industries Limited",
+      "listed_on": "2026-09-03",
+      "isin": "INE185Q01025"
+    },
+    {
+      "symbol": "SYMBIOTEC",
+      "name": "Symbiotec Pharmalab Limited",
+      "listed_on": "2026-09-01",
+      "isin": "INE899I01028"
+    },
+    {
+      "symbol": "SKYWAYS",
+      "name": "Skyways Air Services Limited",
+      "listed_on": "2026-09-01",
+      "isin": "INE0PX301025"
+    },
+    {
+      "symbol": "AUGMONT",
+      "name": "Augmont Enterprises Limited",
+      "listed_on": "2026-08-31",
+      "isin": "INE16W401027"
+    },
+    {
+      "symbol": "TEMPSENS",
+      "name": "Tempsens Instruments (India) Limited",
+      "listed_on": "2026-08-28",
+      "isin": "INE1KZI01025"
+    },
+    {
+      "symbol": "GAJA",
+      "name": "Gaja Alternative Asset Management Limited",
+      "listed_on": "2026-08-26",
+      "isin": "INE18UN01038"
+    },
+    {
+      "symbol": "SUNSHINE",
+      "name": "Sunshine Pictures Limited",
+      "listed_on": "2026-08-25",
+      "isin": "INE1B3O01011"
+    },
+    {
+      "symbol": "SHANKESH",
+      "name": "Shankesh Jewellers Limited",
+      "listed_on": "2026-08-25",
+      "isin": "INE1WFC01025"
+    },
+    {
+      "symbol": "LALITHAA",
+      "name": "Lalithaa Jewellery Mart Limited",
+      "listed_on": "2026-08-24",
+      "isin": "INE0K9O01026"
+    },
+    {
+      "symbol": "HORIZONIND",
+      "name": "Horizon Industrial Parks Limited",
+      "listed_on": "2026-08-24",
+      "isin": "INE685T01010"
+    },
+    {
+      "symbol": "SHIPROCKET",
+      "name": "Shiprocket Limited",
+      "listed_on": "2026-08-19",
+      "isin": "INE0FOO01011"
+    },
+    {
+      "symbol": "BLEL",
+      "name": "Behari Lal Engineering Limited",
+      "listed_on": "2026-08-19",
+      "isin": "INE1EEM01017"
+    },
+    {
+      "symbol": "MILKYMIST",
+      "name": "Milky Mist Dairy Food Limited",
+      "listed_on": "2026-08-18",
+      "isin": "INE00IT01020"
+    },
+    {
+      "symbol": "TECHNOCRAF",
+      "name": "Technocraft Ventures Limited",
+      "listed_on": "2026-08-14",
+      "isin": "INE1D0W01018"
+    },
+    {
+      "symbol": "SHUKRAPHAR",
+      "name": "Shukra Pharmaceuticals Limited",
+      "listed_on": "2026-08-14",
+      "isin": "INE551C01044"
+    },
+    {
+      "symbol": "LEAPIND",
+      "name": "LEAP India Limited",
+      "listed_on": "2026-08-14",
+      "isin": "INE00GO01025"
+    },
+    {
+      "symbol": "ARDEE",
+      "name": "Ardee Industries Limited",
+      "listed_on": "2026-08-12",
+      "isin": "INE0XNF01022"
+    },
+    {
+      "symbol": "ANNAPURNA",
+      "name": "Annapurna Swadisht Limited",
+      "listed_on": "2026-08-12",
+      "isin": "INE0MGM01017"
+    },
+    {
+      "symbol": "MVELECTRO",
+      "name": "MV Electrosystems Limited",
+      "listed_on": "2026-08-06",
+      "isin": "INE0OWZ01020"
+    },
+    {
+      "symbol": "JNPR",
+      "name": "Juniper Green Energy Limited",
+      "listed_on": "2026-08-06",
+      "isin": "INE05C901015"
+    },
+    {
+      "symbol": "MANIPALHOS",
+      "name": "Manipal Health Enterprises Limited",
+      "listed_on": "2026-08-05",
+      "isin": "INE459N01021"
+    },
+    {
+      "symbol": "FERMENTA",
+      "name": "Fermenta Biotech Limited",
+      "listed_on": "2026-08-04",
+      "isin": "INE225B01021"
+    },
+    {
+      "symbol": "XTRANET",
+      "name": "Xtranet Technologies Limited",
+      "listed_on": "2026-07-30",
+      "isin": "INE0NG701011"
+    },
+    {
+      "symbol": "LCL",
+      "name": "Lohia Corp Limited",
+      "listed_on": "2026-07-30",
+      "isin": "INE0QJW01029"
+    },
+    {
+      "symbol": "INDOMIM",
+      "name": "INDO-MIM Limited",
+      "listed_on": "2026-07-30",
+      "isin": "INE084101034"
+    },
+    {
+      "symbol": "CMLL",
+      "name": "Caliber Mining and Logistics Limited",
+      "listed_on": "2026-07-24",
+      "isin": "INE11XY01018"
+    },
+    {
+      "symbol": "CPL",
+      "name": "Captain Polyplast Limited",
+      "listed_on": "2026-07-23",
+      "isin": "INE536P01021"
+    },
+    {
+      "symbol": "SBIFUNDS",
+      "name": "SBI Funds Management Limited",
+      "listed_on": "2026-07-21",
+      "isin": "INE640G01020"
+    },
+    {
+      "symbol": "ALPINETEX",
+      "name": "Alpine Texworld Limited",
+      "listed_on": "2026-07-21",
+      "isin": "INE1JCQ01037"
+    },
+    {
+      "symbol": "RIR",
+      "name": "RIR Power Electronics Limited",
+      "listed_on": "2026-07-16",
+      "isin": "INE302D01024"
+    },
+    {
+      "symbol": "LASERPOWER",
+      "name": "Laser Power & Infra Limited",
+      "listed_on": "2026-07-16",
+      "isin": "INE17IR01028"
+    },
+    {
+      "symbol": "KUSUMGAR",
+      "name": "Kusumgar Limited",
+      "listed_on": "2026-07-15",
+      "isin": "INE0ISX01025"
+    },
+    {
+      "symbol": "GYFTR",
+      "name": "Gyftr Limited",
+      "listed_on": "2026-07-10",
+      "isin": "INE724A01017"
+    },
+    {
+      "symbol": "KNACK",
+      "name": "Knack Packaging Limited",
+      "listed_on": "2026-07-08",
+      "isin": "INE17QZ01016"
+    },
+    {
+      "symbol": "AASTHA",
+      "name": "Aastha Spintex Limited",
+      "listed_on": "2026-07-06",
+      "isin": "INE2FMX01012"
+    },
+    {
+      "symbol": "AGL",
+      "name": "Allcargo Global Limited",
+      "listed_on": "2026-07-03",
+      "isin": "INE1YPB01014"
+    },
+    {
+      "symbol": "CSM",
+      "name": "CSM Technologies Limited",
+      "listed_on": "2026-07-02",
+      "isin": "INE0ZK601013"
+    },
+    {
+      "symbol": "VOEPL",
+      "name": "Virtuoso Optoelectronics Limited",
+      "listed_on": "2026-07-01",
+      "isin": "INE0I0T01010"
+    },
+    {
+      "symbol": "RAMBHAJO",
+      "name": "Advit Jewels Limited",
+      "listed_on": "2026-07-01",
+      "isin": "INE1SJO01012"
+    },
+    {
+      "symbol": "CORDELIA",
+      "name": "Waterways Leisure Tourism Limited",
+      "listed_on": "2026-07-01",
+      "isin": "INE0LZF01039"
+    },
+    {
+      "symbol": "TURTLEMINT",
+      "name": "Turtlemint Fintech Solutions Limited",
+      "listed_on": "2026-06-29",
+      "isin": "INE0OC301013"
+    },
+    {
+      "symbol": "VOGL",
+      "name": "Vedanta Oil and Gas Limited",
+      "listed_on": "2026-06-15",
+      "isin": "INE704J01044"
+    },
+    {
+      "symbol": "VISL",
+      "name": "Vedanta Iron and Steel Limited",
+      "listed_on": "2026-06-15",
+      "isin": "INE1CLE01013"
+    },
+    {
+      "symbol": "VEDPOWER",
+      "name": "Vedanta Power Limited",
+      "listed_on": "2026-06-15",
+      "isin": "INE694L01019"
+    },
+    {
+      "symbol": "VAML",
+      "name": "Vedanta Aluminium Metal Limited",
+      "listed_on": "2026-06-15",
+      "isin": "INE1CDF01017"
+    },
+    {
+      "symbol": "CMRGREEN",
+      "name": "CMR Green Technologies Limited",
+      "listed_on": "2026-06-10",
+      "isin": "INE00WV01027"
+    },
+    {
+      "symbol": "VIVIANA",
+      "name": "Viviana Power Tech Limited",
+      "listed_on": "2026-06-02",
+      "isin": "INE0MEG01014"
+    },
+    {
+      "symbol": "MERCURYEV",
+      "name": "Mercury Ev-Tech Limited",
+      "listed_on": "2026-06-02",
+      "isin": "INE763M01028"
+    },
+    {
+      "symbol": "KISSHT",
+      "name": "OnEMI Technology Solutions Limited",
+      "listed_on": "2026-05-08",
+      "isin": "INE12F801023"
+    },
+    {
+      "symbol": "GRADIENTE",
+      "name": "Gradiente Infotainment Limited",
+      "listed_on": "2026-05-08",
+      "isin": "INE361K01017"
+    },
+    {
+      "symbol": "OMPOWER",
+      "name": "Om Power Transmission Limited",
+      "listed_on": "2026-04-17",
+      "isin": "INE25E901019"
+    },
+    {
+      "symbol": "SAHLIBHFI",
+      "name": "Shalibhadra Finance Limited",
+      "listed_on": "2026-04-10",
+      "isin": "INE861D01011"
+    },
+    {
+      "symbol": "NIMBSPROJ",
+      "name": "Nimbus Projects Limited",
+      "listed_on": "2026-04-06",
+      "isin": "INE875B01015"
+    },
+    {
+      "symbol": "SAIPARENT",
+      "name": "Sai Parenterals Limited",
+      "listed_on": "2026-04-02",
+      "isin": "INE0H9F01037"
+    },
+    {
+      "symbol": "POWERICA",
+      "name": "Powerica Limited",
+      "listed_on": "2026-04-02",
+      "isin": "INE921L01032"
+    },
+    {
+      "symbol": "AEROPLANE",
+      "name": "Amir Chand Jagdish Kumar (Exports) Limited",
+      "listed_on": "2026-04-02",
+      "isin": "INE05TO01019"
+    },
+    {
+      "symbol": "RMC",
+      "name": "RMC Switchgears Limited",
+      "listed_on": "2026-04-01",
+      "isin": "INE655V01019"
+    },
+    {
+      "symbol": "CMPDI",
+      "name": "Central Mine Planning & Design Institute Limited",
+      "listed_on": "2026-03-30",
+      "isin": "INE05HV01027"
+    },
+    {
+      "symbol": "BCPL",
+      "name": "BCPL Railway Infrastructure Limited",
+      "listed_on": "2026-03-27",
+      "isin": "INE00SW01015"
+    },
+    {
+      "symbol": "GSPCROP",
+      "name": "GSP Crop Science Limited",
+      "listed_on": "2026-03-24",
+      "isin": "INE713R01022"
+    },
+    {
+      "symbol": "INNOVISION",
+      "name": "Innovision Limited",
+      "listed_on": "2026-03-23",
+      "isin": "INE0ADB01012"
+    },
+    {
+      "symbol": "SINGERIND",
+      "name": "Singer India Limited",
+      "listed_on": "2026-03-19",
+      "isin": "INE638A01035"
+    },
+    {
+      "symbol": "RSL",
+      "name": "Rajputana Stainless Limited",
+      "listed_on": "2026-03-19",
+      "isin": "INE313L01016"
+    },
+    {
+      "symbol": "MARSONS",
+      "name": "Marsons Limited",
+      "listed_on": "2026-03-13",
+      "isin": "INE415B01044"
+    },
+    {
+      "symbol": "AEPL",
+      "name": "Artemis Electricals and Projects Limited",
+      "listed_on": "2026-03-12",
+      "isin": "INE757T01025"
+    },
+    {
+      "symbol": "VITAL",
+      "name": "Vital Chemtech Limited",
+      "listed_on": "2026-03-11",
+      "isin": "INE0L4K01016"
+    },
+    {
+      "symbol": "SEDEMAC",
+      "name": "SEDEMAC Mechatronics Limited",
+      "listed_on": "2026-03-11",
+      "isin": "INE00XB01019"
+    },
+    {
+      "symbol": "INA",
+      "name": "Insolation Energy Limited",
+      "listed_on": "2026-03-09",
+      "isin": "INE0LGX01024"
+    },
+    {
+      "symbol": "OMNI",
+      "name": "Omnitech Engineering Limited",
+      "listed_on": "2026-03-05",
+      "isin": "INE0UH301010"
+    },
+    {
+      "symbol": "PNGSREVA",
+      "name": "PNGS Reva Diamond Jewellery Limited",
+      "listed_on": "2026-03-04",
+      "isin": "INE1RDG01013"
+    },
+    {
+      "symbol": "SRTL",
+      "name": "Shree Ram Twistex Limited",
+      "listed_on": "2026-03-02",
+      "isin": "INE19GK01015"
+    },
+    {
+      "symbol": "CLEANMAX",
+      "name": "Clean Max Enviro Energy Solutions Limited",
+      "listed_on": "2026-03-02",
+      "isin": "INE647U01026"
+    },
+    {
+      "symbol": "TCC",
+      "name": "TCC Concept Limited",
+      "listed_on": "2026-02-25",
+      "isin": "INE887D01024"
+    },
+    {
+      "symbol": "BONLON",
+      "name": "Bonlon Industries Limited",
+      "listed_on": "2026-02-20",
+      "isin": "INE0B9A01018"
+    },
+    {
+      "symbol": "CEINSYS",
+      "name": "Ceinsys Tech Limited",
+      "listed_on": "2026-02-19",
+      "isin": "INE016Q01014"
+    },
+    {
+      "symbol": "GICL",
+      "name": "Globe International Carriers Limited",
+      "listed_on": "2026-02-18",
+      "isin": "INE947T01022"
+    },
+    {
+      "symbol": "DCMSIL",
+      "name": "DCM Shriram International Limited",
+      "listed_on": "2026-02-17",
+      "isin": "INE0OU201013"
+    },
+    {
+      "symbol": "KWIL",
+      "name": "Kwality Wall's (India) Limited",
+      "listed_on": "2026-02-16",
+      "isin": "INE2KCE01013"
+    },
+    {
+      "symbol": "FRACTAL",
+      "name": "Fractal Analytics Limited",
+      "listed_on": "2026-02-16",
+      "isin": "INE212S01015"
+    },
+    {
+      "symbol": "AYE",
+      "name": "Aye Finance Limited",
+      "listed_on": "2026-02-16",
+      "isin": "INE501X01029"
+    },
+    {
+      "symbol": "SHADOWFAX",
+      "name": "Shadowfax Technologies Limited",
+      "listed_on": "2026-01-28",
+      "isin": "INE12UN01015"
+    },
+    {
+      "symbol": "AMAGI",
+      "name": "Amagi Media Labs Limited",
+      "listed_on": "2026-01-21",
+      "isin": "INE121R01077"
+    },
+    {
+      "symbol": "ADVAIT",
+      "name": "Advait Energy Transitions Limited",
+      "listed_on": "2026-01-20",
+      "isin": "INE0ALI01010"
+    },
+    {
+      "symbol": "HALDER",
+      "name": "Halder Venture Limited",
+      "listed_on": "2026-01-19",
+      "isin": "INE115S01010"
+    },
+    {
+      "symbol": "BHARATCOAL",
+      "name": "Bharat Coking Coal Limited",
+      "listed_on": "2026-01-19",
+      "isin": "INE05XR01022"
+    },
+    {
+      "symbol": "BUILDPRO",
+      "name": "Shankara Buildpro Limited",
+      "listed_on": "2026-01-09",
+      "isin": "INE24OJ01011"
+    },
+    {
+      "symbol": "ALGOQUANT",
+      "name": "Algoquant Fintech Limited",
+      "listed_on": "2026-01-06",
+      "isin": "INE598D01035"
+    },
+    {
+      "symbol": "KRISHNADEF",
+      "name": "Krishna Defence And Allied Industries Limited",
+      "listed_on": "2025-12-30",
+      "isin": "INE0J5601015"
+    },
+    {
+      "symbol": "GKSL",
+      "name": "Gujarat Kidney And Super Speciality Limited",
+      "listed_on": "2025-12-30",
+      "isin": "INE0V0W01025"
+    },
+    {
+      "symbol": "KSHINTL",
+      "name": "KSH International Limited",
+      "listed_on": "2025-12-23",
+      "isin": "INE987S01020"
+    },
+    {
+      "symbol": "RUDRA",
+      "name": "Rudra Global Infra Products Limited",
+      "listed_on": "2025-12-19",
+      "isin": "INE027T01023"
+    },
+    {
+      "symbol": "ICICIAMC",
+      "name": "ICICI Prudential Asset Management Company Limited",
+      "listed_on": "2025-12-19",
+      "isin": "INE346A01027"
+    },
+    {
+      "symbol": "PARKHOSPS",
+      "name": "Park Medi World Limited",
+      "listed_on": "2025-12-17",
+      "isin": "INE119201023"
+    },
+    {
+      "symbol": "NEPHROPLUS",
+      "name": "Nephrocare Health Services Limited",
+      "listed_on": "2025-12-17",
+      "isin": "INE428V01029"
+    },
+    {
+      "symbol": "WAKEFIT",
+      "name": "Wakefit Innovations Limited",
+      "listed_on": "2025-12-15",
+      "isin": "INE0E7301029"
+    },
+    {
+      "symbol": "CORONA",
+      "name": "CORONA Remedies Limited",
+      "listed_on": "2025-12-15",
+      "isin": "INE02ZQ01018"
+    },
+    {
+      "symbol": "LEMERITE",
+      "name": "Le Merite Exports Limited",
+      "listed_on": "2025-12-12",
+      "isin": "INE0G1L01025"
+    },
+    {
+      "symbol": "MODINATUR",
+      "name": "Modi Naturals Limited",
+      "listed_on": "2025-12-11",
+      "isin": "INE537F01012"
+    },
+    {
+      "symbol": "VIDYAWIRES",
+      "name": "Vidya Wires Limited",
+      "listed_on": "2025-12-10",
+      "isin": "INE14UN01029"
+    },
+    {
+      "symbol": "MEESHO",
+      "name": "Meesho Limited",
+      "listed_on": "2025-12-10",
+      "isin": "INE0VDM01015"
+    },
+    {
+      "symbol": "AEQUS",
+      "name": "Aequs Limited",
+      "listed_on": "2025-12-10",
+      "isin": "INE947N01017"
+    },
+    {
+      "symbol": "KNAGRI",
+      "name": "KN Agri Resources Limited",
+      "listed_on": "2025-12-09",
+      "isin": "INE0KNW01016"
+    },
+    {
+      "symbol": "SKFINDUS",
+      "name": "SKF India (Industrial) Limited",
+      "listed_on": "2025-12-05",
+      "isin": "INE2J8701016"
+    },
+    {
+      "symbol": "JAYKAY",
+      "name": "Jaykay Enterprises Limited",
+      "listed_on": "2025-12-03",
+      "isin": "INE903A01025"
+    },
+    {
+      "symbol": "PAUSHAKLTD",
+      "name": "Paushak Limited",
+      "listed_on": "2025-12-01",
+      "isin": "INE111F01024"
+    },
+    {
+      "symbol": "SUDEEPPHRM",
+      "name": "Sudeep Pharma Limited",
+      "listed_on": "2025-11-28",
+      "isin": "INE0QPI01025"
+    },
+    {
+      "symbol": "KSR",
+      "name": "KSR Footwear Limited",
+      "listed_on": "2025-11-27",
+      "isin": "INE1SPP01016"
+    },
+    {
+      "symbol": "EXCELSOFT",
+      "name": "Excelsoft Technologies Limited",
+      "listed_on": "2025-11-26",
+      "isin": "INE606N01019"
+    },
+    {
+      "symbol": "SHILCTECH",
+      "name": "Shilchar Technologies Limited",
+      "listed_on": "2025-11-24",
+      "isin": "INE024F01011"
+    },
+    {
+      "symbol": "BETA",
+      "name": "Beta Drugs Limited",
+      "listed_on": "2025-11-24",
+      "isin": "INE351Y01019"
+    },
+    {
+      "symbol": "CAPILLARY",
+      "name": "Capillary Technologies India Limited",
+      "listed_on": "2025-11-21",
+      "isin": "INE0ILV01024"
+    },
+    {
+      "symbol": "UTLSOLAR",
+      "name": "Fujiyama Power Systems Limited",
+      "listed_on": "2025-11-20",
+      "isin": "INE12UR01024"
+    },
+    {
+      "symbol": "TENNIND",
+      "name": "Tenneco Clean Air India Limited",
+      "listed_on": "2025-11-19",
+      "isin": "INE19RI01016"
+    },
+    {
+      "symbol": "PWL",
+      "name": "Physicswallah Limited",
+      "listed_on": "2025-11-18",
+      "isin": "INE0LP301011"
+    },
+    {
+      "symbol": "EMMVEE",
+      "name": "Emmvee Photovoltaic Power Limited",
+      "listed_on": "2025-11-18",
+      "isin": "INE1C6T01020"
+    },
+    {
+      "symbol": "SHIVAUM",
+      "name": "Shiv Aum Steels Limited",
+      "listed_on": "2025-11-14",
+      "isin": "INE719F01016"
+    },
+    {
+      "symbol": "PINELABS",
+      "name": "Pine Labs Limited",
+      "listed_on": "2025-11-14",
+      "isin": "INE15B701018"
+    },
+    {
+      "symbol": "MODIS",
+      "name": "Modis Navnirman Limited",
+      "listed_on": "2025-11-14",
+      "isin": "INE0L0L01012"
+    },
+    {
+      "symbol": "ADVENTHTL",
+      "name": "Advent Hotels International Limited",
+      "listed_on": "2025-11-13",
+      "isin": "INE28GN01010"
+    },
+    {
+      "symbol": "TMCV",
+      "name": "Tata Motors Limited",
+      "listed_on": "2025-11-12",
+      "isin": "INE1TAE01010"
+    },
+    {
+      "symbol": "GROWW",
+      "name": "Billionbrains Garage Ventures Limited",
+      "listed_on": "2025-11-12",
+      "isin": "INE0HOQ01053"
+    },
+    {
+      "symbol": "LENSKART",
+      "name": "Lenskart Solutions Limited",
+      "listed_on": "2025-11-10",
+      "isin": "INE956O01016"
+    },
+    {
+      "symbol": "STUDDS",
+      "name": "Studds Accessories Limited",
+      "listed_on": "2025-11-07",
+      "isin": "INE00Q601028"
+    },
+    {
+      "symbol": "PIRAMALFIN",
+      "name": "Piramal Finance Limited",
+      "listed_on": "2025-11-07",
+      "isin": "INE202B01038"
+    },
+    {
+      "symbol": "ORKLAINDIA",
+      "name": "Orkla India Limited",
+      "listed_on": "2025-11-06",
+      "isin": "INE16NZ01023"
+    },
+    {
+      "symbol": "MIDWESTLTD",
+      "name": "Midwest Limited",
+      "listed_on": "2025-10-24",
+      "isin": "INE0XAD01024"
+    },
+    {
+      "symbol": "CANHLIFE",
+      "name": "Canara HSBC Life Insurance Company Limited",
+      "listed_on": "2025-10-17",
+      "isin": "INE01TY01017"
+    },
+    {
+      "symbol": "RUBICON",
+      "name": "Rubicon Research Limited",
+      "listed_on": "2025-10-16",
+      "isin": "INE506V01022"
+    },
+    {
+      "symbol": "CRAMC",
+      "name": "Canara Robeco Asset Management Company Limited",
+      "listed_on": "2025-10-16",
+      "isin": "INE218I01013"
+    },
+    {
+      "symbol": "MONEYBOXX",
+      "name": "Moneyboxx Finance Limited",
+      "listed_on": "2025-10-15",
+      "isin": "INE296Q01012"
+    },
+    {
+      "symbol": "MARKOLINES",
+      "name": "Markolines Pavement Technologies Limited",
+      "listed_on": "2025-10-14",
+      "isin": "INE0FW001016"
+    },
+    {
+      "symbol": "LGEINDIA",
+      "name": "LG Electronics India Limited",
+      "listed_on": "2025-10-14",
+      "isin": "INE324D01010"
+    },
+    {
+      "symbol": "TATACAP",
+      "name": "Tata Capital Limited",
+      "listed_on": "2025-10-13",
+      "isin": "INE976I01016"
+    },
+    {
+      "symbol": "WEWORK",
+      "name": "WeWork India Management Limited",
+      "listed_on": "2025-10-10",
+      "isin": "INE085001019"
+    },
+    {
+      "symbol": "SOLEX",
+      "name": "Solex Energy Limited",
+      "listed_on": "2025-10-08",
+      "isin": "INE880Y01017"
+    },
+    {
+      "symbol": "ADVANCE",
+      "name": "Advance Agrolife Limited",
+      "listed_on": "2025-10-08",
+      "isin": "INE1B0W01010"
+    },
+    {
+      "symbol": "GLOTTIS",
+      "name": "Glottis Limited",
+      "listed_on": "2025-10-07",
+      "isin": "INE0TQE01026"
+    },
+    {
+      "symbol": "FABTECH",
+      "name": "Fabtech Technologies Limited",
+      "listed_on": "2025-10-07",
+      "isin": "INE0HF201011"
+    },
+    {
+      "symbol": "PACEDIGITK",
+      "name": "Pace Digitek Limited",
+      "listed_on": "2025-10-06",
+      "isin": "INE0S3G01027"
+    },
+    {
+      "symbol": "TRUALT",
+      "name": "TruAlt Bioenergy Limited",
+      "listed_on": "2025-10-03",
+      "isin": "INE0MWH01014"
+    },
+    {
+      "symbol": "JKIPL",
+      "name": "Jinkushal Industries Limited",
+      "listed_on": "2025-10-03",
+      "isin": "INE1FF001016"
+    },
+    {
+      "symbol": "JAINREC",
+      "name": "Jain Resource Recycling Limited",
+      "listed_on": "2025-10-01",
+      "isin": "INE0YD401026"
+    },
+    {
+      "symbol": "FINKURVE",
+      "name": "Finkurve Financial Services Limited",
+      "listed_on": "2025-10-01",
+      "isin": "INE734I01027"
+    },
+    {
+      "symbol": "EPACKPEB",
+      "name": "EPack Prefab Technologies Limited",
+      "listed_on": "2025-10-01",
+      "isin": "INE0MLS01022"
+    },
+    {
+      "symbol": "BMWVENTLTD",
+      "name": "BMW Ventures Limited",
+      "listed_on": "2025-10-01",
+      "isin": "INE965W01036"
+    },
+    {
+      "symbol": "STYL",
+      "name": "Seshaasai Technologies Limited",
+      "listed_on": "2025-09-30",
+      "isin": "INE04VU01023"
+    },
+    {
+      "symbol": "SOLARWORLD",
+      "name": "Solarworld Energy Solutions Limited",
+      "listed_on": "2025-09-30",
+      "isin": "INE0TY101024"
+    },
+    {
+      "symbol": "JARO",
+      "name": "Jaro Institute of Technology Management and Research Limited",
+      "listed_on": "2025-09-30",
+      "isin": "INE00YJ01010"
+    },
+    {
+      "symbol": "ARSSBL",
+      "name": "Anand Rathi Share and Stock Brokers Limited",
+      "listed_on": "2025-09-30",
+      "isin": "INE549H01021"
+    },
+    {
+      "symbol": "GANESHCP",
+      "name": "Ganesh Consumer Products Limited",
+      "listed_on": "2025-09-29",
+      "isin": "INE652V01016"
+    },
+    {
+      "symbol": "ATLANTAELE",
+      "name": "Atlanta Electricals Limited",
+      "listed_on": "2025-09-29",
+      "isin": "INE0Z4F01028"
+    },
+    {
+      "symbol": "SAATVIKGL",
+      "name": "Saatvik Green Energy Limited",
+      "listed_on": "2025-09-26",
+      "isin": "INE13B501022"
+    },
+    {
+      "symbol": "RHETAN",
+      "name": "Rhetan TMT Limited",
+      "listed_on": "2025-09-26",
+      "isin": "INE0KKN01029"
+    },
+    {
+      "symbol": "GKENERGY",
+      "name": "GK Energy Limited",
+      "listed_on": "2025-09-26",
+      "isin": "INE1AG301022"
+    },
+    {
+      "symbol": "IVALUE",
+      "name": "Ivalue Infosolutions Limited",
+      "listed_on": "2025-09-25",
+      "isin": "INE056801025"
+    },
+    {
+      "symbol": "VMSTMT",
+      "name": "VMS TMT Limited",
+      "listed_on": "2025-09-24",
+      "isin": "INE0SJA01013"
+    },
+    {
+      "symbol": "ABCOTS",
+      "name": "A B Cotspin India Limited",
+      "listed_on": "2025-09-24",
+      "isin": "INE08PH01015"
+    },
+    {
+      "symbol": "EUROPRATIK",
+      "name": "Euro Pratik Sales Limited",
+      "listed_on": "2025-09-23",
+      "isin": "INE198501012"
+    },
+    {
+      "symbol": "TIGERLOGS",
+      "name": "Tiger Logistics (India) Limited",
+      "listed_on": "2025-09-18",
+      "isin": "INE906O01029"
+    },
+    {
+      "symbol": "MWL",
+      "name": "Mangalam Worldwide Limited",
+      "listed_on": "2025-09-18",
+      "isin": "INE0JYY01029"
+    },
+    {
+      "symbol": "URBANCO",
+      "name": "Urban Company Limited",
+      "listed_on": "2025-09-17",
+      "isin": "INE0CAZ01013"
+    },
+    {
+      "symbol": "SHRINGARMS",
+      "name": "Shringar House of Mangalsutra Limited",
+      "listed_on": "2025-09-17",
+      "isin": "INE1B3L01017"
+    },
+    {
+      "symbol": "DEVX",
+      "name": "Dev Accelerator Limited",
+      "listed_on": "2025-09-17",
+      "isin": "INE0VOV01021"
+    },
+    {
+      "symbol": "SGMART",
+      "name": "SG Mart Limited",
+      "listed_on": "2025-09-12",
+      "isin": "INE385F01024"
+    }
+  ]
+}
