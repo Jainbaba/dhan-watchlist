@@ -307,10 +307,21 @@
     });
   }
 
+  // Once the bridge is orphaned nothing can succeed until the page reloads, so
+  // stop asking on every symbol change and keep saying why.
+  let bridgeDead = false;
+
   const shareholdingCache = new Map();
   async function getShareholding(query) {
+    if (bridgeDead) throw new Error("extension was reloaded - refresh the page");
     if (shareholdingCache.has(query)) return shareholdingCache.get(query);
-    const { html, name } = await fetchScreenerPage(query);
+    let html, name;
+    try {
+      ({ html, name } = await fetchScreenerPage(query));
+    } catch (err) {
+      if (/reloaded/.test(err.message)) bridgeDead = true;
+      throw err;
+    }
     const parsed = trimToRecent(parseShareholding(html));
     parsed.company = name || query;
     shareholdingCache.set(query, parsed);
