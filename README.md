@@ -1,47 +1,57 @@
 # dhan-watchlist
 
-A rolling list of NSE **mainboard** symbols listed in the last 12 months, rebuilt
-daily and published as `watchlist.json`. The companion browser extension reads it
-and mirrors it into a Dhan TradingView watchlist.
+A rolling list of **NSE mainboard IPOs from the last 6 months**, rebuilt daily and
+published as `watchlist.json`. The companion browser extension reads it and mirrors it
+into a Dhan TradingView watchlist named **6-Month Stocks**.
 
 ## What's in the list
 
-`build_list.py` reads NSE's published equity master
-([EQUITY_L.csv](https://nsearchives.nseindia.com/content/equities/EQUITY_L.csv))
-and keeps rows where:
+`build_list.py` reads NSE's past public issues feed
+(`https://www.nseindia.com/api/public-past-issues`) and keeps records where:
 
-- `SERIES` is `EQ` — mainboard. `BE` and `BZ` are surveillance buckets, not new listings.
-- `DATE OF LISTING` falls within the last 365 days.
-- The listing date is **not** a bulk-migration day.
+- `securityType` is `EQ` or `BE` — mainboard.
+- `listingDate` falls within the last 182 days.
 
-That last filter matters. `DATE OF LISTING` is when a symbol began trading *on NSE*,
-which is not the IPO date: a long-listed BSE company that migrates to NSE gets a fresh
-listing date. Those migrations arrive in large same-day batches, and they dominate the
-raw numbers — on the first build, 386 symbols passed the date filter, but 219 of them
-landed on just two days (135 on 2026-08-17, 84 on 2026-04-20) against no more than 4
-on any other trading day of the year. Excluding days with more than 5 listings leaves
-167 genuine new listings.
+`BE` is the trade-to-trade settlement bucket, applied at listing to smaller issues. It
+describes how a symbol settles, not what the company is, so those are still mainboard
+IPOs and are included. `SME`, `DEBT` and the `N*` bond series are excluded; the counts
+that were dropped are recorded in `excluded_by_security_type` on every build.
 
-This is a heuristic, not a truth source. The CSV does not say whether a listing was an
-IPO. `excluded_migration_days` in the output records exactly which days were dropped so
-the filter stays auditable.
+This feed is used in preference to the equity master (`EQUITY_L.csv`) because it states
+what each record *is*. The equity master only offers `DATE OF LISTING`, which is when a
+symbol began trading *on NSE* — a long-listed BSE company migrating to NSE gets a fresh
+date there, and those migrations arrive in bulk batches large enough to swamp the real
+signal. Deriving IPOs from that column needed a same-day-count heuristic; this feed
+needs none.
+
+The feed is cookie-gated: requesting the API without first loading the page that uses it
+returns nothing useful, so the script primes a cookie jar and reuses it.
 
 ## Output
 
 ```json
 {
   "generated_on": "2026-09-09",
-  "window_days": 365,
-  "count": 167,
-  "excluded_migration_days": ["2026-04-20", "2026-08-17"],
-  "count_before_migration_filter": 386,
+  "window_days": 182,
+  "security_types": ["EQ", "BE"],
+  "count": 53,
+  "excluded_by_security_type": { "SME": 44, "N0": 25, "IV": 3, "DEBT": 1, "RR": 1 },
   "truncated_to_cap": false,
   "symbols": ["DEEPA", "PERNIASPOP", "..."],
-  "listings": [{ "symbol": "DEEPA", "name": "...", "listed_on": "2026-09-08", "isin": "..." }]
+  "listings": [
+    {
+      "symbol": "DEEPA",
+      "name": "Deepa Jewellers Limited",
+      "listed_on": "2026-09-08",
+      "security_type": "EQ",
+      "issue_price": "...",
+      "ipo_opened_on": "..."
+    }
+  ]
 }
 ```
 
-`symbols` is capped at 250, newest first, because that is the Dhan watchlist limit.
+`symbols` is newest-first and capped at 250, the Dhan watchlist limit.
 
 ## Schedule
 
