@@ -27,6 +27,21 @@ needs none.
 The feed is cookie-gated: requesting the API without first loading the page that uses it
 returns nothing useful, so the script primes a cookie jar and reuses it.
 
+### Symbols are reconciled against the equity master
+
+The IPO feed's `symbol` is the *issue's* symbol, which is not always what the company
+trades under on NSE. Amir Chand Jagdish Kumar (Exports) lists as `AEROPLANE`; LEAP India
+lists as `LEAPIND`. Publishing the feed's value sends the extension looking for a ticker
+that does not exist.
+
+So each record is reconciled against `EQUITY_L.csv`, which is authoritative for what a
+symbol is called and whether it trades on NSE at all: matched by symbol, else by
+normalised company name, else dropped as not-on-NSE. Both outcomes are recorded in
+`remapped_to_nse_symbol` and `dropped_not_on_nse` so neither is silent.
+
+Each source is used only for what it is authoritative about — the IPO feed for *whether
+this was an IPO*, the equity master for *what it is called*.
+
 ## Output
 
 ```json
@@ -36,6 +51,8 @@ returns nothing useful, so the script primes a cookie jar and reuses it.
   "security_types": ["EQ", "BE"],
   "count": 53,
   "excluded_by_security_type": { "SME": 44, "N0": 25, "IV": 3, "DEBT": 1, "RR": 1 },
+  "remapped_to_nse_symbol": { "AMIRCHAND": "AEROPLANE", "LEAP": "LEAPIND" },
+  "dropped_not_on_nse": [],
   "truncated_to_cap": false,
   "symbols": ["DEEPA", "PERNIASPOP", "..."],
   "listings": [

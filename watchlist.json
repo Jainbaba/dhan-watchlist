@@ -14,6 +14,11 @@
     "RR": 1,
     "SME": 44
   },
+  "remapped_to_nse_symbol": {
+    "AMIRCHAND": "AEROPLANE",
+    "LEAP": "LEAPIND"
+  },
+  "dropped_not_on_nse": [],
   "truncated_to_cap": false,
   "symbols": [
     "DEEPA",
@@ -38,7 +43,7 @@
     "MOLBIO",
     "DHOOTTRANS",
     "TECHNOCRAF",
-    "LEAP",
+    "LEAPIND",
     "ARDEE",
     "MVELECTRO",
     "JNPR",
@@ -63,7 +68,7 @@
     "OMPOWER",
     "SAIPARENT",
     "POWERICA",
-    "AMIRCHAND",
+    "AEROPLANE",
     "CMPDI",
     "GSPCROP",
     "INNOVISION",
@@ -248,7 +253,7 @@
       "ipo_opened_on": "07-AUG-2026"
     },
     {
-      "symbol": "LEAP",
+      "symbol": "LEAPIND",
       "name": "Leap India Limited",
       "listed_on": "2026-08-14",
       "security_type": "EQ",
@@ -448,7 +453,7 @@
       "ipo_opened_on": "24-MAR-2026"
     },
     {
-      "symbol": "AMIRCHAND",
+      "symbol": "AEROPLANE",
       "name": "Amir Chand Jagdish Kumar (Exports) Limited",
       "listed_on": "2026-04-02",
       "security_type": "EQ",
