@@ -22,6 +22,13 @@ const encrypt = (text) => {
 // --- load main.js without a DOM so whenReady() never mounts ---
 globalThis.window = {};
 globalThis.document = { documentElement: null };
+// Minimal localStorage so the cross-tab lock is exercisable.
+const store = new Map();
+globalThis.localStorage = {
+  getItem: (k) => (store.has(k) ? store.get(k) : null),
+  setItem: (k, v) => store.set(k, String(v)),
+  removeItem: (k) => store.delete(k),
+};
 const src = fs.readFileSync(
   path.join(import.meta.dirname, "main.js"),
   "utf8"
@@ -46,6 +53,30 @@ assert.strictEqual(wl.segOf("IDX", "E"), 0, "IDX ignores the segment letter");
 assert.strictEqual(wl.segOf("NSE", "I"), 0, "seg 0 must survive the lookup, not fall to -1");
 assert.strictEqual(wl.segOf("MCX", "E"), -1);
 assert.strictEqual(wl.segOf("NOPE", "E"), -1);
+
+assert.deepStrictEqual(
+  wl.findMissing(["AAA", "BBB", "CCC"], [
+    { display_name: "aaa" },
+    { display_name: " CCC " },
+  ]),
+  ["BBB"],
+  "findMissing: case- and space-insensitive, reports only the absent"
+);
+assert.deepStrictEqual(wl.findMissing(["AAA"], []), ["AAA"]);
+assert.deepStrictEqual(wl.findMissing([], [{ display_name: "AAA" }]), []);
+
+assert.strictEqual(wl.describeWindow(182), "6-month");
+assert.strictEqual(wl.describeWindow(365), "12-month");
+assert.strictEqual(wl.describeWindow(undefined), "published");
+
+assert.strictEqual(wl.claimSyncLock(), true, "first claim wins");
+assert.strictEqual(wl.claimSyncLock(), false, "second tab is locked out");
+wl.releaseSyncLock();
+assert.strictEqual(wl.claimSyncLock(), true, "claimable again once released");
+wl.releaseSyncLock();
+store.set("dhanWL:syncLock", String(Date.now() - 5 * 60 * 1000));
+assert.strictEqual(wl.claimSyncLock(), true, "a stale lock does not wedge forever");
+wl.releaseSyncLock();
 
 assert.strictEqual(KEY.length, 16, "keySize 4 words = 128-bit");
 assert.strictEqual(decrypt(encrypt('{"a":1}')), '{"a":1}');

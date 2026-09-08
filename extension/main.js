@@ -19,6 +19,10 @@
   // stop rather than create it.
   const TARGET_NAME = "6-Month Stocks";
   const LAST_SYNC_KEY = "dhanWL:lastSyncedOn";
+  const SYNC_LOCK_KEY = "dhanWL:syncLock";
+  // Long enough to cover a slow sync, short enough that a tab closed mid-sync
+  // cannot wedge the lock for more than a couple of minutes.
+  const SYNC_LOCK_MS = 120000;
   const MIN_CONFIDENCE = 60;
 
   // exchange + segment letter -> numeric seg, mirrors fn T() in the bundle
@@ -194,7 +198,10 @@
     return list;
   }
 
-  const WINDOW_LABEL = "6-month";
+  // The repo owns what the list contains, so take the wording from the data
+  // rather than restating it here where the two could drift apart.
+  const describeWindow = (days) =>
+    Number.isFinite(days) ? `${Math.round(days / 30.44)}-month` : "published";
 
   // Per-browser memory of which published build was last applied. Best-effort:
   // a blocked or cleared store just means the next load syncs again.
@@ -210,6 +217,29 @@
       localStorage.setItem(LAST_SYNC_KEY, generatedOn);
     } catch (err) {
       /* private window or blocked storage - re-syncing is harmless */
+    }
+  }
+
+  // localStorage is shared across tabs of one origin, so a timestamped claim
+  // keeps two tabs from interleaving clear-and-refill. If storage is blocked we
+  // proceed: syncing twice is better than a tab that can never sync at all.
+  function claimSyncLock() {
+    try {
+      const held = Number(localStorage.getItem(SYNC_LOCK_KEY));
+      if (Number.isFinite(held) && held > 0 && Date.now() - held < SYNC_LOCK_MS) {
+        return false;
+      }
+      localStorage.setItem(SYNC_LOCK_KEY, String(Date.now()));
+      return true;
+    } catch (err) {
+      return true;
+    }
+  }
+  function releaseSyncLock() {
+    try {
+      localStorage.removeItem(SYNC_LOCK_KEY);
+    } catch (err) {
+      /* nothing to release */
     }
   }
 
@@ -230,16 +260,27 @@
   // Mirrors the published list into the target watchlist: whatever aged out of
   // the 6-month window disappears. Destructive by design, so it resolves the
   // target by name itself rather than trusting a caller-supplied id.
-  async function syncFromRepo(log = () => {}) {
+  // Names the requested symbols that no confident hit came back for. Matches on
+  // display_name, which is the trading symbol for equities; anything Dhan names
+  // differently would show up here as a false miss rather than being hidden.
+  function findMissing(requested, hits) {
+    const found = new Set(
+      hits.map((h) => String(h.display_name || "").trim().toUpperCase())
+    );
+    return requested.filter((name) => !found.has(name.toUpperCase()));
+  }
+
+  async function syncFromRepo(log = () => {}, prefetched = null) {
     const target = findTarget(await getWatchlists());
     const wId = target.w_id;
-    const list = await fetchPublishedList();
+    const list = prefetched || (await fetchPublishedList());
     log(`list built ${list.generated_on}: ${list.symbols.length} symbols`);
 
     // Resolve before clearing. If the scan fails, the watchlist is untouched.
     const hits = (await scan(list.symbols)).filter(
       (h) => h.confidence > MIN_CONFIDENCE
     );
+    const missing = findMissing(list.symbols, hits);
     const { stockDetail, unmapped } = resolveHits(hits);
     if (!stockDetail.length) throw new Error("nothing resolved - not clearing");
     log(`resolved ${stockDetail.length}, clearing watchlist…`);
@@ -252,8 +293,10 @@
     return {
       watchlist: target.w_name,
       generatedOn: list.generated_on,
+      windowDays: list.window_days,
       requested: list.symbols.length,
       resolved: stockDetail.length,
+      missing,
       unmapped,
       added,
     };
@@ -324,7 +367,7 @@ TCS"></textarea>
           </div>
           <div class="row">
             <button id="sync" disabled>Update watchlist</button>
-            <span class="hint" id="synchint">replaces "6-Month Stocks"</span>
+            <span class="hint" id="synchint">replaces "${TARGET_NAME}"</span>
           </div>
           <div class="log" id="log"></div>
         </div>
@@ -413,33 +456,55 @@ TCS"></textarea>
     });
 
     $("sync").addEventListener("click", async () => {
+      setBusy(true);
+      let list;
+      try {
+        list = await fetchPublishedList();
+      } catch (err) {
+        log("could not fetch the list: " + err.message, "err");
+        setBusy(false);
+        return;
+      }
+      setBusy(false);
       if (
         !window.confirm(
-          `Replace everything in "${TARGET_NAME}" with the ${WINDOW_LABEL} ` +
-            `NSE IPO list?\n\nIts current contents will be cleared first. ` +
+          `Replace everything in "${TARGET_NAME}" with the ` +
+            `${describeWindow(list.window_days)} NSE IPO list ` +
+            `(${list.symbols.length} symbols)?\n\n` +
+            `Its current contents will be cleared first. ` +
             `Other watchlists are untouched.`
         )
       ) {
         return;
       }
-      await runSync("manual");
+      await runSync("manual", list);
     });
 
-    async function runSync(mode) {
+    async function runSync(mode, list) {
+      if (!claimSyncLock()) {
+        if (mode === "manual") {
+          log("another tab is syncing - try again in a moment", "err");
+        }
+        return false;
+      }
       setBusy(true);
-      log(mode === "auto" ? "checking for a new list…" : "fetching published list…");
+      log(mode === "auto" ? "new list found, syncing…" : "syncing…");
       try {
-        const result = await syncFromRepo(log);
+        const result = await syncFromRepo(log, list);
         rememberSynced(result.generatedOn);
         clearWarning();
         log(
-          `synced ${result.resolved} of ${result.requested} into "${result.watchlist}" ` +
-            `(list built ${result.generatedOn})`,
+          `synced ${result.resolved} of ${result.requested} into ` +
+            `"${result.watchlist}" (list built ${result.generatedOn})`,
           "ok"
         );
+        for (const name of result.missing) {
+          log(`not found in Dhan search: ${name}`, "err");
+        }
         for (const miss of result.unmapped) {
           log("unmapped segment: " + JSON.stringify(miss), "err");
         }
+        if (result.missing.length || result.unmapped.length) raiseWarning();
         log("reload the page to see it in the sidebar");
         await loadLists();
         return true;
@@ -448,6 +513,8 @@ TCS"></textarea>
         raiseWarning();
         setBusy(false);
         return false;
+      } finally {
+        releaseSyncLock();
       }
     }
 
@@ -462,7 +529,8 @@ TCS"></textarea>
 
     // Runs unattended on page load. Skips entirely when the published list is
     // the same one already applied, so a normal visit costs one cached GET and
-    // never clears the watchlist for nothing.
+    // never clears the watchlist for nothing. A watchlist edited by hand is left
+    // alone until the next build, on the assumption the edit was deliberate.
     async function autoSync() {
       let list;
       try {
@@ -476,7 +544,7 @@ TCS"></textarea>
         log(`already on the ${list.generated_on} list - nothing to do`);
         return;
       }
-      await runSync("auto");
+      await runSync("auto", list);
     }
 
     loadLists().then(autoSync);
@@ -499,6 +567,10 @@ TCS"></textarea>
     addSymbols,
     syncFromRepo,
     fetchPublishedList,
+    findMissing,
+    describeWindow,
+    claimSyncLock,
+    releaseSyncLock,
     selfCheck,
     segOf,
     parseSymbols,

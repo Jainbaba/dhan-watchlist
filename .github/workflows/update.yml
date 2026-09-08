@@ -5,6 +5,11 @@ on:
     # 03:30 UTC = 09:00 IST. GitHub runs cron on UTC and may delay a run
     # under load, so treat the time as "shortly after 9am", not exact.
     - cron: "30 3 * * *"
+    # 09:30 UTC = 15:00 IST. Second attempt, because NSE rate-limits
+    # datacenter IPs and a blocked morning run would otherwise leave the
+    # list stale for a full day. Costs nothing when the morning run
+    # already succeeded: the commit step is a no-op if nothing changed.
+    - cron: "30 9 * * *"
   workflow_dispatch:
 
 permissions:

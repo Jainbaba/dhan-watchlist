@@ -70,14 +70,22 @@ newer it resolves every symbol first, then clears **6-Month Stocks** and refills
 failed lookup leaves the watchlist untouched. The target is matched by name and never
 created — if it is missing, the sync stops and says so.
 
+Two tabs opening at once would otherwise interleave two clear-and-refill cycles, so a
+sync claims a timestamped lock in `localStorage` first and a second tab stands down.
+Symbols that come back with no confident match are named individually in the log rather
+than quietly dropped, and any failure badges the launcher instead of passing silently.
+
 A floating panel offers the same sync on demand plus an ad-hoc "paste symbols and add"
-box. `node extension/test.mjs` covers the pure logic and the crypto round trip; pass it a
-HAR of real traffic to additionally verify the payload format end to end.
+box. `node extension/test.mjs` covers the pure logic, the cross-tab lock and the crypto
+round trip; pass it a HAR of real traffic to additionally verify the payload format end
+to end.
 
 ## Schedule
 
-`.github/workflows/update.yml` runs at 03:30 UTC (09:00 IST) daily and commits only when
-the symbol set actually changes. NSE rate-limits datacenter IPs and GitHub runners get
+`.github/workflows/update.yml` runs at 03:30 UTC (09:00 IST) and again at 09:30 UTC
+(15:00 IST), committing only when the symbol set actually changes. The second run exists
+because a blocked morning fetch would otherwise leave the list stale for a full day; it
+costs nothing when the first run already succeeded. NSE rate-limits datacenter IPs and GitHub runners get
 caught by it, so the fetch retries with backoff and the script refuses to write an empty
 list — a blocked run leaves the last good `watchlist.json` in place rather than
 publishing nothing.
