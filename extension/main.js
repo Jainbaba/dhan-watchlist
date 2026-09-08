@@ -201,13 +201,15 @@
     }
   }
 
-  // TradingView hands back symbols like "NSE:RELIANCE" or "NSE:RELIANCE-EQ";
-  // screener.in keys off the bare NSE ticker.
-  function tickerFromTvSymbol(symbol) {
-    const raw = String(symbol || "").trim().toUpperCase();
+  // The chart's symbol is "<exchange><segment><securityId>:<display>", and the
+  // display half is sometimes a ticker ("AEROPLANE") and sometimes a company
+  // name ("PARAG MILK FOODS"). Keep it whole -- splitting at the first space
+  // turned Parag Milk Foods into a lookup for "PARAG", which 404s. screener.in's
+  // search resolves either form, so hand it the untouched string.
+  function queryFromTvSymbol(symbol) {
+    const raw = String(symbol || "").trim();
     const afterExchange = raw.includes(":") ? raw.slice(raw.indexOf(":") + 1) : raw;
-    const [ticker] = afterExchange.split(/[^A-Z0-9&.]+/);
-    return ticker || "";
+    return afterExchange.replace(/\s+/g, " ").trim().toUpperCase();
   }
 
   // Reads the shareholding table out of a screener.in company page. The browser
@@ -261,7 +263,7 @@
     if (!waiting) return;
     screenerPending.delete(msg.id);
     if (msg.error) waiting.reject(new Error(msg.error));
-    else waiting.resolve(msg.html);
+    else waiting.resolve({ html: msg.html, name: msg.name });
   });
 
   function fetchScreenerPage(symbol) {
@@ -281,10 +283,12 @@
   }
 
   const shareholdingCache = new Map();
-  async function getShareholding(ticker) {
-    if (shareholdingCache.has(ticker)) return shareholdingCache.get(ticker);
-    const parsed = trimToRecent(parseShareholding(await fetchScreenerPage(ticker)));
-    shareholdingCache.set(ticker, parsed);
+  async function getShareholding(query) {
+    if (shareholdingCache.has(query)) return shareholdingCache.get(query);
+    const { html, name } = await fetchScreenerPage(query);
+    const parsed = trimToRecent(parseShareholding(html));
+    parsed.company = name || query;
+    shareholdingCache.set(query, parsed);
     return parsed;
   }
 
@@ -673,6 +677,7 @@
       try {
         const data = await getShareholding(ticker);
         if (showing !== ticker) return; // chart moved on while we waited
+        if (data.company) symLabel.textContent = data.company;
         renderTable(data);
       } catch (err) {
         if (showing !== ticker) return;
@@ -697,7 +702,7 @@
       } catch (err) {
         return; // widget not ready yet
       }
-      const ticker = tickerFromTvSymbol(symbol);
+      const ticker = queryFromTvSymbol(symbol);
       if (ticker && ticker !== last) {
         last = ticker;
         onChange(ticker);
@@ -734,7 +739,7 @@
     syncFromRepo,
     fetchPublishedList,
     findMissing,
-    tickerFromTvSymbol,
+    queryFromTvSymbol,
     parseShareholding,
     trimToRecent,
     getShareholding,

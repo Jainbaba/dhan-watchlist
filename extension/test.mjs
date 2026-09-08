@@ -92,17 +92,21 @@ store.set("dhanWL:syncLock", String(Date.now() - 5 * 60 * 1000));
 assert.strictEqual(wl.claimSyncLock(), true, "a stale lock does not wedge forever");
 wl.releaseSyncLock();
 
-assert.strictEqual(wl.tickerFromTvSymbol("NSE:RELIANCE"), "RELIANCE");
-assert.strictEqual(wl.tickerFromTvSymbol("nse:aeroplane"), "AEROPLANE");
+assert.strictEqual(wl.queryFromTvSymbol("NSE:RELIANCE"), "RELIANCE");
 assert.strictEqual(
-  wl.tickerFromTvSymbol("NSE:RELIANCE-EQ"),
-  "RELIANCE",
-  "strips a series suffix screener.in does not use"
+  wl.queryFromTvSymbol("NSEE1234:PARAG MILK FOODS"),
+  "PARAG MILK FOODS",
+  "a company name must survive whole - splitting it 404s on screener.in"
 );
-assert.strictEqual(wl.tickerFromTvSymbol("SEDEMAC"), "SEDEMAC", "bare symbol");
-assert.strictEqual(wl.tickerFromTvSymbol("BSE:M&M"), "M&M", "ampersand survives");
-assert.strictEqual(wl.tickerFromTvSymbol(""), "");
-assert.strictEqual(wl.tickerFromTvSymbol(null), "");
+assert.strictEqual(wl.queryFromTvSymbol("nse:aeroplane"), "AEROPLANE");
+assert.strictEqual(
+  wl.queryFromTvSymbol("NSEE1:  TATA   MOTORS  "),
+  "TATA MOTORS",
+  "runs of whitespace collapse to single spaces"
+);
+assert.strictEqual(wl.queryFromTvSymbol("M&M"), "M&M", "ampersand survives");
+assert.strictEqual(wl.queryFromTvSymbol(""), "");
+assert.strictEqual(wl.queryFromTvSymbol(null), "");
 
 const wide = {
   periods: ["Mar 2024", "Jun 2024", "Sep 2024", "Dec 2024", "Mar 2025", "Jun 2025"],

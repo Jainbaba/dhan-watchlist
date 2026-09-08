@@ -16,6 +16,7 @@ window.addEventListener("message", (event) => {
           __dhanWL: "response",
           id: msg.id,
           html: res && res.html,
+          name: res && res.name,
           error: failed ? failed.message : res && res.error,
         },
         window.location.origin
