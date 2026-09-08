@@ -92,6 +92,25 @@ sync claims a timestamped lock in `localStorage` first and a second tab stands d
 Symbols that come back with no confident match are named individually in the log rather
 than quietly dropped, and any failure badges the launcher instead of passing silently.
 
+### Shareholding
+
+A second card, bottom-left, shows the shareholding pattern for whatever stock the chart is
+on — promoters, FIIs, DIIs, government, public and shareholder count, for the five most
+recent quarters. It follows the chart, caches per symbol, and hides on demand.
+
+The data is scraped from screener.in, which sends no `access-control-allow-origin` and
+`x-frame-options: DENY`. The page can therefore neither fetch it nor frame it, so the
+request runs in a background service worker under `host_permissions`, with a thin
+isolated-world script (`bridge.js`) relaying between the page and the worker. The symbol
+reaching the worker is validated against a strict pattern before being interpolated into a
+URL path, since it originates in page script.
+
+Parsing is our own, using the browser's `DOMParser`: about thirty lines against the
+`#shareholding` table. The idea came from
+[screener-scraper-pro](https://github.com/VishwaGauravIn/screener-scraper-pro), which is
+worth a look if you want the full financials — it is Node-only (cheerio) and GPL-3.0, so
+it is credited here as inspiration rather than vendored.
+
 A floating panel shows the target watchlist's current size and offers the same sync on
 demand. `node extension/test.mjs` covers the pure logic, the cross-tab lock and the crypto
 round trip; pass it a HAR of real traffic to additionally verify the payload format end

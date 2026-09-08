@@ -23,6 +23,10 @@
   // Long enough to cover a slow sync, short enough that a tab closed mid-sync
   // cannot wedge the lock for more than a couple of minutes.
   const SYNC_LOCK_MS = 120000;
+  // Shareholding comes from screener.in, fetched by the background worker
+  // because the page's own origin can never reach it.
+  const SCREENER_TIMEOUT_MS = 20000;
+  const SHAREHOLDING_PERIODS = 5;
   const MIN_CONFIDENCE = 60;
 
   // exchange + segment letter -> numeric seg, mirrors fn T() in the bundle
@@ -195,6 +199,93 @@
     } catch (err) {
       /* private window or blocked storage - re-syncing is harmless */
     }
+  }
+
+  // TradingView hands back symbols like "NSE:RELIANCE" or "NSE:RELIANCE-EQ";
+  // screener.in keys off the bare NSE ticker.
+  function tickerFromTvSymbol(symbol) {
+    const raw = String(symbol || "").trim().toUpperCase();
+    const afterExchange = raw.includes(":") ? raw.slice(raw.indexOf(":") + 1) : raw;
+    const [ticker] = afterExchange.split(/[^A-Z0-9&.]+/);
+    return ticker || "";
+  }
+
+  // Reads the shareholding table out of a screener.in company page. The browser
+  // has a real HTML parser, so use it rather than pattern-matching markup.
+  function parseShareholding(html) {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const section = doc.getElementById("shareholding");
+    if (!section) throw new Error("no shareholding section on that page");
+    const table = section.querySelector("table");
+    if (!table) throw new Error("shareholding section had no table");
+
+    const periods = Array.from(table.querySelectorAll("thead th"))
+      .map((th) => th.textContent.trim())
+      .filter(Boolean);
+    const rows = Array.from(table.querySelectorAll("tbody tr"))
+      .map((tr) => {
+        const cells = Array.from(tr.querySelectorAll("th,td")).map((cell) =>
+          cell.textContent.replace(/\s+/g, " ").trim()
+        );
+        return {
+          // Screener suffixes expandable rows with a "+".
+          label: (cells[0] || "").replace(/\s*\+$/, ""),
+          values: cells.slice(1),
+        };
+      })
+      .filter((row) => row.label && row.values.length);
+    if (!rows.length) throw new Error("shareholding table had no rows");
+    return { periods, rows };
+  }
+
+  // Keeps only the most recent columns, so a company with years of history and
+  // one freshly listed a quarter ago both render in the same small card.
+  function trimToRecent(parsed, keep = SHAREHOLDING_PERIODS) {
+    const drop = Math.max(0, parsed.periods.length - keep);
+    return {
+      periods: parsed.periods.slice(drop),
+      rows: parsed.rows.map((row) => ({
+        label: row.label,
+        values: row.values.slice(drop),
+      })),
+    };
+  }
+
+  let screenerSeq = 0;
+  const screenerPending = new Map();
+  window.addEventListener("message", (event) => {
+    if (event.source !== window) return;
+    const msg = event.data;
+    if (!msg || msg.__dhanWL !== "response") return;
+    const waiting = screenerPending.get(msg.id);
+    if (!waiting) return;
+    screenerPending.delete(msg.id);
+    if (msg.error) waiting.reject(new Error(msg.error));
+    else waiting.resolve(msg.html);
+  });
+
+  function fetchScreenerPage(symbol) {
+    return new Promise((resolve, reject) => {
+      const id = ++screenerSeq;
+      screenerPending.set(id, { resolve, reject });
+      window.postMessage(
+        { __dhanWL: "request", id, symbol },
+        window.location.origin
+      );
+      setTimeout(() => {
+        if (screenerPending.delete(id)) {
+          reject(new Error("screener.in request timed out"));
+        }
+      }, SCREENER_TIMEOUT_MS);
+    });
+  }
+
+  const shareholdingCache = new Map();
+  async function getShareholding(ticker) {
+    if (shareholdingCache.has(ticker)) return shareholdingCache.get(ticker);
+    const parsed = trimToRecent(parseShareholding(await fetchScreenerPage(ticker)));
+    shareholdingCache.set(ticker, parsed);
+    return parsed;
   }
 
   // localStorage is shared across tabs of one origin, so a timestamped claim
@@ -487,6 +578,135 @@
     refreshStatus().then(autoSync);
   }
 
+
+  const CARD_CSS = `
+    :host { all: initial; }
+    .card { position: fixed; left: 16px; bottom: 16px; z-index: 2147483646;
+      width: 300px; background: #1e222d; border: 1px solid #363a45;
+      border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,.5);
+      font: 12px/1.4 -apple-system, system-ui, sans-serif; color: #e8e8ea; }
+    .head { display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+      border-bottom: 1px solid #363a45; }
+    .head b { flex: 1; font-size: 12px; }
+    .head .src { font-size: 10px; color: #787b86; }
+    .head button { background: #2a2e39; color: #e8e8ea; border: 0; border-radius: 4px;
+      padding: 2px 7px; cursor: pointer; font-size: 12px; }
+    .body { padding: 8px 10px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { text-align: right; padding: 3px 4px; white-space: nowrap;
+      font-variant-numeric: tabular-nums; }
+    th:first-child, td:first-child { text-align: left; }
+    thead th { color: #787b86; font-weight: 500; font-size: 10px;
+      border-bottom: 1px solid #363a45; }
+    tbody tr:nth-child(odd) { background: rgba(255,255,255,.02); }
+    .msg { color: #787b86; padding: 2px 0; }
+    .msg.err { color: #ff6b6b; }
+  `;
+
+  function mountShareholding() {
+    const host = document.createElement("div");
+    host.id = "dhan-shareholding-root";
+    const root = host.attachShadow({ mode: "open" });
+    root.innerHTML = `
+      <style>${CARD_CSS}</style>
+      <div class="card" id="card">
+        <div class="head">
+          <b id="sym">\u2014</b>
+          <span class="src">screener.in</span>
+          <button id="hide" title="hide">&times;</button>
+        </div>
+        <div class="body" id="body"><div class="msg">waiting for a chart\u2026</div></div>
+      </div>`;
+    document.documentElement.appendChild(host);
+
+    const card = root.getElementById("card");
+    const body = root.getElementById("body");
+    const symLabel = root.getElementById("sym");
+    root.getElementById("hide").addEventListener("click", () => {
+      card.hidden = true;
+    });
+
+    const message = (text, cls) => {
+      body.innerHTML = "";
+      const div = document.createElement("div");
+      div.className = cls ? `msg ${cls}` : "msg";
+      div.textContent = text;
+      body.appendChild(div);
+    };
+
+    function renderTable(data) {
+      body.innerHTML = "";
+      const table = document.createElement("table");
+      const thead = document.createElement("thead");
+      const headRow = document.createElement("tr");
+      for (const label of ["", ...data.periods]) {
+        const th = document.createElement("th");
+        th.textContent = label;
+        headRow.appendChild(th);
+      }
+      thead.appendChild(headRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      for (const row of data.rows) {
+        const tr = document.createElement("tr");
+        const label = document.createElement("td");
+        label.textContent = row.label;
+        tr.appendChild(label);
+        for (const value of row.values) {
+          const td = document.createElement("td");
+          td.textContent = value;
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+      table.appendChild(tbody);
+      body.appendChild(table);
+    }
+
+    let showing = "";
+    async function show(ticker) {
+      showing = ticker;
+      card.hidden = false;
+      symLabel.textContent = ticker;
+      if (!shareholdingCache.has(ticker)) message("loading\u2026");
+      try {
+        const data = await getShareholding(ticker);
+        if (showing !== ticker) return; // chart moved on while we waited
+        renderTable(data);
+      } catch (err) {
+        if (showing !== ticker) return;
+        message(err.message, "err");
+      }
+    }
+
+    watchChartSymbol(show);
+  }
+
+  // ponytail: 1s poll. The widget exposes onSymbolChanged(), but that needs the
+  // chart to be ready first and misses layout/tab switches; swap to the event if
+  // the poll ever shows up in a profile.
+  function watchChartSymbol(onChange) {
+    let last = "";
+    const check = () => {
+      let symbol;
+      try {
+        const widget = window.dhan_tvWidget;
+        const chart = widget && widget.activeChart && widget.activeChart();
+        symbol = chart && chart.symbol && chart.symbol();
+      } catch (err) {
+        return; // widget not ready yet
+      }
+      const ticker = tickerFromTvSymbol(symbol);
+      if (ticker && ticker !== last) {
+        last = ticker;
+        onChange(ticker);
+      }
+    };
+    check();
+    setInterval(check, 1000);
+  }
+
   function whenReady() {
     // reqObjectOG appears as an empty object before the app populates it, so
     // wait for the identity fields themselves rather than the bare object.
@@ -499,6 +719,7 @@
       document.documentElement
     ) {
       mountUI();
+      mountShareholding();
       return;
     }
     setTimeout(whenReady, 500);
@@ -513,6 +734,10 @@
     syncFromRepo,
     fetchPublishedList,
     findMissing,
+    tickerFromTvSymbol,
+    parseShareholding,
+    trimToRecent,
+    getShareholding,
     describeWindow,
     claimSyncLock,
     releaseSyncLock,

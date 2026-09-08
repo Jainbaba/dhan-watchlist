@@ -1,13 +1,20 @@
 {
   "manifest_version": 3,
   "name": "Dhan Watchlist Bulk Add",
-  "version": "0.1.0",
-  "description": "Bulk-add symbols to a Dhan TradingView watchlist from a pasted list.",
+  "version": "0.2.0",
+  "description": "Mirrors a published NSE IPO list into a Dhan watchlist and shows shareholding for the charted stock.",
+  "host_permissions": ["https://www.screener.in/*"],
+  "background": { "service_worker": "background.js" },
   "content_scripts": [
     {
       "matches": ["https://tv.dhan.co/*"],
       "js": ["main.js"],
       "world": "MAIN",
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://tv.dhan.co/*"],
+      "js": ["bridge.js"],
       "run_at": "document_idle"
     }
   ]

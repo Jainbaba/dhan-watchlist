@@ -20,7 +20,11 @@ const encrypt = (text) => {
 };
 
 // --- load main.js without a DOM so whenReady() never mounts ---
-globalThis.window = {};
+globalThis.window = {
+  addEventListener() {},
+  postMessage() {},
+  location: { origin: "https://tv.dhan.co" },
+};
 globalThis.document = { documentElement: null };
 // Minimal localStorage so the cross-tab lock is exercisable.
 const store = new Map();
@@ -87,6 +91,36 @@ wl.releaseSyncLock();
 store.set("dhanWL:syncLock", String(Date.now() - 5 * 60 * 1000));
 assert.strictEqual(wl.claimSyncLock(), true, "a stale lock does not wedge forever");
 wl.releaseSyncLock();
+
+assert.strictEqual(wl.tickerFromTvSymbol("NSE:RELIANCE"), "RELIANCE");
+assert.strictEqual(wl.tickerFromTvSymbol("nse:aeroplane"), "AEROPLANE");
+assert.strictEqual(
+  wl.tickerFromTvSymbol("NSE:RELIANCE-EQ"),
+  "RELIANCE",
+  "strips a series suffix screener.in does not use"
+);
+assert.strictEqual(wl.tickerFromTvSymbol("SEDEMAC"), "SEDEMAC", "bare symbol");
+assert.strictEqual(wl.tickerFromTvSymbol("BSE:M&M"), "M&M", "ampersand survives");
+assert.strictEqual(wl.tickerFromTvSymbol(""), "");
+assert.strictEqual(wl.tickerFromTvSymbol(null), "");
+
+const wide = {
+  periods: ["Mar 2024", "Jun 2024", "Sep 2024", "Dec 2024", "Mar 2025", "Jun 2025"],
+  rows: [{ label: "Promoters", values: ["1", "2", "3", "4", "5", "6"] }],
+};
+assert.deepStrictEqual(wl.trimToRecent(wide, 2), {
+  periods: ["Mar 2025", "Jun 2025"],
+  rows: [{ label: "Promoters", values: ["5", "6"] }],
+});
+const narrow = {
+  periods: ["Mar 2026", "Jun 2026"],
+  rows: [{ label: "Promoters", values: ["78.78%", "78.78%"] }],
+};
+assert.deepStrictEqual(
+  wl.trimToRecent(narrow, 5),
+  narrow,
+  "a freshly listed company with fewer periods than the cap is untouched"
+);
 
 assert.strictEqual(KEY.length, 16, "keySize 4 words = 128-bit");
 assert.strictEqual(decrypt(encrypt('{"a":1}')), '{"a":1}');
