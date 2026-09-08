@@ -253,6 +253,31 @@
     };
   }
 
+  // Rows where a rising number is read as bullish, and where it is read as
+  // bearish. Anything unlisted (Government, No. of Shareholders) stays neutral.
+  const HIGHER_IS_GOOD = /^(FII|DII)/i;
+  const HIGHER_IS_BAD = /^(PROMOTER|PUBLIC)/i;
+
+  // "55.37%" -> 55.37, "3,55,321" -> 355321 (Indian grouping), "" -> NaN.
+  function toNumber(value) {
+    const cleaned = String(value == null ? "" : value).replace(/[%,\s\u00a0]/g, "");
+    if (!cleaned) return NaN;
+    return Number(cleaned);
+  }
+
+  // Tone for one cell against the column before it: "pos", "neg" or "" for flat,
+  // unparseable, or a row with no directional meaning.
+  function cellTone(label, previous, current) {
+    const before = toNumber(previous);
+    const after = toNumber(current);
+    if (!Number.isFinite(before) || !Number.isFinite(after)) return "";
+    if (after === before) return "";
+    const rising = after > before;
+    if (HIGHER_IS_GOOD.test(label)) return rising ? "pos" : "neg";
+    if (HIGHER_IS_BAD.test(label)) return rising ? "neg" : "pos";
+    return "";
+  }
+
   let screenerSeq = 0;
   const screenerPending = new Map();
   window.addEventListener("message", (event) => {
@@ -586,25 +611,32 @@
   const CARD_CSS = `
     :host { all: initial; }
     .card { position: fixed; left: 16px; bottom: 16px; z-index: 2147483646;
-      width: 300px; background: #1e222d; border: 1px solid #363a45;
-      border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,.5);
-      font: 12px/1.4 -apple-system, system-ui, sans-serif; color: #e8e8ea; }
-    .head { display: flex; align-items: center; gap: 8px; padding: 8px 10px;
-      border-bottom: 1px solid #363a45; }
-    .head b { flex: 1; font-size: 12px; }
-    .head .src { font-size: 10px; color: #787b86; }
-    .head button { background: #2a2e39; color: #e8e8ea; border: 0; border-radius: 4px;
-      padding: 2px 7px; cursor: pointer; font-size: 12px; }
-    .body { padding: 8px 10px; }
-    table { border-collapse: collapse; width: 100%; }
-    th, td { text-align: right; padding: 3px 4px; white-space: nowrap;
+      max-width: min(620px, calc(100vw - 32px));
+      background: #1e222d; border: 1px solid #363a45; border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.5); overflow: hidden;
+      font: 11px/1.35 -apple-system, system-ui, sans-serif; color: #d1d4dc; }
+    .head { display: flex; align-items: center; gap: 8px;
+      padding: 7px 9px; border-bottom: 1px solid #363a45; }
+    .head b { flex: 1; font-size: 12px; color: #e8e8ea; overflow: hidden;
+      text-overflow: ellipsis; white-space: nowrap; }
+    .head .src { font-size: 10px; color: #5d606b; }
+    .head button { background: transparent; color: #787b86; border: 0;
+      border-radius: 3px; padding: 1px 5px; cursor: pointer; font-size: 13px;
+      line-height: 1; }
+    .head button:hover { background: #2a2e39; color: #e8e8ea; }
+    .body { padding: 4px 9px 8px; overflow-x: auto; }
+    table { border-collapse: collapse; }
+    th, td { text-align: right; padding: 2px 0 2px 14px; white-space: nowrap;
       font-variant-numeric: tabular-nums; }
-    th:first-child, td:first-child { text-align: left; }
-    thead th { color: #787b86; font-weight: 500; font-size: 10px;
-      border-bottom: 1px solid #363a45; }
-    tbody tr:nth-child(odd) { background: rgba(255,255,255,.02); }
-    .msg { color: #787b86; padding: 2px 0; }
-    .msg.err { color: #ff6b6b; }
+    th:first-child, td:first-child { text-align: left; padding-left: 0;
+      color: #b2b5be; }
+    thead th { color: #787b86; font-weight: 400; font-size: 10px;
+      padding-bottom: 4px; border-bottom: 1px solid #2a2e39; }
+    tbody tr:first-child td { padding-top: 5px; }
+    td.pos { color: #26a69a; }
+    td.neg { color: #ef5350; }
+    .msg { color: #787b86; padding: 4px 0; }
+    .msg.err { color: #ef5350; white-space: normal; }
   `;
 
   function mountShareholding() {
@@ -657,11 +689,14 @@
         const label = document.createElement("td");
         label.textContent = row.label;
         tr.appendChild(label);
-        for (const value of row.values) {
+        row.values.forEach((value, index) => {
           const td = document.createElement("td");
           td.textContent = value;
+          // The first column has nothing to compare against.
+          const tone = index === 0 ? "" : cellTone(row.label, row.values[index - 1], value);
+          if (tone) td.className = tone;
           tr.appendChild(td);
-        }
+        });
         tbody.appendChild(tr);
       }
       table.appendChild(tbody);
@@ -741,6 +776,8 @@
     findMissing,
     queryFromTvSymbol,
     parseShareholding,
+    cellTone,
+    toNumber,
     trimToRecent,
     getShareholding,
     describeWindow,

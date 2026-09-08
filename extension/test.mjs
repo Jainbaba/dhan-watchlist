@@ -108,6 +108,27 @@ assert.strictEqual(wl.queryFromTvSymbol("M&M"), "M&M", "ampersand survives");
 assert.strictEqual(wl.queryFromTvSymbol(""), "");
 assert.strictEqual(wl.queryFromTvSymbol(null), "");
 
+assert.strictEqual(wl.toNumber("55.37%"), 55.37);
+assert.strictEqual(wl.toNumber("3,55,321"), 355321, "Indian digit grouping");
+assert.strictEqual(wl.toNumber("18.24\u00a0%"), 18.24, "non-breaking space");
+assert.ok(Number.isNaN(wl.toNumber("")), "blank is not a number");
+assert.ok(Number.isNaN(wl.toNumber("-")), "a dash is not a number");
+
+// Institutions buying reads bullish.
+assert.strictEqual(wl.cellTone("FIIs", "21.51%", "20.95%"), "neg");
+assert.strictEqual(wl.cellTone("FIIs", "20.95%", "21.51%"), "pos");
+assert.strictEqual(wl.cellTone("DIIs", "19.13%", "19.67%"), "pos");
+// Promoters and public are inverted, per the requested reading.
+assert.strictEqual(wl.cellTone("Promoters", "55.33%", "55.32%"), "pos");
+assert.strictEqual(wl.cellTone("Promoters", "55.32%", "55.33%"), "neg");
+assert.strictEqual(wl.cellTone("Public", "4.02%", "4.06%"), "neg");
+assert.strictEqual(wl.cellTone("Public", "4.06%", "4.02%"), "pos");
+// Flat, neutral rows and unreadable values stay uncoloured.
+assert.strictEqual(wl.cellTone("Promoters", "78.78%", "78.78%"), "", "unchanged");
+assert.strictEqual(wl.cellTone("No. of Shareholders", "1", "2"), "", "neutral row");
+assert.strictEqual(wl.cellTone("Government", "3.89%", "0.91%"), "", "neutral row");
+assert.strictEqual(wl.cellTone("FIIs", "", "21.51%"), "", "missing prior value");
+
 const wide = {
   periods: ["Mar 2024", "Jun 2024", "Sep 2024", "Dec 2024", "Mar 2025", "Jun 2025"],
   rows: [{ label: "Promoters", values: ["1", "2", "3", "4", "5", "6"] }],
