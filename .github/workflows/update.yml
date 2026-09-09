@@ -2,15 +2,21 @@ name: Update watchlist
 
 on:
   schedule:
-    # 03:30 UTC = 09:00 IST. GitHub runs cron on UTC and may delay a run
-    # under load, so treat the time as "shortly after 9am", not exact.
-    - cron: "30 3 * * *"
-    # 09:30 UTC = 15:00 IST. Second attempt, because NSE rate-limits
-    # datacenter IPs and a blocked morning run would otherwise leave the
-    # list stale for a full day. Costs nothing when the morning run
-    # already succeeded: the commit step is a no-op if nothing changed.
-    - cron: "30 9 * * *"
+    # 11:30 UTC = 17:00 IST, after the 15:30 close so the range reflects the
+    # day's settled prices. GitHub runs cron on UTC and may delay a run under
+    # load, so treat it as "shortly after 5pm", not exact.
+    - cron: "30 11 * * *"
+    # 13:30 UTC = 19:00 IST. Retry, because NSE rate-limits datacenter IPs and
+    # a blocked run would otherwise leave the list stale for a full day. Costs
+    # nothing when the first run succeeded: the commit step is a no-op if
+    # nothing changed.
+    - cron: "30 13 * * *"
   workflow_dispatch:
+    inputs:
+      ath_threshold:
+        description: "Maximum percent below all-time high"
+        required: false
+        default: "20"
 
 permissions:
   contents: write
@@ -21,17 +27,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Rebuild the list
-        run: python3 build_list.py
+      - name: Rebuild the lists
+        env:
+          ATH_THRESHOLD_PERCENT: ${{ inputs.ath_threshold || '20' }}
+        run: |
+          python3 build_list.py
+          python3 ath_watchlist.py
 
       - name: Commit if it changed
         run: |
-          if git diff --quiet -- watchlist.json; then
+          if git diff --quiet -- watchlist.json ath-watchlist.json; then
             echo "no change today"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add watchlist.json
-          git commit -m "chore: refresh NSE listings ($(date -u +%F))"
+          git add watchlist.json ath-watchlist.json
+          git commit -m "chore: refresh watchlists ($(date -u +%F))"
           git push
