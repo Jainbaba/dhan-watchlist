@@ -151,6 +151,23 @@
   // that is not NSE equity, or whose id/ticker is not in the shape setSymbol
   // accepts, is dropped rather than coerced. Never synthesize a security id.
   const TICKER_RE = /^[A-Z0-9.&()' -]{1,60}$/;
+  // ScanWatchlist is undocumented, and a single request carrying hundreds of
+  // names is the kind of thing such an endpoint refuses whole. Ask in batches
+  // and keep what each one returns, so one bad batch costs its own names
+  // rather than the entire list.
+  async function scanAll(names, size = 50) {
+    const hits = [];
+    for (let i = 0; i < names.length; i += size) {
+      try {
+        const batch = await scan(names.slice(i, i + size));
+        if (Array.isArray(batch)) hits.push(...batch);
+      } catch (err) {
+        console.warn("[TradeBaba] scan batch failed:", err.message);
+      }
+    }
+    return hits;
+  }
+
   function chartSymbolFromHit(hit) {
     if (!hit || hit.exchange !== "NSE" || hit.segment !== "E") return null;
     const id = String(hit.security_id ?? "");
@@ -357,7 +374,7 @@
         ? (await fetchList(msg.source === "ath" ? ATH_URL : LIST_URL)).symbols.map((n) => String(n).split(":").at(-1).trim()).filter(Boolean)
         : (Array.isArray(msg.names) ? msg.names : []).map((n) => String(n).trim()).filter(Boolean).slice(0, 200);
       if (!names.length) return reply({ hits: [], missing: [], requested: 0 });
-      const raw = (await scan(names)).filter((h) => h.confidence > MIN_CONFIDENCE);
+      const raw = (await scanAll(names)).filter((h) => h.confidence > MIN_CONFIDENCE);
       const seen = new Set();
       const hits = raw.map(chartSymbolFromHit).filter((h) => h && !seen.has(h.symbol) && seen.add(h.symbol));
       reply({ hits, missing: findMissing(names, raw), requested: names.length });
@@ -554,7 +571,7 @@
         );
       }
       // Resolve before clearing, so a failed lookup leaves Dhan untouched.
-      const hits = (await scan(names)).filter((h) => h.confidence > MIN_CONFIDENCE);
+      const hits = (await scanAll(names)).filter((h) => h.confidence > MIN_CONFIDENCE);
       const { stockDetail, unmapped } = resolveHits(hits);
       if (!stockDetail.length) throw new Error("nothing resolved - Dhan watchlist left untouched");
       await api("clearWatch", { w_id: target.w_id });
