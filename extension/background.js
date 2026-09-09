@@ -172,11 +172,18 @@ const deliver = (payload) =>
 if (chrome.commands && chrome.commands.onCommand) {
   chrome.commands.onCommand.addListener(async (command, tab) => {
     const isFlag = command in FLAG_COMMANDS;
-    if (command !== "add-to-watchlist" && !isFlag) return;
+    if (command !== "add-to-watchlist" && command !== "next-symbol" && !isFlag) return;
     const tabId = tab && tab.id;
     if (tabId == null) return;
     if (!isDhan(tab.url)) return;
     openPanel(tabId);
+    // Stepping through the list needs no symbol from the page: the panel knows
+    // which row the chart is on and which one follows it.
+    if (command === "next-symbol") {
+      const step = { type: "panelCommand", command, symbol: "", name: "", tabId };
+      if (!(await deliver(step))) { await new Promise((r) => setTimeout(r, 800)); await deliver(step); }
+      return;
+    }
     const chart = await ask(tabId, { type: "chartSymbol" });
     const symbol = String((chart && chart.symbol) || "");
     if (!CHART_SYMBOL_RE.test(symbol)) return;

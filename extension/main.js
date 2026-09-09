@@ -311,6 +311,9 @@
       const ticker = queryFromTvSymbol(symbol);
       if (ticker && ticker !== last) {
         last = ticker;
+        // The panel highlights the row for whatever the chart shows, and that
+        // needs the full symbol, not the ticker the Screener lookup uses.
+        window.postMessage({ __dhanWL: "charted-symbol", symbol: String(symbol) }, window.location.origin);
         onChange(ticker);
       }
     };

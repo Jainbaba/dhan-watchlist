@@ -80,6 +80,9 @@
     },
     "flag-none": {
       "description": "Remove the charted stock's colour flag"
+    },
+    "next-symbol": {
+      "description": "Chart the next stock in the active watchlist"
     }
   }
 }

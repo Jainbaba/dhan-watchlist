@@ -38,10 +38,13 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 // Ticks are pushed, not requested, so they take the broadcast path rather than
 // the request/response relay above. An orphaned script has no runtime left, so
 // a failed send is expected and ignored.
+const BROADCAST = { "quote-tick": "quoteTick", "charted-symbol": "chartedSymbol" };
 window.addEventListener("message", (event) => {
-  if (event.source !== window || !event.data || event.data.__dhanWL !== "quote-tick") return;
+  const type = event.source === window && event.data && BROADCAST[event.data.__dhanWL];
+  if (!type) return;
   if (!chrome.runtime || !chrome.runtime.id) return;
-  try { chrome.runtime.sendMessage({ type: "quoteTick", quotes: event.data.quotes }, () => void chrome.runtime.lastError); } catch (_) {}
+  const { __dhanWL, ...payload } = event.data;
+  try { chrome.runtime.sendMessage({ type, ...payload }, () => void chrome.runtime.lastError); } catch (_) {}
 });
 
 window.addEventListener("message", (event) => {
