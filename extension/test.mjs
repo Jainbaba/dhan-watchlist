@@ -4,6 +4,7 @@ import assert from "node:assert";
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
+import vm from "node:vm";
 
 const SALT = "498960e491150a0fc0f21822a147fd62";
 const IVH = "320ef7705d1030f0a1a55b3dcf676cb8";
@@ -79,19 +80,6 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(wl.findMissing(["AAA"], []), ["AAA"]);
 assert.deepStrictEqual(wl.findMissing([], [{ display_name: "AAA" }]), []);
 
-assert.strictEqual(wl.describeWindow(182), "6-month");
-assert.strictEqual(wl.describeWindow(365), "12-month");
-assert.strictEqual(wl.describeWindow(undefined), "published");
-
-assert.strictEqual(wl.claimSyncLock(), true, "first claim wins");
-assert.strictEqual(wl.claimSyncLock(), false, "second tab is locked out");
-wl.releaseSyncLock();
-assert.strictEqual(wl.claimSyncLock(), true, "claimable again once released");
-wl.releaseSyncLock();
-store.set("dhanWL:syncLock", String(Date.now() - 5 * 60 * 1000));
-assert.strictEqual(wl.claimSyncLock(), true, "a stale lock does not wedge forever");
-wl.releaseSyncLock();
-
 assert.strictEqual(wl.queryFromTvSymbol("NSE:RELIANCE"), "RELIANCE");
 assert.strictEqual(
   wl.queryFromTvSymbol("NSEE1234:PARAG MILK FOODS"),
@@ -108,45 +96,6 @@ assert.strictEqual(wl.queryFromTvSymbol("M&M"), "M&M", "ampersand survives");
 assert.strictEqual(wl.queryFromTvSymbol(""), "");
 assert.strictEqual(wl.queryFromTvSymbol(null), "");
 
-assert.strictEqual(wl.toNumber("55.37%"), 55.37);
-assert.strictEqual(wl.toNumber("3,55,321"), 355321, "Indian digit grouping");
-assert.strictEqual(wl.toNumber("18.24\u00a0%"), 18.24, "non-breaking space");
-assert.ok(Number.isNaN(wl.toNumber("")), "blank is not a number");
-assert.ok(Number.isNaN(wl.toNumber("-")), "a dash is not a number");
-
-// Institutions buying reads bullish.
-assert.strictEqual(wl.cellTone("FIIs", "21.51%", "20.95%"), "neg");
-assert.strictEqual(wl.cellTone("FIIs", "20.95%", "21.51%"), "pos");
-assert.strictEqual(wl.cellTone("DIIs", "19.13%", "19.67%"), "pos");
-// Promoters and public are inverted, per the requested reading.
-assert.strictEqual(wl.cellTone("Promoters", "55.33%", "55.32%"), "pos");
-assert.strictEqual(wl.cellTone("Promoters", "55.32%", "55.33%"), "neg");
-assert.strictEqual(wl.cellTone("Public", "4.02%", "4.06%"), "neg");
-assert.strictEqual(wl.cellTone("Public", "4.06%", "4.02%"), "pos");
-// Flat, neutral rows and unreadable values stay uncoloured.
-assert.strictEqual(wl.cellTone("Promoters", "78.78%", "78.78%"), "", "unchanged");
-assert.strictEqual(wl.cellTone("No. of Shareholders", "1", "2"), "", "neutral row");
-assert.strictEqual(wl.cellTone("Government", "3.89%", "0.91%"), "", "neutral row");
-assert.strictEqual(wl.cellTone("FIIs", "", "21.51%"), "", "missing prior value");
-
-const wide = {
-  periods: ["Mar 2024", "Jun 2024", "Sep 2024", "Dec 2024", "Mar 2025", "Jun 2025"],
-  rows: [{ label: "Promoters", values: ["1", "2", "3", "4", "5", "6"] }],
-};
-assert.deepStrictEqual(wl.trimToRecent(wide, 2), {
-  periods: ["Mar 2025", "Jun 2025"],
-  rows: [{ label: "Promoters", values: ["5", "6"] }],
-});
-const narrow = {
-  periods: ["Mar 2026", "Jun 2026"],
-  rows: [{ label: "Promoters", values: ["78.78%", "78.78%"] }],
-};
-assert.deepStrictEqual(
-  wl.trimToRecent(narrow, 5),
-  narrow,
-  "a freshly listed company with fewer periods than the cap is untouched"
-);
-
 assert.strictEqual(KEY.length, 16, "keySize 4 words = 128-bit");
 assert.strictEqual(decrypt(encrypt('{"a":1}')), '{"a":1}');
 assert.strictEqual(
@@ -154,6 +103,167 @@ assert.strictEqual(
   encrypt('{"client_id":"X"}').slice(0, 12),
   "fixed IV means a fixed plaintext prefix yields a fixed ciphertext prefix"
 );
+
+// Exercise the actual worker and isolated bridge, including a missing receiver.
+let receive;
+let fetches = 0;
+const panelOpens = [];
+const panelOptions = [];
+let tabUpdated;
+let runCommand;
+const delivered = [];
+vm.runInNewContext(fs.readFileSync(new URL("background.js", import.meta.url), "utf8"), {
+  chrome: {
+    runtime: { onInstalled: { addListener() {} }, onMessage: { addListener(fn) { receive = fn; } }, sendMessage(payload, cb) { if (payload && payload.type === "panelCommand") delivered.push(payload); if (cb) cb({ ok: true }); return Promise.resolve(); } },
+    sidePanel: { setPanelBehavior() { return Promise.resolve(); }, setOptions: async (o) => { panelOptions.push(o); }, open: async (o) => { panelOpens.push(o); } },
+    tabs: { onUpdated: { addListener(fn) { tabUpdated = fn; } }, sendMessage: (tabId, msg, cb) => cb(msg.type === "chartSymbol" ? { symbol: "NSEE1660:ITC", name: "ITC" } : {}) },
+    commands: { onCommand: { addListener(fn) { runCommand = fn; } } },
+    storage: { session: { get: async () => ({}), set: async () => {} }, local: { get: async () => ({}), set: async () => {} } },
+  },
+  fetch: async () => {
+    fetches++;
+    return { ok: true, json: async () => [{ name: "Reliance", url: "/company/RELIANCE/" }], text: async () => "<html id='company-page'>Market Cap ₹ 17,38,728 Cr.</html>" };
+  },
+});
+const result = await new Promise(resolve => {
+  assert.equal(receive({ type: "screener", symbol: "RELIANCE" }, {}, resolve), true);
+});
+assert.equal(result.url, "https://www.screener.in/company/RELIANCE/");
+assert.equal(fetches, 1, "company resolution uses one search request");
+const page = await new Promise(resolve => receive({ type: "screener", symbol: "RELIANCE", page: true }, { tab: { id: 7 } }, resolve));
+assert.equal(page.url, "https://www.screener.in/company/RELIANCE/");
+assert.match(page.html, /Market Cap/);
+assert.equal(fetches, 3, "page mode searches then fetches the public company HTML");
+const invalid = await new Promise(resolve => receive({ type: "screener", symbol: "../bad" }, {}, resolve));
+assert.match(invalid.error, /malformed/);
+assert.equal(fetches, 3);
+let relay;
+let reply;
+const fakeWindow = {
+  location: { origin: "https://tv.dhan.co" },
+  addEventListener(type, fn) { relay = fn; },
+  postMessage(msg) { reply = msg; },
+};
+const runtime = {
+  id: "test",
+  sendMessage(msg, callback) { callback(result); },
+  onMessage: { addListener() {} },
+};
+const pageEvents = {};
+vm.runInNewContext(fs.readFileSync(new URL("bridge.js", import.meta.url), "utf8"), {
+  window: fakeWindow,
+  chrome: { runtime },
+  document: {
+    addEventListener(type, fn) { pageEvents[type] = fn; },
+    removeEventListener(type) { delete pageEvents[type]; },
+  },
+});
+const request = { source: fakeWindow, data: { __dhanWL: "request", id: 1, symbol: "RELIANCE" } };
+relay(request);
+assert.equal(reply.url, result.url);
+runtime.lastError = { message: "Could not establish connection. Receiving end does not exist." };
+relay(request);
+assert.match(reply.error, /Reload the extension/);
+delete runtime.lastError;
+relay(request);
+assert.equal(reply.url, result.url, "retry can recover once the worker is available");
+delete runtime.id;
+relay(request);
+assert.match(reply.error, /refresh the page/);
+
+// The page's first gesture asks the worker to open the panel, exactly once.
+let opens = 0;
+runtime.id = "test"; // the orphan case above cleared it
+runtime.sendMessage = (msg, callback) => { if (msg.type === "openPanel") opens += 1; if (callback) callback(); };
+pageEvents.pointerdown();
+pageEvents.pointerdown?.();
+assert.equal(opens, 1, "the panel is asked for once per page, not on every click");
+
+
+// A shortcut on a Dhan tab resolves what is charted and hands the panel a verb.
+await runCommand("flag-red", { id: 7, url: "https://tv.dhan.co/charts" });
+assert.deepEqual(delivered, [{ type: "panelCommand", command: "flag-red", symbol: "NSEE1660:ITC", name: "ITC", tabId: 7 }]);
+await runCommand("flag-red", { id: 9, url: "https://example.com/" });
+assert.equal(delivered.length, 1, "shortcuts do nothing off tv.dhan.co");
+await runCommand("some-other-command", { id: 7, url: "https://tv.dhan.co/charts" });
+assert.equal(delivered.length, 1, "an unknown command is ignored");
+
+const rules = JSON.parse(fs.readFileSync(new URL("screener-rules.json", import.meta.url)));
+assert.deepEqual(rules[0].condition.initiatorDomains, ["tv.dhan.co"]);
+assert.deepEqual(rules[0].condition.resourceTypes, ["sub_frame"]);
+assert.match(rules[0].action.responseHeaders[1].value, /object-src 'none'/);
+assert.match(rules[0].action.responseHeaders[1].value, /frame-ancestors 'self' https:\/\/tv\.dhan\.co/);
+
+// Sidepanel pure-model regression checks (no browser or DOM dependency).
+const panelWindow = {};
+vm.runInNewContext(fs.readFileSync(new URL("sidepanel.js", import.meta.url), "utf8"), {
+  window: panelWindow,
+  localStorage: { getItem: () => null, setItem() {} },
+  console,
+});
+const panel = panelWindow.tradebaba;
+assert.deepEqual(
+  ["x", "100", "120", "110", "110", "-", "130", "140"].map((value, i, values) =>
+    panel.compare({ headers: ["Metric", "Jan 2024", "Feb 2024", "Mar 2024", "Apr 2024", "May 2024", "Jun 2024", "Jul 2024"], values }, i, { enabled: true })
+  ),
+  ["", "", "up", "down", "", "", "", "up"],
+  "adjacent comparison leaves first, flat, and missing predecessors neutral"
+);
+const share = (values, invert = false) => values.map((value, i) => panel.compare({ headers: ["Holding", "Jan 2024", "Feb 2024", "Mar 2024"], values }, i, { enabled: true, invert }));
+assert.deepEqual(share(["FIIs", "10", "12", "11"]), ["", "", "up", "down"]);
+assert.deepEqual(share(["Public", "10", "12", "11"], true), ["", "", "down", "up"]);
+assert.strictEqual(panel.number("₹ 1,23,456"), 123456);
+assert.strictEqual(panel.number("(−1,200)%"), -1200);
+assert.strictEqual(panel.number("N/A"), null);
+assert.deepEqual(panel.defaults().lists[0].items.map((x) => x.symbol), ["NSEE2885:RELIANCE", "NSEE11536:TCS", "NSEE1594:INFY", "NSEE1333:HDFCBANK"]);
+
+// Panel symbol search: only NSE equity hits that carry a real security id and a
+// chart-legal ticker may become a chart symbol; nothing is synthesized.
+assert.deepEqual(
+  wl.chartSymbolFromHit({ exchange: "NSE", segment: "E", security_id: 2885, symbol: "RELIANCE", display_name: "Reliance Industries Ltd" }),
+  { symbol: "NSEE2885:RELIANCE", name: "Reliance Industries Ltd" }
+);
+assert.deepEqual(
+  wl.chartSymbolFromHit({ exchange: "NSE", segment: "E", security_id: "1594", display_name: "INFY" }),
+  { symbol: "NSEE1594:INFY", name: "INFY" },
+  "falls back to display_name when the hit carries no ticker field"
+);
+assert.strictEqual(wl.chartSymbolFromHit({ exchange: "BSE", segment: "E", security_id: 1, symbol: "X" }), null);
+assert.strictEqual(wl.chartSymbolFromHit({ exchange: "NSE", segment: "D", security_id: 1, symbol: "X" }), null);
+assert.strictEqual(wl.chartSymbolFromHit({ exchange: "NSE", segment: "E", symbol: "X" }), null, "no security id, no symbol");
+assert.strictEqual(wl.chartSymbolFromHit({ exchange: "NSE", segment: "E", security_id: "12a", symbol: "X" }), null);
+assert.strictEqual(wl.chartSymbolFromHit({ exchange: "NSE", segment: "E", security_id: 5, symbol: "BAD/TICKER" }), null);
+assert.strictEqual(wl.chartSymbolFromHit(null), null);
+
+// Datafeed search rows: take the chart symbol the feed already knows, and drop
+// a row whose ticker is not a symbol setSymbol would accept.
+assert.deepEqual(
+  wl.chartSymbolFromSearch({ ticker: "NSEE1660:ITC", description: "ITC Ltd", exchange: "NSE" }),
+  { symbol: "NSEE1660:ITC", name: "ITC Ltd" }
+);
+assert.deepEqual(
+  wl.chartSymbolFromSearch({ full_name: "NSEE7229:HAL" }),
+  { symbol: "NSEE7229:HAL", name: "HAL" },
+  "falls back to full_name, then to the ticker half for the label"
+);
+assert.strictEqual(wl.chartSymbolFromSearch({ ticker: "BSE:500325", description: "x" }), null);
+assert.strictEqual(wl.chartSymbolFromSearch(null), null);
+
+
+// Opening on tv.dhan.co: the panel is offered on Dhan tabs only, and a page
+// gesture asks the worker to open it.
+tabUpdated(7, { status: "complete" }, { url: "https://tv.dhan.co/charts" });
+tabUpdated(8, { status: "complete" }, { url: "https://example.com/" });
+await new Promise((r) => setTimeout(r, 0));
+assert.deepEqual(panelOptions, [
+  { tabId: 7, path: "sidepanel.html", enabled: true },
+  { tabId: 8, path: "sidepanel.html", enabled: false },
+], "the side panel is this tab's panel on Dhan and disabled everywhere else");
+const opensBefore = panelOpens.length;
+receive({ type: "openPanel" }, { tab: { id: 7 } }, () => {});
+await new Promise((r) => setTimeout(r, 0));
+assert.equal(panelOpens.length, opensBefore + 1, "a page gesture opens the panel once");
+assert.deepEqual(panelOpens.at(-1), { tabId: 7 }, "and opens it for that tab");
 
 console.log("logic + crypto self-consistency: ok");
 

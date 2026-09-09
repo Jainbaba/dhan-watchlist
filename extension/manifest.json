@@ -1,21 +1,85 @@
 {
   "manifest_version": 3,
-  "name": "Dhan Watchlist Bulk Add",
-  "version": "0.2.0",
-  "description": "Mirrors a published NSE IPO list into a Dhan watchlist and shows shareholding for the charted stock.",
-  "host_permissions": ["https://www.screener.in/*"],
-  "background": { "service_worker": "background.js" },
+  "name": "TradeBaba",
+  "version": "0.3.0",
+  "description": "Adds NSE/BSE watchlists to Dhan and shows a TradeBaba stock analysis panel.",
+  "permissions": [
+    "sidePanel",
+    "storage",
+    "tabs",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "https://www.screener.in/*",
+    "https://tv.dhan.co/*",
+    "https://api.github.com/*"
+  ],
+  "action": {
+    "default_title": "Open TradeBaba (Alt+D)"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
-      "matches": ["https://tv.dhan.co/*"],
-      "js": ["main.js"],
+      "matches": [
+        "https://tv.dhan.co/*"
+      ],
+      "js": [
+        "main.js"
+      ],
       "world": "MAIN",
       "run_at": "document_idle"
     },
     {
-      "matches": ["https://tv.dhan.co/*"],
-      "js": ["bridge.js"],
+      "matches": [
+        "https://tv.dhan.co/*"
+      ],
+      "js": [
+        "bridge.js"
+      ],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+D"
+      },
+      "description": "Open the TradeBaba panel"
+    },
+    "add-to-watchlist": {
+      "suggested_key": {
+        "default": "Alt+A"
+      },
+      "description": "Add the charted stock to the active watchlist"
+    },
+    "flag-red": {
+      "suggested_key": {
+        "default": "Alt+1"
+      },
+      "description": "Flag the charted stock Red"
+    },
+    "flag-green": {
+      "suggested_key": {
+        "default": "Alt+2"
+      },
+      "description": "Flag the charted stock Green"
+    },
+    "flag-orange": {
+      "description": "Flag the charted stock Orange"
+    },
+    "flag-yellow": {
+      "description": "Flag the charted stock Yellow"
+    },
+    "flag-blue": {
+      "description": "Flag the charted stock Blue"
+    },
+    "flag-none": {
+      "description": "Remove the charted stock's colour flag"
+    }
+  }
 }

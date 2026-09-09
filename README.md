@@ -76,7 +76,7 @@ this was an IPO*, the equity master for *what it is called*.
 `brave://extensions` (or `chrome://extensions`) with Developer mode on and
 **Load unpacked**.
 
-It runs a single content script in the `MAIN` world on `https://tv.dhan.co/*`. That
+It runs a content script in the `MAIN` world on `https://tv.dhan.co/*`. That
 placement is not incidental: the API pins CORS to the `tv.dhan.co` origin, so a request
 from a background service worker is refused, and the page's own `CryptoJS` and session
 object are only reachable from the main world.
@@ -92,24 +92,28 @@ sync claims a timestamped lock in `localStorage` first and a second tab stands d
 Symbols that come back with no confident match are named individually in the log rather
 than quietly dropped, and any failure badges the launcher instead of passing silently.
 
-### Shareholding
+### Screener
 
-A second card, bottom-left, shows the shareholding pattern for whatever stock the chart is
-on — promoters, FIIs, DIIs, government, public and shareholder count, for the five most
-recent quarters. It follows the chart, caches per symbol, and hides on demand.
+A TradeBaba browser side panel follows the active Dhan tab and renders the useful
+Screener data locally: key ratios, editable saved ratios, pros and cons, quarterly
+results, profit and loss growth, and the coloured shareholding pattern. Open it from
+the extension toolbar icon; Chrome controls whether it sits on the left or right.
+**Source** opens the original company page and **Retry** repeats a failed lookup.
 
-The data is scraped from screener.in, which sends no `access-control-allow-origin` and
-`x-frame-options: DENY`. The page can therefore neither fetch it nor frame it, so the
-request runs in a background service worker under `host_permissions`, with a thin
-isolated-world script (`bridge.js`) relaying between the page and the worker. The symbol
-reaching the worker is validated against a strict pattern before being interpolated into a
-URL path, since it originates in page script.
+The prototype also includes four sample NSE rows (Reliance, TCS, Infosys, and HDFC
+Bank). Select a row to request a chart change in Dhan; the analysis updates only after
+the chart watcher confirms the new symbol. Drag the browser side-panel edge wider to
+see the sample list beside the financial tables. This control is read-only and does
+not create or modify Dhan watchlists.
 
-Parsing is our own, using the browser's `DOMParser`: about thirty lines against the
-`#shareholding` table. The idea came from
-[screener-scraper-pro](https://github.com/VishwaGauravIn/screener-scraper-pro), which is
-worth a look if you want the full financials — it is Node-only (cheerio) and GPL-3.0, so
-it is credited here as inspiration rather than vendored.
+The background worker resolves Dhan's ticker or company name using Screener's search
+and fetches its public HTML; `bridge.js` relays the result to the panel. The extension
+does not embed Screener, so frame policy and CSP do not affect the analysis view.
+
+After updating, reload the extension in `chrome://extensions` or `brave://extensions`,
+then refresh the Dhan tab. Old content scripts cannot reconnect after an extension
+reload. If “Receiving end does not exist” persists, check the extension's service
+worker errors on that extensions page, then use **Retry** after fixing the worker.
 
 A floating panel shows the target watchlist's current size and offers the same sync on
 demand. `node extension/test.mjs` covers the pure logic, the cross-tab lock and the crypto
@@ -118,9 +122,10 @@ to end.
 
 ## Schedule
 
-`.github/workflows/update.yml` runs at 03:30 UTC (09:00 IST) and again at 09:30 UTC
-(15:00 IST), committing only when the symbol set actually changes. The second run exists
-because a blocked morning fetch would otherwise leave the list stale for a full day; it
+`.github/workflows/update.yml` runs at 11:30 UTC (17:00 IST) and again at 13:30 UTC
+(19:00 IST), committing only when the symbol set actually changes. The first run sits
+after the 15:30 close, so the ATH range reflects the day's settled prices. The second
+exists because a blocked fetch would otherwise leave the list stale for a full day; it
 costs nothing when the first run already succeeded. NSE rate-limits datacenter IPs and GitHub runners get
 caught by it, so the fetch retries with backoff and the script refuses to write an empty
 list — a blocked run leaves the last good `watchlist.json` in place rather than

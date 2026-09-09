@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "responseHeaders": [
+        {
+          "header": "x-frame-options",
+          "operation": "remove"
+        },
+        {
+          "header": "content-security-policy",
+          "operation": "set",
+          "value": "default-src 'self' https: data: blob:; script-src 'self' https: 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' https: 'unsafe-inline'; connect-src 'self' https: data: wss:; object-src 'none'; base-uri 'self'; frame-ancestors 'self' https://tv.dhan.co"
+        }
+      ]
+    },
+    "condition": {
+      "urlFilter": "|https://www.screener.in/",
+      "initiatorDomains": [
+        "tv.dhan.co"
+      ],
+      "resourceTypes": [
+        "sub_frame"
+      ]
+    }
+  }
+]
