@@ -74,7 +74,10 @@
   async function searchSymbols(query, results) { const token = ++searchSequence; results.hidden = false; results.replaceChildren(node("p", `Searching Dhan for “${query}”…`, "muted")); if (activeTab == null) { results.replaceChildren(node("p", "Open a Dhan chart tab to search symbols.", "error")); return; } try { const res = await chrome.runtime.sendMessage({ type: "searchSymbols", tabId: activeTab, query }); if (token !== searchSequence) return; if (res?.error) throw new Error(res.error); const hits = Array.isArray(res?.hits) ? res.hits : []; results.replaceChildren(); if (!hits.length) { results.append(node("p", `No NSE equity matching “${query}”.`, "muted")); return; } hits.forEach((hit) => { const button = node("button", null, "result-row"); button.type = "button"; button.append(node("strong", hit.symbol.split(":").at(-1)), node("small", hit.name)); button.onclick = () => addStock(hit); results.append(button); }); } catch (e) { if (token === searchSequence) results.replaceChildren(node("p", e.message, "error")); } }
   const quoteCells = new Map(), quoteData = new Map(); let quoteTimer = null, quoteSequence = 0, quoteNote = null;
   function noteQuotes(text) { if (!quoteNote) return; quoteNote.textContent = text; quoteNote.hidden = !text; }
-  function paintQuote(symbol, quote) { quoteData.set(symbol, quote); const cells = quoteCells.get(symbol); if (!cells) return; const money = (v) => (Number.isFinite(v) ? v.toFixed(2) : "—"); cells.last.textContent = money(quote?.last); const change = quote?.change, percent = quote?.changePercent; cells.change.textContent = Number.isFinite(change) ? `${change > 0 ? "+" : ""}${money(change)} (${Number.isFinite(percent) ? `${percent > 0 ? "+" : ""}${percent.toFixed(2)}` : "—"}%)` : "—"; cells.change.className = `q-change${Number.isFinite(change) && change !== 0 ? (change > 0 ? " metric-up" : " metric-down") : ""}`; }
+  // A feed answers a fresh subscription with a partial quote - a price and no
+  // change, or nothing at all - so a repaint must MERGE onto what is already
+  // known. Overwriting was why prices blinked out and came back while scrolling.
+  function paintQuote(symbol, incoming) { const known = quoteData.get(symbol) || {}; const pick = (a, b) => (Number.isFinite(a) ? a : Number.isFinite(b) ? b : null); const quote = { last: pick(incoming?.last, known.last), change: pick(incoming?.change, known.change), changePercent: pick(incoming?.changePercent, known.changePercent) }; if (quote.last === null && quote.change === null && quote.changePercent === null) return; quoteData.set(symbol, quote); const cells = quoteCells.get(symbol); if (!cells) return; const money = (v) => (Number.isFinite(v) ? v.toFixed(2) : "—"); cells.last.textContent = money(quote?.last); const change = quote?.change, percent = quote?.changePercent; cells.change.textContent = Number.isFinite(change) ? `${change > 0 ? "+" : ""}${money(change)} (${Number.isFinite(percent) ? `${percent > 0 ? "+" : ""}${percent.toFixed(2)}` : "—"}%)` : "—"; cells.change.className = `q-change${Number.isFinite(change) && change !== 0 ? (change > 0 ? " metric-up" : " metric-down") : ""}`; }
   // Poll only while the panel shows rows, and stop the loop the moment the page
   // says it has no feed -- an unavailable column is honest, a retry storm is not.
   let streaming = false, quoteTries = 0;
@@ -82,7 +85,7 @@
   // first failure means "not ready yet", not "never". Retry a few times before
   // settling on the error, which is why prices used to appear only after a
   // click forced a redraw.
-  async function refreshQuotes(symbols, retry = 0) { clearTimeout(quoteTimer); const token = ++quoteSequence; if (!symbols.length || activeTab == null) return; if (streaming && watchKey(symbols) === watching) return; try { const res = await chrome.runtime.sendMessage({ type: "getQuotes", tabId: activeTab, symbols }); if (token !== quoteSequence) return; if (res?.error) { if (retry < 5) { quoteTimer = setTimeout(() => refreshQuotes(symbols, retry + 1), 2000); return; } return noteQuotes(res.error); } noteQuotes(""); (Array.isArray(res?.quotes) ? res.quotes : []).forEach((q) => paintQuote(q.symbol, q)); watchQuotes(symbols); if (!streaming) quoteTimer = setTimeout(() => refreshQuotes(symbols), 10000); } catch (e) { if (token !== quoteSequence) return; if (retry < 5) { quoteTimer = setTimeout(() => refreshQuotes(symbols, retry + 1), 2000); return; } noteQuotes(e.message); } }
+  async function refreshQuotes(symbols, retry = 0) { clearTimeout(quoteTimer); const token = ++quoteSequence; if (!symbols.length || activeTab == null) return; if (streaming && watchKey(symbols) === watching) return; try { const res = await chrome.runtime.sendMessage({ type: "getQuotes", tabId: activeTab, symbols }); if (token !== quoteSequence) return; if (res?.error) { if (retry < 5) { quoteTimer = setTimeout(() => refreshQuotes(symbols, retry + 1), 2000); return; } return noteQuotes(res.error); } noteQuotes(""); (Array.isArray(res?.quotes) ? res.quotes : []).forEach((q) => paintQuote(q.symbol, q)); if (!streaming) quoteTimer = setTimeout(() => refreshQuotes(symbols), 10000); } catch (e) { if (token !== quoteSequence) return; if (retry < 5) { quoteTimer = setTimeout(() => refreshQuotes(symbols, retry + 1), 2000); return; } noteQuotes(e.message); } }
   // Live ticks when the page's datafeed streams them; the 10s poll above is the
   // fallback, and only one of the two ever runs.
     // Order-insensitive on purpose: sorting reorders the rows but watches the same
@@ -182,8 +185,10 @@
     if (rail && railScroll) rail.removeEventListener("scroll", railScroll);
     if (!rows.length) return;
     // A short list is cheaper to ask for whole than to keep measuring.
-    if (rows.length <= 100) { refreshQuotes(rows.map((r) => r.dataset.symbol)); return; }
+    if (rows.length <= 100) { const all = rows.map((r) => r.dataset.symbol); watchQuotes(all); refreshQuotes(all); return; }
     const ask = () => refreshQuotes(visibleSymbols(rail, rows));
+    // One subscription for the list, not one per scroll.
+    watchQuotes(rows.slice(0, 300).map((r) => r.dataset.symbol));
     railScroll = () => { clearTimeout(visibleTimer); visibleTimer = setTimeout(ask, 250); };
     if (rail) rail.addEventListener("scroll", railScroll, { passive: true });
     ask();
