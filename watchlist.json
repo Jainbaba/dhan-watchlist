@@ -1,18 +1,18 @@
 {
-  "generated_on": "2026-09-09",
+  "generated_on": "2026-09-10",
   "source": "https://www.nseindia.com/api/public-past-issues",
   "window_days": 182,
   "security_types": [
     "EQ",
     "BE"
   ],
-  "count": 53,
+  "count": 52,
   "excluded_by_security_type": {
     "DEBT": 1,
     "IV": 3,
     "N0": 25,
     "RR": 1,
-    "SME": 44
+    "SME": 43
   },
   "remapped_to_nse_symbol": {
     "AMIRCHAND": "AEROPLANE",
@@ -72,8 +72,7 @@
     "CMPDI",
     "GSPCROP",
     "INNOVISION",
-    "RSL",
-    "SEDEMAC"
+    "RSL"
   ],
   "listings": [
     {
@@ -491,14 +490,6 @@
       "security_type": "EQ",
       "issue_price": "122",
       "ipo_opened_on": "09-MAR-2026"
-    },
-    {
-      "symbol": "SEDEMAC",
-      "name": "Sedemac Mechatronics Limited",
-      "listed_on": "2026-03-11",
-      "security_type": "EQ",
-      "issue_price": "1352",
-      "ipo_opened_on": "04-MAR-2026"
     }
   ]
 }
