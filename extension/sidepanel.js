@@ -80,12 +80,23 @@
   function paintQuote(symbol, incoming) { const known = quoteData.get(symbol) || {}; const pick = (a, b) => (Number.isFinite(a) ? a : Number.isFinite(b) ? b : null); const quote = { last: pick(incoming?.last, known.last), change: pick(incoming?.change, known.change), changePercent: pick(incoming?.changePercent, known.changePercent) }; if (quote.last === null && quote.change === null && quote.changePercent === null) return; quoteData.set(symbol, quote); const cells = quoteCells.get(symbol); if (!cells) return; const money = (v) => (Number.isFinite(v) ? v.toFixed(2) : "—"); cells.last.textContent = money(quote?.last); const change = quote?.change, percent = quote?.changePercent; cells.change.textContent = Number.isFinite(change) ? `${change > 0 ? "+" : ""}${money(change)} (${Number.isFinite(percent) ? `${percent > 0 ? "+" : ""}${percent.toFixed(2)}` : "—"}%)` : "—"; cells.change.className = `q-change${Number.isFinite(change) && change !== 0 ? (change > 0 ? " metric-up" : " metric-down") : ""}`; }
   // Poll only while the panel shows rows, and stop the loop the moment the page
   // says it has no feed -- an unavailable column is honest, a retry storm is not.
+  // NSE trades 09:15-15:30 IST, Monday to Friday. Outside that the poll has
+  // nothing to learn, so it stops rather than waking every ten seconds all
+  // night; the same goes for a panel you cannot see.
+  function marketOpen(at = new Date()) {
+    const ist = new Date(at.getTime() + (at.getTimezoneOffset() + 330) * 60000);
+    const day = ist.getDay();
+    if (day === 0 || day === 6) return false;
+    const minutes = ist.getHours() * 60 + ist.getMinutes();
+    return minutes >= 9 * 60 + 15 && minutes <= 15 * 60 + 30;
+  }
+  const panelVisible = () => typeof document === "undefined" || document.visibilityState !== "hidden";
   let streaming = false, quoteTries = 0;
   // The panel usually opens before the chart page has built its datafeed, so a
   // first failure means "not ready yet", not "never". Retry a few times before
   // settling on the error, which is why prices used to appear only after a
   // click forced a redraw.
-  async function refreshQuotes(symbols, retry = 0) { clearTimeout(quoteTimer); const token = ++quoteSequence; if (!symbols.length || activeTab == null) return; if (streaming && watchKey(symbols) === watching) return; try { const res = await chrome.runtime.sendMessage({ type: "getQuotes", tabId: activeTab, symbols }); if (token !== quoteSequence) return; if (res?.error) { if (retry < 5) { quoteTimer = setTimeout(() => refreshQuotes(symbols, retry + 1), 2000); return; } return noteQuotes(res.error); } noteQuotes(""); (Array.isArray(res?.quotes) ? res.quotes : []).forEach((q) => paintQuote(q.symbol, q)); if (!streaming) quoteTimer = setTimeout(() => refreshQuotes(symbols), 10000); } catch (e) { if (token !== quoteSequence) return; if (retry < 5) { quoteTimer = setTimeout(() => refreshQuotes(symbols, retry + 1), 2000); return; } noteQuotes(e.message); } }
+  async function refreshQuotes(symbols, retry = 0) { clearTimeout(quoteTimer); const token = ++quoteSequence; if (!symbols.length || activeTab == null) return; if (streaming && watchKey(symbols) === watching) return; try { const res = await chrome.runtime.sendMessage({ type: "getQuotes", tabId: activeTab, symbols }); if (token !== quoteSequence) return; if (res?.error) { if (retry < 5) { quoteTimer = setTimeout(() => refreshQuotes(symbols, retry + 1), 2000); return; } return noteQuotes(res.error); } noteQuotes(""); (Array.isArray(res?.quotes) ? res.quotes : []).forEach((q) => paintQuote(q.symbol, q)); if (!streaming && marketOpen() && panelVisible()) quoteTimer = setTimeout(() => refreshQuotes(symbols), 10000); } catch (e) { if (token !== quoteSequence) return; if (retry < 5) { quoteTimer = setTimeout(() => refreshQuotes(symbols, retry + 1), 2000); return; } noteQuotes(e.message); } }
   // Live ticks when the page's datafeed streams them; the 10s poll above is the
   // fallback, and only one of the two ever runs.
     // Order-insensitive on purpose: sorting reorders the rows but watches the same
@@ -179,6 +190,7 @@
     const shown = rows.filter((r) => r.offsetTop + r.offsetHeight >= top && r.offsetTop <= bottom).map((r) => r.dataset.symbol);
     return shown.length ? shown : rows.slice(0, 60).map((r) => r.dataset.symbol);
   }
+  const QUOTE_LIMIT = 1000;
   let backfillTimer = null, backfillToken = 0;
   // Quoting only what is on screen means every row you scroll to arrives blank
   // and fills a moment later. Walk the rest of the list in the background so it
@@ -212,7 +224,7 @@
     const all = rows.map((r) => r.dataset.symbol);
     const ask = () => refreshQuotes(visibleSymbols(rail, rows));
     // One subscription for the list, not one per scroll.
-    watchQuotes(all.slice(0, 300));
+    watchQuotes(all.slice(0, QUOTE_LIMIT));
     railScroll = () => { clearTimeout(visibleTimer); visibleTimer = setTimeout(ask, 250); };
     if (rail) rail.addEventListener("scroll", railScroll, { passive: true });
     ask();
@@ -309,11 +321,12 @@
   async function load(tabId) { const token = ++sequence; activeTab = tabId; watchVisible(); syncAthList(); showStatus("Loading TradeBaba analysis…"); $("body").hidden = true; try { const payload = await chrome.runtime.sendMessage({ type: "getStock", tabId }); if (token !== sequence) return; if (!payload?.html) throw new Error("No stock data yet. Select a Dhan chart, then retry."); render(payload); } catch (e) { if (token === sequence) showStatus(e.message, true); } }
   function theme() { const value = localStorage.getItem(THEME_KEY); return value === "light" ? "light" : "dark"; }
   function setTheme(value) { const next = value === "light" ? "light" : "dark"; document.documentElement.dataset.theme = next; try { localStorage.setItem(THEME_KEY, next); } catch (_) {} }
-  if (typeof window !== "undefined") window.tradebaba = { number, period, compare, parse, loadModel, defaults };
+  if (typeof window !== "undefined") window.tradebaba = { number, period, compare, parse, loadModel, defaults, marketOpen };
   if (typeof document === "undefined" || !$("body")) return;
   // Bubble phase, on click rather than pointerdown: whatever was clicked gets
   // its own handler first, so closing the picker never swallows that click.
   document.addEventListener("click", (e) => { if (!pickerOpen) return; const el = e.target instanceof Element ? e.target : null; if (el && el.closest(".list-picker, .list-button")) return; pickerOpen = false; renderWatchlist(); });
   document.addEventListener("keydown", (e) => { if (e.key !== " " || e.defaultPrevented) return; const t = e.target; if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return; e.preventDefault(); advance(); });
+  document.addEventListener("visibilitychange", () => { if (panelVisible() && marketOpen()) watchVisible(); });
   setTheme(theme()); splitter(); renderWatchlist(); $("retry").onclick = async () => { const tabs = await chrome.tabs.query({ active: true, lastFocusedWindow: true }); if (tabs[0]?.id != null) load(tabs[0].id); }; $("settings").onclick = settingsView; chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => { if (msg.type === "panelCommand") { panelCommand(msg); sendResponse({ ok: true }); return; } if (msg.type === "chartedSymbol") { charted = String(msg.symbol || "") || null; markCharted(); return; } if (msg.type === "quoteTick") { (Array.isArray(msg.quotes) ? msg.quotes : []).forEach((q) => paintQuote(q.symbol, q)); noteQuotes(""); return; } if (msg.type === "stockData" && msg.tabId === activeTab) { scheduleRender(msg); watchVisible(); } }); chrome.tabs.onActivated.addListener(({ tabId }) => load(tabId)); $("theme").onclick = () => setTheme(theme() === "dark" ? "light" : "dark"); (async () => { const tabs = await chrome.tabs.query({ active: true, lastFocusedWindow: true }); if (tabs[0]?.id != null) load(tabs[0].id); })();
 })();

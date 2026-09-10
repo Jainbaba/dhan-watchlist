@@ -397,7 +397,10 @@
   }
 
   // What one request asks for, and the most a single view will ever need.
-  const QUOTE_BATCH = 50, QUOTE_MAX = 300, QUOTE_LANES = 4;
+  // The whole published band is ~790 names, so the ceiling sits above it. Every
+  // subscribed symbol is a live tick the page keeps decoding, which is the cost
+  // of raising this.
+  const QUOTE_BATCH = 50, QUOTE_MAX = 1000, QUOTE_LANES = 4;
   const finite = (v) => (Number.isFinite(Number(v)) ? Number(v) : null);
 
   window.addEventListener("message", (event) => {

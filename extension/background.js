@@ -285,7 +285,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     const symbols = (Array.isArray(msg.symbols) ? msg.symbols : [])
       .map(String)
       .filter((s) => CHART_SYMBOL_RE.test(s))
-      .slice(0, 300);
+      .slice(0, 1000);
     const names = (Array.isArray(msg.names) ? msg.names : []).map((n) => String(n).trim()).filter((n) => QUERY_RE.test(n)).slice(0, 200);
     const source = msg.source === "published" || msg.source === "ath" ? msg.source : "";
     const valid = msg.type === "setChart"

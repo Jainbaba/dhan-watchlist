@@ -265,6 +265,20 @@ await new Promise((r) => setTimeout(r, 0));
 assert.equal(panelOpens.length, opensBefore + 1, "a page gesture opens the panel once");
 assert.deepEqual(panelOpens.at(-1), { tabId: 7 }, "and opens it for that tab");
 
+
+// Market hours drive whether the quote poll keeps waking up. NSE runs
+// 09:15-15:30 IST, Monday to Friday; the instants below are UTC, so add 5:30.
+// 10 Sep 2026 is a Thursday, 12 Sep 2026 a Saturday.
+const at = (utc) => new Date(utc);
+assert.strictEqual(panel.marketOpen(at("2026-09-10T03:45:00Z")), true, "09:15 IST, the open itself");
+assert.strictEqual(panel.marketOpen(at("2026-09-10T05:00:00Z")), true, "10:30 IST, mid-session");
+assert.strictEqual(panel.marketOpen(at("2026-09-10T10:00:00Z")), true, "15:30 IST, the close itself");
+assert.strictEqual(panel.marketOpen(at("2026-09-10T03:30:00Z")), false, "09:00 IST, before the open");
+assert.strictEqual(panel.marketOpen(at("2026-09-10T10:30:00Z")), false, "16:00 IST, after the close");
+assert.strictEqual(panel.marketOpen(at("2026-09-10T20:00:00Z")), false, "01:30 IST, overnight");
+assert.strictEqual(panel.marketOpen(at("2026-09-12T05:00:00Z")), false, "Saturday, whatever the hour");
+assert.strictEqual(panel.marketOpen(at("2026-09-13T05:00:00Z")), false, "Sunday, whatever the hour");
+
 console.log("logic + crypto self-consistency: ok");
 
 // --- decisive check: decrypt captured traffic ---
