@@ -173,11 +173,34 @@
   // truncates the rest. Geometry rather than IntersectionObserver: the panel is
   // often unpainted (hidden pane), and an observer reports nothing there, which
   // would quietly stop quotes altogether.
-  function visibleSymbols(rail, rows, margin = 400) {
+  function visibleSymbols(rail, rows, margin = 1200) {
     if (!rail || !rail.clientHeight) return rows.slice(0, 60).map((r) => r.dataset.symbol);
     const top = rail.scrollTop - margin, bottom = rail.scrollTop + rail.clientHeight + margin;
     const shown = rows.filter((r) => r.offsetTop + r.offsetHeight >= top && r.offsetTop <= bottom).map((r) => r.dataset.symbol);
     return shown.length ? shown : rows.slice(0, 60).map((r) => r.dataset.symbol);
+  }
+  let backfillTimer = null, backfillToken = 0;
+  // Quoting only what is on screen means every row you scroll to arrives blank
+  // and fills a moment later. Walk the rest of the list in the background so it
+  // is priced before you get there; the visible rows still go first.
+  function backfill(symbols) {
+    clearTimeout(backfillTimer);
+    const token = ++backfillToken;
+    const pending = symbols.filter((symbol) => !quoteData.has(symbol));
+    if (!pending.length) return;
+    const step = async (from) => {
+      if (token !== backfillToken || activeTab == null) return;
+      const chunk = pending.slice(from, from + 100);
+      if (!chunk.length) return;
+      try {
+        const res = await chrome.runtime.sendMessage({ type: "getQuotes", tabId: activeTab, symbols: chunk });
+        if (token !== backfillToken) return;
+        if (res?.error) return;
+        (Array.isArray(res.quotes) ? res.quotes : []).forEach((q) => paintQuote(q.symbol, q));
+      } catch (_) { return; }
+      backfillTimer = setTimeout(() => step(from + 100), 400);
+    };
+    step(0);
   }
   function watchVisible() {
     const rail = $("stocks") && $("stocks").closest(".sample");
@@ -186,12 +209,14 @@
     if (!rows.length) return;
     // A short list is cheaper to ask for whole than to keep measuring.
     if (rows.length <= 100) { const all = rows.map((r) => r.dataset.symbol); watchQuotes(all); refreshQuotes(all); return; }
+    const all = rows.map((r) => r.dataset.symbol);
     const ask = () => refreshQuotes(visibleSymbols(rail, rows));
     // One subscription for the list, not one per scroll.
-    watchQuotes(rows.slice(0, 300).map((r) => r.dataset.symbol));
+    watchQuotes(all.slice(0, 300));
     railScroll = () => { clearTimeout(visibleTimer); visibleTimer = setTimeout(ask, 250); };
     if (rail) rail.addEventListener("scroll", railScroll, { passive: true });
     ask();
+    setTimeout(() => backfill(all), 800);
   }
   function renderWatchlist() { const list = $("stocks"); if (!list) return; quoteCells.clear(); clearTimeout(quoteTimer); quoteSequence++; list.replaceChildren(); const active = activeList(); const head = listHead(active); list.append(head); if (pickerOpen) list.append(listPicker(active)); const search = document.createElement("input"); search.placeholder = "Search or add NSE symbol"; search.className = "list-search"; search.setAttribute("aria-label", "Filter this list, or search Dhan for a symbol to add"); const results = node("div", null, "search-results"); results.hidden = true; quoteNote = node("p", null, "muted quote-note"); quoteNote.hidden = true; const rows = node("div", null, "stock-list"); const draw = () => { rows.replaceChildren(); quoteCells.clear(); const q = clean(search.value).toLowerCase(); const sort = model.sort; const movable = !active.flag; const shown = []; if (q) { const hits = symbolsOf(active).filter((x) => `${x.name} ${x.symbol}`.toLowerCase().includes(q)); (sort ? sortStocks(hits, sort) : hits).forEach((x) => shown.push(x)); } else { let open = true, run = []; const flush = () => { (sort ? sortStocks(run, sort) : run).forEach((x) => shown.push(x)); run = []; }; (active.items || []).forEach((entry) => { if (entry && entry.section != null) { flush(); open = !entry.collapsed; shown.push(entry); } else if (open && entry && entry.symbol) run.push(entry); }); flush(); } const stocks = shown.filter((x) => x.symbol); if (!symbolsOf(active).length || (q && !stocks.length)) rows.append(node("p", q ? "No matching symbols in this list" : active.flag ? "No symbols carry this colour" : "No symbols in this list", "muted")); shown.forEach((entry) => rows.append(entry.section != null ? sectionRow(entry, active, movable) : stockRow(entry, active, movable))); watchVisible(); }; let debounce = null; search.oninput = () => { draw(); clearTimeout(debounce); const q = clean(search.value); if (q.length < 2) { searchSequence++; results.hidden = true; results.replaceChildren(); return; } debounce = setTimeout(() => searchSymbols(q, results), 250); }; list.append(search, results, quoteNote, listHeader(model.sort), rows); draw(); }
   async function select(stock, button) { if (activeTab == null) { showStatus("Open a Dhan chart to change symbols", true); return; } document.querySelectorAll(".row-main.selected").forEach((x) => x.classList.remove("selected")); if (button) { button.classList.add("selected"); button.classList.add("busy"); } const stopChart = busy(`Requesting ${stock.name} chart…`); const token = ++sequence; try { const result = await chrome.runtime.sendMessage({ type: "setChart", tabId: activeTab, symbol: stock.symbol }); if (token !== sequence) { stopChart(null); return; } if (result?.error) throw new Error(result.error); stopChart("Chart change accepted; waiting for Screener data…"); } catch (e) { stopChart(token === sequence ? e.message : null, true); } finally { if (button) button.classList.remove("busy"); } }
