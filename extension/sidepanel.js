@@ -135,7 +135,7 @@
     model.flags[symbol] = colour; model.instruments[symbol] = stock; if (saveModel(model)) { renderWatchlist(); showStatus(`${stock.name} flagged ${FLAG_LABEL[colour]}`); } }
   // The repo's cron rebuilds watchlist.json daily (NSE, within 20% of ATH), so
   // this list is a mirror, not user state: it is replaced wholesale, once a day.
-  const ATH_NAME = "6-Month Stocks", ATH_KEY = "tradebaba:athSyncedOn";
+  const ATH_NAME = "20% below ATH", ATH_ALIASES = [ATH_NAME, "6-Month Stocks"], ATH_KEY = "tradebaba:athSyncedOn";
   async function syncAthList() {
     const today = new Date().toISOString().slice(0, 10);
     if (activeTab == null || localStorage.getItem(ATH_KEY) === today) return;
@@ -143,10 +143,13 @@
     try {
       const res = await chrome.runtime.sendMessage({ type: "bulkResolve", tabId: activeTab, names: [], source: "ath" });
       if (!res || res.error || !Array.isArray(res.hits) || !res.hits.length) { stop(`${ATH_NAME}: ${res?.error || "the published list resolved no symbols"}`, true); return; }
-      // Only ever replace the list this sync created. A list you made and named
-      // the same thing is yours, and gets left alone.
-      let list = model.lists.find((l) => l.managed === "ath");
-      if (!list) { const clash = model.lists.some((l) => l.name === ATH_NAME); list = { id: "list-ath", name: clash ? `${ATH_NAME} (auto)` : ATH_NAME, items: [], favorite: false, managed: "ath" }; model.lists.push(list); }
+      // Fill the list this sync owns. If it owns none yet, an EMPTY list already
+      // carrying one of these names is plainly meant for this and gets claimed;
+      // a list with symbols in it is yours, so the sync takes its own name.
+      let list = model.lists.find((l) => l.managed === "ath")
+        || model.lists.find((l) => ATH_ALIASES.includes(l.name) && !symbolsOf(l).length);
+      if (list) list.managed = "ath";
+      else { const clash = model.lists.some((l) => l.name === ATH_NAME); list = { id: "list-ath", name: clash ? `${ATH_NAME} (auto)` : ATH_NAME, items: [], favorite: false, managed: "ath" }; model.lists.push(list); }
       list.items = res.hits.map((h) => ({ name: h.name, symbol: h.symbol, exchange: "NSE" }));
       if (!saveModel(model)) return;
       localStorage.setItem(ATH_KEY, today);
