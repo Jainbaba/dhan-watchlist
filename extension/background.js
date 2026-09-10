@@ -56,6 +56,36 @@ async function pushBackup(model) {
   return { gistId: next.gistId, url: next.url, lastPushedAt: next.lastPushedAt };
 }
 
+// What the gist actually holds, so Settings can show it rather than claim it.
+async function backupInfo() {
+  const config = await githubConfig();
+  if (!config.gistId) return { token: tokenHint(config.token), gistId: "" };
+  const gist = await github(`/gists/${config.gistId}`, "GET", null, config.token);
+  const file = gist.files && gist.files[BACKUP_FILE];
+  let lists = [];
+  if (file) {
+    const raw = file.truncated ? await (await fetch(file.raw_url)).text() : file.content;
+    try {
+      const model = JSON.parse(raw);
+      lists = (model.lists || []).map((l) => ({ name: l.name, count: (l.items || []).filter((x) => x && x.symbol).length }));
+    } catch (_) {
+      /* a hand-edited gist; the counts stay empty rather than guessed */
+    }
+  }
+  return {
+    token: tokenHint(config.token),
+    gistId: config.gistId,
+    url: gist.html_url,
+    revisions: Array.isArray(gist.history) ? gist.history.length : 0,
+    updatedAt: gist.updated_at,
+    bytes: (file && file.size) || 0,
+    lists,
+  };
+}
+
+// Enough of the token to recognise, never enough to use.
+const tokenHint = (token) => (token ? `••••${String(token).slice(-4)}` : "");
+
 async function pullBackup() {
   const config = await githubConfig();
   if (!config.gistId) throw new Error("No gist saved yet - back up once first");
@@ -261,8 +291,8 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     });
     return true;
   }
-  if (msg && (msg.type === "backupPush" || msg.type === "backupPull")) {
-    (msg.type === "backupPush" ? pushBackup(msg.model) : pullBackup())
+  if (msg && (msg.type === "backupPush" || msg.type === "backupPull" || msg.type === "backupInfo")) {
+    (msg.type === "backupPush" ? pushBackup(msg.model) : msg.type === "backupPull" ? pullBackup() : backupInfo())
       .then(sendResponse)
       .catch((err) => sendResponse({ error: err.message }));
     return true;
