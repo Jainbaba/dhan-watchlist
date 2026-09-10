@@ -395,6 +395,8 @@
     ].find((feed) => feed && (typeof feed.getQuotes === "function" || typeof feed.searchSymbols === "function")) || null;
   }
 
+  // What one request asks for, and the most a single view will ever need.
+  const QUOTE_BATCH = 50, QUOTE_MAX = 300;
   const finite = (v) => (Number.isFinite(Number(v)) ? Number(v) : null);
 
   window.addEventListener("message", (event) => {
@@ -402,29 +404,33 @@
     if (event.source !== window || !msg || msg.__dhanWL !== "get-quotes") return;
     const reply = (payload) =>
       window.postMessage({ __dhanWL: "get-quotes-result", id: msg.id, ...payload }, window.location.origin);
-    const symbols = (Array.isArray(msg.symbols) ? msg.symbols : []).map(String).slice(0, 50);
+    const symbols = (Array.isArray(msg.symbols) ? msg.symbols : []).map(String).slice(0, QUOTE_MAX);
     if (!symbols.length) return reply({ quotes: [] });
     const feed = datafeed();
     if (!feed || typeof feed.getQuotes !== "function") return reply({ error: "This Dhan chart exposes no quote feed, so Last/Chg stay empty." });
-    try {
-      feed.getQuotes(
-        symbols,
-        (rows) =>
-          reply({
-            quotes: (Array.isArray(rows) ? rows : [])
-              .filter((row) => row && row.s === "ok" && row.v)
-              .map((row) => ({
-                symbol: String(row.n || ""),
-                last: finite(row.v.lp),
-                change: finite(row.v.ch),
-                changePercent: finite(row.v.chp),
-              })),
-          }),
-        (err) => reply({ error: String((err && err.message) || err || "quote lookup failed") })
-      );
-    } catch (err) {
-      reply({ error: err.message });
-    }
+    const ask = (batch) =>
+      new Promise((resolve) => {
+        let settled = false;
+        const done = (rows) => { if (settled) return; settled = true; resolve(Array.isArray(rows) ? rows : []); };
+        setTimeout(() => done([]), 8000);
+        try { feed.getQuotes(batch, done, () => done([])); } catch (_) { done([]); }
+      });
+    // A watchlist can hold hundreds of names; ask in batches the feed will
+    // actually answer, and reply once with everything that came back.
+    (async () => {
+      const rows = [];
+      for (let i = 0; i < symbols.length; i += QUOTE_BATCH) rows.push(...(await ask(symbols.slice(i, i + QUOTE_BATCH))));
+      reply({
+        quotes: rows
+          .filter((row) => row && row.s === "ok" && row.v)
+          .map((row) => ({
+            symbol: String(row.n || ""),
+            last: finite(row.v.lp),
+            change: finite(row.v.ch),
+            changePercent: finite(row.v.chp),
+          })),
+      });
+    })().catch((err) => reply({ error: err.message }));
   });
 
   // Live ticks. The datafeed the page already runs is the only stream we can
@@ -444,7 +450,7 @@
     const reply = (payload) =>
       window.postMessage({ __dhanWL: "watch-quotes-result", id: msg.id, ...payload }, window.location.origin);
     const feed = datafeed();
-    const symbols = (Array.isArray(msg.symbols) ? msg.symbols : []).map(String).slice(0, 50);
+    const symbols = (Array.isArray(msg.symbols) ? msg.symbols : []).map(String).slice(0, QUOTE_MAX);
     if (!feed || typeof feed.subscribeQuotes !== "function") return reply({ streaming: false });
     try {
       if (tickGuid && typeof feed.unsubscribeQuotes === "function") feed.unsubscribeQuotes(tickGuid);
