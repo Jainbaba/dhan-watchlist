@@ -14,7 +14,7 @@ const RELAY = {
   watchQuotes: { request: "watch-quotes", result: "watch-quotes-result", timeout: "Dhan quote stream did not answer" },
   chartSymbol: { request: "chart-symbol", result: "chart-symbol-result", timeout: "Dhan did not report the charted symbol" },
   pushWatchlist: { request: "push-watchlist", result: "push-watchlist-result", timeout: "Dhan did not finish the watchlist push", ms: 30000 },
-  bulkResolve: { request: "bulk-resolve", result: "bulk-resolve-result", timeout: "Dhan bulk lookup timed out", ms: 30000 },
+  bulkResolve: { request: "bulk-resolve", result: "bulk-resolve-result", timeout: "Dhan bulk lookup timed out", ms: 120000 },
 };
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {

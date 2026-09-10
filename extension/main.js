@@ -155,15 +155,16 @@
   // names is the kind of thing such an endpoint refuses whole. Ask in batches
   // and keep what each one returns, so one bad batch costs its own names
   // rather than the entire list.
-  async function scanAll(names, size = 50) {
+  async function scanAll(names, size = 50, lanes = 4) {
+    const batches = [];
+    for (let i = 0; i < names.length; i += size) batches.push(names.slice(i, i + size));
     const hits = [];
-    for (let i = 0; i < names.length; i += size) {
-      try {
-        const batch = await scan(names.slice(i, i + size));
-        if (Array.isArray(batch)) hits.push(...batch);
-      } catch (err) {
-        console.warn("[TradeBaba] scan batch failed:", err.message);
-      }
+    // 790 names is sixteen requests; one at a time outruns any sane timeout, and
+    // all at once is a burst an undocumented endpoint may not welcome.
+    for (let i = 0; i < batches.length; i += lanes) {
+      const wave = await Promise.all(batches.slice(i, i + lanes).map((batch) =>
+        scan(batch).catch((err) => { console.warn("[TradeBaba] scan batch failed:", err.message); return []; })));
+      wave.forEach((batch) => { if (Array.isArray(batch)) hits.push(...batch); });
     }
     return hits;
   }
