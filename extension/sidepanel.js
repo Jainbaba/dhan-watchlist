@@ -39,7 +39,21 @@
   function backup(model) { clearTimeout(backupTimer); backupTimer = setTimeout(() => { if (!chrome?.storage?.sync) return; const payload = syncPayload(model); if (!payload) { if (!syncWarned) { syncWarned = true; showStatus("Watchlists are too large for browser sync; the GitHub gist still has them all."); } return; } syncWarned = false; chrome.storage.sync.set({ [LIST_KEY]: payload }).catch((e) => { if (syncWarned) return; syncWarned = true; showStatus(`Browser sync declined the copy: ${e.message}. The gist backup is unaffected.`, true); }); }, 1500); pushGist(model); }
   // Longer debounce than the local copy: a rename should cost one gist
   // revision, not one per keystroke. Silent when no token is configured.
-  function pushGist(model) { clearTimeout(gistTimer); gistTimer = setTimeout(async () => { try { const config = (await chrome.storage.local.get(GITHUB_KEY))[GITHUB_KEY]; if (!config?.token) return; const res = await chrome.runtime.sendMessage({ type: "backupPush", model: backupPayload(model) }); if (res?.error) throw new Error(res.error); lastBackup = res; } catch (e) { showStatus(`GitHub backup failed: ${e.message}`, true); } }, 5000); }
+  let gistPending = false;
+  async function sendGist(model, quiet = false) {
+    gistPending = false;
+    try {
+      const config = (await chrome.storage.local.get(GITHUB_KEY))[GITHUB_KEY];
+      if (!config?.token) return;
+      const res = await chrome.runtime.sendMessage({ type: "backupPush", model: backupPayload(model) });
+      if (res?.error) throw new Error(res.error);
+      lastBackup = res;
+    } catch (e) { if (!quiet) showStatus(`GitHub backup failed: ${e.message}`, true); }
+  }
+  function pushGist(model) { clearTimeout(gistTimer); gistPending = true; gistTimer = setTimeout(() => sendGist(model), 5000); }
+  // Closing the panel kills the pending timer with the page, so an edit made in
+  // the last five seconds would never reach the gist. Send it on the way out.
+  function flushGist() { if (!gistPending) return; clearTimeout(gistTimer); sendGist(model, true); }
   // A backup only helps if it comes back: adopt the stored copy when it is
   // newer than this device's, never when it is older or the same.
   const SNAPSHOT_KEY = "tradebaba:watchlists:previous";
@@ -301,6 +315,10 @@
   // its own handler first, so closing the picker never swallows that click.
   document.addEventListener("click", (e) => { if (!pickerOpen) return; const el = e.target instanceof Element ? e.target : null; if (el && el.closest(".list-picker, .list-button")) return; pickerOpen = false; renderWatchlist(); });
   document.addEventListener("keydown", (e) => { if (e.key !== " " || e.defaultPrevented) return; const t = e.target; if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return; e.preventDefault(); advance(); });
-  document.addEventListener("visibilitychange", () => { if (panelVisible() && marketOpen()) watchVisible(); });
+  document.addEventListener("visibilitychange", () => { if (panelVisible()) { if (marketOpen()) watchVisible(); } else flushGist(); });
+  window.addEventListener("pagehide", flushGist);
+  // A push lost to a closing panel, or to being offline, is caught here: the
+  // model records when it changed and the worker records when it last pushed.
+  (async () => { try { const config = (await chrome.storage.local.get(GITHUB_KEY))[GITHUB_KEY]; if (!config?.token) return; if (Number(model.updatedAt || 0) > Number(config.lastPushedAt || 0)) sendGist(model, true); } catch (_) {} })();
   setTheme(theme()); splitter(); renderWatchlist(); $("retry").onclick = async () => { const tabs = await chrome.tabs.query({ active: true, lastFocusedWindow: true }); if (tabs[0]?.id != null) load(tabs[0].id); }; $("settings").onclick = settingsView; chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => { if (msg.type === "panelCommand") { panelCommand(msg); sendResponse({ ok: true }); return; } if (msg.type === "chartedSymbol") { charted = String(msg.symbol || "") || null; markCharted(); return; } if (msg.type === "quoteTick") { (Array.isArray(msg.quotes) ? msg.quotes : []).forEach((q) => paintQuote(q.symbol, q)); noteQuotes(""); return; } if (msg.type === "stockData" && msg.tabId === activeTab) { scheduleRender(msg); watchVisible(); } }); chrome.tabs.onActivated.addListener(({ tabId }) => load(tabId)); $("theme").onclick = () => setTheme(theme() === "dark" ? "light" : "dark"); (async () => { const tabs = await chrome.tabs.query({ active: true, lastFocusedWindow: true }); if (tabs[0]?.id != null) load(tabs[0].id); })();
 })();
