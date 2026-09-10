@@ -13,7 +13,10 @@ import urllib.request
 
 OUT = pathlib.Path(__file__).parent / "ath-watchlist.json"
 SCAN_URL = "https://scanner.tradingview.com/india/scan"
-MAX_SYMBOLS = 250
+# A TradeBaba watchlist is local and has no size limit; only pushing one into
+# Dhan does, and that cap is enforced at the push. So publish everything that
+# qualifies rather than deciding here that the other 543 do not exist.
+MAX_SYMBOLS = 1000
 DEFAULT_THRESHOLD = 20.0
 UA = "Mozilla/5.0 (compatible; dhan-watchlist/1.0)"
 
