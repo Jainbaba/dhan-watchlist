@@ -30,12 +30,16 @@ class AthWatchlistTests(unittest.TestCase):
         self.assertEqual(result["symbols"], ["NSE:ATATH", "NSE:EDGE"])
 
     def test_cap_keeps_the_names_closest_to_their_high(self):
-        rows = [{"s": f"NSE:S{i:03d}", "d": [f"s{i}", 100 - i * 0.01, 1, 2e9, 0, 100]} for i in range(300)]
+        # Relative to the cap, so raising it does not turn this into a no-op.
+        total = ath_watchlist.MAX_SYMBOLS + 50
+        rows = [{"s": f"NSE:S{i:04d}", "d": [f"s{i}", 100 - i * 0.001, 1, 2e9, 0, 100]} for i in range(total)]
         result = ath_watchlist.build({"data": rows}, 20, dt.date(2026, 1, 2))
         self.assertEqual(result["count"], ath_watchlist.MAX_SYMBOLS)
-        self.assertEqual(result["matched_total"], 300)
+        self.assertEqual(result["matched_total"], total)
         self.assertTrue(result["truncated_to_cap"])
-        self.assertLess(max(e["pct_below_ath"] for e in result["entries"]), 2.5)
+        # The 50 furthest from their high are the ones dropped.
+        self.assertNotIn(f"NSE:S{total - 1:04d}", result["symbols"])
+        self.assertIn("NSE:S0000", result["symbols"])
 
     def test_threshold_validation(self):
         self.assertEqual(ath_watchlist.threshold("20"), 20.0)
