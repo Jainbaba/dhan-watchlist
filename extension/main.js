@@ -397,7 +397,7 @@
   }
 
   // What one request asks for, and the most a single view will ever need.
-  const QUOTE_BATCH = 50, QUOTE_MAX = 300;
+  const QUOTE_BATCH = 50, QUOTE_MAX = 300, QUOTE_LANES = 4;
   const finite = (v) => (Number.isFinite(Number(v)) ? Number(v) : null);
 
   window.addEventListener("message", (event) => {
@@ -416,11 +416,18 @@
         setTimeout(() => done([]), 8000);
         try { feed.getQuotes(batch, done, () => done([])); } catch (_) { done([]); }
       });
-    // A watchlist can hold hundreds of names; ask in batches the feed will
-    // actually answer, and reply once with everything that came back.
+    // A watchlist can hold hundreds of names, and the feed answers 50 at a time.
+    // Sixteen requests one after another is a slow crawl down the list, so run
+    // QUOTE_LANES of them at once: enough to fill fast, few enough that the page
+    // is not flooded with a burst it did not ask for.
     (async () => {
+      const batches = [];
+      for (let i = 0; i < symbols.length; i += QUOTE_BATCH) batches.push(symbols.slice(i, i + QUOTE_BATCH));
       const rows = [];
-      for (let i = 0; i < symbols.length; i += QUOTE_BATCH) rows.push(...(await ask(symbols.slice(i, i + QUOTE_BATCH))));
+      for (let i = 0; i < batches.length; i += QUOTE_LANES) {
+        const wave = await Promise.all(batches.slice(i, i + QUOTE_LANES).map(ask));
+        wave.forEach((batch) => rows.push(...batch));
+      }
       reply({
         quotes: rows
           .filter((row) => row && row.s === "ok" && row.v)

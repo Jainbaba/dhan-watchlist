@@ -190,7 +190,7 @@
     if (!pending.length) return;
     const step = async (from) => {
       if (token !== backfillToken || activeTab == null) return;
-      const chunk = pending.slice(from, from + 100);
+      const chunk = pending.slice(from, from + 200);
       if (!chunk.length) return;
       try {
         const res = await chrome.runtime.sendMessage({ type: "getQuotes", tabId: activeTab, symbols: chunk });
@@ -198,7 +198,7 @@
         if (res?.error) return;
         (Array.isArray(res.quotes) ? res.quotes : []).forEach((q) => paintQuote(q.symbol, q));
       } catch (_) { return; }
-      backfillTimer = setTimeout(() => step(from + 100), 400);
+      backfillTimer = setTimeout(() => step(from + 200), 150);
     };
     step(0);
   }
