@@ -45,8 +45,24 @@ async function github(path, method, body, token) {
   return res.json();
 }
 
+// A gist made on another device is not lost, it is just unknown here: the
+// token can list the account's gists, and ours is the one carrying our
+// filename. Newest wins, and the id is remembered so this costs one request.
+async function findBackupGist(config) {
+  if (config.gistId) return config.gistId;
+  const gists = await github("/gists?per_page=100", "GET", null, config.token);
+  const mine = (Array.isArray(gists) ? gists : [])
+    .filter((g) => g && g.files && g.files[BACKUP_FILE])
+    .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+  if (!mine.length) return "";
+  const found = mine[0].id;
+  await chrome.storage.local.set({ [BACKUP_KEY]: { ...config, gistId: found } });
+  return found;
+}
+
 async function pushBackup(model) {
   const config = await githubConfig();
+  config.gistId = await findBackupGist(config);
   const files = { [BACKUP_FILE]: { content: JSON.stringify(model, null, 2) } };
   const gist = config.gistId
     ? await github(`/gists/${config.gistId}`, "PATCH", { files }, config.token)
@@ -59,8 +75,9 @@ async function pushBackup(model) {
 // What the gist actually holds, so Settings can show it rather than claim it.
 async function backupInfo() {
   const config = await githubConfig();
-  if (!config.gistId) return { token: tokenHint(config.token), gistId: "" };
-  const gist = await github(`/gists/${config.gistId}`, "GET", null, config.token);
+  const gistId = await findBackupGist(config);
+  if (!gistId) return { token: tokenHint(config.token), gistId: "" };
+  const gist = await github(`/gists/${gistId}`, "GET", null, config.token);
   const file = gist.files && gist.files[BACKUP_FILE];
   let lists = [];
   if (file) {
@@ -74,7 +91,7 @@ async function backupInfo() {
   }
   return {
     token: tokenHint(config.token),
-    gistId: config.gistId,
+    gistId,
     url: gist.html_url,
     revisions: Array.isArray(gist.history) ? gist.history.length : 0,
     updatedAt: gist.updated_at,
@@ -88,8 +105,9 @@ const tokenHint = (token) => (token ? `••••${String(token).slice(-4)}` :
 
 async function pullBackup() {
   const config = await githubConfig();
-  if (!config.gistId) throw new Error("No gist saved yet - back up once first");
-  const gist = await github(`/gists/${config.gistId}`, "GET", null, config.token);
+  const gistId = await findBackupGist(config);
+  if (!gistId) throw new Error(`No gist on this account holds ${BACKUP_FILE} - back up once, or paste the gist id in Settings`);
+  const gist = await github(`/gists/${gistId}`, "GET", null, config.token);
   const file = gist.files && gist.files[BACKUP_FILE];
   if (!file) throw new Error(`The gist has no ${BACKUP_FILE}`);
   // A gist over 1MB comes back truncated, with the full body only at raw_url.
