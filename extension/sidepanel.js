@@ -23,10 +23,23 @@
   // one of the 120-writes-per-minute allowance.
   let backupTimer = null;
   let gistTimer = null, lastBackup = null;
-  function backup(model) { clearTimeout(backupTimer); backupTimer = setTimeout(() => { chrome?.storage?.sync?.set({ [LIST_KEY]: model }).catch((e) => showStatus(`Cloud backup failed: ${e.message}`, true)); }, 1500); pushGist(model); }
+  // chrome.storage.sync allows 8KB per item, which a screener-sized list clears
+  // on its own. Send a trimmed copy: a managed list is rebuilt from the
+  // published file, and instruments are rebuilt from the lists themselves. The
+  // gist keeps the whole thing; this is only the browser's own convenience copy.
+  const SYNC_ITEM_LIMIT = 7800;
+  // A managed list is rebuilt from the published file every day, so backing it
+  // up means pushing tens of KB of data GitHub already hosts, once per edit.
+  const backupPayload = (model) => ({ ...model, lists: (model.lists || []).filter((l) => l.managed !== "ath") });
+  function syncPayload(model) {
+    const trimmed = { ...backupPayload(model), instruments: {} };
+    return JSON.stringify(trimmed).length <= SYNC_ITEM_LIMIT ? trimmed : null;
+  }
+  let syncWarned = false;
+  function backup(model) { clearTimeout(backupTimer); backupTimer = setTimeout(() => { if (!chrome?.storage?.sync) return; const payload = syncPayload(model); if (!payload) { if (!syncWarned) { syncWarned = true; showStatus("Watchlists are too large for browser sync; the GitHub gist still has them all."); } return; } syncWarned = false; chrome.storage.sync.set({ [LIST_KEY]: payload }).catch((e) => { if (syncWarned) return; syncWarned = true; showStatus(`Browser sync declined the copy: ${e.message}. The gist backup is unaffected.`, true); }); }, 1500); pushGist(model); }
   // Longer debounce than the local copy: a rename should cost one gist
   // revision, not one per keystroke. Silent when no token is configured.
-  function pushGist(model) { clearTimeout(gistTimer); gistTimer = setTimeout(async () => { try { const config = (await chrome.storage.local.get(GITHUB_KEY))[GITHUB_KEY]; if (!config?.token) return; const res = await chrome.runtime.sendMessage({ type: "backupPush", model }); if (res?.error) throw new Error(res.error); lastBackup = res; } catch (e) { showStatus(`GitHub backup failed: ${e.message}`, true); } }, 5000); }
+  function pushGist(model) { clearTimeout(gistTimer); gistTimer = setTimeout(async () => { try { const config = (await chrome.storage.local.get(GITHUB_KEY))[GITHUB_KEY]; if (!config?.token) return; const res = await chrome.runtime.sendMessage({ type: "backupPush", model: backupPayload(model) }); if (res?.error) throw new Error(res.error); lastBackup = res; } catch (e) { showStatus(`GitHub backup failed: ${e.message}`, true); } }, 5000); }
   // A backup only helps if it comes back: adopt the stored copy when it is
   // newer than this device's, never when it is older or the same.
   const SNAPSHOT_KEY = "tradebaba:watchlists:previous";
@@ -264,12 +277,12 @@
       } catch (e) { fail(e); } };
     // The gist is found from the token, so the token is the only thing to enter.
     save.onclick = async () => { const value = token.value.trim(); if (!value) return; const config = (await chrome.storage.local.get(GITHUB_KEY))[GITHUB_KEY] || {}; await chrome.storage.local.set({ [GITHUB_KEY]: { ...config, token: value, tokenHint: `••••${value.slice(-4)}` } }); token.value = ""; show(); };
-    push.onclick = async () => { const stop = busy("Backing up…"); push.disabled = true; try { const res = await chrome.runtime.sendMessage({ type: "backupPush", model }); if (res?.error) throw new Error(res.error); stop("Backed up to the gist"); show(); } catch (e) { stop(null); fail(e); } finally { push.disabled = false; } };
+    push.onclick = async () => { const stop = busy("Backing up…"); push.disabled = true; try { const res = await chrome.runtime.sendMessage({ type: "backupPush", model: backupPayload(model) }); if (res?.error) throw new Error(res.error); stop("Backed up to the gist"); show(); } catch (e) { stop(null); fail(e); } finally { push.disabled = false; } };
     pull.onclick = () => askInline(card, "Restore from the gist? This device's watchlists are replaced, and the current ones are kept for Undo.", "Restore", async () => { const stop = busy("Reading the gist…"); try { const res = await chrome.runtime.sendMessage({ type: "backupPull" }); if (res?.error) throw new Error(res.error); if (!adopt(res.model)) throw new Error("the gist held no usable watchlists"); stop(`Restored ${res.model.lists.length} lists from the gist`); show(); } catch (e) { stop(null); fail(e); } });
     undo.onclick = () => askInline(card, "Put back the watchlists from before the last replace?", "Undo", () => { if (undoReplace()) { state.textContent = "Restored the watchlists from before the last replace."; state.className = "muted"; } else { fail(new Error("Nothing to undo on this device.")); } });
     fromSync.onclick = async () => { const stored = await syncedBackup(); if (!stored) { fail(new Error("The browser has no synced copy.")); return; } askInline(card, `Replace this device's watchlists with the synced copy from ${new Date(Number(stored.updatedAt) || 0).toLocaleString()}?`, "Replace", () => { const ok = adopt(stored); if (ok) { state.textContent = "Took the browser-synced copy."; state.className = "muted"; } else fail(new Error("Could not read the synced copy.")); }); };
     forget.onclick = () => askInline(card, "Forget the token and gist id on this device?", "Forget", async () => { await chrome.storage.local.remove(GITHUB_KEY); show(); });
-    card.append(node("p", "Every change is written to one gist, about 5 seconds later; GitHub keeps each write as a revision. Any device with the token finds that gist on its own. Nothing is ever restored automatically, and Undo puts back whatever a restore replaced.", "muted"), state, detail, link, token, row); show(); return card; }
+    card.append(node("p", "Every change is written to one gist, about 5 seconds later; GitHub keeps each write as a revision, and any device with the token finds that gist on its own. The browser\u2019s own sync holds a trimmed copy only, since it allows 8KB per item. Nothing is ever restored automatically, and Undo puts back whatever a restore replaced.", "muted"), state, detail, link, token, row); show(); return card; }
   function settingsView() { const body = $("body"); body.replaceChildren(); body.hidden = false; $("status").hidden = true; const card = section("Metric colours"); card.append(node("p", "Each period compared with its previous period.", "muted"));
     const found = new Map(); if (current) { const p = parse(current.html); [["quarters", p.quarters], ["profit", p.profit], ["shareholding", p.shareholding]].forEach(([id, rows]) => rows.slice(1).forEach((r) => r[0] && found.set(`${id}:${clean(r[0])}`, clean(r[0])))); }
     const settings = metricPrefs(), titles = Object.fromEntries(SECTIONS), groups = new Map();
@@ -282,7 +295,7 @@
   async function load(tabId) { const token = ++sequence; activeTab = tabId; watchVisible(); syncAthList(); showStatus("Loading TradeBaba analysis…"); $("body").hidden = true; try { const payload = await chrome.runtime.sendMessage({ type: "getStock", tabId }); if (token !== sequence) return; if (!payload?.html) throw new Error("No stock data yet. Select a Dhan chart, then retry."); render(payload); } catch (e) { if (token === sequence) showStatus(e.message, true); } }
   function theme() { const value = localStorage.getItem(THEME_KEY); return value === "light" ? "light" : "dark"; }
   function setTheme(value) { const next = value === "light" ? "light" : "dark"; document.documentElement.dataset.theme = next; try { localStorage.setItem(THEME_KEY, next); } catch (_) {} }
-  if (typeof window !== "undefined") window.tradebaba = { number, period, compare, parse, loadModel, defaults, marketOpen };
+  if (typeof window !== "undefined") window.tradebaba = { number, period, compare, parse, loadModel, defaults, marketOpen, syncPayload, backupPayload };
   if (typeof document === "undefined" || !$("body")) return;
   // Bubble phase, on click rather than pointerdown: whatever was clicked gets
   // its own handler first, so closing the picker never swallows that click.

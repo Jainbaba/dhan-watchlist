@@ -279,6 +279,20 @@ assert.strictEqual(panel.marketOpen(at("2026-09-10T20:00:00Z")), false, "01:30 I
 assert.strictEqual(panel.marketOpen(at("2026-09-12T05:00:00Z")), false, "Saturday, whatever the hour");
 assert.strictEqual(panel.marketOpen(at("2026-09-13T05:00:00Z")), false, "Sunday, whatever the hour");
 
+
+// chrome.storage.sync takes 8KB per item, so the synced copy is trimmed and
+// skipped outright when it still will not fit.
+const bigList = { id: "ath", name: "20% below ATH", managed: "ath", items: Array.from({ length: 790 }, (_, i) => ({ symbol: `NSEE${i}:SYM${i}`, name: `Stock ${i}` })) };
+const small = { id: "inv", name: "Invested", items: [{ symbol: "NSEE1660:ITC", name: "ITC" }] };
+assert.deepEqual(panel.backupPayload({ lists: [bigList, small] }).lists.map((l) => l.name), ["Invested"],
+  "the gist skips a list rebuilt from the published file, so a revision is not tens of KB of it");
+const trimmed = panel.syncPayload({ lists: [bigList, small], instruments: { a: 1 }, flags: { x: "red" } });
+assert.deepEqual(trimmed.lists.map((l) => l.name), ["Invested"], "a managed screener list is rebuilt, not synced");
+assert.deepEqual(trimmed.instruments, {}, "instruments are rebuilt from the lists");
+assert.deepEqual(trimmed.flags, { x: "red" }, "flags are yours and travel");
+const hand = { id: "mine", name: "Mine", items: Array.from({ length: 900 }, (_, i) => ({ symbol: `NSEE${i}:LONGSYMBOL${i}`, name: `A rather long company name ${i}` })) };
+assert.strictEqual(panel.syncPayload({ lists: [hand] }), null, "too large even trimmed: skipped rather than rejected by the browser");
+
 console.log("logic + crypto self-consistency: ok");
 
 // --- decisive check: decrypt captured traffic ---
