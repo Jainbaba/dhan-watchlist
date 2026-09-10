@@ -10,24 +10,19 @@
   const IVH = "320ef7705d1030f0a1a55b3dcf676cb8";
   const PASS = "DHAN";
   const BASE = "https://tv-ws.dhan.co/watchlist/";
-  // Rolling list of recent NSE mainboard listings, rebuilt daily at 09:00 IST.
+  // Rolling list of recent NSE mainboard listings, rebuilt daily at 17:00 IST.
   const LIST_URL =
     "https://raw.githubusercontent.com/Jainbaba/dhan-watchlist/main/watchlist.json";
-  const MAX_PER_WATCHLIST = 250;
-  // The one watchlist this extension is allowed to clear. Matched by name so a
-  // destructive sync can never land on a hand-curated list; if it is missing we
-  // stop rather than create it.
-  const TARGET_NAME = "6-Month Stocks";
-  const LAST_SYNC_KEY = "dhanWL:lastSyncedOn";
-  const SYNC_LOCK_KEY = "dhanWL:syncLock";
-  // Long enough to cover a slow sync, short enough that a tab closed mid-sync
-  // cannot wedge the lock for more than a couple of minutes.
-  const SYNC_LOCK_MS = 120000;
-  // Shareholding comes from screener.in, fetched by the background worker
-  // because the page's own origin can never reach it.
+  // Published by ath_watchlist.py: NSE names within 20% of their all-time high.
+  // A different file from LIST_URL above, and its symbols carry an "NSE:"
+  // prefix that Dhan's search does not take.
+  const ATH_URL =
+    "https://raw.githubusercontent.com/Jainbaba/dhan-watchlist/main/ath-watchlist.json";
+  // The worker resolves chart labels to canonical Screener company URLs.
   const SCREENER_TIMEOUT_MS = 20000;
-  const SHAREHOLDING_PERIODS = 5;
   const MIN_CONFIDENCE = 60;
+  // Dhan holds 250 symbols in one watchlist.
+  const DHAN_LIST_CAP = 250;
 
   // exchange + segment letter -> numeric seg, mirrors fn T() in the bundle
   const SEG = {
@@ -151,6 +146,40 @@
   const getWatchlists = () => api("getWatchlist", {});
   const scan = (names) => api("ScanWatchlist", { scrip_list: names });
 
+  // The panel needs "NSEE<securityId>:<TICKER>" -- the same shape the chart
+  // itself reports. Build it only from fields the hit actually carries: a hit
+  // that is not NSE equity, or whose id/ticker is not in the shape setSymbol
+  // accepts, is dropped rather than coerced. Never synthesize a security id.
+  const TICKER_RE = /^[A-Z0-9.&()' -]{1,60}$/;
+  // ScanWatchlist is undocumented, and a single request carrying hundreds of
+  // names is the kind of thing such an endpoint refuses whole. Ask in batches
+  // and keep what each one returns, so one bad batch costs its own names
+  // rather than the entire list.
+  async function scanAll(names, size = 50) {
+    const hits = [];
+    for (let i = 0; i < names.length; i += size) {
+      try {
+        const batch = await scan(names.slice(i, i + size));
+        if (Array.isArray(batch)) hits.push(...batch);
+      } catch (err) {
+        console.warn("[TradeBaba] scan batch failed:", err.message);
+      }
+    }
+    return hits;
+  }
+
+  function chartSymbolFromHit(hit) {
+    if (!hit || hit.exchange !== "NSE" || hit.segment !== "E") return null;
+    const id = String(hit.security_id ?? "");
+    if (!/^\d+$/.test(id)) return null;
+    const ticker = [hit.symbol, hit.trading_symbol, hit.display_name]
+      .map((v) => String(v ?? "").trim().toUpperCase())
+      .find((v) => v && TICKER_RE.test(v));
+    return ticker
+      ? { symbol: `NSEE${id}:${ticker}`, name: String(hit.display_name || ticker).trim() }
+      : null;
+  }
+
   function resolveHits(hits) {
     const seen = new Set();
     const stockDetail = [];
@@ -169,37 +198,18 @@
     return { stockDetail, unmapped };
   }
 
-  async function fetchPublishedList() {
-    const res = await fetch(LIST_URL, { cache: "no-store" });
-    if (!res.ok) throw new Error("list fetch failed: http " + res.status);
+  async function fetchList(url) {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error(`list fetch failed: http ${res.status} for ${url}`);
     const list = await res.json();
     if (!Array.isArray(list.symbols) || !list.symbols.length) {
-      throw new Error("published list has no symbols");
+      throw new Error(`published list has no symbols: ${url}`);
     }
     return list;
   }
 
-  // The repo owns what the list contains, so take the wording from the data
-  // rather than restating it here where the two could drift apart.
-  const describeWindow = (days) =>
-    Number.isFinite(days) ? `${Math.round(days / 30.44)}-month` : "published";
 
-  // Per-browser memory of which published build was last applied. Best-effort:
-  // a blocked or cleared store just means the next load syncs again.
-  function lastSynced() {
-    try {
-      return localStorage.getItem(LAST_SYNC_KEY);
-    } catch (err) {
-      return null;
-    }
-  }
-  function rememberSynced(generatedOn) {
-    try {
-      localStorage.setItem(LAST_SYNC_KEY, generatedOn);
-    } catch (err) {
-      /* private window or blocked storage - re-syncing is harmless */
-    }
-  }
+
 
   // The chart's symbol is "<exchange><segment><securityId>:<display>", and the
   // display half is sometimes a ticker ("AEROPLANE") and sometimes a company
@@ -212,72 +222,6 @@
     return afterExchange.replace(/\s+/g, " ").trim().toUpperCase();
   }
 
-  // Reads the shareholding table out of a screener.in company page. The browser
-  // has a real HTML parser, so use it rather than pattern-matching markup.
-  function parseShareholding(html) {
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    const section = doc.getElementById("shareholding");
-    if (!section) throw new Error("no shareholding section on that page");
-    const table = section.querySelector("table");
-    if (!table) throw new Error("shareholding section had no table");
-
-    const periods = Array.from(table.querySelectorAll("thead th"))
-      .map((th) => th.textContent.trim())
-      .filter(Boolean);
-    const rows = Array.from(table.querySelectorAll("tbody tr"))
-      .map((tr) => {
-        const cells = Array.from(tr.querySelectorAll("th,td")).map((cell) =>
-          cell.textContent.replace(/\s+/g, " ").trim()
-        );
-        return {
-          // Screener suffixes expandable rows with a "+".
-          label: (cells[0] || "").replace(/\s*\+$/, ""),
-          values: cells.slice(1),
-        };
-      })
-      .filter((row) => row.label && row.values.length);
-    if (!rows.length) throw new Error("shareholding table had no rows");
-    return { periods, rows };
-  }
-
-  // Keeps only the most recent columns, so a company with years of history and
-  // one freshly listed a quarter ago both render in the same small card.
-  function trimToRecent(parsed, keep = SHAREHOLDING_PERIODS) {
-    const drop = Math.max(0, parsed.periods.length - keep);
-    return {
-      periods: parsed.periods.slice(drop),
-      rows: parsed.rows.map((row) => ({
-        label: row.label,
-        values: row.values.slice(drop),
-      })),
-    };
-  }
-
-  // Rows where a rising number is read as bullish, and where it is read as
-  // bearish. Anything unlisted (Government, No. of Shareholders) stays neutral.
-  const HIGHER_IS_GOOD = /^(FII|DII)/i;
-  const HIGHER_IS_BAD = /^(PROMOTER|PUBLIC)/i;
-
-  // "55.37%" -> 55.37, "3,55,321" -> 355321 (Indian grouping), "" -> NaN.
-  function toNumber(value) {
-    const cleaned = String(value == null ? "" : value).replace(/[%,\s\u00a0]/g, "");
-    if (!cleaned) return NaN;
-    return Number(cleaned);
-  }
-
-  // Tone for one cell against the column before it: "pos", "neg" or "" for flat,
-  // unparseable, or a row with no directional meaning.
-  function cellTone(label, previous, current) {
-    const before = toNumber(previous);
-    const after = toNumber(current);
-    if (!Number.isFinite(before) || !Number.isFinite(after)) return "";
-    if (after === before) return "";
-    const rising = after > before;
-    if (HIGHER_IS_GOOD.test(label)) return rising ? "pos" : "neg";
-    if (HIGHER_IS_BAD.test(label)) return rising ? "neg" : "pos";
-    return "";
-  }
-
   let screenerSeq = 0;
   const screenerPending = new Map();
   window.addEventListener("message", (event) => {
@@ -288,15 +232,15 @@
     if (!waiting) return;
     screenerPending.delete(msg.id);
     if (msg.error) waiting.reject(new Error(msg.error));
-    else waiting.resolve({ html: msg.html, name: msg.name });
+    else waiting.resolve({ url: msg.url, name: msg.name });
   });
 
-  function fetchScreenerPage(symbol) {
+  function resolveScreener(symbol, page = false) {
     return new Promise((resolve, reject) => {
       const id = ++screenerSeq;
       screenerPending.set(id, { resolve, reject });
       window.postMessage(
-        { __dhanWL: "request", id, symbol },
+        { __dhanWL: "request", id, symbol, page },
         window.location.origin
       );
       setTimeout(() => {
@@ -307,63 +251,7 @@
     });
   }
 
-  // Once the bridge is orphaned nothing can succeed until the page reloads, so
-  // stop asking on every symbol change and keep saying why.
-  let bridgeDead = false;
 
-  const shareholdingCache = new Map();
-  async function getShareholding(query) {
-    if (bridgeDead) throw new Error("extension was reloaded - refresh the page");
-    if (shareholdingCache.has(query)) return shareholdingCache.get(query);
-    let html, name;
-    try {
-      ({ html, name } = await fetchScreenerPage(query));
-    } catch (err) {
-      if (/reloaded/.test(err.message)) bridgeDead = true;
-      throw err;
-    }
-    const parsed = trimToRecent(parseShareholding(html));
-    parsed.company = name || query;
-    shareholdingCache.set(query, parsed);
-    return parsed;
-  }
-
-  // localStorage is shared across tabs of one origin, so a timestamped claim
-  // keeps two tabs from interleaving clear-and-refill. If storage is blocked we
-  // proceed: syncing twice is better than a tab that can never sync at all.
-  function claimSyncLock() {
-    try {
-      const held = Number(localStorage.getItem(SYNC_LOCK_KEY));
-      if (Number.isFinite(held) && held > 0 && Date.now() - held < SYNC_LOCK_MS) {
-        return false;
-      }
-      localStorage.setItem(SYNC_LOCK_KEY, String(Date.now()));
-      return true;
-    } catch (err) {
-      return true;
-    }
-  }
-  function releaseSyncLock() {
-    try {
-      localStorage.removeItem(SYNC_LOCK_KEY);
-    } catch (err) {
-      /* nothing to release */
-    }
-  }
-
-  function findTarget(lists) {
-    const wanted = TARGET_NAME.trim().toLowerCase();
-    const match = lists.find(
-      (w) => String(w.w_name || "").trim().toLowerCase() === wanted
-    );
-    if (!match) {
-      throw new Error(
-        `no watchlist named "${TARGET_NAME}" - create it in Dhan first ` +
-          `(found: ${lists.map((w) => w.w_name).join(", ") || "none"})`
-      );
-    }
-    return match;
-  }
 
   // Mirrors the published list into the target watchlist: whatever aged out of
   // the 6-month window disappears. Destructive by design, so it resolves the
@@ -382,37 +270,6 @@
     return requested.filter((name) => !found.has(name.trim().toUpperCase()));
   }
 
-  async function syncFromRepo(log = () => {}, prefetched = null) {
-    const target = findTarget(await getWatchlists());
-    const wId = target.w_id;
-    const list = prefetched || (await fetchPublishedList());
-    log(`list built ${list.generated_on}: ${list.symbols.length} symbols`);
-
-    // Resolve before clearing. If the scan fails, the watchlist is untouched.
-    const hits = (await scan(list.symbols)).filter(
-      (h) => h.confidence > MIN_CONFIDENCE
-    );
-    const missing = findMissing(list.symbols, hits);
-    const { stockDetail, unmapped } = resolveHits(hits);
-    if (!stockDetail.length) throw new Error("nothing resolved - not clearing");
-    log(`resolved ${stockDetail.length}, clearing watchlist…`);
-
-    await api("clearWatch", { w_id: wId });
-    const added = await api("AddMultipleStock", {
-      w_id: wId,
-      stock_detail: stockDetail,
-    });
-    return {
-      watchlist: target.w_name,
-      generatedOn: list.generated_on,
-      windowDays: list.window_days,
-      requested: list.symbols.length,
-      resolved: stockDetail.length,
-      missing,
-      unmapped,
-      added,
-    };
-  }
 
   async function selfCheck() {
     const lists = await getWatchlists();
@@ -450,289 +307,9 @@
     .launch.warn { background: #b23c3c; }
   `;
 
-  function buildPanel() {
-    const host = document.createElement("div");
-    host.id = "dhan-bulk-add-root";
-    const root = host.attachShadow({ mode: "open" });
-    root.innerHTML = `
-      <style>${CSS}</style>
-      <div class="wrap">
-        <button class="launch" id="launch">Watchlist sync</button>
-        <div class="panel" id="panel" hidden>
-          <div class="row">
-            <h1>${TARGET_NAME}</h1>
-            <button class="ghost" id="close">&times;</button>
-          </div>
-          <div class="row"><span class="hint" id="status">checking…</span></div>
-          <div class="row">
-            <button id="sync" disabled>Update watchlist</button>
-            <button class="ghost" id="refresh">Refresh</button>
-          </div>
-          <div class="log" id="log"></div>
-        </div>
-      </div>`;
-    document.documentElement.appendChild(host);
-    return root;
-  }
-
-  function mountUI() {
-    const root = buildPanel();
-    const $ = (id) => root.getElementById(id);
-    const panel = $("panel");
-    const logEl = $("log");
-
-    const log = (msg, cls) => {
-      const line = document.createElement("div");
-      if (cls) line.className = cls;
-      line.textContent = msg;
-      logEl.appendChild(line);
-      logEl.scrollTop = logEl.scrollHeight;
-    };
-
-    const setBusy = (busy) => {
-      for (const id of ["sync", "refresh"]) $(id).disabled = busy;
-    };
-
-    // Reports the target watchlist's current size, and doubles as the self-check:
-    // reaching it means the session, the crypto and the envelope all still work.
-    async function refreshStatus() {
-      setBusy(true);
-      $("status").textContent = "checking…";
-      try {
-        const target = findTarget(await selfCheck());
-        const used = (target.s_list || []).length;
-        $("status").textContent = `${used} of ${MAX_PER_WATCHLIST} symbols`;
-        setBusy(false);
-        return target;
-      } catch (err) {
-        $("status").textContent = "unavailable";
-        $("refresh").disabled = false;
-        log(err.message, "err");
-        raiseWarning();
-        return null;
-      }
-    }
-
-    $("launch").addEventListener("click", () => {
-      panel.hidden = false;
-      $("launch").hidden = true;
-    });
-    $("close").addEventListener("click", () => {
-      panel.hidden = true;
-      $("launch").hidden = false;
-    });
-    $("refresh").addEventListener("click", refreshStatus);
-
-    $("sync").addEventListener("click", async () => {
-      setBusy(true);
-      let list;
-      try {
-        list = await fetchPublishedList();
-      } catch (err) {
-        log("could not fetch the list: " + err.message, "err");
-        setBusy(false);
-        return;
-      }
-      setBusy(false);
-      if (
-        !window.confirm(
-          `Replace everything in "${TARGET_NAME}" with the ` +
-            `${describeWindow(list.window_days)} NSE IPO list ` +
-            `(${list.symbols.length} symbols)?\n\n` +
-            `Its current contents will be cleared first. ` +
-            `Other watchlists are untouched.`
-        )
-      ) {
-        return;
-      }
-      await runSync("manual", list);
-    });
-
-    async function runSync(mode, list) {
-      if (!claimSyncLock()) {
-        if (mode === "manual") {
-          log("another tab is syncing - try again in a moment", "err");
-        }
-        return false;
-      }
-      setBusy(true);
-      log(mode === "auto" ? "new list found, syncing…" : "syncing…");
-      try {
-        const result = await syncFromRepo(log, list);
-        rememberSynced(result.generatedOn);
-        clearWarning();
-        log(
-          `synced ${result.resolved} of ${result.requested} into ` +
-            `"${result.watchlist}" (list built ${result.generatedOn})`,
-          "ok"
-        );
-        for (const name of result.missing) {
-          log(`not found in Dhan search: ${name}`, "err");
-        }
-        for (const miss of result.unmapped) {
-          log("unmapped segment: " + JSON.stringify(miss), "err");
-        }
-        if (result.missing.length || result.unmapped.length) raiseWarning();
-        log("reload the page to see it in the sidebar");
-        await refreshStatus();
-        return true;
-      } catch (err) {
-        log("sync failed: " + err.message, "err");
-        raiseWarning();
-        setBusy(false);
-        return false;
-      } finally {
-        releaseSyncLock();
-      }
-    }
-
-    function raiseWarning() {
-      $("launch").classList.add("warn");
-      $("launch").textContent = "Bulk add \u26a0";
-    }
-    function clearWarning() {
-      $("launch").classList.remove("warn");
-      $("launch").textContent = "Bulk add";
-    }
-
-    // Runs unattended on page load. Skips entirely when the published list is
-    // the same one already applied, so a normal visit costs one cached GET and
-    // never clears the watchlist for nothing. A watchlist edited by hand is left
-    // alone until the next build, on the assumption the edit was deliberate.
-    async function autoSync() {
-      let list;
-      try {
-        list = await fetchPublishedList();
-      } catch (err) {
-        log("auto-sync: " + err.message, "err");
-        raiseWarning();
-        return;
-      }
-      if (lastSynced() === list.generated_on) {
-        log(`already on the ${list.generated_on} list - nothing to do`);
-        return;
-      }
-      await runSync("auto", list);
-    }
-
-    refreshStatus().then(autoSync);
-  }
 
 
-  const CARD_CSS = `
-    :host { all: initial; }
-    .card { position: fixed; left: 16px; bottom: 16px; z-index: 2147483646;
-      max-width: min(620px, calc(100vw - 32px));
-      background: #1e222d; border: 1px solid #363a45; border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.5); overflow: hidden;
-      font: 11px/1.35 -apple-system, system-ui, sans-serif; color: #d1d4dc; }
-    .head { display: flex; align-items: center; gap: 8px;
-      padding: 7px 9px; border-bottom: 1px solid #363a45; }
-    .head b { flex: 1; font-size: 12px; color: #e8e8ea; overflow: hidden;
-      text-overflow: ellipsis; white-space: nowrap; }
-    .head .src { font-size: 10px; color: #5d606b; }
-    .head button { background: transparent; color: #787b86; border: 0;
-      border-radius: 3px; padding: 1px 5px; cursor: pointer; font-size: 13px;
-      line-height: 1; }
-    .head button:hover { background: #2a2e39; color: #e8e8ea; }
-    .body { padding: 4px 9px 8px; overflow-x: auto; }
-    table { border-collapse: collapse; }
-    th, td { text-align: right; padding: 2px 0 2px 14px; white-space: nowrap;
-      font-variant-numeric: tabular-nums; }
-    th:first-child, td:first-child { text-align: left; padding-left: 0;
-      color: #b2b5be; }
-    thead th { color: #787b86; font-weight: 400; font-size: 10px;
-      padding-bottom: 4px; border-bottom: 1px solid #2a2e39; }
-    tbody tr:first-child td { padding-top: 5px; }
-    td.pos { color: #26a69a; }
-    td.neg { color: #ef5350; }
-    .msg { color: #787b86; padding: 4px 0; }
-    .msg.err { color: #ef5350; white-space: normal; }
-  `;
 
-  function mountShareholding() {
-    const host = document.createElement("div");
-    host.id = "dhan-shareholding-root";
-    const root = host.attachShadow({ mode: "open" });
-    root.innerHTML = `
-      <style>${CARD_CSS}</style>
-      <div class="card" id="card">
-        <div class="head">
-          <b id="sym">\u2014</b>
-          <span class="src">screener.in</span>
-          <button id="hide" title="hide">&times;</button>
-        </div>
-        <div class="body" id="body"><div class="msg">waiting for a chart\u2026</div></div>
-      </div>`;
-    document.documentElement.appendChild(host);
-
-    const card = root.getElementById("card");
-    const body = root.getElementById("body");
-    const symLabel = root.getElementById("sym");
-    root.getElementById("hide").addEventListener("click", () => {
-      card.hidden = true;
-    });
-
-    const message = (text, cls) => {
-      body.innerHTML = "";
-      const div = document.createElement("div");
-      div.className = cls ? `msg ${cls}` : "msg";
-      div.textContent = text;
-      body.appendChild(div);
-    };
-
-    function renderTable(data) {
-      body.innerHTML = "";
-      const table = document.createElement("table");
-      const thead = document.createElement("thead");
-      const headRow = document.createElement("tr");
-      for (const label of ["", ...data.periods]) {
-        const th = document.createElement("th");
-        th.textContent = label;
-        headRow.appendChild(th);
-      }
-      thead.appendChild(headRow);
-      table.appendChild(thead);
-
-      const tbody = document.createElement("tbody");
-      for (const row of data.rows) {
-        const tr = document.createElement("tr");
-        const label = document.createElement("td");
-        label.textContent = row.label;
-        tr.appendChild(label);
-        row.values.forEach((value, index) => {
-          const td = document.createElement("td");
-          td.textContent = value;
-          // The first column has nothing to compare against.
-          const tone = index === 0 ? "" : cellTone(row.label, row.values[index - 1], value);
-          if (tone) td.className = tone;
-          tr.appendChild(td);
-        });
-        tbody.appendChild(tr);
-      }
-      table.appendChild(tbody);
-      body.appendChild(table);
-    }
-
-    let showing = "";
-    async function show(ticker) {
-      showing = ticker;
-      card.hidden = false;
-      symLabel.textContent = ticker;
-      if (!shareholdingCache.has(ticker)) message("loading\u2026");
-      try {
-        const data = await getShareholding(ticker);
-        if (showing !== ticker) return; // chart moved on while we waited
-        if (data.company) symLabel.textContent = data.company;
-        renderTable(data);
-      } catch (err) {
-        if (showing !== ticker) return;
-        message(err.message, "err");
-      }
-    }
-
-    watchChartSymbol(show);
-  }
 
   // ponytail: 1s poll. The widget exposes onSymbolChanged(), but that needs the
   // chart to be ready first and misses layout/tab switches; swap to the event if
@@ -751,12 +328,257 @@
       const ticker = queryFromTvSymbol(symbol);
       if (ticker && ticker !== last) {
         last = ticker;
+        // The panel highlights the row for whatever the chart shows, and that
+        // needs the full symbol, not the ticker the Screener lookup uses.
+        window.postMessage({ __dhanWL: "charted-symbol", symbol: String(symbol) }, window.location.origin);
         onChange(ticker);
       }
     };
     check();
     setInterval(check, 1000);
   }
+
+  // Read-only prototype control used by the TradeBaba side panel. Dhan's
+  // TradingView wrapper exposes setSymbol on the active chart; keep the wire
+  // format strict so a panel message cannot send an arbitrary chart request.
+  window.addEventListener("message", (event) => {
+    const msg = event.data;
+    if (event.source !== window || !msg || msg.__dhanWL !== "set-chart") return;
+    const symbol = String(msg.symbol || "");
+    if (!/^NSEE\d+:[A-Z0-9.&()' -]{1,60}$/.test(symbol)) {
+      window.postMessage({ __dhanWL: "set-chart-result", id: msg.id, error: "Unsupported NSE chart symbol" }, window.location.origin);
+      return;
+    }
+    try {
+      const chart = window.dhan_tvWidget && window.dhan_tvWidget.activeChart && window.dhan_tvWidget.activeChart();
+      if (!chart || typeof chart.setSymbol !== "function") throw new Error("Dhan chart is not ready");
+      Promise.resolve(chart.setSymbol(symbol)).then(
+        () => window.postMessage({ __dhanWL: "set-chart-result", id: msg.id, ok: true }, window.location.origin),
+        (err) => window.postMessage({ __dhanWL: "set-chart-result", id: msg.id, error: err.message || "Dhan rejected the chart change" }, window.location.origin)
+      );
+    } catch (err) {
+      window.postMessage({ __dhanWL: "set-chart-result", id: msg.id, error: err.message }, window.location.origin);
+    }
+  });
+
+  // Bulk resolve for the panel's paste/import box. Same read-only ScanWatchlist
+  // the repo sync uses, and the same confidence bar and missing-name report --
+  // an unresolved ticker is named, never silently dropped or guessed at.
+  window.addEventListener("message", (event) => {
+    const msg = event.data;
+    if (event.source !== window || !msg || msg.__dhanWL !== "bulk-resolve") return;
+    const reply = (payload) =>
+      window.postMessage({ __dhanWL: "bulk-resolve-result", id: msg.id, ...payload }, window.location.origin);
+    (async () => {
+      const names = msg.source
+        ? (await fetchList(msg.source === "ath" ? ATH_URL : LIST_URL)).symbols.map((n) => String(n).split(":").at(-1).trim()).filter(Boolean)
+        : (Array.isArray(msg.names) ? msg.names : []).map((n) => String(n).trim()).filter(Boolean).slice(0, 200);
+      if (!names.length) return reply({ hits: [], missing: [], requested: 0 });
+      const raw = (await scanAll(names)).filter((h) => h.confidence > MIN_CONFIDENCE);
+      const seen = new Set();
+      const hits = raw.map(chartSymbolFromHit).filter((h) => h && !seen.has(h.symbol) && seen.add(h.symbol));
+      reply({ hits, missing: findMissing(names, raw), requested: names.length });
+    })().catch((err) => reply({ error: err.message }));
+  });
+
+  // Quotes for the panel's Last/Chg/Chg% columns. The only trustworthy source on
+  // this page is the datafeed Dhan already hands its TradingView terminal: a
+  // terminal datafeed implements getQuotes(). Feature-detect it and report its
+  // absence -- Screener's "Current Price" is a stale page scrape, not an LTP,
+  // and a fabricated zero change is worse than an empty column.
+  function datafeed() {
+    const widget = window.dhan_tvWidget;
+    return [
+      widget && widget._options && widget._options.datafeed,
+      widget && widget.datafeed,
+      window.dhanDatafeed,
+    ].find((feed) => feed && (typeof feed.getQuotes === "function" || typeof feed.searchSymbols === "function")) || null;
+  }
+
+  const finite = (v) => (Number.isFinite(Number(v)) ? Number(v) : null);
+
+  window.addEventListener("message", (event) => {
+    const msg = event.data;
+    if (event.source !== window || !msg || msg.__dhanWL !== "get-quotes") return;
+    const reply = (payload) =>
+      window.postMessage({ __dhanWL: "get-quotes-result", id: msg.id, ...payload }, window.location.origin);
+    const symbols = (Array.isArray(msg.symbols) ? msg.symbols : []).map(String).slice(0, 50);
+    if (!symbols.length) return reply({ quotes: [] });
+    const feed = datafeed();
+    if (!feed || typeof feed.getQuotes !== "function") return reply({ error: "This Dhan chart exposes no quote feed, so Last/Chg stay empty." });
+    try {
+      feed.getQuotes(
+        symbols,
+        (rows) =>
+          reply({
+            quotes: (Array.isArray(rows) ? rows : [])
+              .filter((row) => row && row.s === "ok" && row.v)
+              .map((row) => ({
+                symbol: String(row.n || ""),
+                last: finite(row.v.lp),
+                change: finite(row.v.ch),
+                changePercent: finite(row.v.chp),
+              })),
+          }),
+        (err) => reply({ error: String((err && err.message) || err || "quote lookup failed") })
+      );
+    } catch (err) {
+      reply({ error: err.message });
+    }
+  });
+
+  // Live ticks. The datafeed the page already runs is the only stream we can
+  // read without new credentials, and subscribeQuotes is its tick API. Ticks
+  // are batched once a second: the panel repaints a handful of cells, it does
+  // not need every print.
+  let tickGuid = null, tickBuffer = new Map(), tickTimer = null;
+  function flushTicks() {
+    if (!tickBuffer.size) return;
+    const quotes = [...tickBuffer.values()];
+    tickBuffer = new Map();
+    window.postMessage({ __dhanWL: "quote-tick", quotes }, window.location.origin);
+  }
+  window.addEventListener("message", (event) => {
+    const msg = event.data;
+    if (event.source !== window || !msg || msg.__dhanWL !== "watch-quotes") return;
+    const reply = (payload) =>
+      window.postMessage({ __dhanWL: "watch-quotes-result", id: msg.id, ...payload }, window.location.origin);
+    const feed = datafeed();
+    const symbols = (Array.isArray(msg.symbols) ? msg.symbols : []).map(String).slice(0, 50);
+    if (!feed || typeof feed.subscribeQuotes !== "function") return reply({ streaming: false });
+    try {
+      if (tickGuid && typeof feed.unsubscribeQuotes === "function") feed.unsubscribeQuotes(tickGuid);
+      tickGuid = null;
+      clearInterval(tickTimer);
+      tickTimer = null;
+      if (!symbols.length) return reply({ streaming: false });
+      tickGuid = `tradebaba-${Date.now()}`;
+      feed.subscribeQuotes(symbols, symbols, (rows) => {
+        (Array.isArray(rows) ? rows : []).forEach((row) => {
+          if (!row || row.s !== "ok" || !row.v) return;
+          const symbol = String(row.n || "");
+          const previous = tickBuffer.get(symbol) || {};
+          tickBuffer.set(symbol, {
+            symbol,
+            last: finite(row.v.lp) ?? previous.last ?? null,
+            change: finite(row.v.ch) ?? previous.change ?? null,
+            changePercent: finite(row.v.chp) ?? previous.changePercent ?? null,
+          });
+        });
+      }, tickGuid);
+      tickTimer = setInterval(flushTicks, 1000);
+      reply({ streaming: true });
+    } catch (err) {
+      reply({ streaming: false, error: err.message });
+    }
+  });
+
+  // Read-only symbol lookup for the panel's search box: ScanWatchlist is Dhan's
+  // own search and writes nothing. Personal watchlists are never touched here.
+  window.addEventListener("message", (event) => {
+    const msg = event.data;
+    if (event.source !== window || !msg || msg.__dhanWL !== "search-symbols") return;
+    const reply = (payload) =>
+      window.postMessage({ __dhanWL: "search-symbols-result", id: msg.id, ...payload }, window.location.origin);
+    const query = String(msg.query || "").trim();
+    if (!query) return reply({ hits: [] });
+    // The datafeed's own searchSymbols is what Dhan's chart search box uses, so
+    // it returns a ranked list. ScanWatchlist resolves a name to one scrip, so
+    // it is the fallback, not the first choice.
+    feedSearch(query)
+      .then((rows) => {
+        const seen = new Set();
+        const hits = rows.map(chartSymbolFromSearch).filter((h) => h && !seen.has(h.symbol) && seen.add(h.symbol));
+        if (hits.length) return reply({ hits: hits.slice(0, 20) });
+        return scanSearch(query).then(reply, (err) => reply({ error: err.message }));
+      })
+      .catch((err) => reply({ error: err.message }));
+  });
+
+  const CHART_SYMBOL_RE = /^NSEE\d+:[A-Z0-9.&()' -]{1,60}$/;
+  function chartSymbolFromSearch(row) {
+    const symbol = [row && row.ticker, row && row.full_name, row && row.symbol]
+      .map((v) => String(v ?? "").trim().toUpperCase())
+      .find((v) => CHART_SYMBOL_RE.test(v));
+    return symbol ? { symbol, name: String((row && row.description) || symbol.split(":").at(-1)).trim() } : null;
+  }
+  // Datafeed callbacks are not promises and some implementations never call
+  // back; cap the wait so the panel falls through to the resolver instead.
+  function feedSearch(query) {
+    return new Promise((resolve) => {
+      const feed = datafeed();
+      if (!feed || typeof feed.searchSymbols !== "function") return resolve([]);
+      let settled = false;
+      const done = (rows) => { if (settled) return; settled = true; resolve(Array.isArray(rows) ? rows : []); };
+      setTimeout(() => done([]), 3000);
+      try { feed.searchSymbols(query, "", "", done); } catch (_) { done([]); }
+    });
+  }
+  function scanSearch(query) {
+    return scan([query])
+      .then((hits) => {
+        const rows = (Array.isArray(hits) ? hits : [])
+          .slice()
+          .sort((a, b) => (Number(b?.confidence) || 0) - (Number(a?.confidence) || 0))
+          .map(chartSymbolFromHit)
+          .filter(Boolean);
+        const seen = new Set();
+        return { hits: rows.filter((r) => !seen.has(r.symbol) && seen.add(r.symbol)).slice(0, 20) };
+      });
+  }
+
+  // What the chart is showing right now, in the exact shape setSymbol accepts.
+  window.addEventListener("message", (event) => {
+    const msg = event.data;
+    if (event.source !== window || !msg || msg.__dhanWL !== "chart-symbol") return;
+    const reply = (payload) =>
+      window.postMessage({ __dhanWL: "chart-symbol-result", id: msg.id, ...payload }, window.location.origin);
+    try {
+      const widget = window.dhan_tvWidget;
+      const chart = widget && widget.activeChart && widget.activeChart();
+      const symbol = chart && chart.symbol && chart.symbol();
+      if (!symbol) throw new Error("Dhan chart is not ready");
+      reply({ symbol: String(symbol), name: queryFromTvSymbol(symbol) });
+    } catch (err) {
+      reply({ error: err.message });
+    }
+  });
+
+  // Push a local list into a Dhan watchlist. This is the only write TradeBaba
+  // makes to a Dhan watchlist, it targets one list by name, and it always
+  // replaces: the panel confirms the overwrite before asking. Creating a
+  // watchlist is NOT done here - no create endpoint has been verified from
+  // captured traffic, and guessing one would be a write to an unknown API.
+  window.addEventListener("message", (event) => {
+    const msg = event.data;
+    if (event.source !== window || !msg || msg.__dhanWL !== "push-watchlist") return;
+    const reply = (payload) =>
+      window.postMessage({ __dhanWL: "push-watchlist-result", id: msg.id, ...payload }, window.location.origin);
+    (async () => {
+      const wanted = String(msg.name || "").trim();
+      const names = (Array.isArray(msg.names) ? msg.names : []).map((n) => String(n).trim()).filter(Boolean);
+      if (!wanted) throw new Error("no watchlist name given");
+      if (!names.length) throw new Error("that watchlist has no symbols");
+      if (names.length > DHAN_LIST_CAP) throw new Error(`Dhan holds ${DHAN_LIST_CAP} symbols per watchlist; this one has ${names.length}`);
+      const lists = await getWatchlists();
+      const target = (Array.isArray(lists) ? lists : []).find(
+        (w) => String(w.w_name || "").trim().toLowerCase() === wanted.toLowerCase()
+      );
+      if (!target) {
+        throw new Error(
+          `Dhan has no watchlist named "${wanted}" - create it in Dhan first ` +
+            `(found: ${(lists || []).map((w) => w.w_name).join(", ") || "none"})`
+        );
+      }
+      // Resolve before clearing, so a failed lookup leaves Dhan untouched.
+      const hits = (await scanAll(names)).filter((h) => h.confidence > MIN_CONFIDENCE);
+      const { stockDetail, unmapped } = resolveHits(hits);
+      if (!stockDetail.length) throw new Error("nothing resolved - Dhan watchlist left untouched");
+      await api("clearWatch", { w_id: target.w_id });
+      await api("AddMultipleStock", { w_id: target.w_id, stock_detail: stockDetail });
+      reply({ watchlist: target.w_name, pushed: stockDetail.length, requested: names.length, missing: findMissing(names, hits), unmapped: unmapped.length });
+    })().catch((err) => reply({ error: err.message }));
+  });
 
   function whenReady() {
     // reqObjectOG appears as an empty object before the app populates it, so
@@ -769,8 +591,8 @@
       session.token_id &&
       document.documentElement
     ) {
-      mountUI();
-      mountShareholding();
+      // Keep the side panel's per-tab cache current even while it is closed.
+      watchChartSymbol((ticker) => resolveScreener(ticker, true).catch((err) => console.warn("[TradeBaba]", err.message)));
       return;
     }
     setTimeout(whenReady, 500);
@@ -782,20 +604,13 @@
     decrypt,
     getWatchlists,
     scan,
-    syncFromRepo,
-    fetchPublishedList,
     findMissing,
     queryFromTvSymbol,
-    parseShareholding,
-    cellTone,
-    toNumber,
-    trimToRecent,
-    getShareholding,
-    describeWindow,
-    claimSyncLock,
-    releaseSyncLock,
     selfCheck,
     segOf,
+    chartSymbolFromHit,
+    datafeed,
+    chartSymbolFromSearch,
   };
   whenReady();
 })();
