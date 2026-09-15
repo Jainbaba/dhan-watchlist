@@ -1,12 +1,12 @@
 {
-  "generated_on": "2026-09-10",
+  "generated_on": "2026-09-15",
   "source": "https://www.nseindia.com/api/public-past-issues",
   "window_days": 182,
   "security_types": [
     "EQ",
     "BE"
   ],
-  "count": 52,
+  "count": 53,
   "excluded_by_security_type": {
     "DEBT": 1,
     "IV": 3,
@@ -21,6 +21,7 @@
   "dropped_not_on_nse": [],
   "truncated_to_cap": false,
   "symbols": [
+    "PRANAV",
     "DEEPA",
     "PERNIASPOP",
     "PRIORITY",
@@ -75,6 +76,14 @@
     "RSL"
   ],
   "listings": [
+    {
+      "symbol": "PRANAV",
+      "name": "Pranav Constructions Limited",
+      "listed_on": "2026-09-15",
+      "security_type": "EQ",
+      "issue_price": "124",
+      "ipo_opened_on": "07-SEP-2026"
+    },
     {
       "symbol": "DEEPA",
       "name": "Deepa Jewellers Limited",
