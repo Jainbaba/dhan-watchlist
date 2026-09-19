@@ -1,6 +1,6 @@
 {
   "watchlist_name": "ATH Below 20%",
-  "generated_on": "2026-09-18",
+  "generated_on": "2026-09-19",
   "source": "https://scanner.tradingview.com/india/scan",
   "market": "india",
   "exchange": "NSE",
@@ -10,8 +10,8 @@
     "maximum_close_pct": 100
   },
   "filter_semantics": "market cap > INR 100cr (1e9); close between High.All*lower and High.All, inclusive, applied locally",
-  "count": 776,
-  "matched_total": 776,
+  "count": 774,
+  "matched_total": 774,
   "truncated_to_cap": false,
   "symbols": [
     "NSE:360ONE",
@@ -56,7 +56,6 @@
     "NSE:ALUFLUOR",
     "NSE:AMAL",
     "NSE:AMANTA",
-    "NSE:AMARJOTHI",
     "NSE:AMEYA",
     "NSE:ANANDRATHI",
     "NSE:ANANTAM",
@@ -430,7 +429,6 @@
     "NSE:MARINE",
     "NSE:MARKOLINES",
     "NSE:MARKSANS",
-    "NSE:MARUSHIKA",
     "NSE:MAXESTATES",
     "NSE:MAYURUNIQ",
     "NSE:MBAPL",
@@ -447,7 +445,6 @@
     "NSE:MFSL",
     "NSE:MIIL",
     "NSE:MILKYMIST",
-    "NSE:MINALIND",
     "NSE:MINDACORP",
     "NSE:MINDSPACE.RR",
     "NSE:MKEXIM",
@@ -747,6 +744,7 @@
     "NSE:V2RETAIL",
     "NSE:VADILALIND",
     "NSE:VADILENT",
+    "NSE:VEEGALAND",
     "NSE:VELJAN",
     "NSE:VENUSPIPES",
     "NSE:VERTIS",
@@ -799,7 +797,7 @@
       "name": "360ONE",
       "close": 1073.1,
       "volume": 519067,
-      "market_cap": 432365193391,
+      "market_cap": 441311272366,
       "change": 1.1118439649486436,
       "all_time_high": 1318,
       "pct_below_ath": 18.58
@@ -811,7 +809,7 @@
       "name": "3BBLACKBIO",
       "close": 1319.3,
       "volume": 6766,
-      "market_cap": 11066495181,
+      "market_cap": 11388773818,
       "change": 2.2079330647660367,
       "all_time_high": 1588.9,
       "pct_below_ath": 16.97
@@ -823,7 +821,7 @@
       "name": "3MINDIA",
       "close": 34095,
       "volume": 8040,
-      "market_cap": 365901309475,
+      "market_cap": 385638284102,
       "change": 4.81094374423609,
       "all_time_high": 40856.5,
       "pct_below_ath": 16.55
@@ -835,7 +833,7 @@
       "name": "AADHARHFC",
       "close": 461.65,
       "volume": 2175228,
-      "market_cap": 205716152905,
+      "market_cap": 202341955765,
       "change": -1.6405667412378917,
       "all_time_high": 563,
       "pct_below_ath": 18.0
@@ -847,7 +845,7 @@
       "name": "AAREYDRUGS",
       "close": 102.13,
       "volume": 289834,
-      "market_cap": 2872858008,
+      "market_cap": 2906032491,
       "change": 0.40306724341328803,
       "all_time_high": 103.5,
       "pct_below_ath": 1.32
@@ -859,7 +857,7 @@
       "name": "AARNAV",
       "close": 31.2,
       "volume": 3120,
-      "market_cap": 1303906494,
+      "market_cap": 1341076451,
       "change": -0.6369426751592334,
       "all_time_high": 37.4,
       "pct_below_ath": 16.58
@@ -871,7 +869,7 @@
       "name": "AARTIPHARM",
       "close": 820.4,
       "volume": 1901494,
-      "market_cap": 74235028319,
+      "market_cap": 74434519472,
       "change": -0.7920672350202634,
       "all_time_high": 971,
       "pct_below_ath": 15.51
@@ -883,7 +881,7 @@
       "name": "ABCAPITAL",
       "close": 410.05,
       "volume": 4888619,
-      "market_cap": 1066412017474.0001,
+      "market_cap": 1095293205160.9999,
       "change": 5.141025641025644,
       "all_time_high": 430.7,
       "pct_below_ath": 4.79
@@ -895,7 +893,7 @@
       "name": "ABDL",
       "close": 647.6,
       "volume": 437696,
-      "market_cap": 182594778617,
+      "market_cap": 182091303772,
       "change": -0.8421374980860511,
       "all_time_high": 711.7,
       "pct_below_ath": 9.01
@@ -907,7 +905,7 @@
       "name": "ABSLAMC",
       "close": 1060.4,
       "volume": 378189,
-      "market_cap": 315588844172,
+      "market_cap": 307052768718,
       "change": -2.7245206861755635,
       "all_time_high": 1224.9,
       "pct_below_ath": 13.43
@@ -919,7 +917,7 @@
       "name": "ACCENTMIC",
       "close": 681.75,
       "volume": 23000,
-      "market_cap": 16289744031,
+      "market_cap": 16354514385,
       "change": 0.3976143141153149,
       "all_time_high": 731.7,
       "pct_below_ath": 6.83
@@ -931,7 +929,7 @@
       "name": "ACCPL",
       "close": 210,
       "volume": 2400,
-      "market_cap": 2343808600,
+      "market_cap": 2334360000,
       "change": -0.40313018733696676,
       "all_time_high": 219,
       "pct_below_ath": 4.11
@@ -943,7 +941,7 @@
       "name": "ACGL",
       "close": 1737.2,
       "volume": 1004,
-      "market_cap": 10740329372,
+      "market_cap": 10633473757,
       "change": -2.0744081172491518,
       "all_time_high": 1961.9,
       "pct_below_ath": 11.45
@@ -955,7 +953,7 @@
       "name": "ACMESOLAR",
       "close": 435.25,
       "volume": 12038412,
-      "market_cap": 290560684148,
+      "market_cap": 307066204035,
       "change": 5.823000243131531,
       "all_time_high": 440.7,
       "pct_below_ath": 1.24
@@ -967,7 +965,7 @@
       "name": "ACSTECH",
       "close": 66.15,
       "volume": 430625,
-      "market_cap": 4382520314,
+      "market_cap": 4601056741,
       "change": 5.000000000000009,
       "all_time_high": 66.15,
       "pct_below_ath": 0.0
@@ -979,7 +977,7 @@
       "name": "ACTIVEINFR",
       "close": 182.05,
       "volume": 27600,
-      "market_cap": 2567567736,
+      "market_cap": 2733483662.7999997,
       "change": 6.461988304093574,
       "all_time_high": 190,
       "pct_below_ath": 4.18
@@ -991,7 +989,7 @@
       "name": "ACUTAAS",
       "close": 3440.3,
       "volume": 521496,
-      "market_cap": 271451907617,
+      "market_cap": 281485197905,
       "change": 3.776658321015965,
       "all_time_high": 3740,
       "pct_below_ath": 8.01
@@ -1003,7 +1001,7 @@
       "name": "ADANIPORTS",
       "close": 1824,
       "volume": 4148803,
-      "market_cap": 4000594436718,
+      "market_cap": 4149430130859,
       "change": 4.9301041247195565,
       "all_time_high": 1891.1,
       "pct_below_ath": 3.55
@@ -1015,7 +1013,7 @@
       "name": "ADANIPOWER",
       "close": 206.6,
       "volume": 18185888,
-      "market_cap": 3953362138672,
+      "market_cap": 4030500912109,
       "change": 0.33022533022533357,
       "all_time_high": 254.2,
       "pct_below_ath": 18.73
@@ -1027,7 +1025,7 @@
       "name": "ADISOFT",
       "close": 231.5,
       "volume": 32000,
-      "market_cap": 3734374300,
+      "market_cap": 3777617000,
       "change": 1.1579637317019906,
       "all_time_high": 280,
       "pct_below_ath": 17.32
@@ -1039,7 +1037,7 @@
       "name": "ADOR",
       "close": 1592.1,
       "volume": 19186,
-      "market_cap": 27304145533,
+      "market_cap": 27693100145,
       "change": 1.7771527200664807,
       "all_time_high": 1770,
       "pct_below_ath": 10.05
@@ -1051,7 +1049,7 @@
       "name": "ADVAIT",
       "close": 2003.6,
       "volume": 19625,
-      "market_cap": 21786985883,
+      "market_cap": 21916661624,
       "change": 0.6631832797427561,
       "all_time_high": 2485,
       "pct_below_ath": 19.37
@@ -1063,7 +1061,7 @@
       "name": "AEGISLOG",
       "close": 1415.4,
       "volume": 1333662,
-      "market_cap": 474727500000,
+      "market_cap": 497454750000,
       "change": 4.550155118924519,
       "all_time_high": 1497.8,
       "pct_below_ath": 5.5
@@ -1075,7 +1073,7 @@
       "name": "AEGISVOPAK",
       "close": 314.95,
       "volume": 2342046,
-      "market_cap": 344363730713,
+      "market_cap": 349238920166,
       "change": 1.3678789829417444,
       "all_time_high": 317,
       "pct_below_ath": 0.65
@@ -1087,7 +1085,7 @@
       "name": "AEQUS",
       "close": 231.67,
       "volume": 859211,
-      "market_cap": 153817170787,
+      "market_cap": 155527360006,
       "change": 1.02036366807656,
       "all_time_high": 274.39,
       "pct_below_ath": 15.57
@@ -1099,7 +1097,7 @@
       "name": "AEROFLEX",
       "close": 510.9,
       "volume": 890374,
-      "market_cap": 65781623974.99999,
+      "market_cap": 67594553029,
       "change": 2.6728295819935597,
       "all_time_high": 584.15,
       "pct_below_ath": 12.54
@@ -1111,7 +1109,7 @@
       "name": "AEROPLANE",
       "close": 201.49,
       "volume": 778122,
-      "market_cap": 20000981602,
+      "market_cap": 20767264033,
       "change": 4.021683014971616,
       "all_time_high": 209.44,
       "pct_below_ath": 3.8
@@ -1123,7 +1121,7 @@
       "name": "AETHER",
       "close": 1630,
       "volume": 94450,
-      "market_cap": 215417291199,
+      "market_cap": 216213658264,
       "change": 0.4127394813035204,
       "all_time_high": 1717,
       "pct_below_ath": 5.07
@@ -1135,7 +1133,7 @@
       "name": "AGARWALEYE",
       "close": 500.45,
       "volume": 105331,
-      "market_cap": 158465540048,
+      "market_cap": 158449682934,
       "change": 0.05998200539838276,
       "all_time_high": 568,
       "pct_below_ath": 11.89
@@ -1147,7 +1145,7 @@
       "name": "AGARWALTUF",
       "close": 159.45,
       "volume": 164400,
-      "market_cap": 3086436620.2000003,
+      "market_cap": 3081605003.7,
       "change": -0.15654351909830935,
       "all_time_high": 174.05,
       "pct_below_ath": 8.39
@@ -1159,7 +1157,7 @@
       "name": "AHCL",
       "close": 22.9,
       "volume": 145565213,
-      "market_cap": 11581712656,
+      "market_cap": 12192954720,
       "change": 4.853479853479847,
       "all_time_high": 24.78,
       "pct_below_ath": 7.59
@@ -1171,7 +1169,7 @@
       "name": "AIIL",
       "close": 559,
       "volume": 762508,
-      "market_cap": 447626753443,
+      "market_cap": 475141681183,
       "change": 6.0318664643399,
       "all_time_high": 683,
       "pct_below_ath": 18.16
@@ -1183,7 +1181,7 @@
       "name": "AIMTRON",
       "close": 1662.25,
       "volume": 42000,
-      "market_cap": 33689009906.2,
+      "market_cap": 34643544011,
       "change": 2.833369420644001,
       "all_time_high": 1800,
       "pct_below_ath": 7.65
@@ -1195,7 +1193,7 @@
       "name": "AJANTPHARM",
       "close": 3563.6,
       "volume": 201322,
-      "market_cap": 437525285710,
+      "market_cap": 445622605964,
       "change": 1.8025996286244799,
       "all_time_high": 3796,
       "pct_below_ath": 6.12
@@ -1207,7 +1205,7 @@
       "name": "AKCAPIT",
       "close": 1746.4,
       "volume": 1185,
-      "market_cap": 11568149833,
+      "market_cap": 11457599834,
       "change": -0.11439029970258521,
       "all_time_high": 1875,
       "pct_below_ath": 6.86
@@ -1219,7 +1217,7 @@
       "name": "AKIKO",
       "close": 416.1,
       "volume": 16000,
-      "market_cap": 4534540080,
+      "market_cap": 4481230560,
       "change": -1.1756323477021704,
       "all_time_high": 438.95,
       "pct_below_ath": 5.21
@@ -1231,7 +1229,7 @@
       "name": "ALGOQUANT",
       "close": 72.27,
       "volume": 3786684,
-      "market_cap": 19662667058,
+      "market_cap": 20292323729,
       "change": 3.0514758306003147,
       "all_time_high": 76.2,
       "pct_below_ath": 5.16
@@ -1243,7 +1241,7 @@
       "name": "ALIVUS",
       "close": 1430.8,
       "volume": 304330,
-      "market_cap": 170290140485,
+      "market_cap": 175698213700,
       "change": 3.0984291684680794,
       "all_time_high": 1493.8,
       "pct_below_ath": 4.22
@@ -1255,7 +1253,7 @@
       "name": "ALKEM",
       "close": 5466.5,
       "volume": 320770,
-      "market_cap": 638477113037,
+      "market_cap": 657798829108,
       "change": 2.206226044685426,
       "all_time_high": 6439.9,
       "pct_below_ath": 15.12
@@ -1267,7 +1265,7 @@
       "name": "ALUFLUOR",
       "close": 537.15,
       "volume": 28768,
-      "market_cap": 3842984698,
+      "market_cap": 4200771978,
       "change": 9.13246647704185,
       "all_time_high": 542.5,
       "pct_below_ath": 0.99
@@ -1279,7 +1277,7 @@
       "name": "AMAL",
       "close": 722.4,
       "volume": 25482,
-      "market_cap": 9005581515,
+      "market_cap": 8911006846,
       "change": -0.08298755186722306,
       "all_time_high": 822,
       "pct_below_ath": 12.12
@@ -1291,22 +1289,10 @@
       "name": "AMANTA",
       "close": 189.95,
       "volume": 51926,
-      "market_cap": 7494065193,
+      "market_cap": 7344571946,
       "change": 0,
       "all_time_high": 209.95,
       "pct_below_ath": 9.53
-    },
-    {
-      "symbol": "AMARJOTHI",
-      "exchange": "NSE",
-      "qualified_symbol": "NSE:AMARJOTHI",
-      "name": "AMARJOTHI",
-      "close": 147.07,
-      "volume": 1260,
-      "market_cap": 1005750000,
-      "change": -1.2157442235357352,
-      "all_time_high": 166,
-      "pct_below_ath": 11.4
     },
     {
       "symbol": "AMEYA",
@@ -1315,7 +1301,7 @@
       "name": "AMEYA",
       "close": 142.55,
       "volume": 20000,
-      "market_cap": 1018500000,
+      "market_cap": 1069125000,
       "change": 4.970544918998527,
       "all_time_high": 143.85001,
       "pct_below_ath": 0.9
@@ -1327,7 +1313,7 @@
       "name": "ANANDRATHI",
       "close": 2229.4,
       "volume": 880377,
-      "market_cap": 366278708872,
+      "market_cap": 370404850393,
       "change": 0.9966476397571804,
       "all_time_high": 2268.4,
       "pct_below_ath": 1.72
@@ -1339,7 +1325,7 @@
       "name": "ANANTAM",
       "close": 106.44,
       "volume": 24430,
-      "market_cap": 23089800000,
+      "market_cap": 23076750000,
       "change": -0.04695276551788634,
       "all_time_high": 117,
       "pct_below_ath": 9.03
@@ -1351,7 +1337,7 @@
       "name": "ANAWIL",
       "close": 445.4,
       "volume": 158800,
-      "market_cap": 10759913920,
+      "market_cap": 11134910920,
       "change": 3.4851301115241635,
       "all_time_high": 491.95,
       "pct_below_ath": 9.46
@@ -1363,7 +1349,7 @@
       "name": "ANLON",
       "close": 742.2,
       "volume": 21600,
-      "market_cap": 5233579620,
+      "market_cap": 5573773560,
       "change": 6.500215238915207,
       "all_time_high": 763.9,
       "pct_below_ath": 2.84
@@ -1375,7 +1361,7 @@
       "name": "ANONDITA",
       "close": 1090.55,
       "volume": 82200,
-      "market_cap": 20329358632,
+      "market_cap": 19724361259.9,
       "change": -2.9759786476868366,
       "all_time_high": 1316,
       "pct_below_ath": 17.13
@@ -1387,7 +1373,7 @@
       "name": "ANTELOPUS",
       "close": 1104.85,
       "volume": 555265,
-      "market_cap": 39772145833,
+      "market_cap": 38757712572,
       "change": -2.299155502498121,
       "all_time_high": 1218.3,
       "pct_below_ath": 9.31
@@ -1399,7 +1385,7 @@
       "name": "ANTHEM",
       "close": 928.5,
       "volume": 5490000,
-      "market_cap": 522136932098,
+      "market_cap": 526194341125.00006,
       "change": 0.1186111710157454,
       "all_time_high": 977.55,
       "pct_below_ath": 5.02
@@ -1411,7 +1397,7 @@
       "name": "ANURAS",
       "close": 1207.7,
       "volume": 465185,
-      "market_cap": 134285893222.99998,
+      "market_cap": 137263069472,
       "change": 2.234826039109463,
       "all_time_high": 1415,
       "pct_below_ath": 14.65
@@ -1435,7 +1421,7 @@
       "name": "APARINDS",
       "close": 18858,
       "volume": 271798,
-      "market_cap": 745551605324,
+      "market_cap": 790294324103,
       "change": 5.937868659064097,
       "all_time_high": 19080,
       "pct_below_ath": 1.16
@@ -1447,7 +1433,7 @@
       "name": "APCOTEXIND",
       "close": 604.85,
       "volume": 77596,
-      "market_cap": 31081053076,
+      "market_cap": 31373978361,
       "change": 0.9092425759092502,
       "all_time_high": 712,
       "pct_below_ath": 15.05
@@ -1459,7 +1445,7 @@
       "name": "APEXECO",
       "close": 262.5,
       "volume": 17600,
-      "market_cap": 3296500000,
+      "market_cap": 3461325000,
       "change": 5,
       "all_time_high": 297.15,
       "pct_below_ath": 11.66
@@ -1471,7 +1457,7 @@
       "name": "APLAPOLLO",
       "close": 2270.1,
       "volume": 1115754,
-      "market_cap": 595493992842,
+      "market_cap": 630465056874,
       "change": 5.659762625087266,
       "all_time_high": 2301.4,
       "pct_below_ath": 1.36
@@ -1483,7 +1469,7 @@
       "name": "APOLLOHOSP",
       "close": 8944.5,
       "volume": 344265,
-      "market_cap": 1258115711212,
+      "market_cap": 1261027350430,
       "change": 2.007184809260421,
       "all_time_high": 9050,
       "pct_below_ath": 1.17
@@ -1495,7 +1481,7 @@
       "name": "ARCIL",
       "close": 136.37,
       "volume": 6345147,
-      "market_cap": 44527151666.5,
+      "market_cap": 44250987467,
       "change": -0.47438330170778403,
       "all_time_high": 141.5,
       "pct_below_ath": 3.63
@@ -1507,7 +1493,7 @@
       "name": "ARCL",
       "close": 262,
       "volume": 3408,
-      "market_cap": 2084000000,
+      "market_cap": 2144000000,
       "change": 0.5487968684038864,
       "all_time_high": 280.7,
       "pct_below_ath": 6.66
@@ -1519,7 +1505,7 @@
       "name": "ARFIN",
       "close": 89.62,
       "volume": 2628465,
-      "market_cap": 14856015619,
+      "market_cap": 15105724181,
       "change": 1.9799726900318722,
       "all_time_high": 106.2,
       "pct_below_ath": 15.61
@@ -1531,7 +1517,7 @@
       "name": "ARIES",
       "close": 472.05,
       "volume": 7855,
-      "market_cap": 6242732883,
+      "market_cap": 6125043772,
       "change": -1.16206030150754,
       "all_time_high": 524.75,
       "pct_below_ath": 10.04
@@ -1555,7 +1541,7 @@
       "name": "ARROWGREEN",
       "close": 889.25,
       "volume": 50512,
-      "market_cap": 13595740842,
+      "market_cap": 13395071446,
       "change": -1.4681440443213296,
       "all_time_high": 1099,
       "pct_below_ath": 19.09
@@ -1567,7 +1553,7 @@
       "name": "ARTEMISMED",
       "close": 338.5,
       "volume": 335686,
-      "market_cap": 52431029911,
+      "market_cap": 53578750179,
       "change": 2.3122260843282385,
       "all_time_high": 362,
       "pct_below_ath": 6.49
@@ -1579,7 +1565,7 @@
       "name": "ARVIND",
       "close": 552.6,
       "volume": 627060,
-      "market_cap": 147337192553,
+      "market_cap": 150275244520,
       "change": 2.0310192023633675,
       "all_time_high": 607.15,
       "pct_below_ath": 8.98
@@ -1591,7 +1577,7 @@
       "name": "ARYAMAN",
       "close": 629.25,
       "volume": 138,
-      "market_cap": 7486590792,
+      "market_cap": 7605999039,
       "change": 3.155737704918033,
       "all_time_high": 674.95,
       "pct_below_ath": 6.77
@@ -1603,7 +1589,7 @@
       "name": "ASAHIINDIA",
       "close": 961.05,
       "volume": 98471,
-      "market_cap": 242219071107,
+      "market_cap": 245137974929,
       "change": 1.0886715052066802,
       "all_time_high": 1074,
       "pct_below_ath": 10.52
@@ -1615,7 +1601,7 @@
       "name": "ASHUTOSH",
       "close": 156,
       "volume": 160800,
-      "market_cap": 3250595280,
+      "market_cap": 3412468800,
       "change": 4.979811574697178,
       "all_time_high": 172.5,
       "pct_below_ath": 9.57
@@ -1627,7 +1613,7 @@
       "name": "ASIANENE",
       "close": 492.25,
       "volume": 232493,
-      "market_cap": 23649831167,
+      "market_cap": 23934417526,
       "change": 1.2443438914027172,
       "all_time_high": 565.7,
       "pct_below_ath": 12.98
@@ -1639,7 +1625,7 @@
       "name": "ASKAUTOLTD",
       "close": 656.25,
       "volume": 515555,
-      "market_cap": 122080550953,
+      "market_cap": 129217115240,
       "change": 6.034900630150271,
       "all_time_high": 687.7,
       "pct_below_ath": 4.57
@@ -1663,7 +1649,7 @@
       "name": "ASTAR",
       "close": 807.35,
       "volume": 13851,
-      "market_cap": 11033486836,
+      "market_cap": 13217614851,
       "change": 19.998513674197397,
       "all_time_high": 807.35,
       "pct_below_ath": 0.0
@@ -1675,7 +1661,7 @@
       "name": "ASTERDM",
       "close": 755.05,
       "volume": 1616337,
-      "market_cap": 662819732731,
+      "market_cap": 658853580638,
       "change": -0.7362124498783965,
       "all_time_high": 891.3,
       "pct_below_ath": 15.29
@@ -1687,7 +1673,7 @@
       "name": "ASTRAMICRO",
       "close": 1631.2,
       "volume": 199551,
-      "market_cap": 152771268671,
+      "market_cap": 154964496022,
       "change": 1.4554049011071086,
       "all_time_high": 1960,
       "pct_below_ath": 16.78
@@ -1699,7 +1685,7 @@
       "name": "ATHERENERG",
       "close": 1640,
       "volume": 5010015,
-      "market_cap": 611464451599,
+      "market_cap": 635134043274,
       "change": 5.806451612903226,
       "all_time_high": 1744,
       "pct_below_ath": 5.96
@@ -1711,7 +1697,7 @@
       "name": "AUBANK",
       "close": 1058.6,
       "volume": 1251837,
-      "market_cap": 778049266050,
+      "market_cap": 781780325684,
       "change": 1.857019147503123,
       "all_time_high": 1144.1,
       "pct_below_ath": 7.47
@@ -1723,7 +1709,7 @@
       "name": "AUGMONT",
       "close": 874.35,
       "volume": 898791,
-      "market_cap": 74145031454,
+      "market_cap": 80034054944,
       "change": 7.798052028109974,
       "all_time_high": 1019.8,
       "pct_below_ath": 14.26
@@ -1735,7 +1721,7 @@
       "name": "AUROPHARMA",
       "close": 1734,
       "volume": 1209478,
-      "market_cap": 968907533822,
+      "market_cap": 998280602112,
       "change": 2.603550295857988,
       "all_time_high": 1734,
       "pct_below_ath": 0.0
@@ -1747,7 +1733,7 @@
       "name": "AUSOMENT",
       "close": 152.15,
       "volume": 9808,
-      "market_cap": 2085084578.9999998,
+      "market_cap": 2087809247.0000002,
       "change": 1.9567111170676246,
       "all_time_high": 186.35,
       "pct_below_ath": 18.35
@@ -1759,7 +1745,7 @@
       "name": "AVADHSUGAR",
       "close": 730.45,
       "volume": 74170,
-      "market_cap": 14395244805,
+      "market_cap": 14641472340,
       "change": 1.3106796116504917,
       "all_time_high": 885,
       "pct_below_ath": 17.46
@@ -1771,7 +1757,7 @@
       "name": "AVALON",
       "close": 2537.7,
       "volume": 4310981,
-      "market_cap": 149060380296,
+      "market_cap": 169421264140,
       "change": 13.798206278026898,
       "all_time_high": 2618,
       "pct_below_ath": 3.07
@@ -1783,7 +1769,7 @@
       "name": "AVANA",
       "close": 140,
       "volume": 10000,
-      "market_cap": 3102421033,
+      "market_cap": 3170357260,
       "change": 2.18978102189781,
       "all_time_high": 168.05,
       "pct_below_ath": 16.69
@@ -1795,7 +1781,7 @@
       "name": "AVANCE",
       "close": 0.8,
       "volume": 2535570,
-      "market_cap": 1565714756,
+      "market_cap": 1585533910,
       "change": 2.5641025641025665,
       "all_time_high": 0.94,
       "pct_below_ath": 14.89
@@ -1807,7 +1793,7 @@
       "name": "AVATAR",
       "close": 208.15,
       "volume": 26000,
-      "market_cap": 2275613161,
+      "market_cap": 2168317108,
       "change": -4.7150377660791865,
       "all_time_high": 258,
       "pct_below_ath": 19.32
@@ -1819,7 +1805,7 @@
       "name": "AVIANSH",
       "close": 103,
       "volume": 1000,
-      "market_cap": 1432635325,
+      "market_cap": 1439623790,
       "change": 0.4878048780487805,
       "all_time_high": 123.5,
       "pct_below_ath": 16.6
@@ -1831,7 +1817,7 @@
       "name": "AVIENCE",
       "close": 342.4,
       "volume": 13800,
-      "market_cap": 1836396748.8,
+      "market_cap": 1878083174.3999999,
       "change": 2.270011947431292,
       "all_time_high": 414.95,
       "pct_below_ath": 17.48
@@ -1843,7 +1829,7 @@
       "name": "AVL",
       "close": 636.95,
       "volume": 147990,
-      "market_cap": 81679814262,
+      "market_cap": 82273846122,
       "change": 0.5842874062376701,
       "all_time_high": 705,
       "pct_below_ath": 9.65
@@ -1855,7 +1841,7 @@
       "name": "AXISBANK",
       "close": 1257,
       "volume": 5693016,
-      "market_cap": 3854577545016,
+      "market_cap": 3863450733873,
       "change": 1.370967741935484,
       "all_time_high": 1418.3,
       "pct_below_ath": 11.37
@@ -1867,7 +1853,7 @@
       "name": "AXISCADES",
       "close": 1811.2,
       "volume": 286095,
-      "market_cap": 78820936600,
+      "market_cap": 76981363191,
       "change": -2.21886303514549,
       "all_time_high": 2211,
       "pct_below_ath": 18.08
@@ -1879,7 +1865,7 @@
       "name": "AXTEL",
       "close": 440.05,
       "volume": 7910,
-      "market_cap": 7108919725,
+      "market_cap": 7133151926,
       "change": -0.8114504677110258,
       "all_time_high": 458.8,
       "pct_below_ath": 4.09
@@ -1891,7 +1877,7 @@
       "name": "AYE",
       "close": 185.72,
       "volume": 854592,
-      "market_cap": 44655867147,
+      "market_cap": 45889795522,
       "change": 2.61907393082109,
       "all_time_high": 197.29,
       "pct_below_ath": 5.86
@@ -1903,7 +1889,7 @@
       "name": "AYMSYNTEX",
       "close": 283.15,
       "volume": 33688,
-      "market_cap": 16595818867.000002,
+      "market_cap": 16689879840.000002,
       "change": 0.425607377194534,
       "all_time_high": 330,
       "pct_below_ath": 14.2
@@ -1915,7 +1901,7 @@
       "name": "AZAD",
       "close": 2790.3,
       "volume": 700873,
-      "market_cap": 168380745090,
+      "market_cap": 179840771937,
       "change": 7.100909684105476,
       "all_time_high": 2986.6,
       "pct_below_ath": 6.57
@@ -1927,7 +1913,7 @@
       "name": "AZADIND",
       "close": 82.18,
       "volume": 36707,
-      "market_cap": 4683744419,
+      "market_cap": 4420783888,
       "change": -3.3972023039849377,
       "all_time_high": 98.99,
       "pct_below_ath": 16.98
@@ -1939,7 +1925,7 @@
       "name": "BAFNAPH",
       "close": 317.2,
       "volume": 6714,
-      "market_cap": 7480133678,
+      "market_cap": 7629168305,
       "change": 1.993569131832794,
       "all_time_high": 318.5,
       "pct_below_ath": 0.41
@@ -1951,7 +1937,7 @@
       "name": "BAGMANE.RR",
       "close": 107.49,
       "volume": 5292708,
-      "market_cap": 373796000000,
+      "market_cap": 366860000000,
       "change": -2.184002184002189,
       "all_time_high": 111.4,
       "pct_below_ath": 3.51
@@ -1963,7 +1949,7 @@
       "name": "BAHETI",
       "close": 776.1,
       "volume": 22500,
-      "market_cap": 8279823170.6,
+      "market_cap": 8639379890.7,
       "change": 4.342565205700467,
       "all_time_high": 881,
       "pct_below_ath": 11.91
@@ -1975,7 +1961,7 @@
       "name": "BAJAJFINSV",
       "close": 1852.5,
       "volume": 719520,
-      "market_cap": 2983679193019,
+      "market_cap": 2963573244206,
       "change": -0.3603700516351143,
       "all_time_high": 2195,
       "pct_below_ath": 15.6
@@ -1987,7 +1973,7 @@
       "name": "BAJAJ_AUTO",
       "close": 11414,
       "volume": 296757,
-      "market_cap": 3166839371582,
+      "market_cap": 3160202751670,
       "change": -0.7478260869565218,
       "all_time_high": 12774,
       "pct_below_ath": 10.65
@@ -1999,7 +1985,7 @@
       "name": "BAJFINANCE",
       "close": 1040.3,
       "volume": 8201656,
-      "market_cap": 6325572343750,
+      "market_cap": 6394057871094,
       "change": 2.492610837438419,
       "all_time_high": 1176.4,
       "pct_below_ath": 11.57
@@ -2011,7 +1997,7 @@
       "name": "BALRAMCHIN",
       "close": 672.6,
       "volume": 1086980,
-      "market_cap": 143050489768,
+      "market_cap": 142235844545,
       "change": -0.4587834837945867,
       "all_time_high": 780.95,
       "pct_below_ath": 13.87
@@ -2023,7 +2009,7 @@
       "name": "BEEKAY",
       "close": 430.05,
       "volume": 1478,
-      "market_cap": 8029333893,
+      "market_cap": 8286806595,
       "change": 0.8205368655491737,
       "all_time_high": 471.85,
       "pct_below_ath": 8.86
@@ -2035,7 +2021,7 @@
       "name": "BEL",
       "close": 393.3,
       "volume": 11862641,
-      "market_cap": 2891748541295,
+      "market_cap": 2877494383388,
       "change": -0.5436844101656284,
       "all_time_high": 473.45,
       "pct_below_ath": 16.93
@@ -2047,7 +2033,7 @@
       "name": "BELRISE",
       "close": 240.18,
       "volume": 10829670,
-      "market_cap": 221719576859,
+      "market_cap": 232551675372,
       "change": 4.712909273226665,
       "all_time_high": 268.2,
       "pct_below_ath": 10.45
@@ -2059,7 +2045,7 @@
       "name": "BENARAS",
       "close": 10588,
       "volume": 37,
-      "market_cap": 14224469986,
+      "market_cap": 13613599501,
       "change": -1.9629629629629628,
       "all_time_high": 11499,
       "pct_below_ath": 7.92
@@ -2071,7 +2057,7 @@
       "name": "BENGALASM",
       "close": 6199.5,
       "volume": 151,
-      "market_cap": 71400954350,
+      "market_cap": 71435734015,
       "change": -0.20925553319919515,
       "all_time_high": 7268,
       "pct_below_ath": 14.7
@@ -2083,7 +2069,7 @@
       "name": "BHADORA",
       "close": 122.9,
       "volume": 19200,
-      "market_cap": 2189220000,
+      "market_cap": 2285940000,
       "change": 4.418011894647411,
       "all_time_high": 128.85,
       "pct_below_ath": 4.62
@@ -2095,7 +2081,7 @@
       "name": "BHAGERIA",
       "close": 334.75,
       "volume": 62603,
-      "market_cap": 14153807138,
+      "market_cap": 14860843391,
       "change": 4.986670848361291,
       "all_time_high": 342,
       "pct_below_ath": 2.12
@@ -2107,7 +2093,7 @@
       "name": "BHAGYANGR",
       "close": 446.7,
       "volume": 329482,
-      "market_cap": 14987979470,
+      "market_cap": 14951133189,
       "change": 0.04479283314669398,
       "all_time_high": 467.9,
       "pct_below_ath": 4.53
@@ -2119,7 +2105,7 @@
       "name": "BHARATFORG",
       "close": 1962.1,
       "volume": 1602315,
-      "market_cap": 917452067627,
+      "market_cap": 944703119141,
       "change": 2.261948194089741,
       "all_time_high": 2295,
       "pct_below_ath": 14.51
@@ -2131,7 +2117,7 @@
       "name": "BHARATSE",
       "close": 214.02,
       "volume": 96601,
-      "market_cap": 13125199841,
+      "market_cap": 13451759645,
       "change": 2.2942357327215426,
       "all_time_high": 263.18,
       "pct_below_ath": 18.68
@@ -2143,7 +2129,7 @@
       "name": "BHARTIARTL",
       "close": 1893.3,
       "volume": 14189780,
-      "market_cap": 11398395908203,
+      "market_cap": 11638526273438,
       "change": 3.1209150326797364,
       "all_time_high": 2174.5,
       "pct_below_ath": 12.93
@@ -2155,7 +2141,7 @@
       "name": "BHEL",
       "close": 439.9,
       "volume": 7669374,
-      "market_cap": 1490323063477,
+      "market_cap": 1511215442871,
       "change": 2.4930102516309387,
       "all_time_high": 446.5,
       "pct_below_ath": 1.48
@@ -2167,7 +2153,7 @@
       "name": "BI",
       "close": 107.62,
       "volume": 75195,
-      "market_cap": 2447526875,
+      "market_cap": 2569726690,
       "change": 4.995121951219517,
       "all_time_high": 111.51,
       "pct_below_ath": 3.49
@@ -2179,7 +2165,7 @@
       "name": "BIKEWO",
       "close": 116,
       "volume": 86000,
-      "market_cap": 1463452650,
+      "market_cap": 1513017000,
       "change": 3.3868092691622076,
       "all_time_high": 116.6,
       "pct_below_ath": 0.51
@@ -2191,7 +2177,7 @@
       "name": "BIL",
       "close": 1040.85,
       "volume": 9486,
-      "market_cap": 13750364469,
+      "market_cap": 14003821563,
       "change": 1.700131906785858,
       "all_time_high": 1150,
       "pct_below_ath": 9.49
@@ -2203,7 +2189,7 @@
       "name": "BIMETAL",
       "close": 640.2,
       "volume": 332,
-      "market_cap": 2480512531,
+      "market_cap": 2467125031,
       "change": -0.17152658662091208,
       "all_time_high": 750.75,
       "pct_below_ath": 14.73
@@ -2227,7 +2213,7 @@
       "name": "BIRLACABLE",
       "close": 409.5,
       "volume": 573898,
-      "market_cap": 12066000366,
+      "market_cap": 12247500000,
       "change": 1.954437943483138,
       "all_time_high": 429.70001,
       "pct_below_ath": 4.7
@@ -2239,7 +2225,7 @@
       "name": "BIRLAPREC",
       "close": 57.08,
       "volume": 71985,
-      "market_cap": 4031451543,
+      "market_cap": 3919295852,
       "change": -2.5938566552901077,
       "all_time_high": 63.49,
       "pct_below_ath": 10.1
@@ -2251,7 +2237,7 @@
       "name": "BLACKBUCK",
       "close": 632.4,
       "volume": 1667349,
-      "market_cap": 111267717765,
+      "market_cap": 115193418498,
       "change": 3.417825020441533,
       "all_time_high": 748,
       "pct_below_ath": 15.45
@@ -2263,7 +2249,7 @@
       "name": "BLACKROSE",
       "close": 106.41,
       "volume": 14457,
-      "market_cap": 5311650078,
+      "market_cap": 5413650078,
       "change": 3.1004747601976583,
       "all_time_high": 129.9,
       "pct_below_ath": 18.08
@@ -2275,7 +2261,7 @@
       "name": "BLEL",
       "close": 440.4,
       "volume": 370777,
-      "market_cap": 18456570980,
+      "market_cap": 18617321174,
       "change": 0.9860123824810718,
       "all_time_high": 548,
       "pct_below_ath": 19.64
@@ -2287,7 +2273,7 @@
       "name": "BLIL",
       "close": 67.1,
       "volume": 110370,
-      "market_cap": 15016452599,
+      "market_cap": 14896587144,
       "change": -0.7690032534753182,
       "all_time_high": 79.5,
       "pct_below_ath": 15.6
@@ -2299,7 +2285,7 @@
       "name": "BLISSGVS",
       "close": 681.85,
       "volume": 168694,
-      "market_cap": 73340523380,
+      "market_cap": 72309658982,
       "change": -1.2741620212842908,
       "all_time_high": 728,
       "pct_below_ath": 6.34
@@ -2311,7 +2297,7 @@
       "name": "BLUESTONE",
       "close": 827.5,
       "volume": 1018859,
-      "market_cap": 126836880085,
+      "market_cap": 126500765076,
       "change": -0.445139557266608,
       "all_time_high": 926,
       "pct_below_ath": 10.64
@@ -2323,7 +2309,7 @@
       "name": "BLUEWATER",
       "close": 475,
       "volume": 6000,
-      "market_cap": 5106750000,
+      "market_cap": 5225000000,
       "change": 2.3155627355950457,
       "all_time_high": 502.95,
       "pct_below_ath": 5.56
@@ -2335,7 +2321,7 @@
       "name": "BLUSPRING",
       "close": 123.34,
       "volume": 141114,
-      "market_cap": 18538261108,
+      "market_cap": 18493410020,
       "change": -0.3071451665050076,
       "all_time_high": 139.8,
       "pct_below_ath": 11.77
@@ -2347,7 +2333,7 @@
       "name": "BODALCHEM",
       "close": 191.23,
       "volume": 1686113,
-      "market_cap": 22846251947,
+      "market_cap": 23986046086,
       "change": 4.99643112062812,
       "all_time_high": 193.75,
       "pct_below_ath": 1.3
@@ -2359,7 +2345,7 @@
       "name": "BOSCHLTD",
       "close": 47000,
       "volume": 27389,
-      "market_cap": 1411096394440,
+      "market_cap": 1409913554764,
       "change": -1.5397507070283858,
       "all_time_high": 50000,
       "pct_below_ath": 6.0
@@ -2371,7 +2357,7 @@
       "name": "BPCL",
       "close": 314,
       "volume": 9439555,
-      "market_cap": 1331042309345,
+      "market_cap": 1334079290771,
       "change": 2.2801302931596092,
       "all_time_high": 391.65,
       "pct_below_ath": 19.83
@@ -2383,7 +2369,7 @@
       "name": "BPLPHARMA",
       "close": 1509.7,
       "volume": 843,
-      "market_cap": 10661521834,
+      "market_cap": 10366546322,
       "change": -1.5840938722294626,
       "all_time_high": 1649,
       "pct_below_ath": 8.45
@@ -2395,7 +2381,7 @@
       "name": "BRAHMINFRA",
       "close": 162.36,
       "volume": 20632,
-      "market_cap": 4635689431,
+      "market_cap": 4700980831,
       "change": 1.7102048487126593,
       "all_time_high": 184,
       "pct_below_ath": 11.76
@@ -2407,7 +2393,7 @@
       "name": "BRIGHTBR",
       "close": 248.45,
       "volume": 836,
-      "market_cap": 1376036907,
+      "market_cap": 1430283167,
       "change": 1.4081632653061178,
       "all_time_high": 270,
       "pct_below_ath": 7.98
@@ -2419,7 +2405,7 @@
       "name": "BUILDPRO",
       "close": 1253.8,
       "volume": 123781,
-      "market_cap": 30164948772,
+      "market_cap": 30421994003,
       "change": 0.7149168607920204,
       "all_time_high": 1380,
       "pct_below_ath": 9.14
@@ -2431,7 +2417,7 @@
       "name": "CANFINHOME",
       "close": 778.5,
       "volume": 539763,
-      "market_cap": 103074962385,
+      "market_cap": 103860577698,
       "change": 0.5294421487603335,
       "all_time_high": 971.5,
       "pct_below_ath": 19.87
@@ -2443,7 +2429,7 @@
       "name": "CANHLIFE",
       "close": 153.59,
       "volume": 807851,
-      "market_cap": 147487500000,
+      "market_cap": 146062500000,
       "change": -1.1392893923789973,
       "all_time_high": 166.69,
       "pct_below_ath": 7.86
@@ -2455,7 +2441,7 @@
       "name": "CAPLIPOINT",
       "close": 2748.6,
       "volume": 308471,
-      "market_cap": 197284552313,
+      "market_cap": 208868745897,
       "change": 5.853808826927521,
       "all_time_high": 2877.3,
       "pct_below_ath": 4.47
@@ -2467,7 +2453,7 @@
       "name": "CARERATING",
       "close": 1668.6,
       "volume": 46640,
-      "market_cap": 49484550945,
+      "market_cap": 50115530206,
       "change": 1.5148749771856094,
       "all_time_high": 1964,
       "pct_below_ath": 15.04
@@ -2479,7 +2465,7 @@
       "name": "CARTRADE",
       "close": 2988.9,
       "volume": 650048,
-      "market_cap": 142576871952,
+      "market_cap": 145021873797,
       "change": 1.732471068754258,
       "all_time_high": 3290.5,
       "pct_below_ath": 9.17
@@ -2491,7 +2477,7 @@
       "name": "CARYSIL",
       "close": 1131.3,
       "volume": 62416,
-      "market_cap": 31559914892,
+      "market_cap": 32140144749,
       "change": 1.818018180181806,
       "all_time_high": 1280.9,
       "pct_below_ath": 11.68
@@ -2503,7 +2489,7 @@
       "name": "CCL",
       "close": 1065.6,
       "volume": 92827,
-      "market_cap": 141853386359,
+      "market_cap": 142120442207,
       "change": 0.31064670996893107,
       "all_time_high": 1242.2,
       "pct_below_ath": 14.22
@@ -2515,7 +2501,7 @@
       "name": "CEIGALL",
       "close": 373.75,
       "volume": 307512,
-      "market_cap": 67957318705,
+      "market_cap": 65109068108,
       "change": -4.166666666666666,
       "all_time_high": 424.79999,
       "pct_below_ath": 12.02
@@ -2527,7 +2513,7 @@
       "name": "CENTUM",
       "close": 4333.3,
       "volume": 41693,
-      "market_cap": 64112910277,
+      "market_cap": 63974148774,
       "change": -0.23253672238337375,
       "all_time_high": 4450,
       "pct_below_ath": 2.62
@@ -2539,7 +2525,7 @@
       "name": "CFEL",
       "close": 46.95,
       "volume": 32553,
-      "market_cap": 1154172648,
+      "market_cap": 1160928059,
       "change": 1.5794028559065427,
       "all_time_high": 52.8,
       "pct_below_ath": 11.08
@@ -2551,7 +2537,7 @@
       "name": "CGCL",
       "close": 270.65,
       "volume": 6367147,
-      "market_cap": 252324868317,
+      "market_cap": 260310734196,
       "change": 3.163712597674844,
       "all_time_high": 289.25,
       "pct_below_ath": 6.43
@@ -2563,7 +2549,7 @@
       "name": "CGPOWER",
       "close": 892,
       "volume": 3114673,
-      "market_cap": 1386395957031,
+      "market_cap": 1417904956055,
       "change": 1.3636363636363635,
       "all_time_high": 980.9,
       "pct_below_ath": 9.06
@@ -2575,7 +2561,7 @@
       "name": "CHALET",
       "close": 865.65,
       "volume": 566679,
-      "market_cap": 184710597713,
+      "market_cap": 189966456722,
       "change": 2.772171435355577,
       "all_time_high": 1082,
       "pct_below_ath": 20.0
@@ -2587,7 +2573,7 @@
       "name": "CHEMBONDCH",
       "close": 272.55,
       "volume": 8833,
-      "market_cap": 7525661616,
+      "market_cap": 7342765228,
       "change": -0.5291970802919667,
       "all_time_high": 290,
       "pct_below_ath": 6.02
@@ -2599,7 +2585,7 @@
       "name": "CHEMCRUX",
       "close": 80.78,
       "volume": 4816,
-      "market_cap": 1214324863,
+      "market_cap": 1180412607,
       "change": -2.321644498186217,
       "all_time_high": 89.29,
       "pct_below_ath": 9.53
@@ -2611,7 +2597,7 @@
       "name": "CHENNPETRO",
       "close": 1416.6,
       "volume": 1081342,
-      "market_cap": 210679844972,
+      "market_cap": 210784075676,
       "change": 0.1767908917332579,
       "all_time_high": 1677.5,
       "pct_below_ath": 15.55
@@ -2623,7 +2609,7 @@
       "name": "CHOICEIN",
       "close": 763.85,
       "volume": 989378,
-      "market_cap": 164743225090,
+      "market_cap": 170245807471,
       "change": 3.502710027100274,
       "all_time_high": 860.5,
       "pct_below_ath": 11.23
@@ -2635,7 +2621,7 @@
       "name": "CHOLAFIN",
       "close": 1800,
       "volume": 1509978,
-      "market_cap": 1504361425049,
+      "market_cap": 1519041729405,
       "change": 2.0119013884953243,
       "all_time_high": 1952.5,
       "pct_below_ath": 7.81
@@ -2647,7 +2633,7 @@
       "name": "CIPLA",
       "close": 1394.5,
       "volume": 1386584,
-      "market_cap": 1108583771011,
+      "market_cap": 1107937444798,
       "change": 1.322386107680015,
       "all_time_high": 1702.05,
       "pct_below_ath": 18.07
@@ -2659,7 +2645,7 @@
       "name": "CLEANMAX",
       "close": 1279.4,
       "volume": 102176,
-      "market_cap": 151451355755,
+      "market_cap": 150428835636,
       "change": -0.9062040120827061,
       "all_time_high": 1536,
       "pct_below_ath": 16.71
@@ -2671,7 +2657,7 @@
       "name": "CMRGREEN",
       "close": 231.87,
       "volume": 1840718,
-      "market_cap": 46823109055,
+      "market_cap": 50809918139,
       "change": 8.726437212791904,
       "all_time_high": 268.96,
       "pct_below_ath": 13.79
@@ -2683,7 +2669,7 @@
       "name": "CNL",
       "close": 1127.1,
       "volume": 17388,
-      "market_cap": 16201491019,
+      "market_cap": 16925294021.000002,
       "change": 4.467513207896915,
       "all_time_high": 1328,
       "pct_below_ath": 15.13
@@ -2695,7 +2681,7 @@
       "name": "COFORGE",
       "close": 1841,
       "volume": 2489460,
-      "market_cap": 792473340031,
+      "market_cap": 779540083008,
       "change": 2.6770775237032907,
       "all_time_high": 2021.2,
       "pct_below_ath": 8.92
@@ -2707,7 +2693,7 @@
       "name": "COMMITTED",
       "close": 330.5,
       "volume": 1600,
-      "market_cap": 3967664000,
+      "market_cap": 3856802800,
       "change": -2.794117647058824,
       "all_time_high": 362,
       "pct_below_ath": 8.7
@@ -2719,7 +2705,7 @@
       "name": "COMPEAU",
       "close": 365,
       "volume": 714,
-      "market_cap": 2345236056,
+      "market_cap": 2350043181,
       "change": 1.3888888888888888,
       "all_time_high": 420,
       "pct_below_ath": 13.1
@@ -2731,7 +2717,7 @@
       "name": "COMSYN",
       "close": 306.55,
       "volume": 869871,
-      "market_cap": 11799215727,
+      "market_cap": 12386150581,
       "change": 4.624573378839594,
       "all_time_high": 314.85,
       "pct_below_ath": 2.64
@@ -2743,7 +2729,7 @@
       "name": "CONNPLEX",
       "close": 251,
       "volume": 33600,
-      "market_cap": 4780730000,
+      "market_cap": 4794100000,
       "change": 0.27966440271673537,
       "all_time_high": 311.9,
       "pct_below_ath": 19.53
@@ -2755,7 +2741,7 @@
       "name": "CONSOFINVT",
       "close": 302.2,
       "volume": 3184,
-      "market_cap": 9717315840,
+      "market_cap": 9769038080,
       "change": 0.5322687957418383,
       "all_time_high": 346.95001,
       "pct_below_ath": 12.9
@@ -2767,7 +2753,7 @@
       "name": "CORDELIA",
       "close": 115.15,
       "volume": 2435983,
-      "market_cap": 79416811963,
+      "market_cap": 83326118414,
       "change": 4.9872355944566,
       "all_time_high": 115.49,
       "pct_below_ath": 0.29
@@ -2779,7 +2765,7 @@
       "name": "CORDSCABLE",
       "close": 364.15,
       "volume": 176486,
-      "market_cap": 4575787942,
+      "market_cap": 4705065744,
       "change": 2.490852800450314,
       "all_time_high": 394.9,
       "pct_below_ath": 7.79
@@ -2791,7 +2777,7 @@
       "name": "CORONA",
       "close": 2201.8,
       "volume": 12123,
-      "market_cap": 132316796753,
+      "market_cap": 134475750965.99998,
       "change": 1.4841445427728739,
       "all_time_high": 2292.4,
       "pct_below_ath": 3.95
@@ -2803,7 +2789,7 @@
       "name": "CPL",
       "close": 64.49,
       "volume": 41073,
-      "market_cap": 3936896150,
+      "market_cap": 3854451506,
       "change": -1.376357241168383,
       "all_time_high": 75.74,
       "pct_below_ath": 14.85
@@ -2815,7 +2801,7 @@
       "name": "CPPLUS",
       "close": 3355.1,
       "volume": 880079,
-      "market_cap": 399151598365,
+      "market_cap": 396525334419,
       "change": -0.6896755860762545,
       "all_time_high": 4094,
       "pct_below_ath": 18.05
@@ -2827,7 +2813,7 @@
       "name": "CPS",
       "close": 1185,
       "volume": 900,
-      "market_cap": 2660307840,
+      "market_cap": 2736514575,
       "change": 2.864583333333333,
       "all_time_high": 1349.25,
       "pct_below_ath": 12.17
@@ -2839,7 +2825,7 @@
       "name": "CRAFTSMAN",
       "close": 11138,
       "volume": 207605,
-      "market_cap": 286367505328,
+      "market_cap": 291837715458,
       "change": 1.8377982993508273,
       "all_time_high": 11999,
       "pct_below_ath": 7.18
@@ -2851,7 +2837,7 @@
       "name": "CREDENT",
       "close": 357.7,
       "volume": 133200,
-      "market_cap": 6068225700,
+      "market_cap": 6518331330,
       "change": 7.417417417417414,
       "all_time_high": 380,
       "pct_below_ath": 5.87
@@ -2863,7 +2849,7 @@
       "name": "CSM",
       "close": 109.85,
       "volume": 9116969,
-      "market_cap": 5304321092.46,
+      "market_cap": 5702699911.74,
       "change": 7.024551831644576,
       "all_time_high": 114.9,
       "pct_below_ath": 4.4
@@ -2875,7 +2861,7 @@
       "name": "CUB",
       "close": 235.79,
       "volume": 2196738,
-      "market_cap": 229763552925,
+      "market_cap": 233578089813,
       "change": 1.7125355879561723,
       "all_time_high": 248.85,
       "pct_below_ath": 5.25
@@ -2887,7 +2873,7 @@
       "name": "CUBEINVIT",
       "close": 156.36,
       "volume": 530408,
-      "market_cap": 210346908386,
+      "market_cap": 210024324275,
       "change": -0.08307240079237999,
       "all_time_high": 165,
       "pct_below_ath": 5.24
@@ -2899,7 +2885,7 @@
       "name": "CUMMINSIND",
       "close": 5099.5,
       "volume": 502366,
-      "market_cap": 1391544061279,
+      "market_cap": 1413720062256,
       "change": 1.5836653386454185,
       "all_time_high": 6100,
       "pct_below_ath": 16.4
@@ -2911,7 +2897,7 @@
       "name": "CUPID",
       "close": 265,
       "volume": 27287571,
-      "market_cap": 375362044790,
+      "market_cap": 356402319773,
       "change": -5.068959340856162,
       "all_time_high": 299,
       "pct_below_ath": 11.37
@@ -2923,7 +2909,7 @@
       "name": "CURIS",
       "close": 200.05,
       "volume": 9000,
-      "market_cap": 1673882059.6999998,
+      "market_cap": 1617291021.7,
       "change": -3.380825887466795,
       "all_time_high": 228.8,
       "pct_below_ath": 12.57
@@ -2935,7 +2921,7 @@
       "name": "CYIENTDLM",
       "close": 940.7,
       "volume": 469640,
-      "market_cap": 70933008799,
+      "market_cap": 74485414582,
       "change": 5.282596530498047,
       "all_time_high": 1009,
       "pct_below_ath": 6.77
@@ -2947,7 +2933,7 @@
       "name": "DAICHI",
       "close": 327.95,
       "volume": 489,
-      "market_cap": 2369490852,
+      "market_cap": 2384765781,
       "change": -0.2129925452609124,
       "all_time_high": 380,
       "pct_below_ath": 13.7
@@ -2959,7 +2945,7 @@
       "name": "DATAPATTNS",
       "close": 4513.3,
       "volume": 606762,
-      "market_cap": 246850110818,
+      "market_cap": 252672443765,
       "change": 2.316882410283145,
       "all_time_high": 5000,
       "pct_below_ath": 9.73
@@ -2971,7 +2957,7 @@
       "name": "DCBBANK",
       "close": 218.35,
       "volume": 1445096,
-      "market_cap": 70428321547,
+      "market_cap": 70138357537,
       "change": -0.07322319344652263,
       "all_time_high": 244.64999,
       "pct_below_ath": 10.75
@@ -2983,7 +2969,7 @@
       "name": "DECNGOLD",
       "close": 217.21,
       "volume": 714192,
-      "market_cap": 43811616608,
+      "market_cap": 43650839420,
       "change": -0.2937801239384835,
       "all_time_high": 250.8,
       "pct_below_ath": 13.39
@@ -2995,7 +2981,7 @@
       "name": "DEEDEV",
       "close": 668.75,
       "volume": 288664,
-      "market_cap": 47889904144,
+      "market_cap": 50282517447,
       "change": 4.992542585760256,
       "all_time_high": 760,
       "pct_below_ath": 12.01
@@ -3007,7 +2993,7 @@
       "name": "DEEP",
       "close": 46.72,
       "volume": 24429,
-      "market_cap": 1142746774,
+      "market_cap": 1132107607,
       "change": -1.0798221469404998,
       "all_time_high": 49.17,
       "pct_below_ath": 4.98
@@ -3019,7 +3005,7 @@
       "name": "DEEPA",
       "close": 188.31,
       "volume": 7608515,
-      "market_cap": 16653534645,
+      "market_cap": 18129043208,
       "change": 8.636206299757701,
       "all_time_high": 222,
       "pct_below_ath": 15.18
@@ -3031,7 +3017,7 @@
       "name": "DEEPINDS",
       "close": 743.35,
       "volume": 137404,
-      "market_cap": 47011199219,
+      "market_cap": 47657601562,
       "change": 1.1773512998502758,
       "all_time_high": 825,
       "pct_below_ath": 9.9
@@ -3043,7 +3029,7 @@
       "name": "DHABRIYA",
       "close": 488.75,
       "volume": 6986,
-      "market_cap": 5179942529,
+      "market_cap": 5324987683,
       "change": 4.5901990156216534,
       "all_time_high": 603,
       "pct_below_ath": 18.95
@@ -3055,7 +3041,7 @@
       "name": "DHARARAIL",
       "close": 142,
       "volume": 7000,
-      "market_cap": 2165308200,
+      "market_cap": 2141928000,
       "change": -1.0797631487286736,
       "all_time_high": 172.5,
       "pct_below_ath": 17.68
@@ -3067,7 +3053,7 @@
       "name": "DHOOTTRANS",
       "close": 1590.7,
       "volume": 1187578,
-      "market_cap": 322296163903,
+      "market_cap": 325343935069,
       "change": 0.6899607545258951,
       "all_time_high": 1735.3,
       "pct_below_ath": 8.33
@@ -3079,7 +3065,7 @@
       "name": "DIACABS",
       "close": 366.8,
       "volume": 759461,
-      "market_cap": 224695298878,
+      "market_cap": 219581780493,
       "change": -2.459779284669592,
       "all_time_high": 404,
       "pct_below_ath": 9.21
@@ -3091,7 +3077,7 @@
       "name": "DIFFNKG",
       "close": 445.8,
       "volume": 86835,
-      "market_cap": 16308491961,
+      "market_cap": 16650941995.000002,
       "change": 2.282895491568197,
       "all_time_high": 519.9,
       "pct_below_ath": 14.25
@@ -3103,7 +3089,7 @@
       "name": "DISAQ",
       "close": 12062,
       "volume": 137,
-      "market_cap": 17159762873,
+      "market_cap": 17548617835,
       "change": 1.165813972993374,
       "all_time_high": 12864,
       "pct_below_ath": 6.23
@@ -3115,7 +3101,7 @@
       "name": "DIVGIITTS",
       "close": 1130.2,
       "volume": 45303,
-      "market_cap": 34265112946,
+      "market_cap": 34511303274,
       "change": 0.7128854036713598,
       "all_time_high": 1329.8,
       "pct_below_ath": 15.01
@@ -3127,7 +3113,7 @@
       "name": "DIVINEHIRA",
       "close": 102.5,
       "volume": 8400,
-      "market_cap": 4107879435,
+      "market_cap": 4011983250,
       "change": -2.334444973797049,
       "all_time_high": 126.5,
       "pct_below_ath": 18.97
@@ -3139,7 +3125,7 @@
       "name": "DIVISLAB",
       "close": 9375,
       "volume": 691534,
-      "market_cap": 2481201960480,
+      "market_cap": 2486644066101,
       "change": 0.5577603775608709,
       "all_time_high": 9615,
       "pct_below_ath": 2.5
@@ -3151,7 +3137,7 @@
       "name": "DPEL",
       "close": 648.5,
       "volume": 37000,
-      "market_cap": 13795818962,
+      "market_cap": 13921401380,
       "change": 0.9102933167353962,
       "all_time_high": 655,
       "pct_below_ath": 0.99
@@ -3163,7 +3149,7 @@
       "name": "DRAGARWQ",
       "close": 5371.5,
       "volume": 708,
-      "market_cap": 25702907130,
+      "market_cap": 25984419308,
       "change": 2.2169362511893436,
       "all_time_high": 6059.7,
       "pct_below_ath": 11.36
@@ -3175,7 +3161,7 @@
       "name": "DRREDDY",
       "close": 1185,
       "volume": 3002566,
-      "market_cap": 977805930982,
+      "market_cap": 977013313592,
       "change": 0.851063829787234,
       "all_time_high": 1421.49,
       "pct_below_ath": 16.64
@@ -3187,7 +3173,7 @@
       "name": "DYCL",
       "close": 457.4,
       "volume": 419341,
-      "market_cap": 21433254659,
+      "market_cap": 22167404196,
       "change": 3.40228325986209,
       "all_time_high": 560,
       "pct_below_ath": 18.32
@@ -3199,7 +3185,7 @@
       "name": "DYNAMATECH",
       "close": 12061,
       "volume": 12437,
-      "market_cap": 80259912236,
+      "market_cap": 81869822442,
       "change": 2.047550554192402,
       "all_time_high": 12875,
       "pct_below_ath": 6.32
@@ -3211,7 +3197,7 @@
       "name": "E2E",
       "close": 607.65,
       "volume": 595972,
-      "market_cap": 124148227441,
+      "market_cap": 125205980459,
       "change": 0.5377233620119126,
       "all_time_high": 698,
       "pct_below_ath": 12.94
@@ -3223,7 +3209,7 @@
       "name": "E2ERAIL",
       "close": 344.65,
       "volume": 136800,
-      "market_cap": 5996862417,
+      "market_cap": 5965705389,
       "change": -0.5195554914129056,
       "all_time_high": 386,
       "pct_below_ath": 10.71
@@ -3235,7 +3221,7 @@
       "name": "EBGNG",
       "close": 703.05,
       "volume": 1067215,
-      "market_cap": 75367309116,
+      "market_cap": 80104486079,
       "change": 6.25708456132396,
       "all_time_high": 712,
       "pct_below_ath": 1.26
@@ -3247,7 +3233,7 @@
       "name": "EBIX",
       "close": 19.03,
       "volume": 5798,
-      "market_cap": 4082303564,
+      "market_cap": 4093018517,
       "change": -1.0914760914760775,
       "all_time_high": 22.83,
       "pct_below_ath": 16.64
@@ -3259,7 +3245,7 @@
       "name": "ECOLINE",
       "close": 173.3,
       "volume": 15000,
-      "market_cap": 3408629556.25,
+      "market_cap": 3555314487.5,
       "change": 4.303340355100816,
       "all_time_high": 216,
       "pct_below_ath": 19.77
@@ -3271,7 +3257,7 @@
       "name": "ECORECO",
       "close": 432.1,
       "volume": 8812,
-      "market_cap": 8333301223,
+      "market_cap": 8369000327,
       "change": -0.8603877480784674,
       "all_time_high": 494.9,
       "pct_below_ath": 12.69
@@ -3283,7 +3269,7 @@
       "name": "EFFWA",
       "close": 362.1,
       "volume": 28800,
-      "market_cap": 8342238986.799999,
+      "market_cap": 8381589170.699999,
       "change": 0.47169811320755983,
       "all_time_high": 399.95,
       "pct_below_ath": 9.46
@@ -3295,7 +3281,7 @@
       "name": "EICHERMOT",
       "close": 7516,
       "volume": 419526,
-      "market_cap": 2061740484053,
+      "market_cap": 2058912963867,
       "change": 0.3002602255287916,
       "all_time_high": 8230,
       "pct_below_ath": 8.68
@@ -3307,7 +3293,7 @@
       "name": "EKI",
       "close": 68.34,
       "volume": 6068,
-      "market_cap": 1869132579,
+      "market_cap": 1889897642,
       "change": -0.02925687536570512,
       "all_time_high": 82.5,
       "pct_below_ath": 17.16
@@ -3319,7 +3305,7 @@
       "name": "ELANTAS",
       "close": 14228,
       "volume": 3136,
-      "market_cap": 108926744457,
+      "market_cap": 113455037919,
       "change": 3.96025135174631,
       "all_time_high": 14890,
       "pct_below_ath": 4.45
@@ -3331,7 +3317,7 @@
       "name": "ELPROINTL",
       "close": 172.53,
       "volume": 15621,
-      "market_cap": 29574110146,
+      "market_cap": 29133463344,
       "change": -0.42133210204316623,
       "all_time_high": 180.89,
       "pct_below_ath": 4.62
@@ -3343,7 +3329,7 @@
       "name": "EMBASSY.RR",
       "close": 441.07,
       "volume": 5129525,
-      "market_cap": 416580350299,
+      "market_cap": 419831618877,
       "change": 0.3663587129659158,
       "all_time_high": 512,
       "pct_below_ath": 13.85
@@ -3355,7 +3341,7 @@
       "name": "EMCURE",
       "close": 2003.8,
       "volume": 1744754,
-      "market_cap": 362344531395,
+      "market_cap": 382386261711,
       "change": 4.921981359304639,
       "all_time_high": 2100.7,
       "pct_below_ath": 4.61
@@ -3367,7 +3353,7 @@
       "name": "EMMVEE",
       "close": 328,
       "volume": 974170,
-      "market_cap": 225219850228,
+      "market_cap": 227019951695,
       "change": 0.7680491551459293,
       "all_time_high": 371.55,
       "pct_below_ath": 11.72
@@ -3379,7 +3365,7 @@
       "name": "EMPIND",
       "close": 1057.1,
       "volume": 968,
-      "market_cap": 6372597828,
+      "market_cap": 6319197698,
       "change": -0.7697362245376932,
       "all_time_high": 1248,
       "pct_below_ath": 15.3
@@ -3391,7 +3377,7 @@
       "name": "EMPOWER",
       "close": 2.38,
       "volume": 1202346,
-      "market_cap": 2909496155,
+      "market_cap": 2769840473,
       "change": -4.800000000000004,
       "all_time_high": 2.82,
       "pct_below_ath": 15.6
@@ -3403,7 +3389,7 @@
       "name": "ENDURANCE",
       "close": 2732,
       "volume": 88695,
-      "market_cap": 378263467281,
+      "market_cap": 384487798031,
       "change": 1.5311431544522005,
       "all_time_high": 3079.9,
       "pct_below_ath": 11.3
@@ -3415,7 +3401,7 @@
       "name": "ENGINERSIN",
       "close": 266.35,
       "volume": 1732303,
-      "market_cap": 148182464361,
+      "market_cap": 149784288513,
       "change": 0.9857819905213356,
       "all_time_high": 303.89999,
       "pct_below_ath": 12.36
@@ -3427,7 +3413,7 @@
       "name": "ENKEIWHEL",
       "close": 395.1,
       "volume": 827,
-      "market_cap": 7024588933,
+      "market_cap": 7119856208,
       "change": 0.6367804381049413,
       "all_time_high": 425,
       "pct_below_ath": 7.04
@@ -3439,7 +3425,7 @@
       "name": "ENRIN",
       "close": 3228,
       "volume": 740325,
-      "market_cap": 1106359583194,
+      "market_cap": 1150358290077,
       "change": 3.8242578238075358,
       "all_time_high": 3968,
       "pct_below_ath": 18.65
@@ -3451,7 +3437,7 @@
       "name": "ENTERO",
       "close": 1732.3,
       "volume": 244661,
-      "market_cap": 72468091975,
+      "market_cap": 75425482544,
       "change": 3.942157686307455,
       "all_time_high": 1920,
       "pct_below_ath": 9.78
@@ -3463,7 +3449,7 @@
       "name": "EPWINDIA",
       "close": 240.15,
       "volume": 18000,
-      "market_cap": 2755104000,
+      "market_cap": 2756825940,
       "change": 0.06250000000000236,
       "all_time_high": 282.05,
       "pct_below_ath": 14.86
@@ -3475,7 +3461,7 @@
       "name": "ESDS",
       "close": 1564.55,
       "volume": 582208,
-      "market_cap": 190637773209,
+      "market_cap": 181108530094,
       "change": -4.997419315663233,
       "all_time_high": 1827.4,
       "pct_below_ath": 14.38
@@ -3487,7 +3473,7 @@
       "name": "ETERNAL",
       "close": 326.85,
       "volume": 17696853,
-      "market_cap": 3125748495884,
+      "market_cap": 3151321866036,
       "change": 1.3959981386691485,
       "all_time_high": 368.45,
       "pct_below_ath": 11.29
@@ -3499,7 +3485,7 @@
       "name": "FCL",
       "close": 57.02,
       "volume": 26160940,
-      "market_cap": 61753478892,
+      "market_cap": 66481353961,
       "change": 7.605208529911306,
       "all_time_high": 62.4,
       "pct_below_ath": 8.62
@@ -3511,7 +3497,7 @@
       "name": "FEDDERSHOL",
       "close": 52.9,
       "volume": 4766815,
-      "market_cap": 10578366829,
+      "market_cap": 10669004169,
       "change": 1.1665710460891174,
       "all_time_high": 53.49,
       "pct_below_ath": 1.1
@@ -3523,7 +3509,7 @@
       "name": "FEDERALBNK",
       "close": 332.75,
       "volume": 14568034,
-      "market_cap": 817213195312,
+      "market_cap": 814277070132,
       "change": 0,
       "all_time_high": 371.7,
       "pct_below_ath": 10.48
@@ -3535,7 +3521,7 @@
       "name": "FEDFINA",
       "close": 155.25,
       "volume": 792266,
-      "market_cap": 57015126709,
+      "market_cap": 58234200142,
       "change": 1.9570499770145067,
       "all_time_high": 178.48,
       "pct_below_ath": 13.02
@@ -3547,7 +3533,7 @@
       "name": "FERMENTA",
       "close": 474.15,
       "volume": 26096,
-      "market_cap": 13695709703,
+      "market_cap": 14001791782,
       "change": 1.814472836590077,
       "all_time_high": 580.45,
       "pct_below_ath": 18.31
@@ -3559,7 +3545,7 @@
       "name": "FILATEX",
       "close": 93.83,
       "volume": 6299414,
-      "market_cap": 40129557032,
+      "market_cap": 41741487732,
       "change": 3.8516878804648638,
       "all_time_high": 94.5,
       "pct_below_ath": 0.71
@@ -3571,7 +3557,7 @@
       "name": "FINCABLES",
       "close": 1411.2,
       "volume": 1061919,
-      "market_cap": 213304498836,
+      "market_cap": 215782127448,
       "change": 1.1033099297893747,
       "all_time_high": 1700,
       "pct_below_ath": 16.99
@@ -3583,7 +3569,7 @@
       "name": "FLUOROCHEM",
       "close": 4586.7,
       "volume": 225937,
-      "market_cap": 491501826718,
+      "market_cap": 503689705503,
       "change": 2.569435126794571,
       "all_time_high": 4958.9,
       "pct_below_ath": 7.51
@@ -3595,7 +3581,7 @@
       "name": "FLYSBS",
       "close": 670.4,
       "volume": 53800,
-      "market_cap": 11269933026.3,
+      "market_cap": 11600434670.4,
       "change": 2.932596345770002,
       "all_time_high": 790,
       "pct_below_ath": 15.14
@@ -3607,7 +3593,7 @@
       "name": "FORCAS",
       "close": 213.95,
       "volume": 9600,
-      "market_cap": 3679494000,
+      "market_cap": 3761241000,
       "change": 2.2216913521261237,
       "all_time_high": 248.95,
       "pct_below_ath": 14.06
@@ -3619,7 +3605,7 @@
       "name": "FORTIS",
       "close": 886,
       "volume": 1928099,
-      "market_cap": 669836600739,
+      "market_cap": 660588363647,
       "change": -0.01128540796750059,
       "all_time_high": 1104.3,
       "pct_below_ath": 19.77
@@ -3631,7 +3617,7 @@
       "name": "FOSECOIND",
       "close": 6677.5,
       "volume": 44756,
-      "market_cap": 51011411912,
+      "market_cap": 50255801735,
       "change": -1.300716872367157,
       "all_time_high": 7389.5,
       "pct_below_ath": 9.64
@@ -3643,7 +3629,7 @@
       "name": "FREDUN",
       "close": 1303.5,
       "volume": 65181,
-      "market_cap": 21146404477,
+      "market_cap": 21596239192,
       "change": 1.979345955249566,
       "all_time_high": 1590,
       "pct_below_ath": 18.02
@@ -3655,7 +3641,7 @@
       "name": "FRESHARA",
       "close": 450.95,
       "volume": 10800,
-      "market_cap": 10432469840,
+      "market_cap": 10596964240,
       "change": 1.576754138979615,
       "all_time_high": 493.95,
       "pct_below_ath": 8.71
@@ -3667,7 +3653,7 @@
       "name": "GABRIEL",
       "close": 1321.8,
       "volume": 293065,
-      "market_cap": 227776001466,
+      "market_cap": 234138563187,
       "change": 2.9679831736386935,
       "all_time_high": 1600,
       "pct_below_ath": 17.39
@@ -3679,7 +3665,7 @@
       "name": "GANDHAR",
       "close": 276.2,
       "volume": 670870,
-      "market_cap": 26378533836,
+      "market_cap": 27053902009,
       "change": 2.5241276911655572,
       "all_time_high": 344.04999,
       "pct_below_ath": 19.72
@@ -3691,7 +3677,7 @@
       "name": "GANDHITUBE",
       "close": 899.2,
       "volume": 7643,
-      "market_cap": 10826217477,
+      "market_cap": 10890015480,
       "change": 0.5816554809843452,
       "all_time_high": 1031.8,
       "pct_below_ath": 12.85
@@ -3703,7 +3689,7 @@
       "name": "GARFIBRES",
       "close": 819,
       "volume": 56698,
-      "market_cap": 78108914307,
+      "market_cap": 80105818214,
       "change": 2.413405026885076,
       "all_time_high": 986.39,
       "pct_below_ath": 16.97
@@ -3715,7 +3701,7 @@
       "name": "GCSL",
       "close": 618.55,
       "volume": 622465,
-      "market_cap": 14240726575,
+      "market_cap": 14947387434,
       "change": 4.07167493900899,
       "all_time_high": 620.5,
       "pct_below_ath": 0.31
@@ -3727,7 +3713,7 @@
       "name": "GHCLTEXTIL",
       "close": 124.51,
       "volume": 222126,
-      "market_cap": 11838300260,
+      "market_cap": 11914769186,
       "change": 0.1447759993565566,
       "all_time_high": 144.59,
       "pct_below_ath": 13.89
@@ -3739,7 +3725,7 @@
       "name": "GJL",
       "close": 303.4,
       "volume": 8800,
-      "market_cap": 1122873840,
+      "market_cap": 1166512320,
       "change": 3.886320835473366,
       "all_time_high": 306.65,
       "pct_below_ath": 1.06
@@ -3751,7 +3737,7 @@
       "name": "GKSL",
       "close": 181.25,
       "volume": 273151,
-      "market_cap": 14010444655,
+      "market_cap": 14317934038,
       "change": 1.9289168822404719,
       "all_time_high": 186,
       "pct_below_ath": 2.55
@@ -3763,7 +3749,7 @@
       "name": "GLASSWALL",
       "close": 269.51,
       "volume": 73819973,
-      "market_cap": 22722467890,
+      "market_cap": 23755707069,
       "change": 4.534171127142967,
       "all_time_high": 304.2,
       "pct_below_ath": 11.4
@@ -3775,7 +3761,7 @@
       "name": "GLAXO",
       "close": 2838.8,
       "volume": 125265,
-      "market_cap": 474413126300,
+      "market_cap": 483120621385,
       "change": 1.3893353334047678,
       "all_time_high": 3515.7,
       "pct_below_ath": 19.25
@@ -3787,7 +3773,7 @@
       "name": "GLENMARK",
       "close": 2447.4,
       "volume": 545520,
-      "market_cap": 681431540390,
+      "market_cap": 671694788208,
       "change": 1.2996688741721891,
       "all_time_high": 2537.6,
       "pct_below_ath": 3.55
@@ -3799,7 +3785,7 @@
       "name": "GLOBAL",
       "close": 130.16,
       "volume": 143869,
-      "market_cap": 6473143751,
+      "market_cap": 6625339518,
       "change": 2.3511834552174213,
       "all_time_high": 153.080004,
       "pct_below_ath": 14.97
@@ -3823,7 +3809,7 @@
       "name": "GMRAIRPORT",
       "close": 99.3,
       "volume": 21945461,
-      "market_cap": 1005214443558,
+      "market_cap": 1014823150009,
       "change": 4.482323232323222,
       "all_time_high": 119.64705064,
       "pct_below_ath": 17.01
@@ -3835,7 +3821,7 @@
       "name": "GNA",
       "close": 558.55,
       "volume": 2062341,
-      "market_cap": 23075305748,
+      "market_cap": 23989731294,
       "change": 4.100270245084336,
       "all_time_high": 601.65,
       "pct_below_ath": 7.16
@@ -3847,7 +3833,7 @@
       "name": "GNRL",
       "close": 98.43,
       "volume": 205527,
-      "market_cap": 15516675086,
+      "market_cap": 15151576105,
       "change": -2.592775853537843,
       "all_time_high": 120.9,
       "pct_below_ath": 18.59
@@ -3859,7 +3845,7 @@
       "name": "GOKULAGRO",
       "close": 224.24,
       "volume": 245236,
-      "market_cap": 64402679031,
+      "market_cap": 66173199416.99999,
       "change": 2.7822340376770507,
       "all_time_high": 259.8,
       "pct_below_ath": 13.69
@@ -3871,7 +3857,7 @@
       "name": "GOODLUCK",
       "close": 517.25,
       "volume": 363708,
-      "market_cap": 50914746533,
+      "market_cap": 51562894388,
       "change": 1.4713094654242276,
       "all_time_high": 557.36666109,
       "pct_below_ath": 7.2
@@ -3883,7 +3869,7 @@
       "name": "GRANULES",
       "close": 875.5,
       "volume": 1200729,
-      "market_cap": 215595707897,
+      "market_cap": 216822305679,
       "change": 0.5859375000000026,
       "all_time_high": 923.65,
       "pct_below_ath": 5.21
@@ -3895,7 +3881,7 @@
       "name": "GRASIM",
       "close": 3209.2,
       "volume": 682793,
-      "market_cap": 2160979381222,
+      "market_cap": 2158120976074,
       "change": 1.1376886955973626,
       "all_time_high": 3411.1,
       "pct_below_ath": 5.92
@@ -3907,7 +3893,7 @@
       "name": "GRAUWEIL",
       "close": 86.62,
       "volume": 14617872,
-      "market_cap": 36009940422,
+      "market_cap": 39197422707,
       "change": 9.52079908964471,
       "all_time_high": 88.53,
       "pct_below_ath": 2.16
@@ -3931,7 +3917,7 @@
       "name": "GROWW",
       "close": 191.76,
       "volume": 73111303,
-      "market_cap": 1176613076421,
+      "market_cap": 1206726359629,
       "change": 2.304737516005118,
       "all_time_high": 227.2,
       "pct_below_ath": 15.6
@@ -3943,7 +3929,7 @@
       "name": "GRWRHITECH",
       "close": 6724.5,
       "volume": 29770,
-      "market_cap": 151073300623,
+      "market_cap": 156143770870,
       "change": 3.4140715109573243,
       "all_time_high": 7990,
       "pct_below_ath": 15.84
@@ -3955,7 +3941,7 @@
       "name": "GUFICBIO",
       "close": 436,
       "volume": 58865,
-      "market_cap": 42735390534,
+      "market_cap": 43683061467,
       "change": 2.4676850763807283,
       "all_time_high": 504.25,
       "pct_below_ath": 13.53
@@ -3967,7 +3953,7 @@
       "name": "GUJTHEM",
       "close": 427.4,
       "volume": 580582,
-      "market_cap": 54800372909,
+      "market_cap": 55659374943,
       "change": 1.725574199690587,
       "all_time_high": 479,
       "pct_below_ath": 10.77
@@ -3979,7 +3965,7 @@
       "name": "GYFTR",
       "close": 171.05,
       "volume": 223375,
-      "market_cap": 13633464451,
+      "market_cap": 13168774301,
       "change": -2.8787190551896393,
       "all_time_high": 193.9,
       "pct_below_ath": 11.78
@@ -3991,7 +3977,7 @@
       "name": "HAL",
       "close": 4800.3,
       "volume": 972849,
-      "market_cap": 3194403904114,
+      "market_cap": 3210788892212,
       "change": 0.2568922305764449,
       "all_time_high": 5674.75,
       "pct_below_ath": 15.41
@@ -4015,7 +4001,7 @@
       "name": "HALDYNGL",
       "close": 142.58,
       "volume": 28774,
-      "market_cap": 7675742573,
+      "market_cap": 7621990875,
       "change": 1.545473969090532,
       "all_time_high": 149.79,
       "pct_below_ath": 4.81
@@ -4027,7 +4013,7 @@
       "name": "HALEOSLABS",
       "close": 1497.6,
       "volume": 777,
-      "market_cap": 4454208970,
+      "market_cap": 4474918413,
       "change": 0.3081044876088352,
       "all_time_high": 1774,
       "pct_below_ath": 15.58
@@ -4039,7 +4025,7 @@
       "name": "HAMPTON",
       "close": 8.22,
       "volume": 115275,
-      "market_cap": 2289634422,
+      "market_cap": 2182693323,
       "change": -0.48426150121064343,
       "all_time_high": 9.65,
       "pct_below_ath": 14.82
@@ -4051,7 +4037,7 @@
       "name": "HAPPYFORGE",
       "close": 2148.3,
       "volume": 61172,
-      "market_cap": 202527309151,
+      "market_cap": 202697195475,
       "change": 0.2379619260918423,
       "all_time_high": 2470,
       "pct_below_ath": 13.02
@@ -4063,7 +4049,7 @@
       "name": "HAWKINCOOK",
       "close": 8286,
       "volume": 937,
-      "market_cap": 43461610853,
+      "market_cap": 43915304356,
       "change": 0.4181057989456462,
       "all_time_high": 9600,
       "pct_below_ath": 13.69
@@ -4075,7 +4061,7 @@
       "name": "HAZOOR",
       "close": 19.3,
       "volume": 2904804,
-      "market_cap": 5329734990,
+      "market_cap": 5551207633,
       "change": 4.0431266846361185,
       "all_time_high": 22.49,
       "pct_below_ath": 14.18
@@ -4087,7 +4073,7 @@
       "name": "HCG",
       "close": 708.25,
       "volume": 82273,
-      "market_cap": 102936403831,
+      "market_cap": 105803007900,
       "change": 3.070654151204253,
       "all_time_high": 799.85089842,
       "pct_below_ath": 11.45
@@ -4099,7 +4085,7 @@
       "name": "HDFCAMC",
       "close": 2425,
       "volume": 1040790,
-      "market_cap": 1022498676254,
+      "market_cap": 1039865502167,
       "change": 1.562172802278351,
       "all_time_high": 2967.25,
       "pct_below_ath": 18.27
@@ -4111,7 +4097,7 @@
       "name": "HEROMOTOCO",
       "close": 5285.5,
       "volume": 688654,
-      "market_cap": 1065751915741.0001,
+      "market_cap": 1060748385620.0001,
       "change": -0.7417840375586854,
       "all_time_high": 6388.5,
       "pct_below_ath": 17.27
@@ -4123,7 +4109,7 @@
       "name": "HEXAGON",
       "close": 66.26,
       "volume": 200000,
-      "market_cap": 7861841952,
+      "market_cap": 8149470808,
       "change": 3.064240161766991,
       "all_time_high": 78.25,
       "pct_below_ath": 15.32
@@ -4135,7 +4121,7 @@
       "name": "HFCL",
       "close": 215.71,
       "volume": 6279766,
-      "market_cap": 320814301530,
+      "market_cap": 328620360466,
       "change": 2.988780138457875,
       "all_time_high": 256.7,
       "pct_below_ath": 15.97
@@ -4159,7 +4145,7 @@
       "name": "HINDALCO",
       "close": 986.5,
       "volume": 8310236,
-      "market_cap": 2210821464756,
+      "market_cap": 2184304218750,
       "change": 0.6119326874043856,
       "all_time_high": 1176,
       "pct_below_ath": 16.11
@@ -4171,7 +4157,7 @@
       "name": "HIRECT",
       "close": 1242.8,
       "volume": 50557,
-      "market_cap": 42979376340,
+      "market_cap": 44108732098,
       "change": 2.549715323046444,
       "all_time_high": 1399,
       "pct_below_ath": 11.17
@@ -4183,7 +4169,7 @@
       "name": "HITECHCORP",
       "close": 328.4,
       "volume": 1007,
-      "market_cap": 5513399454,
+      "market_cap": 5582102251,
       "change": -1.0247136829415413,
       "all_time_high": 351.35,
       "pct_below_ath": 6.53
@@ -4195,7 +4181,7 @@
       "name": "HNDFDS",
       "close": 625.7,
       "volume": 57146,
-      "market_cap": 74751332000,
+      "market_cap": 75835739684,
       "change": 0.8624163778512167,
       "all_time_high": 749,
       "pct_below_ath": 16.46
@@ -4207,7 +4193,7 @@
       "name": "HOACFOODS",
       "close": 842.45,
       "volume": 10125,
-      "market_cap": 3731059416,
+      "market_cap": 3656620527,
       "change": -1.9951140065146553,
       "all_time_high": 1010,
       "pct_below_ath": 16.59
@@ -4219,7 +4205,7 @@
       "name": "HOMEFIRST",
       "close": 1241.3,
       "volume": 873253,
-      "market_cap": 122731903363,
+      "market_cap": 130098112461,
       "change": 5.795619193727094,
       "all_time_high": 1519,
       "pct_below_ath": 18.28
@@ -4231,7 +4217,7 @@
       "name": "HONASA",
       "close": 479.55,
       "volume": 1065010,
-      "market_cap": 150150455587,
+      "market_cap": 156361223157,
       "change": 4.22734188219952,
       "all_time_high": 547,
       "pct_below_ath": 12.33
@@ -4243,7 +4229,7 @@
       "name": "HORIZONIND",
       "close": 54.23,
       "volume": 2786457,
-      "market_cap": 150401035468,
+      "market_cap": 156224500509,
       "change": 3.9486294805443647,
       "all_time_high": 60.25,
       "pct_below_ath": 9.99
@@ -4255,7 +4241,7 @@
       "name": "HPTL",
       "close": 428.05,
       "volume": 15600,
-      "market_cap": 4925541114,
+      "market_cap": 5100091615.5,
       "change": 3.5437832607644015,
       "all_time_high": 434.05,
       "pct_below_ath": 1.38
@@ -4267,7 +4253,7 @@
       "name": "HSCL",
       "close": 675.35,
       "volume": 2687060,
-      "market_cap": 329789677110,
+      "market_cap": 340209146416,
       "change": 3.3672610392592026,
       "all_time_high": 819.5,
       "pct_below_ath": 17.59
@@ -4279,7 +4265,7 @@
       "name": "HTEL",
       "close": 76.77,
       "volume": 3939738,
-      "market_cap": 6837923044,
+      "market_cap": 7270451357,
       "change": 6.551006245662733,
       "all_time_high": 86.45,
       "pct_below_ath": 11.2
@@ -4291,7 +4277,7 @@
       "name": "ICICIAMC",
       "close": 3206.7,
       "volume": 1632087,
-      "market_cap": 1530817541198,
+      "market_cap": 1585037679443,
       "change": 3.5087153001936677,
       "all_time_high": 3611,
       "pct_below_ath": 11.2
@@ -4303,7 +4289,7 @@
       "name": "ICICIBANK",
       "close": 1338.9,
       "volume": 7509409,
-      "market_cap": 9654459912109,
+      "market_cap": 9597753243700,
       "change": -0.6455921638468254,
       "all_time_high": 1500,
       "pct_below_ath": 10.74
@@ -4315,7 +4301,7 @@
       "name": "ICIL",
       "close": 447.35,
       "volume": 300607,
-      "market_cap": 86401204319,
+      "market_cap": 88678829189,
       "change": 2.7210103329506365,
       "all_time_high": 474.65,
       "pct_below_ath": 5.75
@@ -4327,7 +4313,7 @@
       "name": "IDFCFIRSTB",
       "close": 85.92,
       "volume": 27340008,
-      "market_cap": 743277607839,
+      "market_cap": 744484641971,
       "change": -0.47492181165295566,
       "all_time_high": 100.7,
       "pct_below_ath": 14.68
@@ -4339,7 +4325,7 @@
       "name": "IIFL",
       "close": 600.2,
       "volume": 2243955,
-      "market_cap": 253761055699,
+      "market_cap": 255271153207,
       "change": 0.611851479339551,
       "all_time_high": 705,
       "pct_below_ath": 14.87
@@ -4351,7 +4337,7 @@
       "name": "IKS",
       "close": 1779.9,
       "volume": 451923,
-      "market_cap": 289829137213,
+      "market_cap": 298271742694,
       "change": 2.949852507374631,
       "all_time_high": 2189,
       "pct_below_ath": 18.69
@@ -4363,7 +4349,7 @@
       "name": "INDGN",
       "close": 600.1,
       "volume": 469267,
-      "market_cap": 142459546191,
+      "market_cap": 143977633781,
       "change": 1.41106886354035,
       "all_time_high": 736.3,
       "pct_below_ath": 18.5
@@ -4375,7 +4361,7 @@
       "name": "INDHOTEL",
       "close": 732.75,
       "volume": 3256156,
-      "market_cap": 1033838826508,
+      "market_cap": 1042308265778,
       "change": 0.8394687951558554,
       "all_time_high": 894.9,
       "pct_below_ath": 18.12
@@ -4387,7 +4373,7 @@
       "name": "INDIAGLYCO",
       "close": 263.7,
       "volume": 1678037,
-      "market_cap": 16693015758.000002,
+      "market_cap": 17695065674,
       "change": 6.031363088057901,
       "all_time_high": 316.3,
       "pct_below_ath": 16.63
@@ -4399,7 +4385,7 @@
       "name": "INDIANB",
       "close": 839.8,
       "volume": 1400080,
-      "market_cap": 1131449750977,
+      "market_cap": 1137915161683,
       "change": -0.08328375966687038,
       "all_time_high": 1000.9,
       "pct_below_ath": 16.1
@@ -4411,7 +4397,7 @@
       "name": "INDIGRID",
       "close": 173.49,
       "volume": 1489506,
-      "market_cap": 165155682445,
+      "market_cap": 165260465150,
       "change": 0.21372458410351464,
       "all_time_high": 180.9,
       "pct_below_ath": 4.1
@@ -4423,7 +4409,7 @@
       "name": "INDNIPPON",
       "close": 1260,
       "volume": 32358,
-      "market_cap": 28584430462,
+      "market_cap": 28486027821,
       "change": -0.16638935108152358,
       "all_time_high": 1564,
       "pct_below_ath": 19.44
@@ -4435,7 +4421,7 @@
       "name": "INDOBORAX",
       "close": 472.6,
       "volume": 40484,
-      "market_cap": 14955544179,
+      "market_cap": 15114390072,
       "change": 1.253347616497059,
       "all_time_high": 542.8,
       "pct_below_ath": 12.93
@@ -4447,7 +4433,7 @@
       "name": "INDOKEM",
       "close": 620,
       "volume": 13991,
-      "market_cap": 18199621944,
+      "market_cap": 17582851964,
       "change": -3.5994713519396684,
       "all_time_high": 668,
       "pct_below_ath": 7.19
@@ -4459,7 +4445,7 @@
       "name": "INDOMIM",
       "close": 1055.9,
       "volume": 3925761,
-      "market_cap": 491340954379,
+      "market_cap": 523086603757,
       "change": 6.312927909786553,
       "all_time_high": 1064,
       "pct_below_ath": 0.76
@@ -4471,7 +4457,7 @@
       "name": "INDORAMA",
       "close": 91.05,
       "volume": 1163975,
-      "market_cap": 23293904691,
+      "market_cap": 23784796713,
       "change": 2.085435586949209,
       "all_time_high": 109.7,
       "pct_below_ath": 17.0
@@ -4483,7 +4469,7 @@
       "name": "INDOTECH",
       "close": 3394.7,
       "volume": 8364,
-      "market_cap": 36209421128,
+      "market_cap": 36042156130,
       "change": -0.4895350882335778,
       "all_time_high": 4030,
       "pct_below_ath": 15.76
@@ -4495,7 +4481,7 @@
       "name": "INDPRUD",
       "close": 6227.5,
       "volume": 64,
-      "market_cap": 10742051065,
+      "market_cap": 10356691325,
       "change": -0.7332430062963258,
       "all_time_high": 7052.5,
       "pct_below_ath": 11.7
@@ -4507,7 +4493,7 @@
       "name": "INDSWFTLAB",
       "close": 373.25,
       "volume": 399757,
-      "market_cap": 32854074599,
+      "market_cap": 32445356881,
       "change": -1.3218770654329148,
       "all_time_high": 404,
       "pct_below_ath": 7.61
@@ -4519,7 +4505,7 @@
       "name": "INDUSINVIT",
       "close": 132.05,
       "volume": 66874,
-      "market_cap": 80689424237,
+      "market_cap": 80744412521,
       "change": 0.08337122934668308,
       "all_time_high": 138,
       "pct_below_ath": 4.31
@@ -4531,7 +4517,7 @@
       "name": "INFLUX",
       "close": 273.7,
       "volume": 29400,
-      "market_cap": 6573556080,
+      "market_cap": 6336264480,
       "change": -3.6097904560662095,
       "all_time_high": 315,
       "pct_below_ath": 13.11
@@ -4543,7 +4529,7 @@
       "name": "INGERRAND",
       "close": 4155.7,
       "volume": 41603,
-      "market_cap": 133510539590,
+      "market_cap": 131302367183,
       "change": -1.6448925494651143,
       "all_time_high": 5000,
       "pct_below_ath": 16.89
@@ -4555,7 +4541,7 @@
       "name": "INNOMET",
       "close": 281.05,
       "volume": 28800,
-      "market_cap": 3671764157.5,
+      "market_cap": 3636825784.9,
       "change": -0.9515418502202604,
       "all_time_high": 293.75,
       "pct_below_ath": 4.32
@@ -4567,7 +4553,7 @@
       "name": "INNOVACAP",
       "close": 1179.8,
       "volume": 32076,
-      "market_cap": 65857309074.00001,
+      "market_cap": 67568335873,
       "change": 2.6359286646367948,
       "all_time_high": 1260,
       "pct_below_ath": 6.37
@@ -4579,7 +4565,7 @@
       "name": "INOXINDIA",
       "close": 2098.8,
       "volume": 229005,
-      "market_cap": 182929284385,
+      "market_cap": 190778056864,
       "change": 4.16914830256106,
       "all_time_high": 2339.5,
       "pct_below_ath": 10.29
@@ -4591,7 +4577,7 @@
       "name": "INVPRECQ",
       "close": 1357,
       "volume": 1269,
-      "market_cap": 13650000000,
+      "market_cap": 13720000000,
       "change": 0.5930318754633062,
       "all_time_high": 1405.8,
       "pct_below_ath": 3.47
@@ -4603,7 +4589,7 @@
       "name": "IOLCP",
       "close": 203.15,
       "volume": 4695376,
-      "market_cap": 57957003256,
+      "market_cap": 59571404486,
       "change": 2.8659678971087126,
       "all_time_high": 219.04,
       "pct_below_ath": 7.25
@@ -4615,7 +4601,7 @@
       "name": "IPCALAB",
       "close": 2009.6,
       "volume": 527501,
-      "market_cap": 499657954704,
+      "market_cap": 510108702408,
       "change": 1.9946201086128994,
       "all_time_high": 2038,
       "pct_below_ath": 1.39
@@ -4627,7 +4613,7 @@
       "name": "IRISDOREME",
       "close": 64.58,
       "volume": 2408240,
-      "market_cap": 11905233095,
+      "market_cap": 12291606466,
       "change": 3.245403677058355,
       "all_time_high": 66.3,
       "pct_below_ath": 2.59
@@ -4639,7 +4625,7 @@
       "name": "ISTLTD",
       "close": 663.85,
       "volume": 583,
-      "market_cap": 7844698444,
+      "market_cap": 7733306316,
       "change": -2.931715163035525,
       "all_time_high": 749.95,
       "pct_below_ath": 11.48
@@ -4651,7 +4637,7 @@
       "name": "ITL",
       "close": 356.85,
       "volume": 1046,
-      "market_cap": 1166365260,
+      "market_cap": 1144415784,
       "change": -1.5586206896551662,
       "all_time_high": 378.95,
       "pct_below_ath": 5.83
@@ -4663,7 +4649,7 @@
       "name": "IWP",
       "close": 34.73,
       "volume": 9946,
-      "market_cap": 2207058746,
+      "market_cap": 2220492958,
       "change": 0.057620282339372,
       "all_time_high": 39.15,
       "pct_below_ath": 11.29
@@ -4675,7 +4661,7 @@
       "name": "JAINIK",
       "close": 199,
       "volume": 2400,
-      "market_cap": 2862366150,
+      "market_cap": 2855192300,
       "change": -0.2506265664160401,
       "all_time_high": 221,
       "pct_below_ath": 9.95
@@ -4687,7 +4673,7 @@
       "name": "JAMNAAUTO",
       "close": 125.03,
       "volume": 2670217,
-      "market_cap": 50778112041,
+      "market_cap": 49998142242,
       "change": -1.5201638311279086,
       "all_time_high": 152.6,
       "pct_below_ath": 18.07
@@ -4699,7 +4685,7 @@
       "name": "JAYKAY",
       "close": 167.18,
       "volume": 966066,
-      "market_cap": 23707444352,
+      "market_cap": 25261289460,
       "change": 6.443397427734626,
       "all_time_high": 203.04990807,
       "pct_below_ath": 17.67
@@ -4711,7 +4697,7 @@
       "name": "JENBURPH",
       "close": 979.9,
       "volume": 1916,
-      "market_cap": 4378876351,
+      "market_cap": 4316207437,
       "change": -0.35590807402887936,
       "all_time_high": 1073.9,
       "pct_below_ath": 8.75
@@ -4723,7 +4709,7 @@
       "name": "JGCHEM",
       "close": 612.4,
       "volume": 346503,
-      "market_cap": 23094304600,
+      "market_cap": 23987748724,
       "change": 4.123097849188132,
       "all_time_high": 675,
       "pct_below_ath": 9.27
@@ -4735,7 +4721,7 @@
       "name": "JINDALSTEL",
       "close": 1119.5,
       "volume": 1056818,
-      "market_cap": 1148160249894,
+      "market_cap": 1147446113487,
       "change": -0.7887274016306354,
       "all_time_high": 1306.2,
       "pct_below_ath": 14.29
@@ -4747,7 +4733,7 @@
       "name": "JNPR",
       "close": 265.15,
       "volume": 720178,
-      "market_cap": 146517091370,
+      "market_cap": 150841482782,
       "change": 3.0909797822706024,
       "all_time_high": 282,
       "pct_below_ath": 5.98
@@ -4759,7 +4745,7 @@
       "name": "JSL",
       "close": 750.95,
       "volume": 2671236,
-      "market_cap": 597127074104,
+      "market_cap": 619056664476,
       "change": 3.65794740837877,
       "all_time_high": 884,
       "pct_below_ath": 15.05
@@ -4771,7 +4757,7 @@
       "name": "JSWINFRA",
       "close": 348.25,
       "volume": 25470641,
-      "market_cap": 757565365534,
+      "market_cap": 809494797147,
       "change": 6.612582274605855,
       "all_time_high": 360.95001,
       "pct_below_ath": 3.52
@@ -4783,7 +4769,7 @@
       "name": "JSWSTEEL",
       "close": 1275.6,
       "volume": 2378010,
-      "market_cap": 3073446834251,
+      "market_cap": 3100835800781,
       "change": 1.7711823839157346,
       "all_time_high": 1351,
       "pct_below_ath": 5.58
@@ -4795,7 +4781,7 @@
       "name": "JUBLPHARMA",
       "close": 1065.4,
       "volume": 308313,
-      "market_cap": 161200479020,
+      "market_cap": 169976875842,
       "change": 5.266278035767223,
       "all_time_high": 1309.9,
       "pct_below_ath": 18.67
@@ -4807,7 +4793,7 @@
       "name": "JYOTIRES",
       "close": 841,
       "volume": 2378,
-      "market_cap": 10078800293,
+      "market_cap": 10109400146,
       "change": 0.36997255042368093,
       "all_time_high": 911,
       "pct_below_ath": 7.68
@@ -4819,7 +4805,7 @@
       "name": "KABRAEXTRU",
       "close": 681.6,
       "volume": 233883,
-      "market_cap": 22195510930,
+      "market_cap": 23888194889,
       "change": 7.720268668510474,
       "all_time_high": 741.9,
       "pct_below_ath": 8.13
@@ -4831,7 +4817,7 @@
       "name": "KALYANIFRG",
       "close": 975.25,
       "volume": 3446,
-      "market_cap": 3728586301,
+      "market_cap": 3557782156,
       "change": -3.96356474643033,
       "all_time_high": 1192.25,
       "pct_below_ath": 18.2
@@ -4843,7 +4829,7 @@
       "name": "KAMAHOLD",
       "close": 2249.9,
       "volume": 5489,
-      "market_cap": 72818319130,
+      "market_cap": 72213416542,
       "change": -1.2682113393013905,
       "all_time_high": 2783.9,
       "pct_below_ath": 19.18
@@ -4855,7 +4841,7 @@
       "name": "KANCHI",
       "close": 386.65,
       "volume": 439,
-      "market_cap": 1694117546,
+      "market_cap": 1707583635,
       "change": -0.6041131105398516,
       "all_time_high": 463.35,
       "pct_below_ath": 16.55
@@ -4867,7 +4853,7 @@
       "name": "KANOHAR",
       "close": 786.8,
       "volume": 7345005,
-      "market_cap": 64830263799,
+      "market_cap": 62395268584,
       "change": -3.6964504283965782,
       "all_time_high": 884.95,
       "pct_below_ath": 11.09
@@ -4879,7 +4865,7 @@
       "name": "KANORICHEM",
       "close": 184.11,
       "volume": 60692,
-      "market_cap": 8041758012,
+      "market_cap": 8043942812,
       "change": -0.8775707978895205,
       "all_time_high": 221.55,
       "pct_below_ath": 16.9
@@ -4891,7 +4877,7 @@
       "name": "KANPRPLA",
       "close": 246.1,
       "volume": 26773,
-      "market_cap": 6364528618,
+      "market_cap": 6010807775,
       "change": -5.255052935514921,
       "all_time_high": 283.14,
       "pct_below_ath": 13.08
@@ -4903,7 +4889,7 @@
       "name": "KAPSTON",
       "close": 584.3,
       "volume": 40257,
-      "market_cap": 17568509060,
+      "market_cap": 17781534460,
       "change": 1.2125411397886716,
       "all_time_high": 600,
       "pct_below_ath": 2.62
@@ -4915,7 +4901,7 @@
       "name": "KARAMTARA",
       "close": 355.55,
       "volume": 29625649,
-      "market_cap": 113265543647,
+      "market_cap": 114681562069,
       "change": 1.0085227272727304,
       "all_time_high": 377.9,
       "pct_below_ath": 5.91
@@ -4927,7 +4913,7 @@
       "name": "KARURVYSYA",
       "close": 332.15,
       "volume": 3218547,
-      "market_cap": 320253311411,
+      "market_cap": 320978085062,
       "change": 0.19607843137254216,
       "all_time_high": 358.65,
       "pct_below_ath": 7.39
@@ -4939,7 +4925,7 @@
       "name": "KDDL",
       "close": 3858.4,
       "volume": 7233,
-      "market_cap": 47220011380,
+      "market_cap": 47392816867,
       "change": 0.5420054200542053,
       "all_time_high": 4155.5,
       "pct_below_ath": 7.15
@@ -4951,7 +4937,7 @@
       "name": "KDGREEN",
       "close": 49.35,
       "volume": 44221,
-      "market_cap": 4956757806,
+      "market_cap": 5050147278,
       "change": -0.2224019409623927,
       "all_time_high": 61.49,
       "pct_below_ath": 19.74
@@ -4963,7 +4949,7 @@
       "name": "KENNAMET",
       "close": 4281.5,
       "volume": 23629,
-      "market_cap": 94914128235,
+      "market_cap": 94050387657,
       "change": -0.9278970751573575,
       "all_time_high": 5136,
       "pct_below_ath": 16.64
@@ -4975,7 +4961,7 @@
       "name": "KIMS",
       "close": 809.85,
       "volume": 1242321,
-      "market_cap": 332414125592,
+      "market_cap": 340625246948,
       "change": 2.273157795036939,
       "all_time_high": 858,
       "pct_below_ath": 5.61
@@ -4987,7 +4973,7 @@
       "name": "KINGFA",
       "close": 5828,
       "volume": 6576,
-      "market_cap": 79292518727,
+      "market_cap": 78666442272,
       "change": -0.46964392451541287,
       "all_time_high": 6347,
       "pct_below_ath": 8.18
@@ -4999,7 +4985,7 @@
       "name": "KIRANVYPAR",
       "close": 207.34,
       "volume": 1367,
-      "market_cap": 5664202601,
+      "market_cap": 5673751826,
       "change": 0.16425120772947024,
       "all_time_high": 219,
       "pct_below_ath": 5.32
@@ -5011,7 +4997,7 @@
       "name": "KIRLFER",
       "close": 480.65,
       "volume": 201207,
-      "market_cap": 78272785565,
+      "market_cap": 79295961273,
       "change": 1.3281332349530839,
       "all_time_high": 534,
       "pct_below_ath": 9.99
@@ -5023,7 +5009,7 @@
       "name": "KISSHT",
       "close": 356.05,
       "volume": 4153061,
-      "market_cap": 63763759249,
+      "market_cap": 63036954152,
       "change": -1.0834838171968266,
       "all_time_high": 373,
       "pct_below_ath": 4.54
@@ -5035,7 +5021,7 @@
       "name": "KLBRENG_B",
       "close": 471,
       "volume": 93229,
-      "market_cap": 25776964371,
+      "market_cap": 26404169071,
       "change": 2.3690502064768477,
       "all_time_high": 544.85,
       "pct_below_ath": 13.55
@@ -5047,7 +5033,7 @@
       "name": "KMCSHIL",
       "close": 150.26,
       "volume": 467949,
-      "market_cap": 25588034164,
+      "market_cap": 24527981719,
       "change": -4.134235038917964,
       "all_time_high": 160.39,
       "pct_below_ath": 6.32
@@ -5059,7 +5045,7 @@
       "name": "KMEW",
       "close": 2885.6,
       "volume": 56943,
-      "market_cap": 71637711027,
+      "market_cap": 73231854632,
       "change": 2.0331671440189525,
       "all_time_high": 3175,
       "pct_below_ath": 9.11
@@ -5071,7 +5057,7 @@
       "name": "KNACK",
       "close": 182.6,
       "volume": 753950,
-      "market_cap": 22502954027.399998,
+      "market_cap": 22392825378,
       "change": -0.8470894874022602,
       "all_time_high": 222,
       "pct_below_ath": 17.75
@@ -5083,7 +5069,7 @@
       "name": "KNAGRI",
       "close": 196.06,
       "volume": 10201,
-      "market_cap": 5055779558.4,
+      "market_cap": 4901286294.599999,
       "change": -3.055775316455699,
       "all_time_high": 233.9,
       "pct_below_ath": 16.18
@@ -5095,7 +5081,7 @@
       "name": "KOTAKBANK",
       "close": 412.5,
       "volume": 15461137,
-      "market_cap": 4148172656250,
+      "market_cap": 4106392378569,
       "change": -0.9603841536614646,
       "all_time_high": 460.38,
       "pct_below_ath": 10.4
@@ -5107,7 +5093,7 @@
       "name": "KOVAI",
       "close": 6226,
       "volume": 3229,
-      "market_cap": 67193693509.00001,
+      "market_cap": 68198741314,
       "change": 1.8651832460732982,
       "all_time_high": 6444,
       "pct_below_ath": 3.38
@@ -5119,7 +5105,7 @@
       "name": "KPIL",
       "close": 1445.5,
       "volume": 224766,
-      "market_cap": 238996187210,
+      "market_cap": 247124956539,
       "change": 3.3016508254127093,
       "all_time_high": 1479.6,
       "pct_below_ath": 2.3
@@ -5131,7 +5117,7 @@
       "name": "KPL",
       "close": 3471.2,
       "volume": 28652,
-      "market_cap": 35811891342,
+      "market_cap": 36061436873,
       "change": 0.5532864053764349,
       "all_time_high": 3798.9,
       "pct_below_ath": 8.63
@@ -5143,7 +5129,7 @@
       "name": "KPRMILL",
       "close": 1141.4,
       "volume": 265730,
-      "market_cap": 374696485025,
+      "market_cap": 390112329596,
       "change": 4.199379222201935,
       "all_time_high": 1389,
       "pct_below_ath": 17.83
@@ -5155,7 +5141,7 @@
       "name": "KRISHANA",
       "close": 179.89,
       "volume": 358867,
-      "market_cap": 55114974576,
+      "market_cap": 54464035973,
       "change": -1.1810591078883794,
       "all_time_high": 206.39,
       "pct_below_ath": 12.84
@@ -5167,7 +5153,7 @@
       "name": "KRISHIVAL",
       "close": 419.3,
       "volume": 7573,
-      "market_cap": 10282591445,
+      "market_cap": 10377846737,
       "change": 2.405666137501532,
       "all_time_high": 482.43115096,
       "pct_below_ath": 13.09
@@ -5179,7 +5165,7 @@
       "name": "KRMAYURVED",
       "close": 312.2,
       "volume": 93000,
-      "market_cap": 6746051840,
+      "market_cap": 6637621760,
       "change": -1.6073116924046715,
       "all_time_high": 343.95,
       "pct_below_ath": 9.23
@@ -5191,7 +5177,7 @@
       "name": "KRN",
       "close": 1446.2,
       "volume": 245619,
-      "market_cap": 91072387582,
+      "market_cap": 94774059879,
       "change": 3.8340034462952395,
       "all_time_high": 1687,
       "pct_below_ath": 14.27
@@ -5203,7 +5189,7 @@
       "name": "KROSS",
       "close": 239.19,
       "volume": 1324987,
-      "market_cap": 15637083572,
+      "market_cap": 15427427950,
       "change": -1.1815740549473306,
       "all_time_high": 270.89,
       "pct_below_ath": 11.7
@@ -5215,7 +5201,7 @@
       "name": "KRT.RR",
       "close": 113.61,
       "volume": 4321212,
-      "market_cap": 503880793240,
+      "market_cap": 504856366525,
       "change": 0.05284015852047756,
       "all_time_high": 129.07,
       "pct_below_ath": 11.98
@@ -5227,7 +5213,7 @@
       "name": "KSHINTL",
       "close": 1046.95,
       "volume": 274277,
-      "market_cap": 70875860393,
+      "market_cap": 71014754629,
       "change": 0.1339008177514314,
       "all_time_high": 1198,
       "pct_below_ath": 12.61
@@ -5239,7 +5225,7 @@
       "name": "KTKBANK",
       "close": 313.8,
       "volume": 1649339,
-      "market_cap": 118458637365,
+      "market_cap": 118775674921,
       "change": -0.03185727938832937,
       "all_time_high": 345.9,
       "pct_below_ath": 9.28
@@ -5251,7 +5237,7 @@
       "name": "KUSUMGAR",
       "close": 591.2,
       "volume": 504398,
-      "market_cap": 57886994129,
+      "market_cap": 62044656574,
       "change": 7.198549410698105,
       "all_time_high": 659.5,
       "pct_below_ath": 10.36
@@ -5263,7 +5249,7 @@
       "name": "KWIL",
       "close": 41.22,
       "volume": 11630941,
-      "market_cap": 93772188767,
+      "market_cap": 96850156608,
       "change": 3.2823853670759267,
       "all_time_high": 50.68,
       "pct_below_ath": 18.67
@@ -5287,7 +5273,7 @@
       "name": "LALITHAA",
       "close": 304.9,
       "volume": 8505145,
-      "market_cap": 162483759391,
+      "market_cap": 170599552054,
       "change": 4.993112947658402,
       "all_time_high": 343.9,
       "pct_below_ath": 11.34
@@ -5299,7 +5285,7 @@
       "name": "LALPATHLAB",
       "close": 1896.9,
       "volume": 477275,
-      "market_cap": 323394305433,
+      "market_cap": 318216173560,
       "change": -1.4443809424845406,
       "all_time_high": 2122.75,
       "pct_below_ath": 10.64
@@ -5311,7 +5297,7 @@
       "name": "LASERPOWER",
       "close": 280.75,
       "volume": 1116298,
-      "market_cap": 37780141402.5,
+      "market_cap": 39485616855,
       "change": 4.368029739776952,
       "all_time_high": 343.5,
       "pct_below_ath": 18.27
@@ -5323,7 +5309,7 @@
       "name": "LAURUSLABS",
       "close": 1954,
       "volume": 2655873,
-      "market_cap": 1057066791144.9999,
+      "market_cap": 1056445418929.9999,
       "change": 0.3028591961398332,
       "all_time_high": 1982,
       "pct_below_ath": 1.41
@@ -5335,7 +5321,7 @@
       "name": "LCCPROJECT",
       "close": 155.78,
       "volume": 11654009,
-      "market_cap": 50040700424,
+      "market_cap": 45072841050,
       "change": -8.418577307466192,
       "all_time_high": 189,
       "pct_below_ath": 17.58
@@ -5347,7 +5333,7 @@
       "name": "LCL",
       "close": 538.6,
       "volume": 322072,
-      "market_cap": 55460967500,
+      "market_cap": 56881960000,
       "change": 2.600247642632627,
       "all_time_high": 604.7,
       "pct_below_ath": 10.93
@@ -5359,7 +5345,7 @@
       "name": "LEAPIND",
       "close": 140.47,
       "volume": 2759097,
-      "market_cap": 60001065666,
+      "market_cap": 61807267876,
       "change": 3.0518670677132977,
       "all_time_high": 172.29,
       "pct_below_ath": 18.47
@@ -5371,7 +5357,7 @@
       "name": "LENSKART",
       "close": 707.2,
       "volume": 25690503,
-      "market_cap": 1182380301132,
+      "market_cap": 1228993684783,
       "change": 4.007647621148614,
       "all_time_high": 725,
       "pct_below_ath": 2.46
@@ -5383,7 +5369,7 @@
       "name": "LGBBROSLTD",
       "close": 1730.4,
       "volume": 25696,
-      "market_cap": 54815090001,
+      "market_cap": 54953821232,
       "change": 0.6924643584521437,
       "all_time_high": 2048,
       "pct_below_ath": 15.51
@@ -5395,7 +5381,7 @@
       "name": "LGEINDIA",
       "close": 1696.9,
       "volume": 1337344,
-      "market_cap": 1121332004639,
+      "market_cap": 1151265850903,
       "change": 2.661988021053905,
       "all_time_high": 1755,
       "pct_below_ath": 3.31
@@ -5407,7 +5393,7 @@
       "name": "LKPSEC",
       "close": 15.01,
       "volume": 9134,
-      "market_cap": 1242725241,
+      "market_cap": 1247689478,
       "change": -0.33200531208499806,
       "all_time_high": 18.43,
       "pct_below_ath": 18.56
@@ -5419,7 +5405,7 @@
       "name": "LLOYDSENGG",
       "close": 82.43,
       "volume": 2821471,
-      "market_cap": 116820507848,
+      "market_cap": 120082915166,
       "change": 2.7805486284289325,
       "all_time_high": 99.75,
       "pct_below_ath": 17.36
@@ -5431,7 +5417,7 @@
       "name": "LLOYDSME",
       "close": 1826.7,
       "volume": 342148,
-      "market_cap": 1013148477165,
+      "market_cap": 1026542173064,
       "change": 1.5228144278330513,
       "all_time_high": 2125,
       "pct_below_ath": 14.04
@@ -5443,7 +5429,7 @@
       "name": "LMW",
       "close": 17759,
       "volume": 8747,
-      "market_cap": 194246853671,
+      "market_cap": 189994477330,
       "change": -2.2619702806824438,
       "all_time_high": 20151,
       "pct_below_ath": 11.87
@@ -5455,7 +5441,7 @@
       "name": "LOTUSCHO",
       "close": 575.1,
       "volume": 1912,
-      "market_cap": 7310409150,
+      "market_cap": 7400938390,
       "change": 1.0987079194866836,
       "all_time_high": 671,
       "pct_below_ath": 14.29
@@ -5467,7 +5453,7 @@
       "name": "LOTUSDEV",
       "close": 215.13,
       "volume": 557967,
-      "market_cap": 104415820728,
+      "market_cap": 105271087245,
       "change": 0.8154084071418574,
       "all_time_high": 220.4,
       "pct_below_ath": 2.39
@@ -5479,7 +5465,7 @@
       "name": "LT",
       "close": 3885,
       "volume": 1547690,
-      "market_cap": 5269773365913,
+      "market_cap": 5310843103027,
       "change": 1.2720921745477343,
       "all_time_high": 4440,
       "pct_below_ath": 12.5
@@ -5491,7 +5477,7 @@
       "name": "LTF",
       "close": 312.8,
       "volume": 4647669,
-      "market_cap": 756918466797,
+      "market_cap": 779475639648,
       "change": 3.473370823685081,
       "all_time_high": 338.6,
       "pct_below_ath": 7.62
@@ -5503,7 +5489,7 @@
       "name": "LTFOODS",
       "close": 423.2,
       "volume": 459122,
-      "market_cap": 146471281503,
+      "market_cap": 146801176025,
       "change": 0.3081298885991968,
       "all_time_high": 518.55,
       "pct_below_ath": 18.39
@@ -5515,7 +5501,7 @@
       "name": "LUMAXIND",
       "close": 5851,
       "volume": 10193,
-      "market_cap": 53507356768,
+      "market_cap": 54799210667,
       "change": 2.2187281621243886,
       "all_time_high": 6934.5,
       "pct_below_ath": 15.62
@@ -5527,7 +5513,7 @@
       "name": "LUMAXTECH",
       "close": 2102.7,
       "volume": 190451,
-      "market_cap": 137671739056,
+      "market_cap": 143294740951,
       "change": 4.1972249752229835,
       "all_time_high": 2148.7,
       "pct_below_ath": 2.14
@@ -5539,7 +5525,7 @@
       "name": "LUMINO",
       "close": 111.52,
       "volume": 21880189,
-      "market_cap": 32712115207,
+      "market_cap": 34039967249,
       "change": 4.088109016240429,
       "all_time_high": 122,
       "pct_below_ath": 8.59
@@ -5551,7 +5537,7 @@
       "name": "LUPIN",
       "close": 2083,
       "volume": 1194290,
-      "market_cap": 956600198242,
+      "market_cap": 980698087218,
       "change": -0.7196987750822129,
       "all_time_high": 2529.5,
       "pct_below_ath": 17.65
@@ -5563,7 +5549,7 @@
       "name": "M&MFIN",
       "close": 353.3,
       "volume": 3129493,
-      "market_cap": 480391911216,
+      "market_cap": 491714079934,
       "change": 2.1984379519814934,
       "all_time_high": 415,
       "pct_below_ath": 14.87
@@ -5575,7 +5561,7 @@
       "name": "MACPOWER",
       "close": 2104.5,
       "volume": 237776,
-      "market_cap": 19224070720,
+      "market_cap": 21053838900,
       "change": 9.518109908409663,
       "all_time_high": 2149,
       "pct_below_ath": 2.07
@@ -5587,7 +5573,7 @@
       "name": "MADHUSUDAN",
       "close": 233.45,
       "volume": 17000,
-      "market_cap": 3823995000,
+      "market_cap": 3766715750,
       "change": -1.4978902953586546,
       "all_time_high": 260,
       "pct_below_ath": 10.21
@@ -5599,7 +5585,7 @@
       "name": "MAGSON",
       "close": 180,
       "volume": 43000,
-      "market_cap": 2539633026,
+      "market_cap": 2553820920,
       "change": 0.5586592178770949,
       "all_time_high": 213.9,
       "pct_below_ath": 15.85
@@ -5611,7 +5597,7 @@
       "name": "MAHABANK",
       "close": 83.54,
       "volume": 18030197,
-      "market_cap": 621477681676,
+      "market_cap": 630707524414,
       "change": 3.3910891089109025,
       "all_time_high": 96.75,
       "pct_below_ath": 13.65
@@ -5623,7 +5609,7 @@
       "name": "MAHASTEEL",
       "close": 1141.9,
       "volume": 2857,
-      "market_cap": 19505167902,
+      "market_cap": 18530609152,
       "change": -4.992095848240286,
       "all_time_high": 1421,
       "pct_below_ath": 19.64
@@ -5659,7 +5645,7 @@
       "name": "MANAKSTEEL",
       "close": 107.58,
       "volume": 16755,
-      "market_cap": 6974133480,
+      "market_cap": 6921051059,
       "change": 2.9867892016082758,
       "all_time_high": 120.76,
       "pct_below_ath": 10.91
@@ -5671,7 +5657,7 @@
       "name": "MANAPPURAM",
       "close": 319.15,
       "volume": 3822669,
-      "market_cap": 296830214111,
+      "market_cap": 297534716202,
       "change": 0.980857459262764,
       "all_time_high": 381.55,
       "pct_below_ath": 16.35
@@ -5683,7 +5669,7 @@
       "name": "MANGLMCEM",
       "close": 1030.8,
       "volume": 36083,
-      "market_cap": 28324967229,
+      "market_cap": 28252098715,
       "change": -0.42503863987636115,
       "all_time_high": 1120,
       "pct_below_ath": 7.96
@@ -5695,7 +5681,7 @@
       "name": "MANINDS",
       "close": 851.55,
       "volume": 1165509,
-      "market_cap": 61706622338,
+      "market_cap": 63889398914,
       "change": 3.469015795868767,
       "all_time_high": 944,
       "pct_below_ath": 9.79
@@ -5707,7 +5693,7 @@
       "name": "MANIPALHOS",
       "close": 738.95,
       "volume": 838917,
-      "market_cap": 948781556331,
+      "market_cap": 971274554575,
       "change": 2.41147529623728,
       "all_time_high": 815,
       "pct_below_ath": 9.33
@@ -5719,7 +5705,7 @@
       "name": "MANORAMA",
       "close": 1966.9,
       "volume": 97087,
-      "market_cap": 122261760179,
+      "market_cap": 124228024192,
       "change": 1.4336547883038617,
       "all_time_high": 2149.5,
       "pct_below_ath": 8.49
@@ -5731,7 +5717,7 @@
       "name": "MARC",
       "close": 155.9,
       "volume": 10800,
-      "market_cap": 2700887748,
+      "market_cap": 2699156409.7,
       "change": -0.06410256410256046,
       "all_time_high": 159.45,
       "pct_below_ath": 2.23
@@ -5743,7 +5729,7 @@
       "name": "MARICO",
       "close": 803.9,
       "volume": 2848872,
-      "market_cap": 1061928938232,
+      "market_cap": 1041450969727,
       "change": -1.6034271725826221,
       "all_time_high": 889.1,
       "pct_below_ath": 9.58
@@ -5755,7 +5741,7 @@
       "name": "MARINE",
       "close": 379.2,
       "volume": 395698,
-      "market_cap": 51473803600,
+      "market_cap": 52308364800,
       "change": 1.6213319040600325,
       "all_time_high": 450,
       "pct_below_ath": 15.73
@@ -5767,7 +5753,7 @@
       "name": "MARKOLINES",
       "close": 169.71,
       "volume": 68615,
-      "market_cap": 3839023069,
+      "market_cap": 3772411908,
       "change": -1.8109233973617194,
       "all_time_high": 191.75,
       "pct_below_ath": 11.49
@@ -5779,22 +5765,10 @@
       "name": "MARKSANS",
       "close": 320.15,
       "volume": 975318,
-      "market_cap": 144627210384,
+      "market_cap": 144921764061,
       "change": 0.14075695964966803,
       "all_time_high": 358.7,
       "pct_below_ath": 10.75
-    },
-    {
-      "symbol": "MARUSHIKA",
-      "exchange": "NSE",
-      "qualified_symbol": "NSE:MARUSHIKA",
-      "name": "MARUSHIKA",
-      "close": 117,
-      "volume": 10800,
-      "market_cap": 1018436422.4,
-      "change": -1.9279128248113973,
-      "all_time_high": 123,
-      "pct_below_ath": 4.88
     },
     {
       "symbol": "MAXESTATES",
@@ -5803,7 +5777,7 @@
       "name": "MAXESTATES",
       "close": 594,
       "volume": 201561,
-      "market_cap": 94646857338,
+      "market_cap": 97214818932,
       "change": 2.8393351800553974,
       "all_time_high": 698.75,
       "pct_below_ath": 14.99
@@ -5815,7 +5789,7 @@
       "name": "MAYURUNIQ",
       "close": 743.4,
       "volume": 37518,
-      "market_cap": 32576416540,
+      "market_cap": 32367844579,
       "change": -0.880000000000003,
       "all_time_high": 907,
       "pct_below_ath": 18.04
@@ -5827,7 +5801,7 @@
       "name": "MBAPL",
       "close": 159.82,
       "volume": 852099,
-      "market_cap": 71810270406,
+      "market_cap": 70022686819,
       "change": -2.4893227577791412,
       "all_time_high": 174.94,
       "pct_below_ath": 8.64
@@ -5839,7 +5813,7 @@
       "name": "MBECL",
       "close": 401.59,
       "volume": 1893,
-      "market_cap": 12745333817,
+      "market_cap": 13382334395,
       "change": 4.999084895547349,
       "all_time_high": 401.59,
       "pct_below_ath": 0.0
@@ -5851,7 +5825,7 @@
       "name": "MCCHRLS_B",
       "close": 655,
       "volume": 6059,
-      "market_cap": 8633198147,
+      "market_cap": 8629268171,
       "change": -0.7199696854869269,
       "all_time_high": 799,
       "pct_below_ath": 18.02
@@ -5863,7 +5837,7 @@
       "name": "MCX",
       "close": 3260,
       "volume": 2197423,
-      "market_cap": 832548346329,
+      "market_cap": 828468476944,
       "change": -0.15925517579320772,
       "all_time_high": 3480,
       "pct_below_ath": 6.32
@@ -5875,7 +5849,7 @@
       "name": "MEDANTA",
       "close": 1499.4,
       "volume": 703445,
-      "market_cap": 382618021934,
+      "market_cap": 405122578102,
       "change": 5.294943820224725,
       "all_time_high": 1544,
       "pct_below_ath": 2.89
@@ -5887,7 +5861,7 @@
       "name": "MEESHO",
       "close": 214.44,
       "volume": 83376786,
-      "market_cap": 958552915569,
+      "market_cap": 996025331501,
       "change": 3.4392938112006153,
       "all_time_high": 254.4,
       "pct_below_ath": 15.71
@@ -5899,7 +5873,7 @@
       "name": "MENNPIS",
       "close": 73.79,
       "volume": 26549,
-      "market_cap": 3810720062,
+      "market_cap": 3791339813,
       "change": -1.0725298297358858,
       "all_time_high": 85.8,
       "pct_below_ath": 14.0
@@ -5911,7 +5885,7 @@
       "name": "MENONBE",
       "close": 316.85,
       "volume": 88392,
-      "market_cap": 17125824622,
+      "market_cap": 17537718971,
       "change": 3.8682183248647797,
       "all_time_high": 324,
       "pct_below_ath": 2.21
@@ -5923,7 +5897,7 @@
       "name": "MERCURYEV",
       "close": 39.91,
       "volume": 456747,
-      "market_cap": 7811692363,
+      "market_cap": 7572326616,
       "change": -2.2771792360431116,
       "all_time_high": 44.05,
       "pct_below_ath": 9.4
@@ -5935,7 +5909,7 @@
       "name": "METALIC",
       "close": 143.65,
       "volume": 56000,
-      "market_cap": 3282265140,
+      "market_cap": 3445359060,
       "change": 4.9689440993788905,
       "all_time_high": 161.95,
       "pct_below_ath": 11.3
@@ -5959,7 +5933,7 @@
       "name": "MFSL",
       "close": 1559,
       "volume": 898566,
-      "market_cap": 535997751129,
+      "market_cap": 543555773163,
       "change": 0.32175032175032175,
       "all_time_high": 1892.5,
       "pct_below_ath": 17.62
@@ -5971,7 +5945,7 @@
       "name": "MIIL",
       "close": 711.35,
       "volume": 83235,
-      "market_cap": 14988300999,
+      "market_cap": 15381500328,
       "change": 3.2438316400580582,
       "all_time_high": 742.9,
       "pct_below_ath": 4.25
@@ -5983,22 +5957,10 @@
       "name": "MILKYMIST",
       "close": 274.07,
       "volume": 5036730,
-      "market_cap": 211245036561,
+      "market_cap": 211052575700,
       "change": -0.2511282573882653,
       "all_time_high": 304.7,
       "pct_below_ath": 10.05
-    },
-    {
-      "symbol": "MINALIND",
-      "exchange": "NSE",
-      "qualified_symbol": "NSE:MINALIND",
-      "name": "MINALIND",
-      "close": 5.15,
-      "volume": 7728,
-      "market_cap": 1007478413,
-      "change": -1.904761904761898,
-      "all_time_high": 5.89,
-      "pct_below_ath": 12.56
     },
     {
       "symbol": "MINDACORP",
@@ -6007,7 +5969,7 @@
       "name": "MINDACORP",
       "close": 691.45,
       "volume": 90197,
-      "market_cap": 162956528196,
+      "market_cap": 165263650455,
       "change": 1.497247706422025,
       "all_time_high": 769,
       "pct_below_ath": 10.08
@@ -6019,7 +5981,7 @@
       "name": "MINDSPACE.RR",
       "close": 505.58,
       "volume": 902294,
-      "market_cap": 330778316161,
+      "market_cap": 334836319531,
       "change": 1.3023964093932836,
       "all_time_high": 511.68,
       "pct_below_ath": 1.19
@@ -6031,7 +5993,7 @@
       "name": "MKEXIM",
       "close": 67.43,
       "volume": 49723,
-      "market_cap": 2725193035,
+      "market_cap": 2775248337,
       "change": 0.2974862412613459,
       "all_time_high": 69.87,
       "pct_below_ath": 3.49
@@ -6043,7 +6005,7 @@
       "name": "MLKFOOD",
       "close": 79.82,
       "volume": 3524,
-      "market_cap": 2047950413,
+      "market_cap": 2058956779,
       "change": 0.8847320525783476,
       "all_time_high": 93,
       "pct_below_ath": 14.17
@@ -6055,7 +6017,7 @@
       "name": "MMFL",
       "close": 628.55,
       "volume": 41604,
-      "market_cap": 29842856370,
+      "market_cap": 30347399689,
       "change": 1.6084707403814953,
       "all_time_high": 729.79999,
       "pct_below_ath": 13.87
@@ -6067,7 +6029,7 @@
       "name": "MMP",
       "close": 466.85,
       "volume": 94696,
-      "market_cap": 11829997038,
+      "market_cap": 11859209888,
       "change": 0.24694009018682286,
       "all_time_high": 498,
       "pct_below_ath": 6.26
@@ -6079,7 +6041,7 @@
       "name": "MOBILISE",
       "close": 108.95,
       "volume": 3200,
-      "market_cap": 1080563200,
+      "market_cap": 1036332400,
       "change": -4.093309859154922,
       "all_time_high": 125.9,
       "pct_below_ath": 13.46
@@ -6091,7 +6053,7 @@
       "name": "MODIS",
       "close": 352.4,
       "volume": 19609,
-      "market_cap": 6856919956,
+      "market_cap": 6902959395,
       "change": 0.9597478871221791,
       "all_time_high": 429.05,
       "pct_below_ath": 17.87
@@ -6103,7 +6065,7 @@
       "name": "MODISONLTD",
       "close": 457.6,
       "volume": 46210,
-      "market_cap": 14560315738,
+      "market_cap": 15064912854,
       "change": 1.8020022246941096,
       "all_time_high": 546,
       "pct_below_ath": 16.19
@@ -6115,7 +6077,7 @@
       "name": "MOMSBELIEF",
       "close": 223.73,
       "volume": 90045,
-      "market_cap": 4561792075,
+      "market_cap": 4643308507,
       "change": 3.5595260137011655,
       "all_time_high": 239,
       "pct_below_ath": 6.39
@@ -6127,7 +6089,7 @@
       "name": "MONOLITH",
       "close": 1295,
       "volume": 26750,
-      "market_cap": 28172029600,
+      "market_cap": 28148120000,
       "change": -0.08486999459917514,
       "all_time_high": 1505,
       "pct_below_ath": 13.95
@@ -6139,7 +6101,7 @@
       "name": "MOTHERSON",
       "close": 162.57,
       "volume": 19068300,
-      "market_cap": 1709760498047,
+      "market_cap": 1735090218786,
       "change": 0.4324457898313391,
       "all_time_high": 173.27,
       "pct_below_ath": 6.18
@@ -6151,7 +6113,7 @@
       "name": "MOTILALOFS",
       "close": 1010,
       "volume": 739629,
-      "market_cap": 594312350419,
+      "market_cap": 605636020020,
       "change": 2.154344088196617,
       "all_time_high": 1097.1,
       "pct_below_ath": 7.94
@@ -6163,7 +6125,7 @@
       "name": "MPIMANIPAL",
       "close": 341.35,
       "volume": 1721733,
-      "market_cap": 80146417946,
+      "market_cap": 79068528273,
       "change": -1.1009705924960032,
       "all_time_high": 350.5,
       "pct_below_ath": 2.61
@@ -6175,7 +6137,7 @@
       "name": "MPSLTD",
       "close": 2667.3,
       "volume": 8970,
-      "market_cap": 44163796293,
+      "market_cap": 45635752586,
       "change": 3.725452070775819,
       "all_time_high": 3079,
       "pct_below_ath": 13.37
@@ -6187,7 +6149,7 @@
       "name": "MRIL",
       "close": 84.2,
       "volume": 169600,
-      "market_cap": 1795941875,
+      "market_cap": 1861148380,
       "change": 3.630769230769234,
       "all_time_high": 85.3,
       "pct_below_ath": 1.29
@@ -6199,7 +6161,7 @@
       "name": "MSL",
       "close": 141.43,
       "volume": 649,
-      "market_cap": 1405460205,
+      "market_cap": 1592671930,
       "change": 3.8246953457642103,
       "all_time_high": 160,
       "pct_below_ath": 11.61
@@ -6211,7 +6173,7 @@
       "name": "MTARTECH",
       "close": 7202,
       "volume": 88193,
-      "market_cap": 217111969594,
+      "market_cap": 221509044267,
       "change": 2.0113314447592066,
       "all_time_high": 8714,
       "pct_below_ath": 17.35
@@ -6223,7 +6185,7 @@
       "name": "MVELECTRO",
       "close": 832.75,
       "volume": 2320560,
-      "market_cap": 21762068811,
+      "market_cap": 22745610829,
       "change": 4.616834170854271,
       "all_time_high": 948,
       "pct_below_ath": 12.16
@@ -6235,7 +6197,7 @@
       "name": "MWL",
       "close": 42.52,
       "volume": 3022051,
-      "market_cap": 11942640920,
+      "market_cap": 12610906095,
       "change": 5.823792931806877,
       "all_time_high": 48,
       "pct_below_ath": 11.42
@@ -6247,7 +6209,7 @@
       "name": "NAMOEWASTE",
       "close": 270.95,
       "volume": 28800,
-      "market_cap": 6112487026.8,
+      "market_cap": 6195953460.200001,
       "change": 1.365506921062468,
       "all_time_high": 319.4,
       "pct_below_ath": 15.17
@@ -6259,7 +6221,7 @@
       "name": "NAM_INDIA",
       "close": 1155,
       "volume": 1528510,
-      "market_cap": 715275778687,
+      "market_cap": 737988023895,
       "change": 3.2171581769436997,
       "all_time_high": 1269.5,
       "pct_below_ath": 9.02
@@ -6271,7 +6233,7 @@
       "name": "NAVINFLUOR",
       "close": 8590,
       "volume": 298599,
-      "market_cap": 421775127619,
+      "market_cap": 440466975881,
       "change": 4.5012165450121655,
       "all_time_high": 8949.5,
       "pct_below_ath": 4.02
@@ -6283,7 +6245,7 @@
       "name": "NAZARA",
       "close": 369.35,
       "volume": 3038750,
-      "market_cap": 134145388486.00002,
+      "market_cap": 136683076181.00002,
       "change": 1.8756033650530992,
       "all_time_high": 419.5,
       "pct_below_ath": 11.95
@@ -6295,7 +6257,7 @@
       "name": "NEAGI",
       "close": 3308,
       "volume": 1,
-      "market_cap": 2055915000.9999998,
+      "market_cap": 2061513559,
       "change": 0,
       "all_time_high": 3600,
       "pct_below_ath": 8.11
@@ -6307,7 +6269,7 @@
       "name": "NEOCHEM",
       "close": 108,
       "volume": 14400,
-      "market_cap": 1805383298.4,
+      "market_cap": 1849041216,
       "change": 2.4182076813655735,
       "all_time_high": 121,
       "pct_below_ath": 10.74
@@ -6319,7 +6281,7 @@
       "name": "NEOGEN",
       "close": 2488.4,
       "volume": 355984,
-      "market_cap": 65520240857,
+      "market_cap": 68155726962,
       "change": 3.8737685757221647,
       "all_time_high": 2498.2,
       "pct_below_ath": 0.39
@@ -6331,7 +6293,7 @@
       "name": "NEPHROPLUS",
       "close": 743.35,
       "volume": 75741,
-      "market_cap": 73930987855,
+      "market_cap": 74780712745,
       "change": 1.122296286219562,
       "all_time_high": 781.5,
       "pct_below_ath": 4.88
@@ -6343,7 +6305,7 @@
       "name": "NESTLEIND",
       "close": 1372.4,
       "volume": 3264904,
-      "market_cap": 2645647262207,
+      "market_cap": 2609202074272,
       "change": 0.13132934481250416,
       "all_time_high": 1553,
       "pct_below_ath": 11.63
@@ -6355,7 +6317,7 @@
       "name": "NETWEB",
       "close": 4664.5,
       "volume": 1136499,
-      "market_cap": 272183576350,
+      "market_cap": 277364453705,
       "change": 1.878344435950639,
       "all_time_high": 5813,
       "pct_below_ath": 19.76
@@ -6367,7 +6329,7 @@
       "name": "NEULANDLAB",
       "close": 22840,
       "volume": 75518,
-      "market_cap": 290676506272,
+      "market_cap": 293492666763,
       "change": 0.772115596735054,
       "all_time_high": 24225,
       "pct_below_ath": 5.72
@@ -6379,7 +6341,7 @@
       "name": "NH",
       "close": 1928.5,
       "volume": 271767,
-      "market_cap": 382399907880,
+      "market_cap": 394365242352,
       "change": 3.2056084769346085,
       "all_time_high": 2370.2,
       "pct_below_ath": 18.64
@@ -6403,7 +6365,7 @@
       "name": "NICCOPAR",
       "close": 80.45,
       "volume": 5480,
-      "market_cap": 3793607824,
+      "market_cap": 3787055853,
       "change": -1.890243902439021,
       "all_time_high": 98.99,
       "pct_below_ath": 18.73
@@ -6415,7 +6377,7 @@
       "name": "NIMBSPROJ",
       "close": 185.46,
       "volume": 10487,
-      "market_cap": 3448394219,
+      "market_cap": 3620330844,
       "change": 0.9415990856147707,
       "all_time_high": 231.23,
       "pct_below_ath": 19.79
@@ -6427,7 +6389,7 @@
       "name": "NIRLON",
       "close": 600.4,
       "volume": 1961,
-      "market_cap": 54160943237,
+      "market_cap": 54016756570,
       "change": -0.10814408119124487,
       "all_time_high": 657,
       "pct_below_ath": 8.61
@@ -6439,7 +6401,7 @@
       "name": "NITINSPIN",
       "close": 619.2,
       "volume": 58258,
-      "market_cap": 34760826068,
+      "market_cap": 34845156070,
       "change": 0.38096782037772925,
       "all_time_high": 665.5,
       "pct_below_ath": 6.96
@@ -6451,7 +6413,7 @@
       "name": "NITTAGELA",
       "close": 1711.4,
       "volume": 5804,
-      "market_cap": 15980683232,
+      "market_cap": 15566673770,
       "change": -3.0972198629749066,
       "all_time_high": 2087.2,
       "pct_below_ath": 18.0
@@ -6463,7 +6425,7 @@
       "name": "NORTHARC",
       "close": 313.6,
       "volume": 1062365,
-      "market_cap": 50140051207,
+      "market_cap": 50730123381,
       "change": 0.9821284817259737,
       "all_time_high": 350,
       "pct_below_ath": 10.4
@@ -6475,7 +6437,7 @@
       "name": "NRAIL",
       "close": 625.2,
       "volume": 18686,
-      "market_cap": 10604600912,
+      "market_cap": 10670125071,
       "change": -0.5250596658711145,
       "all_time_high": 685,
       "pct_below_ath": 8.73
@@ -6487,7 +6449,7 @@
       "name": "NRBBEARING",
       "close": 525.5,
       "volume": 9738086,
-      "market_cap": 45708698654,
+      "market_cap": 50952211894,
       "change": 11.287590004235497,
       "all_time_high": 534.9,
       "pct_below_ath": 1.76
@@ -6499,7 +6461,7 @@
       "name": "NRL",
       "close": 143.67,
       "volume": 210713,
-      "market_cap": 9471430598.7,
+      "market_cap": 9923141793.3,
       "change": 4.769197112229266,
       "all_time_high": 143.98,
       "pct_below_ath": 0.22
@@ -6511,7 +6473,7 @@
       "name": "NRVANDANA",
       "close": 70,
       "volume": 33000,
-      "market_cap": 1666743655.5,
+      "market_cap": 1630636700,
       "change": -2.1663172606568795,
       "all_time_high": 82.9,
       "pct_below_ath": 15.56
@@ -6523,7 +6485,7 @@
       "name": "NTCIND",
       "close": 132.85,
       "volume": 747,
-      "market_cap": 1932478996,
+      "market_cap": 1913604251,
       "change": 0.6210709687192253,
       "all_time_high": 155,
       "pct_below_ath": 14.29
@@ -6535,7 +6497,7 @@
       "name": "NUVAMA",
       "close": 1713.7,
       "volume": 265082,
-      "market_cap": 311091867692,
+      "market_cap": 315850663787,
       "change": 1.5586108806447763,
       "all_time_high": 2066,
       "pct_below_ath": 17.05
@@ -6547,7 +6509,7 @@
       "name": "NXST.RR",
       "close": 166.35,
       "volume": 919152,
-      "market_cap": 251702099075,
+      "market_cap": 252808042603,
       "change": 0.06015037593984621,
       "all_time_high": 191.9,
       "pct_below_ath": 13.31
@@ -6559,7 +6521,7 @@
       "name": "OBSCP",
       "close": 930.25,
       "volume": 33200,
-      "market_cap": 23241655800,
+      "market_cap": 24042869400,
       "change": 3.4473172087850985,
       "all_time_high": 1030,
       "pct_below_ath": 9.68
@@ -6571,7 +6533,7 @@
       "name": "OCCLLTD",
       "close": 154.09,
       "volume": 17991,
-      "market_cap": 7672391320,
+      "market_cap": 7792272125,
       "change": -0.36210798577433057,
       "all_time_high": 183.03,
       "pct_below_ath": 15.81
@@ -6583,7 +6545,7 @@
       "name": "OFSS",
       "close": 11896,
       "volume": 162844,
-      "market_cap": 1011858001876,
+      "market_cap": 1016695452309,
       "change": 2.3752151462994835,
       "all_time_high": 13220,
       "pct_below_ath": 10.02
@@ -6595,7 +6557,7 @@
       "name": "OLIL",
       "close": 443.35,
       "volume": 23600,
-      "market_cap": 2418204023.05,
+      "market_cap": 2479728816.05,
       "change": 2.544234994795883,
       "all_time_high": 479.9,
       "pct_below_ath": 7.62
@@ -6607,7 +6569,7 @@
       "name": "OMPOWER",
       "close": 172.37,
       "volume": 71555,
-      "market_cap": 5730900780,
+      "market_cap": 5895276357,
       "change": 3.401319736052799,
       "all_time_high": 206,
       "pct_below_ath": 16.33
@@ -6619,7 +6581,7 @@
       "name": "ONEGLOBAL",
       "close": 538.75,
       "volume": 3309,
-      "market_cap": 10397854551,
+      "market_cap": 10558107415,
       "change": 1.5647092091620234,
       "all_time_high": 580,
       "pct_below_ath": 7.11
@@ -6631,7 +6593,7 @@
       "name": "OPTIFIN",
       "close": 14.01,
       "volume": 61040,
-      "market_cap": 1069286155,
+      "market_cap": 1064802744.0000001,
       "change": -7.402511566424328,
       "all_time_high": 16,
       "pct_below_ath": 12.44
@@ -6643,7 +6605,7 @@
       "name": "OPTIVALUE",
       "close": 193.1,
       "volume": 52800,
-      "market_cap": 4306527030,
+      "market_cap": 4520741340,
       "change": 4.974177765697204,
       "all_time_high": 202,
       "pct_below_ath": 4.41
@@ -6655,7 +6617,7 @@
       "name": "ORIRAIL",
       "close": 117.09,
       "volume": 33351,
-      "market_cap": 7916314931,
+      "market_cap": 7882785432,
       "change": -0.7207054434458151,
       "all_time_high": 142,
       "pct_below_ath": 17.54
@@ -6667,7 +6629,7 @@
       "name": "PAISALO",
       "close": 89.51,
       "volume": 25898908,
-      "market_cap": 80801917875,
+      "market_cap": 81384018244,
       "change": 0.8790713400202874,
       "all_time_high": 99.625,
       "pct_below_ath": 10.15
@@ -6679,7 +6641,7 @@
       "name": "PANCHMAHQ",
       "close": 296.4,
       "volume": 38,
-      "market_cap": 5717774888,
+      "market_cap": 5775963553,
       "change": 0.4745762711864329,
       "all_time_high": 331,
       "pct_below_ath": 10.45
@@ -6691,7 +6653,7 @@
       "name": "PANORAMA",
       "close": 53.26,
       "volume": 171382,
-      "market_cap": 13719805394,
+      "market_cap": 13863099783,
       "change": 1.1970359110773237,
       "all_time_high": 56.2,
       "pct_below_ath": 5.23
@@ -6703,7 +6665,7 @@
       "name": "PARAS",
       "close": 1372.7,
       "volume": 613001,
-      "market_cap": 110279722398,
+      "market_cap": 110634308600,
       "change": 0.13130060544167732,
       "all_time_high": 1585,
       "pct_below_ath": 13.39
@@ -6715,7 +6677,7 @@
       "name": "PARIN",
       "close": 704,
       "volume": 3750,
-      "market_cap": 7826516257,
+      "market_cap": 7827072021,
       "change": 0.007102777185873219,
       "all_time_high": 748,
       "pct_below_ath": 5.88
@@ -6727,7 +6689,7 @@
       "name": "PARKHOSPS",
       "close": 282.05,
       "volume": 1071510,
-      "market_cap": 120249553711,
+      "market_cap": 121869294503,
       "change": 1.4933429291112035,
       "all_time_high": 305,
       "pct_below_ath": 7.52
@@ -6739,7 +6701,7 @@
       "name": "PARNAXLAB",
       "close": 128.2,
       "volume": 1756,
-      "market_cap": 1421917280,
+      "market_cap": 1439145680,
       "change": 3.562484853380711,
       "all_time_high": 149.5,
       "pct_below_ath": 14.25
@@ -6751,7 +6713,7 @@
       "name": "PARTH",
       "close": 522.95,
       "volume": 49200,
-      "market_cap": 6869440269,
+      "market_cap": 7304542067.25,
       "change": 6.3338755591704015,
       "all_time_high": 559,
       "pct_below_ath": 6.45
@@ -6763,7 +6725,7 @@
       "name": "PASUPTAC",
       "close": 69.98,
       "volume": 130798,
-      "market_cap": 6282102433,
+      "market_cap": 6240209759,
       "change": -0.46935002133408943,
       "all_time_high": 78.95,
       "pct_below_ath": 11.36
@@ -6775,7 +6737,7 @@
       "name": "PATILAUTOM",
       "close": 325.9,
       "volume": 67800,
-      "market_cap": 6885553440,
+      "market_cap": 7111398720,
       "change": 3.279987323720477,
       "all_time_high": 338,
       "pct_below_ath": 3.58
@@ -6787,7 +6749,7 @@
       "name": "PAUSHAKLTD",
       "close": 716.35,
       "volume": 16660,
-      "market_cap": 17899685458,
+      "market_cap": 17704895253,
       "change": -0.5000347246336583,
       "all_time_high": 826.75,
       "pct_below_ath": 13.35
@@ -6799,7 +6761,7 @@
       "name": "PAYTM",
       "close": 1849.9,
       "volume": 4640337,
-      "market_cap": 1130512922607,
+      "market_cap": 1170934213257,
       "change": 4.9290981281905895,
       "all_time_high": 1955,
       "pct_below_ath": 5.38
@@ -6811,7 +6773,7 @@
       "name": "PCCL",
       "close": 445,
       "volume": 5200,
-      "market_cap": 10859355000,
+      "market_cap": 10991500000,
       "change": 1.2168770612987656,
       "all_time_high": 451.05,
       "pct_below_ath": 1.34
@@ -6823,7 +6785,7 @@
       "name": "PERMAGN",
       "close": 848.15,
       "volume": 6294,
-      "market_cap": 7101462974,
+      "market_cap": 7261393999,
       "change": 2.3470495957523747,
       "all_time_high": 929,
       "pct_below_ath": 8.7
@@ -6835,7 +6797,7 @@
       "name": "PERNIASPOP",
       "close": 546.45,
       "volume": 102495,
-      "market_cap": 44509963163,
+      "market_cap": 43745380745,
       "change": -1.4517583408476022,
       "all_time_high": 588.9,
       "pct_below_ath": 7.21
@@ -6847,7 +6809,7 @@
       "name": "PFOCUS",
       "close": 344.35,
       "volume": 5344944,
-      "market_cap": 260655622037,
+      "market_cap": 268326525592,
       "change": 2.806389013285575,
       "all_time_high": 367,
       "pct_below_ath": 6.17
@@ -6859,7 +6821,7 @@
       "name": "PGIL",
       "close": 1146.1,
       "volume": 101084,
-      "market_cap": 105420681120,
+      "market_cap": 105956484665,
       "change": 0.2624442306009973,
       "all_time_high": 1269.8,
       "pct_below_ath": 9.74
@@ -6871,7 +6833,7 @@
       "name": "PHOENIXLTD",
       "close": 1877.9,
       "volume": 421506,
-      "market_cap": 669805446605,
+      "market_cap": 671361336548,
       "change": 0.30445465228074164,
       "all_time_high": 2169.8,
       "pct_below_ath": 13.45
@@ -6883,7 +6845,7 @@
       "name": "PIDILITIND",
       "close": 1572.1,
       "volume": 1142486,
-      "market_cap": 1580868936764,
+      "market_cap": 1594101372861,
       "change": 1.3277473412826237,
       "all_time_high": 1707.5,
       "pct_below_ath": 7.93
@@ -6895,7 +6857,7 @@
       "name": "PIRAMALFIN",
       "close": 2300.2,
       "volume": 529289,
-      "market_cap": 708722172050,
+      "market_cap": 719800123950,
       "change": 2.058745230277737,
       "all_time_high": 2326.4,
       "pct_below_ath": 1.13
@@ -6907,7 +6869,7 @@
       "name": "POEL",
       "close": 137.16,
       "volume": 20393,
-      "market_cap": 4247257819.0000005,
+      "market_cap": 4228797982,
       "change": -0.47888550282977554,
       "all_time_high": 168.97,
       "pct_below_ath": 18.83
@@ -6919,7 +6881,7 @@
       "name": "POLYCAB",
       "close": 8400,
       "volume": 417221,
-      "market_cap": 1239438322449,
+      "market_cap": 1259781687012,
       "change": 2.3329475543643783,
       "all_time_high": 10126,
       "pct_below_ath": 17.05
@@ -6931,7 +6893,7 @@
       "name": "POONAWALLA",
       "close": 479.4,
       "volume": 7163603,
-      "market_cap": 381553432952,
+      "market_cap": 423468840866,
       "change": 10.767097966728272,
       "all_time_high": 570.4,
       "pct_below_ath": 15.95
@@ -6943,7 +6905,7 @@
       "name": "POWERICA",
       "close": 576.3,
       "volume": 141360,
-      "market_cap": 70362840973,
+      "market_cap": 72925516386,
       "change": 3.520747260643059,
       "all_time_high": 676.95,
       "pct_below_ath": 14.87
@@ -6955,7 +6917,7 @@
       "name": "POWERINDIA",
       "close": 32700,
       "volume": 125521,
-      "market_cap": 1390702354347,
+      "market_cap": 1430772910309,
       "change": 4.707012487992316,
       "all_time_high": 38785,
       "pct_below_ath": 15.69
@@ -6967,7 +6929,7 @@
       "name": "PRAMODINI",
       "close": 118.2,
       "volume": 177600,
-      "market_cap": 2548470782,
+      "market_cap": 2605789329,
       "change": 2.249134948096893,
       "all_time_high": 137,
       "pct_below_ath": 13.72
@@ -6979,7 +6941,7 @@
       "name": "PRASOLCHEM",
       "close": 703.4,
       "volume": 1150866,
-      "market_cap": 40164836023,
+      "market_cap": 41478705273,
       "change": 3.624042427813793,
       "all_time_high": 734.9,
       "pct_below_ath": 4.29
@@ -6991,7 +6953,7 @@
       "name": "PRECWIRE",
       "close": 478.4,
       "volume": 1840592,
-      "market_cap": 82181319846,
+      "market_cap": 87528452914,
       "change": 6.488592097941008,
       "all_time_high": 524.9,
       "pct_below_ath": 8.86
@@ -7015,7 +6977,7 @@
       "name": "PREMIERPOL",
       "close": 81.43,
       "volume": 131946,
-      "market_cap": 8609831324,
+      "market_cap": 8484140670.999999,
       "change": -1.093161666464219,
       "all_time_high": 98.8,
       "pct_below_ath": 17.58
@@ -7027,7 +6989,7 @@
       "name": "PRICOLLTD",
       "close": 767.5,
       "volume": 280279,
-      "market_cap": 91721921521,
+      "market_cap": 93635462563,
       "change": 1.9933554817275747,
       "all_time_high": 823,
       "pct_below_ath": 6.74
@@ -7039,7 +7001,7 @@
       "name": "PRIMESECU",
       "close": 296.85,
       "volume": 24904,
-      "market_cap": 10019992985,
+      "market_cap": 10215264844,
       "change": 0.9522190103723895,
       "all_time_high": 359,
       "pct_below_ath": 17.31
@@ -7051,7 +7013,7 @@
       "name": "PRIORITY",
       "close": 232.06,
       "volume": 229769,
-      "market_cap": 3973500000,
+      "market_cap": 4170599945,
       "change": 4.923814260523586,
       "all_time_high": 245,
       "pct_below_ath": 5.28
@@ -7063,7 +7025,7 @@
       "name": "PRIVISCL",
       "close": 3444.9,
       "volume": 27058,
-      "market_cap": 136233128892.00002,
+      "market_cap": 134596395947.99998,
       "change": -1.3148848401512572,
       "all_time_high": 3785.3,
       "pct_below_ath": 8.99
@@ -7075,7 +7037,7 @@
       "name": "PRIZOR",
       "close": 1106.9,
       "volume": 6800,
-      "market_cap": 12075179228.35,
+      "market_cap": 11834092600.7,
       "change": -1.9965469918987078,
       "all_time_high": 1248.85,
       "pct_below_ath": 11.37
@@ -7087,7 +7049,7 @@
       "name": "PROPSHOP",
       "close": 74.5,
       "volume": 128000,
-      "market_cap": 1049028646.8,
+      "market_cap": 1089994898,
       "change": 3.9051603905160346,
       "all_time_high": 80,
       "pct_below_ath": 6.87
@@ -7099,7 +7061,7 @@
       "name": "PROV",
       "close": 1951.35,
       "volume": 2560,
-      "market_cap": 6372931659,
+      "market_cap": 6725700482.85,
       "change": 5.535424553812867,
       "all_time_high": 1954,
       "pct_below_ath": 0.14
@@ -7111,7 +7073,7 @@
       "name": "PRUDENT",
       "close": 3501.6,
       "volume": 57792,
-      "market_cap": 137345961079,
+      "market_cap": 144801236025,
       "change": 5.463526293596774,
       "all_time_high": 4105.5,
       "pct_below_ath": 14.71
@@ -7123,7 +7085,7 @@
       "name": "PTCIL",
       "close": 22805,
       "volume": 28545,
-      "market_cap": 338948559697,
+      "market_cap": 341888592688,
       "change": 0.5955006616674019,
       "all_time_high": 24125,
       "pct_below_ath": 5.47
@@ -7135,7 +7097,7 @@
       "name": "PWL",
       "close": 136.6,
       "volume": 20005965,
-      "market_cap": 370878362566,
+      "market_cap": 396261143487,
       "change": 6.885758998435053,
       "all_time_high": 161.99,
       "pct_below_ath": 15.67
@@ -7147,7 +7109,7 @@
       "name": "QLINE",
       "close": 696.95,
       "volume": 37200,
-      "market_cap": 16845293220,
+      "market_cap": 16258588990,
       "change": -3.4828971056640325,
       "all_time_high": 735,
       "pct_below_ath": 5.18
@@ -7159,7 +7121,7 @@
       "name": "QMSMEDI",
       "close": 177.36,
       "volume": 86775,
-      "market_cap": 3266480702.64,
+      "market_cap": 3429688713.12,
       "change": 4.996448022732671,
       "all_time_high": 177.36,
       "pct_below_ath": 0.0
@@ -7171,7 +7133,7 @@
       "name": "QPOWER",
       "close": 1536.1,
       "volume": 298373,
-      "market_cap": 115298779007,
+      "market_cap": 118938651680,
       "change": 3.1077997046583405,
       "all_time_high": 1570,
       "pct_below_ath": 2.16
@@ -7183,7 +7145,7 @@
       "name": "QUALIANCE",
       "close": 192.35,
       "volume": 17000,
-      "market_cap": 2723357400,
+      "market_cap": 2587492200,
       "change": -4.988886144727091,
       "all_time_high": 236.1,
       "pct_below_ath": 18.53
@@ -7195,7 +7157,7 @@
       "name": "QUINT",
       "close": 70.02,
       "volume": 668824,
-      "market_cap": 2986850676,
+      "market_cap": 3285205091,
       "change": 9.99057492931197,
       "all_time_high": 70.02,
       "pct_below_ath": 0.0
@@ -7207,7 +7169,7 @@
       "name": "RACLGEAR",
       "close": 1760.9,
       "volume": 49043,
-      "market_cap": 21599888495,
+      "market_cap": 20764113320,
       "change": -3.7233460907599736,
       "all_time_high": 1927.7,
       "pct_below_ath": 8.65
@@ -7219,7 +7181,7 @@
       "name": "RADICO",
       "close": 4535.4,
       "volume": 371544,
-      "market_cap": 588711954673,
+      "market_cap": 594613852844,
       "change": 3.5479452054794436,
       "all_time_high": 4747,
       "pct_below_ath": 4.46
@@ -7231,7 +7193,7 @@
       "name": "RAINBOW",
       "close": 1454.7,
       "volume": 99805,
-      "market_cap": 149521335621,
+      "market_cap": 147703290236,
       "change": -1.2691733405728278,
       "all_time_high": 1709.6,
       "pct_below_ath": 14.91
@@ -7243,7 +7205,7 @@
       "name": "RAJPALAYAM",
       "close": 790.65,
       "volume": 350,
-      "market_cap": 7191756420,
+      "market_cap": 7140584420,
       "change": 2.5153970826580196,
       "all_time_high": 875,
       "pct_below_ath": 9.64
@@ -7255,7 +7217,7 @@
       "name": "RAMBHAJO",
       "close": 290.85,
       "volume": 1439325,
-      "market_cap": 12194622925,
+      "market_cap": 13333000340,
       "change": 9.272269602133978,
       "all_time_high": 292.78,
       "pct_below_ath": 0.66
@@ -7267,7 +7229,7 @@
       "name": "RAMCOIND",
       "close": 332.1,
       "volume": 174010,
-      "market_cap": 27771929944,
+      "market_cap": 28909554915,
       "change": 3.490183857899672,
       "all_time_high": 398.05,
       "pct_below_ath": 16.57
@@ -7279,7 +7241,7 @@
       "name": "RAMRAT",
       "close": 554.75,
       "volume": 145032,
-      "market_cap": 52140120618,
+      "market_cap": 51771390661,
       "change": -0.5111190817790571,
       "all_time_high": 602.45,
       "pct_below_ath": 7.92
@@ -7291,7 +7253,7 @@
       "name": "RAPIDFLEET",
       "close": 209.25,
       "volume": 12000,
-      "market_cap": 1577292820,
+      "market_cap": 1555731900,
       "change": -1.3669573415036558,
       "all_time_high": 244.9,
       "pct_below_ath": 14.56
@@ -7303,7 +7265,7 @@
       "name": "RAPPID",
       "close": 365.9,
       "volume": 22800,
-      "market_cap": 1913246104,
+      "market_cap": 1899746945.6,
       "change": -0.7055630936228013,
       "all_time_high": 430,
       "pct_below_ath": 14.91
@@ -7315,7 +7277,7 @@
       "name": "RATEGAIN",
       "close": 858.4,
       "volume": 539083,
-      "market_cap": 102459826691,
+      "market_cap": 101618238884,
       "change": -0.8146051187243708,
       "all_time_high": 1050,
       "pct_below_ath": 18.25
@@ -7327,7 +7289,7 @@
       "name": "RATNAVEER",
       "close": 299.25,
       "volume": 9860141,
-      "market_cap": 24295887999,
+      "market_cap": 23948346865,
       "change": -1.5139048872799152,
       "all_time_high": 331.95,
       "pct_below_ath": 9.85
@@ -7339,7 +7301,7 @@
       "name": "RAYMOND",
       "close": 978,
       "volume": 2069600,
-      "market_cap": 65232275650,
+      "market_cap": 65112443734,
       "change": -0.02044571662237226,
       "all_time_high": 1122,
       "pct_below_ath": 12.83
@@ -7351,7 +7313,7 @@
       "name": "REDINGTON",
       "close": 399.85,
       "volume": 10809796,
-      "market_cap": 312709765625,
+      "market_cap": 312475242844,
       "change": -0.06248437890527368,
       "all_time_high": 413.2,
       "pct_below_ath": 3.23
@@ -7363,7 +7325,7 @@
       "name": "RELIABLE",
       "close": 140.2,
       "volume": 7570,
-      "market_cap": 1407751196,
+      "market_cap": 1446863926,
       "change": 2.7783886811817258,
       "all_time_high": 175,
       "pct_below_ath": 19.89
@@ -7375,7 +7337,7 @@
       "name": "RENTOMOJO",
       "close": 512.75,
       "volume": 35242382,
-      "market_cap": 55488512255,
+      "market_cap": 53421809985,
       "change": -4.024333177351427,
       "all_time_high": 581.95,
       "pct_below_ath": 11.89
@@ -7387,7 +7349,7 @@
       "name": "RICOAUTO",
       "close": 130.58,
       "volume": 724126,
-      "market_cap": 17309713853,
+      "market_cap": 17668220311,
       "change": 1.9837550765385978,
       "all_time_high": 157.99,
       "pct_below_ath": 17.35
@@ -7399,7 +7361,7 @@
       "name": "RIR",
       "close": 198.93,
       "volume": 14823429,
-      "market_cap": 15787162747,
+      "market_cap": 15818992433,
       "change": 0.6577948692000261,
       "all_time_high": 213.94,
       "pct_below_ath": 7.02
@@ -7411,7 +7373,7 @@
       "name": "RISHABH",
       "close": 764.7,
       "volume": 72318,
-      "market_cap": 30201052187,
+      "market_cap": 29597378008,
       "change": -1.7537097706687192,
       "all_time_high": 852,
       "pct_below_ath": 10.25
@@ -7423,7 +7385,7 @@
       "name": "RML",
       "close": 1324.5,
       "volume": 89211,
-      "market_cap": 35452920000,
+      "market_cap": 36577750104,
       "change": 3.3312529255734162,
       "all_time_high": 1529,
       "pct_below_ath": 13.37
@@ -7435,7 +7397,7 @@
       "name": "ROSSTECH",
       "close": 1374.3,
       "volume": 911139,
-      "market_cap": 51189927720,
+      "market_cap": 51723333775,
       "change": 1.2599469496021154,
       "all_time_high": 1464.9,
       "pct_below_ath": 6.18
@@ -7447,7 +7409,7 @@
       "name": "RPEL",
       "close": 1652.4,
       "volume": 80692,
-      "market_cap": 75904388110,
+      "market_cap": 75683960519,
       "change": -0.1148522033488402,
       "all_time_high": 1943.7,
       "pct_below_ath": 14.99
@@ -7459,7 +7421,7 @@
       "name": "RPGLIFE",
       "close": 2802.4,
       "volume": 17373,
-      "market_cap": 46740911387,
+      "market_cap": 46401861584,
       "change": -0.7824393697999613,
       "all_time_high": 3082,
       "pct_below_ath": 9.07
@@ -7471,7 +7433,7 @@
       "name": "RPTECH",
       "close": 798.05,
       "volume": 162620,
-      "market_cap": 53569510325,
+      "market_cap": 52941975283,
       "change": -1.0845314823996035,
       "all_time_high": 967.7,
       "pct_below_ath": 17.53
@@ -7483,7 +7445,7 @@
       "name": "RRECL",
       "close": 138.89,
       "volume": 1174,
-      "market_cap": 3683176000,
+      "market_cap": 3681860580,
       "change": -3.5486111111111205,
       "all_time_high": 151.99,
       "pct_below_ath": 8.62
@@ -7495,7 +7457,7 @@
       "name": "RRKABEL",
       "close": 2450.8,
       "volume": 373286,
-      "market_cap": 270327822281.99997,
+      "market_cap": 277165044651,
       "change": 2.522484835808416,
       "all_time_high": 2983.8,
       "pct_below_ath": 17.86
@@ -7507,7 +7469,7 @@
       "name": "RSL",
       "close": 181.21,
       "volume": 149175,
-      "market_cap": 15121567364,
+      "market_cap": 15067248897,
       "change": 0.3210983778995806,
       "all_time_high": 193.09,
       "pct_below_ath": 6.15
@@ -7519,7 +7481,7 @@
       "name": "RUBICON",
       "close": 1751.1,
       "volume": 470413,
-      "market_cap": 294175031017,
+      "market_cap": 290309865050,
       "change": -1.5295506944834982,
       "all_time_high": 1899,
       "pct_below_ath": 7.79
@@ -7531,7 +7493,7 @@
       "name": "RUBYMILLS",
       "close": 467.1,
       "volume": 40821,
-      "market_cap": 15308830963,
+      "market_cap": 15512815159,
       "change": 2.076048951048951,
       "all_time_high": 499.05,
       "pct_below_ath": 6.4
@@ -7543,7 +7505,7 @@
       "name": "SAAKSHI",
       "close": 372.9,
       "volume": 28200,
-      "market_cap": 6304074800,
+      "market_cap": 6583922400,
       "change": 4.439154180086813,
       "all_time_high": 377.2,
       "pct_below_ath": 1.14
@@ -7567,7 +7529,7 @@
       "name": "SACHEEROME",
       "close": 536.85,
       "volume": 20700,
-      "market_cap": 11683076160,
+      "market_cap": 12010837680,
       "change": 2.8054385292991144,
       "all_time_high": 552.75,
       "pct_below_ath": 2.88
@@ -7579,7 +7541,7 @@
       "name": "SAHLIBHFI",
       "close": 76.56,
       "volume": 17392,
-      "market_cap": 2419488509,
+      "market_cap": 2363580343,
       "change": -2.4961793173713627,
       "all_time_high": 91.95,
       "pct_below_ath": 16.74
@@ -7591,7 +7553,7 @@
       "name": "SAILIFE",
       "close": 1600.5,
       "volume": 867960,
-      "market_cap": 328573301208,
+      "market_cap": 340031939577,
       "change": 3.5453192728213727,
       "all_time_high": 1697,
       "pct_below_ath": 5.69
@@ -7603,7 +7565,7 @@
       "name": "SAKAR",
       "close": 1179.8,
       "volume": 147455,
-      "market_cap": 24793521020,
+      "market_cap": 25896503958,
       "change": 4.448674250807844,
       "all_time_high": 1211,
       "pct_below_ath": 2.58
@@ -7615,7 +7577,7 @@
       "name": "SALSTEEL",
       "close": 82.26,
       "volume": 251942,
-      "market_cap": 11316413329,
+      "market_cap": 11881003712,
       "change": 4.990427568602439,
       "all_time_high": 86.25,
       "pct_below_ath": 4.63
@@ -7627,7 +7589,7 @@
       "name": "SAMBHV",
       "close": 147.57,
       "volume": 28285913,
-      "market_cap": 38042085704,
+      "market_cap": 43626108739,
       "change": 14.315593771787116,
       "all_time_high": 150.99,
       "pct_below_ath": 2.27
@@ -7639,7 +7601,7 @@
       "name": "SANATHAN",
       "close": 480.85,
       "volume": 107246,
-      "market_cap": 39045318839,
+      "market_cap": 40589912114,
       "change": 4.091351877908872,
       "all_time_high": 560.2,
       "pct_below_ath": 14.16
@@ -7651,7 +7613,7 @@
       "name": "SANGAMIND",
       "close": 580,
       "volume": 9168,
-      "market_cap": 29238473992,
+      "market_cap": 29185712652,
       "change": -0.5231112254523549,
       "all_time_high": 672.5,
       "pct_below_ath": 13.75
@@ -7663,7 +7625,7 @@
       "name": "SANSERA",
       "close": 4259.9,
       "volume": 287946,
-      "market_cap": 250731290849,
+      "market_cap": 265670698998,
       "change": 6.033602986932163,
       "all_time_high": 4300,
       "pct_below_ath": 0.93
@@ -7675,7 +7637,7 @@
       "name": "SAPPL",
       "close": 276.15,
       "volume": 1212,
-      "market_cap": 2410942679,
+      "market_cap": 2536623355,
       "change": -0.9327354260089767,
       "all_time_high": 334.3,
       "pct_below_ath": 17.39
@@ -7687,7 +7649,7 @@
       "name": "SAYAJIHOTL",
       "close": 319,
       "volume": 52,
-      "market_cap": 5588234587,
+      "market_cap": 6008666029,
       "change": -0.03133813851457936,
       "all_time_high": 365.2,
       "pct_below_ath": 12.65
@@ -7699,7 +7661,7 @@
       "name": "SAYAJIIND",
       "close": 115,
       "volume": 510,
-      "market_cap": 2878128040,
+      "market_cap": 2777008037,
       "change": 1.7699115044247788,
       "all_time_high": 125,
       "pct_below_ath": 8.0
@@ -7711,7 +7673,7 @@
       "name": "SBC",
       "close": 49.24,
       "volume": 15020726,
-      "market_cap": 22990452737,
+      "market_cap": 23547595984,
       "change": 2.051813471502595,
       "all_time_high": 49.8,
       "pct_below_ath": 1.12
@@ -7723,7 +7685,7 @@
       "name": "SBCL",
       "close": 1096.2,
       "volume": 106816,
-      "market_cap": 62952746876,
+      "market_cap": 63099640395,
       "change": 0.4030042132258739,
       "all_time_high": 1215.7,
       "pct_below_ath": 9.83
@@ -7735,7 +7697,7 @@
       "name": "SBIFUNDS",
       "close": 561.35,
       "volume": 1779360,
-      "market_cap": 1100294314219,
+      "market_cap": 1145511912618,
       "change": 3.7711433589056242,
       "all_time_high": 624.95,
       "pct_below_ath": 10.18
@@ -7747,7 +7709,7 @@
       "name": "SBILIFE",
       "close": 1731,
       "volume": 929365,
-      "market_cap": 1768152741562,
+      "market_cap": 1775326715328,
       "change": -2.0318071198143692,
       "all_time_high": 2132,
       "pct_below_ath": 18.81
@@ -7759,7 +7721,7 @@
       "name": "SBIN",
       "close": 996.2,
       "volume": 5699456,
-      "market_cap": 9087689719238,
+      "market_cap": 9136612669546,
       "change": 0.758571862041064,
       "all_time_high": 1234.7,
       "pct_below_ath": 19.32
@@ -7771,7 +7733,7 @@
       "name": "SCHAEFFLER",
       "close": 4217.6,
       "volume": 171857,
-      "market_cap": 623901725121,
+      "market_cap": 660531504316,
       "change": 5.677774993735915,
       "all_time_high": 4951,
       "pct_below_ath": 14.81
@@ -7783,7 +7745,7 @@
       "name": "SCPL",
       "close": 622.1,
       "volume": 4602,
-      "market_cap": 6613424744,
+      "market_cap": 6652274872,
       "change": -0.5991851082527762,
       "all_time_high": 717.04999,
       "pct_below_ath": 13.24
@@ -7795,7 +7757,7 @@
       "name": "SEAMECLTD",
       "close": 1726.3,
       "volume": 27243,
-      "market_cap": 44090763048,
+      "market_cap": 43954739922,
       "change": -0.7017543859649149,
       "all_time_high": 1849,
       "pct_below_ath": 6.64
@@ -7819,7 +7781,7 @@
       "name": "SEDEMAC",
       "close": 3147.8,
       "volume": 190154,
-      "market_cap": 137264168379.00002,
+      "market_cap": 139261893145,
       "change": 1.195910756767192,
       "all_time_high": 3368.9,
       "pct_below_ath": 6.56
@@ -7831,7 +7793,7 @@
       "name": "SEIL",
       "close": 192.19,
       "volume": 257466,
-      "market_cap": 31016649017,
+      "market_cap": 31048850983,
       "change": -0.4557932356140237,
       "all_time_high": 239.96,
       "pct_below_ath": 19.91
@@ -7855,7 +7817,7 @@
       "name": "SEKURITIND",
       "close": 113.44,
       "volume": 52095,
-      "market_cap": 9907744617,
+      "market_cap": 10345052244,
       "change": 4.341427520235467,
       "all_time_high": 124.65,
       "pct_below_ath": 8.99
@@ -7867,7 +7829,7 @@
       "name": "SENORES",
       "close": 1402.6,
       "volume": 325710,
-      "market_cap": 64696083889,
+      "market_cap": 64742137478,
       "change": 0,
       "all_time_high": 1599,
       "pct_below_ath": 12.28
@@ -7879,7 +7841,7 @@
       "name": "SETL",
       "close": 402.35,
       "volume": 987119,
-      "market_cap": 80075948474,
+      "market_cap": 80345263424,
       "change": 0.22418732096152302,
       "all_time_high": 468.15,
       "pct_below_ath": 14.06
@@ -7891,7 +7853,7 @@
       "name": "SGFIN",
       "close": 630.95,
       "volume": 75511,
-      "market_cap": 40782415031,
+      "market_cap": 41635752020,
       "change": 1.782545571866441,
       "all_time_high": 727.45,
       "pct_below_ath": 13.27
@@ -7903,7 +7865,7 @@
       "name": "SGIL",
       "close": 589.3,
       "volume": 2487,
-      "market_cap": 9106644209,
+      "market_cap": 9114415709,
       "change": -0.5148982864860417,
       "all_time_high": 633.25,
       "pct_below_ath": 6.94
@@ -7915,7 +7877,7 @@
       "name": "SGMART",
       "close": 733.55,
       "volume": 192112,
-      "market_cap": 89661445799,
+      "market_cap": 92371202642,
       "change": 2.990522990522984,
       "all_time_high": 860.6,
       "pct_below_ath": 14.76
@@ -7927,7 +7889,7 @@
       "name": "SGRL",
       "close": 697.75,
       "volume": 18488,
-      "market_cap": 8695017955,
+      "market_cap": 8961342583,
       "change": 2.8826304924800876,
       "all_time_high": 722.65,
       "pct_below_ath": 3.45
@@ -7939,7 +7901,7 @@
       "name": "SHADOWFAX",
       "close": 251.55,
       "volume": 1172675,
-      "market_cap": 147914785527,
+      "market_cap": 147680087919,
       "change": -0.039737730975559035,
       "all_time_high": 268.65,
       "pct_below_ath": 6.37
@@ -7951,7 +7913,7 @@
       "name": "SHAILY",
       "close": 3149.8,
       "volume": 156212,
-      "market_cap": 143010721384,
+      "market_cap": 144845927243,
       "change": 1.3710092687950683,
       "all_time_high": 3615.2,
       "pct_below_ath": 12.87
@@ -7963,7 +7925,7 @@
       "name": "SHANKESH",
       "close": 93.06,
       "volume": 4370436,
-      "market_cap": 13096088343,
+      "market_cap": 13679803251,
       "change": 4.608812949640298,
       "all_time_high": 115.9,
       "pct_below_ath": 19.71
@@ -7975,7 +7937,7 @@
       "name": "SHANTIGEAR",
       "close": 700.05,
       "volume": 90105,
-      "market_cap": 52074723786,
+      "market_cap": 53739458851,
       "change": 3.3131641086186434,
       "all_time_high": 743,
       "pct_below_ath": 5.78
@@ -7987,7 +7949,7 @@
       "name": "SHANTIGOLD",
       "close": 251.27,
       "volume": 2818320,
-      "market_cap": 18601647408,
+      "market_cap": 19296139858,
       "change": 3.6421382610130393,
       "all_time_high": 280.75,
       "pct_below_ath": 10.5
@@ -7999,7 +7961,7 @@
       "name": "SHANTIINOR",
       "close": 181.3,
       "volume": 134400,
-      "market_cap": 3037267140,
+      "market_cap": 3126953620,
       "change": 2.952867688813184,
       "all_time_high": 195,
       "pct_below_ath": 7.03
@@ -8011,7 +7973,7 @@
       "name": "SHARDUL",
       "close": 55,
       "volume": 11561,
-      "market_cap": 4724576889,
+      "market_cap": 4739450397,
       "change": 1.5322134022521658,
       "all_time_high": 60,
       "pct_below_ath": 8.33
@@ -8035,7 +7997,7 @@
       "name": "SHETHJI",
       "close": 190.85,
       "volume": 14000,
-      "market_cap": 4439338000,
+      "market_cap": 4343746000,
       "change": -2.1532940271725285,
       "all_time_high": 216.95,
       "pct_below_ath": 12.03
@@ -8047,7 +8009,7 @@
       "name": "SHILPAMED",
       "close": 1021.1,
       "volume": 1766385,
-      "market_cap": 187250036971,
+      "market_cap": 199669482390,
       "change": 6.547712213700631,
       "all_time_high": 1033.1,
       "pct_below_ath": 1.16
@@ -8059,7 +8021,7 @@
       "name": "SHINDL",
       "close": 161.64,
       "volume": 430082,
-      "market_cap": 6317448269,
+      "market_cap": 6329212126,
       "change": 0.3663458553244178,
       "all_time_high": 179.99,
       "pct_below_ath": 10.2
@@ -8071,7 +8033,7 @@
       "name": "SHIVACEM",
       "close": 15.45,
       "volume": 35784,
-      "market_cap": 4540050101,
+      "market_cap": 4578400135,
       "change": 0.9803921568627357,
       "all_time_high": 17.94,
       "pct_below_ath": 13.88
@@ -8083,7 +8045,7 @@
       "name": "SHIVAUM",
       "close": 468.3,
       "volume": 3232,
-      "market_cap": 6365667040,
+      "market_cap": 6369067140,
       "change": 0.05341309689135776,
       "all_time_high": 484.9,
       "pct_below_ath": 3.42
@@ -8095,7 +8057,7 @@
       "name": "SHRADDHA",
       "close": 147.14,
       "volume": 11255,
-      "market_cap": 6041969819,
+      "market_cap": 6179332976,
       "change": -2.3817421880183134,
       "all_time_high": 179,
       "pct_below_ath": 17.8
@@ -8107,7 +8069,7 @@
       "name": "SHREEDHAR",
       "close": 161,
       "volume": 14000,
-      "market_cap": 3287517300,
+      "market_cap": 3451518000,
       "change": 4.98858819693512,
       "all_time_high": 161,
       "pct_below_ath": 0.0
@@ -8119,7 +8081,7 @@
       "name": "SHREEJISPG",
       "close": 708.05,
       "volume": 854162,
-      "market_cap": 112633523603,
+      "market_cap": 115370558047,
       "change": 2.4674384949348704,
       "all_time_high": 721.5,
       "pct_below_ath": 1.86
@@ -8131,7 +8093,7 @@
       "name": "SHREEPUSHK",
       "close": 514.3,
       "volume": 44521,
-      "market_cap": 16615105888.999998,
+      "market_cap": 16608637955.999998,
       "change": 0.35121951219511305,
       "all_time_high": 545.2,
       "pct_below_ath": 5.67
@@ -8155,7 +8117,7 @@
       "name": "SHRIAHIMSA",
       "close": 468.75,
       "volume": 8400,
-      "market_cap": 10596531420,
+      "market_cap": 10935984375,
       "change": 3.2034346103038334,
       "all_time_high": 502.9,
       "pct_below_ath": 6.79
@@ -8167,7 +8129,7 @@
       "name": "SHRIPISTON",
       "close": 4576.6,
       "volume": 151917,
-      "market_cap": 203422354586,
+      "market_cap": 212291418935,
       "change": 4.359921557896674,
       "all_time_high": 4785.8,
       "pct_below_ath": 4.37
@@ -8179,7 +8141,7 @@
       "name": "SHRIRAMFIN",
       "close": 1010,
       "volume": 4870631,
-      "market_cap": 2345806827795,
+      "market_cap": 2364748315430,
       "change": 1.507537688442211,
       "all_time_high": 1153.7,
       "pct_below_ath": 12.46
@@ -8191,7 +8153,7 @@
       "name": "SHUKRAPHAR",
       "close": 55.93,
       "volume": 3423614,
-      "market_cap": 23853478826,
+      "market_cap": 24600823711,
       "change": 3.11578171091445,
       "all_time_high": 58.2,
       "pct_below_ath": 3.9
@@ -8203,7 +8165,7 @@
       "name": "SHYAMMETL",
       "close": 1100,
       "volume": 1196160,
-      "market_cap": 300764553223,
+      "market_cap": 307798661859,
       "change": 2.1355617455896008,
       "all_time_high": 1111,
       "pct_below_ath": 0.99
@@ -8215,7 +8177,7 @@
       "name": "SIDDHIKA",
       "close": 214.8,
       "volume": 20000,
-      "market_cap": 1402104000,
+      "market_cap": 1332619200,
       "change": -4.955752212389376,
       "all_time_high": 250,
       "pct_below_ath": 14.08
@@ -8227,7 +8189,7 @@
       "name": "SIEMENS",
       "close": 3913.9,
       "volume": 666502,
-      "market_cap": 1342574337463,
+      "market_cap": 1361377517987,
       "change": 3.9962800584562266,
       "all_time_high": 4222.12374698,
       "pct_below_ath": 7.3
@@ -8239,7 +8201,7 @@
       "name": "SIGMAADV",
       "close": 866.1,
       "volume": 255004,
-      "market_cap": 162113973473,
+      "market_cap": 163885758036,
       "change": 1.0146955913226086,
       "all_time_high": 888.3,
       "pct_below_ath": 2.5
@@ -8251,7 +8213,7 @@
       "name": "SIKKO",
       "close": 5.92,
       "volume": 462737,
-      "market_cap": 2616431827,
+      "market_cap": 2585855961,
       "change": -1.1686143572621082,
       "all_time_high": 6.84691047,
       "pct_below_ath": 13.54
@@ -8263,7 +8225,7 @@
       "name": "SILGO",
       "close": 70.8,
       "volume": 50168,
-      "market_cap": 2244770462,
+      "market_cap": 2264601720,
       "change": 0.8834425762325311,
       "all_time_high": 86.2,
       "pct_below_ath": 17.87
@@ -8275,7 +8237,7 @@
       "name": "SILKFLEX",
       "close": 280.35,
       "volume": 23000,
-      "market_cap": 3099069000,
+      "market_cap": 3254022450,
       "change": 5.000000000000009,
       "all_time_high": 302.7,
       "pct_below_ath": 7.38
@@ -8287,7 +8249,7 @@
       "name": "SIMCA",
       "close": 269.5,
       "volume": 33600,
-      "market_cap": 3159305240,
+      "market_cap": 3226346200,
       "change": 2.1220159151193725,
       "all_time_high": 291,
       "pct_below_ath": 7.39
@@ -8299,7 +8261,7 @@
       "name": "SINGERIND",
       "close": 76.28,
       "volume": 58206,
-      "market_cap": 4781538986,
+      "market_cap": 4785894305,
       "change": -0.7546187874056703,
       "all_time_high": 91.3,
       "pct_below_ath": 16.45
@@ -8311,7 +8273,7 @@
       "name": "SJS",
       "close": 2422.8,
       "volume": 992502,
-      "market_cap": 73067760341,
+      "market_cap": 77800378985,
       "change": 6.919682259488093,
       "all_time_high": 2590,
       "pct_below_ath": 6.46
@@ -8323,7 +8285,7 @@
       "name": "SKFINDUS",
       "close": 2984.2,
       "volume": 1293995,
-      "market_cap": 145352566880,
+      "market_cap": 146477280593,
       "change": 1.4930449273883493,
       "all_time_high": 3218.7,
       "pct_below_ath": 7.29
@@ -8335,7 +8297,7 @@
       "name": "SKIPPER",
       "close": 566.2,
       "volume": 1433300,
-      "market_cap": 60128121932,
+      "market_cap": 63887186298,
       "change": 6.318655525302806,
       "all_time_high": 665,
       "pct_below_ath": 14.86
@@ -8347,7 +8309,7 @@
       "name": "SKYGOLD",
       "close": 783.7,
       "volume": 566838,
-      "market_cap": 122923405295,
+      "market_cap": 121382408237,
       "change": -1.2101348796167792,
       "all_time_high": 868.8,
       "pct_below_ath": 9.8
@@ -8359,7 +8321,7 @@
       "name": "SKYWAYS",
       "close": 124.43,
       "volume": 92941309,
-      "market_cap": 17150539093,
+      "market_cap": 18124340445,
       "change": 5.467028309883033,
       "all_time_high": 136.45,
       "pct_below_ath": 8.81
@@ -8371,7 +8333,7 @@
       "name": "SMARTWORKS",
       "close": 547.35,
       "volume": 274681,
-      "market_cap": 59455284314,
+      "market_cap": 63035410741,
       "change": 5.279861511829207,
       "all_time_high": 619,
       "pct_below_ath": 11.58
@@ -8383,7 +8345,7 @@
       "name": "SMCGLOBAL",
       "close": 80.94,
       "volume": 467005,
-      "market_cap": 17359259814,
+      "market_cap": 16946741569.999998,
       "change": -2.3289489561964603,
       "all_time_high": 95,
       "pct_below_ath": 14.8
@@ -8395,7 +8357,7 @@
       "name": "SMLMAH",
       "close": 6292.5,
       "volume": 53178,
-      "market_cap": 90066460137,
+      "market_cap": 91132295475,
       "change": 1.1574632264287437,
       "all_time_high": 6654,
       "pct_below_ath": 5.43
@@ -8407,7 +8369,7 @@
       "name": "SMSPHARMA",
       "close": 442.95,
       "volume": 1745125,
-      "market_cap": 38626781306,
+      "market_cap": 41483168250,
       "change": 7.05740181268882,
       "all_time_high": 482,
       "pct_below_ath": 8.1
@@ -8419,7 +8381,7 @@
       "name": "SOFTTECH",
       "close": 525.7,
       "volume": 35070,
-      "market_cap": 6541101830,
+      "market_cap": 6867776355,
       "change": 4.993009786299193,
       "all_time_high": 612.05,
       "pct_below_ath": 14.11
@@ -8431,7 +8393,7 @@
       "name": "SOLARINDS",
       "close": 18555,
       "volume": 202858,
-      "market_cap": 1709357068481,
+      "market_cap": 1703927665405,
       "change": -1.3818761626361946,
       "all_time_high": 22700,
       "pct_below_ath": 18.26
@@ -8443,7 +8405,7 @@
       "name": "SONACOMS",
       "close": 808,
       "volume": 4201864,
-      "market_cap": 486601736307,
+      "market_cap": 505544018555,
       "change": 3.8693919526931513,
       "all_time_high": 844,
       "pct_below_ath": 4.27
@@ -8467,7 +8429,7 @@
       "name": "SOTL",
       "close": 708.05,
       "volume": 236215,
-      "market_cap": 47416382845,
+      "market_cap": 48523635256,
       "change": 2.4081573618744545,
       "all_time_high": 850.1,
       "pct_below_ath": 16.71
@@ -8479,7 +8441,7 @@
       "name": "SOUTHBANK",
       "close": 46.07,
       "volume": 8637328,
-      "market_cap": 120068759404,
+      "market_cap": 120671197440,
       "change": 0.41412380122057046,
       "all_time_high": 49.9,
       "pct_below_ath": 7.68
@@ -8491,7 +8453,7 @@
       "name": "SPAL",
       "close": 994.3,
       "volume": 23776,
-      "market_cap": 25205502246,
+      "market_cap": 24945313880,
       "change": -0.8772804306649454,
       "all_time_high": 1221.9,
       "pct_below_ath": 18.63
@@ -8503,7 +8465,7 @@
       "name": "SPCON",
       "close": 181.35,
       "volume": 6000,
-      "market_cap": 1336369490,
+      "market_cap": 1425591805.95,
       "change": 6.676470588235291,
       "all_time_high": 198,
       "pct_below_ath": 8.41
@@ -8515,7 +8477,7 @@
       "name": "SPEB",
       "close": 87,
       "volume": 2000,
-      "market_cap": 2002716415.5,
+      "market_cap": 1954417590,
       "change": -2.4116657319125134,
       "all_time_high": 98.25,
       "pct_below_ath": 11.45
@@ -8527,7 +8489,7 @@
       "name": "SPECTRUM",
       "close": 3039.6,
       "volume": 4924,
-      "market_cap": 46956094519,
+      "market_cap": 48378983456,
       "change": -0.3540519276160563,
       "all_time_high": 3173.6,
       "pct_below_ath": 4.22
@@ -8551,7 +8513,7 @@
       "name": "SPLPETRO",
       "close": 865.7,
       "volume": 1234723,
-      "market_cap": 152200674348,
+      "market_cap": 162872021035,
       "change": 7.273853779429993,
       "all_time_high": 979,
       "pct_below_ath": 11.57
@@ -8563,7 +8525,7 @@
       "name": "SPORTKING",
       "close": 203.85,
       "volume": 135881,
-      "market_cap": 25535117730,
+      "market_cap": 25884565726,
       "change": 1.6556126265396665,
       "all_time_high": 241.51,
       "pct_below_ath": 15.59
@@ -8575,7 +8537,7 @@
       "name": "SSWL",
       "close": 372.4,
       "volume": 1835082,
-      "market_cap": 54775434570,
+      "market_cap": 58557663254,
       "change": 6.934673366834164,
       "all_time_high": 384.15,
       "pct_below_ath": 3.06
@@ -8587,7 +8549,7 @@
       "name": "STAR",
       "close": 1219.8,
       "volume": 282913,
-      "market_cap": 110611870216,
+      "market_cap": 112450711365,
       "change": 1.6330611564739133,
       "all_time_high": 1231,
       "pct_below_ath": 0.91
@@ -8599,7 +8561,7 @@
       "name": "STEAMHOUSE",
       "close": 97.98,
       "volume": 23967427,
-      "market_cap": 23094823850,
+      "market_cap": 27010425052,
       "change": -4.456362749878102,
       "all_time_high": 106,
       "pct_below_ath": 7.57
@@ -8611,7 +8573,7 @@
       "name": "STEELCAS",
       "close": 319.9,
       "volume": 92629,
-      "market_cap": 30562399078,
+      "market_cap": 32490257785,
       "change": 5.420991926182235,
       "all_time_high": 364,
       "pct_below_ath": 12.12
@@ -8623,7 +8585,7 @@
       "name": "STEL",
       "close": 654.2,
       "volume": 12670,
-      "market_cap": 11554005625,
+      "market_cap": 12097517507,
       "change": 3.5290394049691516,
       "all_time_high": 689.95,
       "pct_below_ath": 5.18
@@ -8635,7 +8597,7 @@
       "name": "STLNETWORK",
       "close": 42.95,
       "volume": 1250147,
-      "market_cap": 19953875592,
+      "market_cap": 20949615497,
       "change": 4.986555854314364,
       "all_time_high": 42.95,
       "pct_below_ath": 0.0
@@ -8647,7 +8609,7 @@
       "name": "STLTECH",
       "close": 818.8,
       "volume": 1735063,
-      "market_cap": 423642730416,
+      "market_cap": 420816218514,
       "change": -1.0453803855217947,
       "all_time_high": 912,
       "pct_below_ath": 10.22
@@ -8659,7 +8621,7 @@
       "name": "STYL",
       "close": 360.35,
       "volume": 182909,
-      "market_cap": 59261385937,
+      "market_cap": 58484719919,
       "change": -1.5033483668170013,
       "all_time_high": 437.45,
       "pct_below_ath": 17.62
@@ -8671,7 +8633,7 @@
       "name": "STYLEBAAZA",
       "close": 386.75,
       "volume": 591675,
-      "market_cap": 29640097707,
+      "market_cap": 29350852686,
       "change": -0.33500837520938315,
       "all_time_high": 447.1,
       "pct_below_ath": 13.5
@@ -8683,7 +8645,7 @@
       "name": "SUDEEPPHRM",
       "close": 1155,
       "volume": 217226,
-      "market_cap": 124943761975,
+      "market_cap": 130450007378,
       "change": 4.487063506423006,
       "all_time_high": 1378,
       "pct_below_ath": 16.18
@@ -8695,7 +8657,7 @@
       "name": "SUMAX",
       "close": 114.5,
       "volume": 79200,
-      "market_cap": 2273212650,
+      "market_cap": 2178099150,
       "change": -4.184100418410042,
       "all_time_high": 132.75,
       "pct_below_ath": 13.75
@@ -8707,7 +8669,7 @@
       "name": "SUNDARMFIN",
       "close": 4730.6,
       "volume": 179114,
-      "market_cap": 517821777098,
+      "market_cap": 524626888458,
       "change": 1.454061937033546,
       "all_time_high": 5642,
       "pct_below_ath": 16.15
@@ -8719,7 +8681,7 @@
       "name": "SUNDRMFAST",
       "close": 1228.2,
       "volume": 237526,
-      "market_cap": 257722448494,
+      "market_cap": 258132188560,
       "change": 0.1222792858889704,
       "all_time_high": 1505.95,
       "pct_below_ath": 18.44
@@ -8731,7 +8693,7 @@
       "name": "SUNFLAG",
       "close": 345.1,
       "volume": 219245,
-      "market_cap": 61932413547,
+      "market_cap": 62148679089,
       "change": 0.4073319755600914,
       "all_time_high": 428,
       "pct_below_ath": 19.37
@@ -8743,7 +8705,7 @@
       "name": "SUNLITE",
       "close": 644.9,
       "volume": 12300,
-      "market_cap": 6850592000,
+      "market_cap": 7016512000,
       "change": 2.421980465337886,
       "all_time_high": 718,
       "pct_below_ath": 10.18
@@ -8755,7 +8717,7 @@
       "name": "SUNPHARMA",
       "close": 1837.3,
       "volume": 2896860,
-      "market_cap": 4477053801270,
+      "market_cap": 4403875805054,
       "change": -1.6065977614737856,
       "all_time_high": 2046.9,
       "pct_below_ath": 10.24
@@ -8767,7 +8729,7 @@
       "name": "SUNRAKSHAK",
       "close": 368.5,
       "volume": 3601,
-      "market_cap": 11336068028,
+      "market_cap": 11286457039,
       "change": 1.7674675504004356,
       "all_time_high": 382.4,
       "pct_below_ath": 3.63
@@ -8779,7 +8741,7 @@
       "name": "SUNSHIEL",
       "close": 1233.3,
       "volume": 2481,
-      "market_cap": 10660221711,
+      "market_cap": 10868659992,
       "change": 1.447725590194942,
       "all_time_high": 1284.8,
       "pct_below_ath": 4.01
@@ -8791,7 +8753,7 @@
       "name": "SUPRIYA",
       "close": 906.3,
       "volume": 130367,
-      "market_cap": 72333912649,
+      "market_cap": 72877171520,
       "change": 0.6273247099317134,
       "all_time_high": 1085,
       "pct_below_ath": 16.47
@@ -8803,7 +8765,7 @@
       "name": "SUVEN",
       "close": 341.55,
       "volume": 261686,
-      "market_cap": 98939321765,
+      "market_cap": 96791843649,
       "change": -2.372445333714452,
       "all_time_high": 403.35,
       "pct_below_ath": 15.32
@@ -8815,7 +8777,7 @@
       "name": "SVGLOBAL",
       "close": 147.92,
       "volume": 6683,
-      "market_cap": 2493641670,
+      "market_cap": 2675375589,
       "change": 15.328239513488226,
       "all_time_high": 172.81,
       "pct_below_ath": 14.4
@@ -8827,7 +8789,7 @@
       "name": "SVLL",
       "close": 815.85,
       "volume": 1039,
-      "market_cap": 9383201100,
+      "market_cap": 9354536100,
       "change": -0.30549275982159224,
       "all_time_high": 897.45,
       "pct_below_ath": 9.09
@@ -8839,7 +8801,7 @@
       "name": "SWANDEF",
       "close": 2746.4,
       "volume": 30702,
-      "market_cap": 142758087168,
+      "market_cap": 143685285255,
       "change": 0.940899735371946,
       "all_time_high": 2764,
       "pct_below_ath": 0.64
@@ -8851,7 +8813,7 @@
       "name": "SYMBIOTEC",
       "close": 1095.1,
       "volume": 1099366,
-      "market_cap": 67263300284,
+      "market_cap": 70247993509,
       "change": 4.734123947972456,
       "all_time_high": 1193.7,
       "pct_below_ath": 8.26
@@ -8863,7 +8825,7 @@
       "name": "SYRMA",
       "close": 1728.9,
       "volume": 10474149,
-      "market_cap": 311594793680,
+      "market_cap": 333384639063,
       "change": 6.873956852321199,
       "all_time_high": 1764,
       "pct_below_ath": 1.99
@@ -8875,7 +8837,7 @@
       "name": "TAALTECH",
       "close": 5416.3,
       "volume": 11685,
-      "market_cap": 16786176548,
+      "market_cap": 16868292465.999998,
       "change": 1.254393180288648,
       "all_time_high": 5550,
       "pct_below_ath": 2.41
@@ -8887,7 +8849,7 @@
       "name": "TALBROAUTO",
       "close": 476.7,
       "volume": 1960823,
-      "market_cap": 26848659341,
+      "market_cap": 29357908238,
       "change": 9.535845588235295,
       "all_time_high": 480.8,
       "pct_below_ath": 0.85
@@ -8899,7 +8861,7 @@
       "name": "TAMBOLIIN",
       "close": 301.45,
       "volume": 5703,
-      "market_cap": 2916480022,
+      "market_cap": 3025104144,
       "change": 3.0774491366045478,
       "all_time_high": 318.85,
       "pct_below_ath": 5.46
@@ -8911,7 +8873,7 @@
       "name": "TANAA",
       "close": 266.35,
       "volume": 9722,
-      "market_cap": 6733416210,
+      "market_cap": 6795892835,
       "change": 0.11276075925578326,
       "all_time_high": 322,
       "pct_below_ath": 17.28
@@ -8923,7 +8885,7 @@
       "name": "TANKUP",
       "close": 1645.95,
       "volume": 1250,
-      "market_cap": 8551160250.000001,
+      "market_cap": 8715305250,
       "change": 1.9195640731911205,
       "all_time_high": 1669.8,
       "pct_below_ath": 1.43
@@ -8935,7 +8897,7 @@
       "name": "TATACAP",
       "close": 351.35,
       "volume": 2404143,
-      "market_cap": 1450260529925,
+      "market_cap": 1479780227191,
       "change": 2.2406518259857546,
       "all_time_high": 390.2,
       "pct_below_ath": 9.96
@@ -8947,7 +8909,7 @@
       "name": "TATACOMM",
       "close": 1780.1,
       "volume": 713124,
-      "market_cap": 510878267060,
+      "market_cap": 505277715675,
       "change": -0.641884349185086,
       "all_time_high": 2175,
       "pct_below_ath": 18.16
@@ -8959,7 +8921,7 @@
       "name": "TATASTEEL",
       "close": 185.54,
       "volume": 29014128,
-      "market_cap": 2346904058594,
+      "market_cap": 2306332578857,
       "change": -0.9343798387527364,
       "all_time_high": 224.4,
       "pct_below_ath": 17.32
@@ -8971,7 +8933,7 @@
       "name": "TAURIAN",
       "close": 517.25,
       "volume": 28800,
-      "market_cap": 4376308480,
+      "market_cap": 4594835200,
       "change": 4.99340302445956,
       "all_time_high": 545.25,
       "pct_below_ath": 5.14
@@ -8983,7 +8945,7 @@
       "name": "TBOTEK",
       "close": 1710.6,
       "volume": 212106,
-      "market_cap": 178692066947,
+      "market_cap": 185446235528,
       "change": 3.8174424955999187,
       "all_time_high": 2001,
       "pct_below_ath": 14.51
@@ -8995,7 +8957,7 @@
       "name": "TBZ",
       "close": 603.55,
       "volume": 1436925,
-      "market_cap": 38316719206,
+      "market_cap": 40231888634,
       "change": 4.992606766982679,
       "all_time_high": 603.55,
       "pct_below_ath": 0.0
@@ -9007,7 +8969,7 @@
       "name": "TDPOWERSYS",
       "close": 763.75,
       "volume": 3139171,
-      "market_cap": 225562628335,
+      "market_cap": 238732674328,
       "change": 5.767899182938647,
       "all_time_high": 817.55,
       "pct_below_ath": 6.58
@@ -9019,7 +8981,7 @@
       "name": "TEAMTECH",
       "close": 131.9,
       "volume": 26000,
-      "market_cap": 3766484400,
+      "market_cap": 3953834400,
       "change": 4.974134500596896,
       "all_time_high": 143.8,
       "pct_below_ath": 8.28
@@ -9031,7 +8993,7 @@
       "name": "TECHM",
       "close": 1537.1,
       "volume": 3113722,
-      "market_cap": 1528028481995,
+      "market_cap": 1500290649633,
       "change": -1.5310698270339584,
       "all_time_high": 1854,
       "pct_below_ath": 17.09
@@ -9043,7 +9005,7 @@
       "name": "TECHNOCRAF",
       "close": 440.8,
       "volume": 859607,
-      "market_cap": 17377219090,
+      "market_cap": 17513860955,
       "change": 0.3757258339975029,
       "all_time_high": 459.8,
       "pct_below_ath": 4.13
@@ -9055,7 +9017,7 @@
       "name": "TEGA",
       "close": 1943,
       "volume": 1144337,
-      "market_cap": 144207607052,
+      "market_cap": 146127123281,
       "change": 1.1979166666666667,
       "all_time_high": 2328.9,
       "pct_below_ath": 16.57
@@ -9067,7 +9029,7 @@
       "name": "TEJASCARGO",
       "close": 406,
       "volume": 400,
-      "market_cap": 10034992800,
+      "market_cap": 9700493040,
       "change": -3.3333333333333335,
       "all_time_high": 435.85,
       "pct_below_ath": 6.85
@@ -9079,7 +9041,7 @@
       "name": "TEMPSENS",
       "close": 531.6,
       "volume": 1265503,
-      "market_cap": 45416358387,
+      "market_cap": 44598989685,
       "change": -1.8373188071276765,
       "all_time_high": 634.85,
       "pct_below_ath": 16.26
@@ -9091,7 +9053,7 @@
       "name": "TFCILTD",
       "close": 139.62,
       "volume": 12165117,
-      "market_cap": 64284395988,
+      "market_cap": 64816817017,
       "change": 0.40270386883359865,
       "all_time_high": 147.65,
       "pct_below_ath": 5.44
@@ -9103,7 +9065,7 @@
       "name": "TGVSL",
       "close": 102.59,
       "volume": 44012,
-      "market_cap": 11040958008,
+      "market_cap": 10992767925,
       "change": 0.009748488984212435,
       "all_time_high": 114.24,
       "pct_below_ath": 10.2
@@ -9115,7 +9077,7 @@
       "name": "THELEELA",
       "close": 540.55,
       "volume": 124085,
-      "market_cap": 176747211029,
+      "market_cap": 180504237244,
       "change": 1.9905660377358403,
       "all_time_high": 582.85,
       "pct_below_ath": 7.26
@@ -9127,7 +9089,7 @@
       "name": "THYROCARE",
       "close": 555.8,
       "volume": 244576,
-      "market_cap": 89124619361,
+      "market_cap": 88480001783,
       "change": -0.6168976307554842,
       "all_time_high": 662,
       "pct_below_ath": 16.04
@@ -9139,7 +9101,7 @@
       "name": "TI",
       "close": 568.7,
       "volume": 1687493,
-      "market_cap": 134662916185.99998,
+      "market_cap": 141072480536,
       "change": 4.569274616162549,
       "all_time_high": 594.55,
       "pct_below_ath": 4.35
@@ -9151,7 +9113,7 @@
       "name": "TIMEX",
       "close": 714.2,
       "volume": 6651306,
-      "market_cap": 61705685635,
+      "market_cap": 72234769084,
       "change": 16.87121584028801,
       "all_time_high": 729,
       "pct_below_ath": 2.03
@@ -9163,7 +9125,7 @@
       "name": "TIRUPATIFL",
       "close": 67.68,
       "volume": 328776,
-      "market_cap": 8165102648,
+      "market_cap": 8801106785,
       "change": 4.962779156327548,
       "all_time_high": 83.9,
       "pct_below_ath": 19.33
@@ -9175,7 +9137,7 @@
       "name": "TITAN",
       "close": 4798.5,
       "volume": 1066023,
-      "market_cap": 4313753115906,
+      "market_cap": 4222755031036,
       "change": -0.8779177855814915,
       "all_time_high": 5186.7,
       "pct_below_ath": 7.48
@@ -9187,7 +9149,7 @@
       "name": "TMB",
       "close": 895.75,
       "volume": 242023,
-      "market_cap": 141209910610,
+      "market_cap": 141574117025,
       "change": 0.4823601996746822,
       "all_time_high": 954.2,
       "pct_below_ath": 6.13
@@ -9199,7 +9161,7 @@
       "name": "TMCV",
       "close": 442.9,
       "volume": 13129939,
-      "market_cap": 1605880232205,
+      "market_cap": 1626688081699,
       "change": 1.5592753955514687,
       "all_time_high": 509,
       "pct_below_ath": 12.99
@@ -9211,7 +9173,7 @@
       "name": "TNPETRO",
       "close": 125.73,
       "volume": 848214,
-      "market_cap": 11462364914,
+      "market_cap": 11268926125,
       "change": -1.264331710381655,
       "all_time_high": 150.75,
       "pct_below_ath": 16.6
@@ -9223,7 +9185,7 @@
       "name": "TORNTPHARM",
       "close": 4840,
       "volume": 486733,
-      "market_cap": 1860312627197,
+      "market_cap": 1827316896179,
       "change": -0.717948717948718,
       "all_time_high": 5250,
       "pct_below_ath": 7.81
@@ -9235,7 +9197,7 @@
       "name": "TRANSPEK",
       "close": 1359.4,
       "volume": 864,
-      "market_cap": 7484662333,
+      "market_cap": 7596373711,
       "change": 0.6888378638619497,
       "all_time_high": 1475,
       "pct_below_ath": 7.84
@@ -9247,7 +9209,7 @@
       "name": "TRAVELFOOD",
       "close": 1256.1,
       "volume": 42342,
-      "market_cap": 161509582844,
+      "market_cap": 165717716002,
       "change": 1.956168831168824,
       "all_time_high": 1470.9,
       "pct_below_ath": 14.6
@@ -9259,7 +9221,7 @@
       "name": "TRITONV",
       "close": 1084.3,
       "volume": 1647,
-      "market_cap": 5529827653,
+      "market_cap": 5531876621,
       "change": 0.7713754646840106,
       "all_time_high": 1219.3,
       "pct_below_ath": 11.07
@@ -9271,7 +9233,7 @@
       "name": "TURTLEMINT",
       "close": 134.12,
       "volume": 832911,
-      "market_cap": 38753426663,
+      "market_cap": 39533793983,
       "change": 1.8607123870281894,
       "all_time_high": 160,
       "pct_below_ath": 16.17
@@ -9283,7 +9245,7 @@
       "name": "TUTIALKA",
       "close": 56.56,
       "volume": 3984,
-      "market_cap": 6849610550,
+      "market_cap": 6959262519,
       "change": -0.017677214071058885,
       "all_time_high": 62.9,
       "pct_below_ath": 10.08
@@ -9295,7 +9257,7 @@
       "name": "TVSMOTOR",
       "close": 4171.3,
       "volume": 1304681,
-      "market_cap": 1952750528135,
+      "market_cap": 1976837538300,
       "change": 1.6968574005900083,
       "all_time_high": 4484.5,
       "pct_below_ath": 6.98
@@ -9307,7 +9269,7 @@
       "name": "TVSSRICHAK",
       "close": 4844.5,
       "volume": 4438,
-      "market_cap": 37347641054,
+      "market_cap": 37101086298,
       "change": -0.8493655341792878,
       "all_time_high": 5760,
       "pct_below_ath": 15.89
@@ -9331,7 +9293,7 @@
       "name": "UDAYJEW",
       "close": 152.2,
       "volume": 58089,
-      "market_cap": 5346309242,
+      "market_cap": 5230529505,
       "change": -4.047408901777843,
       "all_time_high": 180.89,
       "pct_below_ath": 15.86
@@ -9343,7 +9305,7 @@
       "name": "UHTL",
       "close": 188.25,
       "volume": 6000,
-      "market_cap": 3508138400,
+      "market_cap": 3577503000,
       "change": 1.9772481040086707,
       "all_time_high": 188.25,
       "pct_below_ath": 0.0
@@ -9355,7 +9317,7 @@
       "name": "UJJIVANSFB",
       "close": 65.02,
       "volume": 4749884,
-      "market_cap": 124809080065,
+      "market_cap": 126818665771,
       "change": 1.6413944036266954,
       "all_time_high": 73.94,
       "pct_below_ath": 12.06
@@ -9367,7 +9329,7 @@
       "name": "ULTRACEMCO",
       "close": 11014,
       "volume": 458848,
-      "market_cap": 3188494400778,
+      "market_cap": 3141301336975,
       "change": 2.3225566703827574,
       "all_time_high": 13110,
       "pct_below_ath": 15.99
@@ -9379,7 +9341,7 @@
       "name": "ULTRAMAR",
       "close": 424.4,
       "volume": 78947,
-      "market_cap": 12024559958,
+      "market_cap": 12428980147,
       "change": 2.8848484848484794,
       "all_time_high": 455.75,
       "pct_below_ath": 6.88
@@ -9391,7 +9353,7 @@
       "name": "UMIYA_MRO",
       "close": 98.01,
       "volume": 4684,
-      "market_cap": 1844170045,
+      "market_cap": 1847346535,
       "change": 0.06125574272588287,
       "all_time_high": 110.9,
       "pct_below_ath": 11.62
@@ -9403,7 +9365,7 @@
       "name": "UNIHEALTH",
       "close": 680,
       "volume": 10500,
-      "market_cap": 10614012957.6,
+      "market_cap": 10811967360,
       "change": 1.8650288367912586,
       "all_time_high": 820,
       "pct_below_ath": 17.07
@@ -9415,7 +9377,7 @@
       "name": "UNIMECH",
       "close": 1591.3,
       "volume": 189186,
-      "market_cap": 79847418229,
+      "market_cap": 81000349695,
       "change": 1.317967655672994,
       "all_time_high": 1652.8,
       "pct_below_ath": 3.72
@@ -9427,7 +9389,7 @@
       "name": "UNIPARTS",
       "close": 831.5,
       "volume": 220753,
-      "market_cap": 39669446342,
+      "market_cap": 37594296646,
       "change": -5.301520414554975,
       "all_time_high": 915.95,
       "pct_below_ath": 9.22
@@ -9439,7 +9401,7 @@
       "name": "UNITDSPR",
       "close": 1371,
       "volume": 842151,
-      "market_cap": 1009526633805,
+      "market_cap": 1011017738647,
       "change": -1.3669064748201438,
       "all_time_high": 1700,
       "pct_below_ath": 19.35
@@ -9451,7 +9413,7 @@
       "name": "UNITEDPOLY",
       "close": 45.85,
       "volume": 640093,
-      "market_cap": 10112453374,
+      "market_cap": 10530171520,
       "change": 3.3588818755635756,
       "all_time_high": 51.16,
       "pct_below_ath": 10.38
@@ -9463,7 +9425,7 @@
       "name": "UNIVASTU",
       "close": 152.26,
       "volume": 51713,
-      "market_cap": 5218441411,
+      "market_cap": 5479345498,
       "change": 4.999655196193366,
       "all_time_high": 178.98,
       "pct_below_ath": 14.93
@@ -9475,7 +9437,7 @@
       "name": "UNIVCABLES",
       "close": 1477,
       "volume": 96755,
-      "market_cap": 49831235719,
+      "market_cap": 51229461120,
       "change": 2.654990269669172,
       "all_time_high": 1774.9,
       "pct_below_ath": 16.78
@@ -9487,7 +9449,7 @@
       "name": "UNOMINDA",
       "close": 1284,
       "volume": 1277954,
-      "market_cap": 697002202820,
+      "market_cap": 716058601074,
       "change": 6.556016597510374,
       "all_time_high": 1382,
       "pct_below_ath": 7.09
@@ -9511,7 +9473,7 @@
       "name": "URBANCO",
       "close": 169.11,
       "volume": 11152442,
-      "market_cap": 250989903076,
+      "market_cap": 261014077393,
       "change": 3.8695411829740256,
       "all_time_high": 201.18,
       "pct_below_ath": 15.94
@@ -9523,7 +9485,7 @@
       "name": "USHAMART",
       "close": 507.2,
       "volume": 1588391,
-      "market_cap": 151197637631,
+      "market_cap": 154427902473,
       "change": 2.330273378392013,
       "all_time_high": 529.3,
       "pct_below_ath": 4.18
@@ -9535,7 +9497,7 @@
       "name": "UTLSOLAR",
       "close": 418.65,
       "volume": 120238,
-      "market_cap": 125522821442,
+      "market_cap": 128822015404,
       "change": 2.371928108570727,
       "all_time_high": 494.25,
       "pct_below_ath": 15.3
@@ -9547,7 +9509,7 @@
       "name": "UTSSAV",
       "close": 653.25,
       "volume": 31200,
-      "market_cap": 15465027400,
+      "market_cap": 15559108500,
       "change": 0.6083474511011929,
       "all_time_high": 670,
       "pct_below_ath": 2.5
@@ -9559,7 +9521,7 @@
       "name": "V2RETAIL",
       "close": 214.03,
       "volume": 643385,
-      "market_cap": 76737976176,
+      "market_cap": 78087134084,
       "change": 1.7252851711026596,
       "all_time_high": 259.25,
       "pct_below_ath": 17.44
@@ -9571,7 +9533,7 @@
       "name": "VADILALIND",
       "close": 7362,
       "volume": 19386,
-      "market_cap": 51081033176,
+      "market_cap": 52909258431,
       "change": 3.67553865652725,
       "all_time_high": 8447,
       "pct_below_ath": 12.84
@@ -9583,10 +9545,22 @@
       "name": "VADILENT",
       "close": 10540,
       "volume": 10,
-      "market_cap": 9058014393,
+      "market_cap": 8997670595,
       "change": -0.3309692671394799,
       "all_time_high": 12598,
       "pct_below_ath": 16.34
+    },
+    {
+      "symbol": "VEEGALAND",
+      "exchange": "NSE",
+      "qualified_symbol": "NSE:VEEGALAND",
+      "name": "VEEGALAND",
+      "close": 146.3,
+      "volume": 5227484,
+      "market_cap": 7066312351,
+      "change": null,
+      "all_time_high": 154,
+      "pct_below_ath": 5.0
     },
     {
       "symbol": "VELJAN",
@@ -9595,7 +9569,7 @@
       "name": "VELJAN",
       "close": 1941.4,
       "volume": 608,
-      "market_cap": 8841375000,
+      "market_cap": 8730000000,
       "change": -1.8652378304604893,
       "all_time_high": 2009,
       "pct_below_ath": 3.36
@@ -9607,7 +9581,7 @@
       "name": "VENUSPIPES",
       "close": 2282.9,
       "volume": 1274312,
-      "market_cap": 43882937311,
+      "market_cap": 47323880185,
       "change": 7.092930524933165,
       "all_time_high": 2450.3501,
       "pct_below_ath": 6.83
@@ -9619,7 +9593,7 @@
       "name": "VERTIS",
       "close": 114.5,
       "volume": 50000,
-      "market_cap": 173648160000,
+      "market_cap": 172893168000,
       "change": -0.43478260869565216,
       "all_time_high": 125,
       "pct_below_ath": 8.4
@@ -9631,7 +9605,7 @@
       "name": "VHLTD",
       "close": 126.31,
       "volume": 90680,
-      "market_cap": 16302937826,
+      "market_cap": 15882501374,
       "change": -4.368564506359789,
       "all_time_high": 146.56603829,
       "pct_below_ath": 13.82
@@ -9643,7 +9617,7 @@
       "name": "VIESL",
       "close": 393,
       "volume": 3200,
-      "market_cap": 9881602400,
+      "market_cap": 9763063200,
       "change": -1.99501246882793,
       "all_time_high": 417.5,
       "pct_below_ath": 5.87
@@ -9655,7 +9629,7 @@
       "name": "VIGOR",
       "close": 99.05,
       "volume": 1600,
-      "market_cap": 1024818299.9999999,
+      "market_cap": 1025335885,
       "change": 0.05050505050504763,
       "all_time_high": 119.8,
       "pct_below_ath": 17.32
@@ -9667,7 +9641,7 @@
       "name": "VIJAYA",
       "close": 1558.9,
       "volume": 278137,
-      "market_cap": 155217562248,
+      "market_cap": 160418947048,
       "change": 3.505743310537161,
       "all_time_high": 1578,
       "pct_below_ath": 1.21
@@ -9679,7 +9653,7 @@
       "name": "VIJIFIN",
       "close": 15,
       "volume": 2801457,
-      "market_cap": 2836115080,
+      "market_cap": 2891650073,
       "change": 1.9714479945615169,
       "all_time_high": 17.24,
       "pct_below_ath": 12.99
@@ -9691,7 +9665,7 @@
       "name": "VIJSOLX",
       "close": 631.5,
       "volume": 282,
-      "market_cap": 2087223444.0000002,
+      "market_cap": 2025599132,
       "change": -0.9955318648585126,
       "all_time_high": 719.9,
       "pct_below_ath": 12.28
@@ -9703,7 +9677,7 @@
       "name": "VINCOFE",
       "close": 174.19,
       "volume": 1635637,
-      "market_cap": 25789283852,
+      "market_cap": 25525604279,
       "change": -1.0059104341895944,
       "all_time_high": 189.4,
       "pct_below_ath": 8.03
@@ -9715,7 +9689,7 @@
       "name": "VINDHYATEL",
       "close": 2660,
       "volume": 35119,
-      "market_cap": 31280947216,
+      "market_cap": 31499001946,
       "change": 1.0446343779677114,
       "all_time_high": 3230,
       "pct_below_ath": 17.65
@@ -9727,7 +9701,7 @@
       "name": "VINOD",
       "close": 84.85,
       "volume": 1200,
-      "market_cap": 1442980840,
+      "market_cap": 1371074180,
       "change": -4.983202687569992,
       "all_time_high": 94,
       "pct_below_ath": 9.73
@@ -9739,7 +9713,7 @@
       "name": "VINSYS",
       "close": 580,
       "volume": 11250,
-      "market_cap": 8542553513.999999,
+      "market_cap": 8513197660,
       "change": -0.3436426116838488,
       "all_time_high": 610.9,
       "pct_below_ath": 5.06
@@ -9751,7 +9725,7 @@
       "name": "VINYAS",
       "close": 1432.35,
       "volume": 3900,
-      "market_cap": 18264212843.8,
+      "market_cap": 18025732286.1,
       "change": -1.305725900916423,
       "all_time_high": 1730,
       "pct_below_ath": 17.21
@@ -9763,7 +9737,7 @@
       "name": "VISHNU",
       "close": 722.15,
       "volume": 81466,
-      "market_cap": 47706343109,
+      "market_cap": 48594905689,
       "change": 1.8403610210125445,
       "all_time_high": 744,
       "pct_below_ath": 2.94
@@ -9775,7 +9749,7 @@
       "name": "VIVIDEL",
       "close": 1869.3,
       "volume": 12720,
-      "market_cap": 16822827840.000002,
+      "market_cap": 16613964540,
       "change": -1.2415469146238378,
       "all_time_high": 1990,
       "pct_below_ath": 6.07
@@ -9787,7 +9761,7 @@
       "name": "VMARCIND",
       "close": 346.75,
       "volume": 124500,
-      "market_cap": 50162491400,
+      "market_cap": 50807197000,
       "change": 1.2852344092303132,
       "all_time_high": 406,
       "pct_below_ath": 14.59
@@ -9799,7 +9773,7 @@
       "name": "VOEPL",
       "close": 506.75,
       "volume": 30038,
-      "market_cap": 15978351408,
+      "market_cap": 16522198686,
       "change": 3.0084358166480354,
       "all_time_high": 593.45,
       "pct_below_ath": 14.61
@@ -9811,7 +9785,7 @@
       "name": "VOITHPAPR",
       "close": 1457.5,
       "volume": 161,
-      "market_cap": 6413136215,
+      "market_cap": 6526903602,
       "change": -0.7490636704119851,
       "all_time_high": 1696,
       "pct_below_ath": 14.06
@@ -9823,7 +9797,7 @@
       "name": "VSSL",
       "close": 404.7,
       "volume": 154256,
-      "market_cap": 39338038642,
+      "market_cap": 39246174292,
       "change": -0.33247137052087744,
       "all_time_high": 428.25,
       "pct_below_ath": 5.5
@@ -9835,7 +9809,7 @@
       "name": "VTL",
       "close": 578.05,
       "volume": 361599,
-      "market_cap": 162409148358,
+      "market_cap": 167259559971,
       "change": 2.9841439515410655,
       "all_time_high": 688,
       "pct_below_ath": 15.98
@@ -9847,7 +9821,7 @@
       "name": "WABAG",
       "close": 2132.6,
       "volume": 535595,
-      "market_cap": 129523137554,
+      "market_cap": 132960173668,
       "change": 2.785810680547509,
       "all_time_high": 2319,
       "pct_below_ath": 8.04
@@ -9859,7 +9833,7 @@
       "name": "WARDINMOBI",
       "close": 5.72,
       "volume": 205536,
-      "market_cap": 1708643029,
+      "market_cap": 1732708545,
       "change": 0.7042253521126767,
       "all_time_high": 6.99,
       "pct_below_ath": 18.17
@@ -9871,7 +9845,7 @@
       "name": "WELCORP",
       "close": 2660.1,
       "volume": 4629365,
-      "market_cap": 649056892883,
+      "market_cap": 701076396067,
       "change": 8.120960858431888,
       "all_time_high": 2784.8,
       "pct_below_ath": 4.48
@@ -9883,7 +9857,7 @@
       "name": "WELENT",
       "close": 823.35,
       "volume": 1675361,
-      "market_cap": 107782842046,
+      "market_cap": 114302129512,
       "change": 5.733915500192626,
       "all_time_high": 837.75,
       "pct_below_ath": 1.72
@@ -9895,7 +9869,7 @@
       "name": "WELINV",
       "close": 2320,
       "volume": 24,
-      "market_cap": 8055196186,
+      "market_cap": 8039847565,
       "change": 1.9780219780219779,
       "all_time_high": 2367.1,
       "pct_below_ath": 1.99
@@ -9907,7 +9881,7 @@
       "name": "WELSPLSOL",
       "close": 55.65,
       "volume": 558795,
-      "market_cap": 35893661044,
+      "market_cap": 37119493743,
       "change": 3.1893194882254754,
       "all_time_high": 63.25,
       "pct_below_ath": 12.02
@@ -9919,7 +9893,7 @@
       "name": "WELSPUNLIV",
       "close": 214.66,
       "volume": 3513969,
-      "market_cap": 200287530518,
+      "market_cap": 202791118883,
       "change": 1.1354534746760878,
       "all_time_high": 216,
       "pct_below_ath": 0.62
@@ -9931,7 +9905,7 @@
       "name": "WEWORK",
       "close": 681.2,
       "volume": 191510,
-      "market_cap": 94771986063,
+      "market_cap": 94695609135,
       "change": -0.24163432671889537,
       "all_time_high": 794.5,
       "pct_below_ath": 14.26
@@ -9943,7 +9917,7 @@
       "name": "WHBRADY",
       "close": 476.05,
       "volume": 124,
-      "market_cap": 1236749977,
+      "market_cap": 1236239946,
       "change": -2.248459958932236,
       "all_time_high": 589.9,
       "pct_below_ath": 19.3
@@ -9955,7 +9929,7 @@
       "name": "WHEELS",
       "close": 2175.7,
       "volume": 311417,
-      "market_cap": 51878615591,
+      "market_cap": 53132030300,
       "change": 2.4051586180928135,
       "all_time_high": 2498,
       "pct_below_ath": 12.9
@@ -9967,7 +9941,7 @@
       "name": "WINDLAS",
       "close": 1109.45,
       "volume": 71125,
-      "market_cap": 23062018236,
+      "market_cap": 22846368137,
       "change": -0.729241231209723,
       "all_time_high": 1198.25,
       "pct_below_ath": 7.41
@@ -9979,7 +9953,7 @@
       "name": "WOCKPHARMA",
       "close": 2086.1,
       "volume": 557349,
-      "market_cap": 336475116320,
+      "market_cap": 339099242330,
       "change": 0.6659267480577005,
       "all_time_high": 2422.3,
       "pct_below_ath": 13.88
@@ -9991,7 +9965,7 @@
       "name": "WPIL",
       "close": 433.7,
       "volume": 38917,
-      "market_cap": 43126540219,
+      "market_cap": 42291456078,
       "change": -1.9665461121157297,
       "all_time_high": 510.35,
       "pct_below_ath": 15.02
@@ -10003,7 +9977,7 @@
       "name": "WSTCSTPAPR",
       "close": 768.3,
       "volume": 592182,
-      "market_cap": 47347155520,
+      "market_cap": 50761884685,
       "change": 7.237071672831307,
       "all_time_high": 815,
       "pct_below_ath": 5.73
@@ -10015,7 +9989,7 @@
       "name": "XTRANET",
       "close": 312.16,
       "volume": 2792260,
-      "market_cap": 15821652515,
+      "market_cap": 16328822827,
       "change": 3.220686462535549,
       "all_time_high": 330,
       "pct_below_ath": 5.41
@@ -10027,7 +10001,7 @@
       "name": "YASHO",
       "close": 4002,
       "volume": 16899,
-      "market_cap": 48323027666,
+      "market_cap": 48253699372,
       "change": -0.02498126405196103,
       "all_time_high": 4994,
       "pct_below_ath": 19.86
@@ -10039,7 +10013,7 @@
       "name": "YASHOPTICS",
       "close": 133.9,
       "volume": 27200,
-      "market_cap": 3269059200,
+      "market_cap": 3316113840,
       "change": 1.4393939393939437,
       "all_time_high": 153.5,
       "pct_below_ath": 12.77
@@ -10051,7 +10025,7 @@
       "name": "YATHARTH",
       "close": 1139.5,
       "volume": 6484052,
-      "market_cap": 103142522620,
+      "market_cap": 109916239008,
       "change": 6.256993659082423,
       "all_time_high": 1184,
       "pct_below_ath": 3.76
@@ -10063,7 +10037,7 @@
       "name": "YOGI",
       "close": 163.98,
       "volume": 15,
-      "market_cap": 7377749863,
+      "market_cap": 7364249725,
       "change": 0.6012269938650244,
       "all_time_high": 180,
       "pct_below_ath": 8.9
@@ -10075,7 +10049,7 @@
       "name": "ZIMLAB",
       "close": 135.51,
       "volume": 127424,
-      "market_cap": 7391456891,
+      "market_cap": 7259993756,
       "change": -1.7473897911832923,
       "all_time_high": 152.7,
       "pct_below_ath": 11.26
@@ -10087,7 +10061,7 @@
       "name": "ZYDUSLIFE",
       "close": 1160,
       "volume": 2789186,
-      "market_cap": 1134510904584,
+      "market_cap": 1150121863159,
       "change": 2.193639326931556,
       "all_time_high": 1324.3,
       "pct_below_ath": 12.41
@@ -10099,7 +10073,7 @@
       "name": "ZYDUSWELL",
       "close": 522.25,
       "volume": 723768,
-      "market_cap": 173827093719,
+      "market_cap": 165920807953,
       "change": -4.3760871555433445,
       "all_time_high": 611.85,
       "pct_below_ath": 14.64
