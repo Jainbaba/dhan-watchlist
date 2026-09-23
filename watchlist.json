@@ -1,16 +1,17 @@
 {
-  "generated_on": "2026-09-22",
+  "generated_on": "2026-09-23",
   "source": "https://www.nseindia.com/api/public-past-issues",
   "window_days": 182,
   "security_types": [
     "EQ",
     "BE"
   ],
-  "count": 62,
+  "count": 64,
   "excluded_by_security_type": {
-    "DEBT": 2,
-    "IV": 3,
-    "N0": 28,
+    "DEBT": 3,
+    "IV": 2,
+    "N0": 25,
+    "N1": 2,
     "RR": 1,
     "SME": 43
   },
@@ -21,6 +22,9 @@
   "dropped_not_on_nse": [],
   "truncated_to_cap": false,
   "symbols": [
+    "SSRETAIL",
+    "JSIPL",
+    "HEROMOTORS",
     "MANIKA",
     "VEEGALAND",
     "STEAMHOUSE",
@@ -81,10 +85,33 @@
     "SAIPARENT",
     "POWERICA",
     "AEROPLANE",
-    "CMPDI",
-    "GSPCROP"
+    "CMPDI"
   ],
   "listings": [
+    {
+      "symbol": "SSRETAIL",
+      "name": "SS Retail Limited",
+      "listed_on": "2026-09-23",
+      "security_type": "EQ",
+      "issue_price": "424",
+      "ipo_opened_on": "16-SEP-2026"
+    },
+    {
+      "symbol": "JSIPL",
+      "name": "Jindal Supreme (India) Limited",
+      "listed_on": "2026-09-23",
+      "security_type": "BE",
+      "issue_price": "93",
+      "ipo_opened_on": "16-SEP-2026"
+    },
+    {
+      "symbol": "HEROMOTORS",
+      "name": "Hero Motors Limited",
+      "listed_on": "2026-09-23",
+      "security_type": "EQ",
+      "issue_price": "84",
+      "ipo_opened_on": "16-SEP-2026"
+    },
     {
       "symbol": "MANIKA",
       "name": "Manika Plastech Limited",
@@ -572,14 +599,6 @@
       "security_type": "EQ",
       "issue_price": "172",
       "ipo_opened_on": "20-MAR-2026"
-    },
-    {
-      "symbol": "GSPCROP",
-      "name": "GSP Crop Science Limited",
-      "listed_on": "2026-03-24",
-      "security_type": "EQ",
-      "issue_price": "320",
-      "ipo_opened_on": "16-MAR-2026"
     }
   ]
 }
