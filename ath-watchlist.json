@@ -1,6 +1,6 @@
 {
   "watchlist_name": "ATH Below 20%",
-  "generated_on": "2026-09-26",
+  "generated_on": "2026-09-27",
   "source": "https://scanner.tradingview.com/india/scan",
   "market": "india",
   "exchange": "NSE",
@@ -1124,8 +1124,8 @@
       "volume": 85430,
       "market_cap": 4458965940,
       "change": null,
-      "all_time_high": 75.39,
-      "pct_below_ath": 3.94
+      "all_time_high": 76.89,
+      "pct_below_ath": 5.81
     },
     {
       "symbol": "AHCL",
