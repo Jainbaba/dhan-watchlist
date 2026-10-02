@@ -1,12 +1,12 @@
 {
-  "generated_on": "2026-10-01",
+  "generated_on": "2026-10-02",
   "source": "https://www.nseindia.com/api/public-past-issues",
   "window_days": 182,
   "security_types": [
     "EQ",
     "BE"
   ],
-  "count": 71,
+  "count": 68,
   "excluded_by_security_type": {
     "DEBT": 2,
     "IV": 2,
@@ -15,7 +15,6 @@
     "SME": 48
   },
   "remapped_to_nse_symbol": {
-    "AMIRCHAND": "AEROPLANE",
     "LEAP": "LEAPIND"
   },
   "dropped_not_on_nse": [],
@@ -88,10 +87,7 @@
     "HEXAGON",
     "CMRGREEN",
     "KISSHT",
-    "OMPOWER",
-    "SAIPARENT",
-    "POWERICA",
-    "AEROPLANE"
+    "OMPOWER"
   ],
   "listings": [
     {
@@ -637,30 +633,6 @@
       "security_type": "BE",
       "issue_price": "175",
       "ipo_opened_on": "09-APR-2026"
-    },
-    {
-      "symbol": "SAIPARENT",
-      "name": "Sai Parenteral's Limited",
-      "listed_on": "2026-04-02",
-      "security_type": "EQ",
-      "issue_price": "392",
-      "ipo_opened_on": "24-MAR-2026"
-    },
-    {
-      "symbol": "POWERICA",
-      "name": "Powerica Limited",
-      "listed_on": "2026-04-02",
-      "security_type": "EQ",
-      "issue_price": "395",
-      "ipo_opened_on": "24-MAR-2026"
-    },
-    {
-      "symbol": "AEROPLANE",
-      "name": "Amir Chand Jagdish Kumar (Exports) Limited",
-      "listed_on": "2026-04-02",
-      "security_type": "EQ",
-      "issue_price": "212",
-      "ipo_opened_on": "24-MAR-2026"
     }
   ]
 }
