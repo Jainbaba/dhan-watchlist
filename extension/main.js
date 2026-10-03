@@ -18,6 +18,9 @@
   // prefix that Dhan's search does not take.
   const ATH_URL =
     "https://raw.githubusercontent.com/Jainbaba/dhan-watchlist/main/ath-watchlist.json";
+  // Every list the panel can ask for by name, so adding one is a line here and
+  // not another ternary at the dispatch.
+  const PUBLISHED = { published: LIST_URL, ath: ATH_URL };
   // The worker resolves chart labels to canonical Screener company URLs.
   const SCREENER_TIMEOUT_MS = 20000;
   const MIN_CONFIDENCE = 60;
@@ -316,7 +319,7 @@
   // chart to be ready first and misses layout/tab switches; swap to the event if
   // the poll ever shows up in a profile.
   function watchChartSymbol(onChange) {
-    let last = "";
+    let last = "", reported = "";
     const check = () => {
       let symbol;
       try {
@@ -327,16 +330,57 @@
         return; // widget not ready yet
       }
       const ticker = queryFromTvSymbol(symbol);
-      if (ticker && ticker !== last) {
+      if (!ticker) return;
+      // The panel highlights the row for whatever the chart shows, and that
+      // needs the full symbol in the panel's own spelling. Re-checked every
+      // tick, because a TradingView-shaped row may only resolve after the
+      // chart already moved.
+      const panel = panelSymbolFor(String(symbol));
+      if (panel !== reported) {
+        reported = panel;
+        window.postMessage({ __dhanWL: "charted-symbol", symbol: panel }, window.location.origin);
+      }
+      if (ticker !== last) {
         last = ticker;
-        // The panel highlights the row for whatever the chart shows, and that
-        // needs the full symbol, not the ticker the Screener lookup uses.
-        window.postMessage({ __dhanWL: "charted-symbol", symbol: String(symbol) }, window.location.origin);
         onChange(ticker);
       }
     };
     check();
     setInterval(check, 1000);
+  }
+
+  // Lists built on TradingView hold "NSE:TICKER" with no security id, and
+  // TradingView spells "&" and "-" as "_" (NSE:BAJAJ_AUTO). Dhan's chart and
+  // feed need "NSEE<id>:<NAME>", so such a symbol is resolved through the same
+  // read-only ScanWatchlist and cached for the page's life. Dhan-shaped
+  // symbols pass straight through.
+  const PANEL_SYMBOL_RE = /^(?:NSEE\d+|NSE):[A-Z0-9_.&()' -]{1,60}$/;
+  const dhanCache = new Map();
+  // The reverse: a chart showing a stock the panel holds as "NSE:TICKER" is
+  // reported under that symbol, so the highlight and flags find its row.
+  function panelSymbolFor(dhan) {
+    for (const [panel, mapped] of dhanCache) if (mapped === dhan) return panel;
+    return dhan;
+  }
+
+  // ScanWatchlist echoes each name it was asked for as `request_string`, and
+  // names the scrip by its display name ("NSEE1594:INFOSYS"), so a hit is
+  // paired with its request by that echo, never by comparing tickers.
+  // TradingView's "_" is either "-" or "&", so a name that finds nothing with
+  // the one is asked again with the other.
+  async function dhanSymbols(symbols) {
+    const wanted = [...new Set(symbols.filter((s) => s.startsWith("NSE:") && !dhanCache.has(s)))];
+    for (const joiner of ["-", "&"]) {
+      const asked = new Map(wanted.filter((s) => !dhanCache.has(s) && (joiner === "-" || s.includes("_"))).map((s) => [s.slice(4).replace(/_/g, joiner), s]));
+      if (!asked.size) continue;
+      (await scanAll([...asked.keys()])).forEach((hit) => {
+        const panel = asked.get(String(hit?.request_string ?? ""));
+        if (!panel || dhanCache.has(panel) || !(hit.confidence > MIN_CONFIDENCE)) return;
+        const chart = chartSymbolFromHit(hit);
+        if (chart) dhanCache.set(panel, chart.symbol);
+      });
+    }
+    return new Map(symbols.map((s) => [s, s.startsWith("NSEE") ? s : dhanCache.get(s) || null]));
   }
 
   // Read-only prototype control used by the TradeBaba side panel. Dhan's
@@ -345,21 +389,17 @@
   window.addEventListener("message", (event) => {
     const msg = event.data;
     if (event.source !== window || !msg || msg.__dhanWL !== "set-chart") return;
+    const reply = (payload) => window.postMessage({ __dhanWL: "set-chart-result", id: msg.id, ...payload }, window.location.origin);
     const symbol = String(msg.symbol || "");
-    if (!/^NSEE\d+:[A-Z0-9.&()' -]{1,60}$/.test(symbol)) {
-      window.postMessage({ __dhanWL: "set-chart-result", id: msg.id, error: "Unsupported NSE chart symbol" }, window.location.origin);
-      return;
-    }
-    try {
+    if (!PANEL_SYMBOL_RE.test(symbol)) return reply({ error: "Unsupported NSE chart symbol" });
+    (async () => {
       const chart = window.dhan_tvWidget && window.dhan_tvWidget.activeChart && window.dhan_tvWidget.activeChart();
       if (!chart || typeof chart.setSymbol !== "function") throw new Error("Dhan chart is not ready");
-      Promise.resolve(chart.setSymbol(symbol)).then(
-        () => window.postMessage({ __dhanWL: "set-chart-result", id: msg.id, ok: true }, window.location.origin),
-        (err) => window.postMessage({ __dhanWL: "set-chart-result", id: msg.id, error: err.message || "Dhan rejected the chart change" }, window.location.origin)
-      );
-    } catch (err) {
-      window.postMessage({ __dhanWL: "set-chart-result", id: msg.id, error: err.message }, window.location.origin);
-    }
+      const target = (await dhanSymbols([symbol])).get(symbol);
+      if (!target) throw new Error(`Dhan has no NSE equity matching ${symbol.split(":").at(-1)}`);
+      await chart.setSymbol(target);
+      reply({ ok: true });
+    })().catch((err) => reply({ error: (err && err.message) || "Dhan rejected the chart change" }));
   });
 
   // Bulk resolve for the panel's paste/import box. Same read-only ScanWatchlist
@@ -372,7 +412,7 @@
       window.postMessage({ __dhanWL: "bulk-resolve-result", id: msg.id, ...payload }, window.location.origin);
     (async () => {
       const names = msg.source
-        ? (await fetchList(msg.source === "ath" ? ATH_URL : LIST_URL)).symbols.map((n) => String(n).split(":").at(-1).trim()).filter(Boolean)
+        ? (await fetchList(PUBLISHED[msg.source] || LIST_URL)).symbols.map((n) => String(n).split(":").at(-1).trim()).filter(Boolean)
         : (Array.isArray(msg.names) ? msg.names : []).map((n) => String(n).trim()).filter(Boolean).slice(0, 200);
       if (!names.length) return reply({ hits: [], missing: [], requested: 0 });
       const raw = (await scanAll(names)).filter((h) => h.confidence > MIN_CONFIDENCE);
@@ -408,7 +448,7 @@
     if (event.source !== window || !msg || msg.__dhanWL !== "get-quotes") return;
     const reply = (payload) =>
       window.postMessage({ __dhanWL: "get-quotes-result", id: msg.id, ...payload }, window.location.origin);
-    const symbols = (Array.isArray(msg.symbols) ? msg.symbols : []).map(String).slice(0, QUOTE_MAX);
+    const symbols = (Array.isArray(msg.symbols) ? msg.symbols : []).map(String).filter((s) => PANEL_SYMBOL_RE.test(s)).slice(0, QUOTE_MAX);
     if (!symbols.length) return reply({ quotes: [] });
     const feed = datafeed();
     if (!feed || typeof feed.getQuotes !== "function") return reply({ error: "This Dhan chart exposes no quote feed, so Last/Chg stay empty." });
@@ -424,22 +464,25 @@
     // QUOTE_LANES of them at once: enough to fill fast, few enough that the page
     // is not flooded with a burst it did not ask for.
     (async () => {
+      // The feed answers in Dhan symbols; the panel asked in its own, which
+      // may be TradingView-shaped. Ask in the one and answer in the other.
+      const resolved = await dhanSymbols(symbols);
+      const asked = [...new Set([...resolved.values()].filter(Boolean))];
       const batches = [];
-      for (let i = 0; i < symbols.length; i += QUOTE_BATCH) batches.push(symbols.slice(i, i + QUOTE_BATCH));
+      for (let i = 0; i < asked.length; i += QUOTE_BATCH) batches.push(asked.slice(i, i + QUOTE_BATCH));
       const rows = [];
       for (let i = 0; i < batches.length; i += QUOTE_LANES) {
         const wave = await Promise.all(batches.slice(i, i + QUOTE_LANES).map(ask));
         wave.forEach((batch) => rows.push(...batch));
       }
+      const byDhan = new Map(rows.filter((row) => row && row.s === "ok" && row.v).map((row) => [String(row.n || ""), row.v]));
       reply({
-        quotes: rows
-          .filter((row) => row && row.s === "ok" && row.v)
-          .map((row) => ({
-            symbol: String(row.n || ""),
-            last: finite(row.v.lp),
-            change: finite(row.v.ch),
-            changePercent: finite(row.v.chp),
-          })),
+        quotes: symbols
+          .filter((s) => byDhan.has(resolved.get(s)))
+          .map((s) => {
+            const v = byDhan.get(resolved.get(s));
+            return { symbol: s, last: finite(v.lp), change: finite(v.ch), changePercent: finite(v.chp) };
+          }),
       });
     })().catch((err) => reply({ error: err.message }));
   });
@@ -448,7 +491,7 @@
   // read without new credentials, and subscribeQuotes is its tick API. Ticks
   // are batched once a second: the panel repaints a handful of cells, it does
   // not need every print.
-  let tickGuid = null, tickBuffer = new Map(), tickTimer = null;
+  let tickGuid = null, tickBuffer = new Map(), tickTimer = null, watchSeq = 0;
   function flushTicks() {
     if (!tickBuffer.size) return;
     const quotes = [...tickBuffer.values()];
@@ -461,33 +504,41 @@
     const reply = (payload) =>
       window.postMessage({ __dhanWL: "watch-quotes-result", id: msg.id, ...payload }, window.location.origin);
     const feed = datafeed();
-    const symbols = (Array.isArray(msg.symbols) ? msg.symbols : []).map(String).slice(0, QUOTE_MAX);
+    const symbols = (Array.isArray(msg.symbols) ? msg.symbols : []).map(String).filter((s) => PANEL_SYMBOL_RE.test(s)).slice(0, QUOTE_MAX);
     if (!feed || typeof feed.subscribeQuotes !== "function") return reply({ streaming: false });
-    try {
+    // Resolving TradingView-shaped symbols is async, so a newer request can
+    // land first; only the newest one may subscribe.
+    const seq = ++watchSeq;
+    (async () => {
       if (tickGuid && typeof feed.unsubscribeQuotes === "function") feed.unsubscribeQuotes(tickGuid);
       tickGuid = null;
       clearInterval(tickTimer);
       tickTimer = null;
       if (!symbols.length) return reply({ streaming: false });
+      const resolved = await dhanSymbols(symbols);
+      if (seq !== watchSeq) return reply({ streaming: true });
+      const panelSymbols = new Map();
+      resolved.forEach((dhan, panel) => { if (dhan) panelSymbols.set(dhan, [...(panelSymbols.get(dhan) || []), panel]); });
+      const asked = [...panelSymbols.keys()];
+      if (!asked.length) return reply({ streaming: false });
       tickGuid = `tradebaba-${Date.now()}`;
-      feed.subscribeQuotes(symbols, symbols, (rows) => {
+      feed.subscribeQuotes(asked, asked, (rows) => {
         (Array.isArray(rows) ? rows : []).forEach((row) => {
           if (!row || row.s !== "ok" || !row.v) return;
-          const symbol = String(row.n || "");
-          const previous = tickBuffer.get(symbol) || {};
-          tickBuffer.set(symbol, {
-            symbol,
-            last: finite(row.v.lp) ?? previous.last ?? null,
-            change: finite(row.v.ch) ?? previous.change ?? null,
-            changePercent: finite(row.v.chp) ?? previous.changePercent ?? null,
+          (panelSymbols.get(String(row.n || "")) || []).forEach((symbol) => {
+            const previous = tickBuffer.get(symbol) || {};
+            tickBuffer.set(symbol, {
+              symbol,
+              last: finite(row.v.lp) ?? previous.last ?? null,
+              change: finite(row.v.ch) ?? previous.change ?? null,
+              changePercent: finite(row.v.chp) ?? previous.changePercent ?? null,
+            });
           });
         });
       }, tickGuid);
       tickTimer = setInterval(flushTicks, 1000);
       reply({ streaming: true });
-    } catch (err) {
-      reply({ streaming: false, error: err.message });
-    }
+    })().catch((err) => reply({ streaming: false, error: err.message }));
   });
 
   // Read-only symbol lookup for the panel's search box: ScanWatchlist is Dhan's
@@ -555,7 +606,7 @@
       const chart = widget && widget.activeChart && widget.activeChart();
       const symbol = chart && chart.symbol && chart.symbol();
       if (!symbol) throw new Error("Dhan chart is not ready");
-      reply({ symbol: String(symbol), name: queryFromTvSymbol(symbol) });
+      reply({ symbol: panelSymbolFor(String(symbol)), name: queryFromTvSymbol(symbol) });
     } catch (err) {
       reply({ error: err.message });
     }

@@ -8,13 +8,13 @@ const ORPHANED = "extension was reloaded - refresh the page";
 // correlation id, same timeout, so a new request type never grows its own
 // half-correct copy of this.
 const RELAY = {
-  setChart: { request: "set-chart", result: "set-chart-result", timeout: "Dhan chart change timed out" },
-  searchSymbols: { request: "search-symbols", result: "search-symbols-result", timeout: "Dhan symbol search timed out" },
-  getQuotes: { request: "get-quotes", result: "get-quotes-result", timeout: "Dhan quote lookup timed out" },
-  watchQuotes: { request: "watch-quotes", result: "watch-quotes-result", timeout: "Dhan quote stream did not answer" },
-  chartSymbol: { request: "chart-symbol", result: "chart-symbol-result", timeout: "Dhan did not report the charted symbol" },
+  setChart: { request: "set-chart", result: "set-chart-result", timeout: "Chart change timed out" },
+  searchSymbols: { request: "search-symbols", result: "search-symbols-result", timeout: "Symbol search timed out" },
+  getQuotes: { request: "get-quotes", result: "get-quotes-result", timeout: "Quote lookup timed out" },
+  watchQuotes: { request: "watch-quotes", result: "watch-quotes-result", timeout: "Quote stream did not answer" },
+  chartSymbol: { request: "chart-symbol", result: "chart-symbol-result", timeout: "The chart did not report its symbol" },
   pushWatchlist: { request: "push-watchlist", result: "push-watchlist-result", timeout: "Dhan did not finish the watchlist push", ms: 30000 },
-  bulkResolve: { request: "bulk-resolve", result: "bulk-resolve-result", timeout: "Dhan bulk lookup timed out", ms: 120000 },
+  bulkResolve: { request: "bulk-resolve", result: "bulk-resolve-result", timeout: "Bulk lookup timed out", ms: 120000 },
 };
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
@@ -77,7 +77,7 @@ window.addEventListener("message", (event) => {
           html: res && res.html,
           error: failed
             ? (/Receiving end does not exist|Could not establish connection|context invalidated/i.test(failed.message)
-              ? "Screener background worker is unavailable. Reload the extension in chrome://extensions (or brave://extensions), then refresh Dhan."
+              ? "Screener background worker is unavailable. Reload the extension in chrome://extensions (or brave://extensions), then refresh the chart page."
               : failed.message)
             : res ? res.error : "Screener returned no response. Try again.",
         });

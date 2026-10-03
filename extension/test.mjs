@@ -290,6 +290,11 @@ const trimmed = panel.syncPayload({ lists: [bigList, small], instruments: { a: 1
 assert.deepEqual(trimmed.lists.map((l) => l.name), ["Invested"], "a managed screener list is rebuilt, not synced");
 assert.deepEqual(trimmed.instruments, {}, "instruments are rebuilt from the lists");
 assert.deepEqual(trimmed.flags, { x: "red" }, "flags are yours and travel");
+// Every managed list is republished daily, not just the ATH one, so the filter
+// is on `managed` rather than on its value.
+const sixMonth = { id: "list-published", name: "6-Month Stocks", managed: "published", items: [{ symbol: "NSEE1:NEWCO", name: "Newco" }] };
+assert.deepEqual(panel.backupPayload({ lists: [bigList, sixMonth, small] }).lists.map((l) => l.name), ["Invested"],
+  "a second published list is left out of the gist too");
 const hand = { id: "mine", name: "Mine", items: Array.from({ length: 900 }, (_, i) => ({ symbol: `NSEE${i}:LONGSYMBOL${i}`, name: `A rather long company name ${i}` })) };
 assert.strictEqual(panel.syncPayload({ lists: [hand] }), null, "too large even trimmed: skipped rather than rejected by the browser");
 

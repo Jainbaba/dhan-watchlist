@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "TradeBaba",
   "version": "0.3.0",
-  "description": "Adds NSE/BSE watchlists to Dhan and shows a TradeBaba stock analysis panel.",
+  "description": "Adds NSE watchlists to Dhan and TradingView charts and shows a TradeBaba stock analysis panel.",
   "permissions": [
     "sidePanel",
     "storage",
@@ -37,6 +37,25 @@
     {
       "matches": [
         "https://tv.dhan.co/*"
+      ],
+      "js": [
+        "bridge.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://*.tradingview.com/chart*"
+      ],
+      "js": [
+        "tradingview.js"
+      ],
+      "world": "MAIN",
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://*.tradingview.com/chart*"
       ],
       "js": [
         "bridge.js"

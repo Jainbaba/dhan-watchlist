@@ -12,8 +12,10 @@ const SEARCH_URL = `${ORIGIN}/api/company/search/`;
 // Loose on purpose: company names carry spaces, dots and ampersands. It only
 // has to exclude what could derail a URL, since this arrives from page script.
 const QUERY_RE = /^[A-Za-z0-9 &.'()-]{1,60}$/;
-// The chart symbol shape main.js accepts: NSE equity segment plus a security id.
-const CHART_SYMBOL_RE = /^NSEE\d+:[A-Z0-9.&()' -]{1,60}$/;
+// The chart symbol shapes the page scripts accept: Dhan's NSE equity segment
+// plus a security id, or TradingView's plain NSE ticker (which spells "&" and
+// "-" as "_", e.g. NSE:M_M).
+const CHART_SYMBOL_RE = /^(?:NSEE\d+|NSE):[A-Z0-9_.&()' -]{1,60}$/;
 
 
 // Watchlist backup to a secret GitHub gist. The worker is the only place the
@@ -118,14 +120,14 @@ async function pullBackup() {
 }
 
 
-// Opening on tv.dhan.co. Chrome only lets an extension open its own side panel
+// Opening on a chart page. Chrome only lets an extension open its own side panel
 // from a user gesture, so there is no "on navigation" hook to use: what we can
-// do is make the panel this tab's panel the moment Dhan loads, and take the
-// first gesture the page sees (or the toolbar button, Alt+D, or the context
-// menu) as the cue to open it.
-const DHAN_PREFIX = "https://tv.dhan.co/";
+// do is make the panel this tab's panel the moment Dhan or a TradingView chart
+// loads, and take the first gesture the page sees (or the toolbar button,
+// Alt+D, or the context menu) as the cue to open it.
+const CHART_PAGES = ["https://tv.dhan.co/*", "https://*.tradingview.com/chart*"];
 const AUTO_KEY = "tradebaba:autoOpen";
-const isDhan = (url) => String(url || "").startsWith(DHAN_PREFIX);
+const isChartPage = (url) => /^https:\/\/(?:tv\.dhan\.co\/|(?:[a-z0-9-]+\.)?tradingview\.com\/chart)/.test(String(url || ""));
 
 async function autoOpenEnabled() {
   const stored = (await chrome.storage.local.get(AUTO_KEY))[AUTO_KEY];
@@ -135,7 +137,7 @@ async function autoOpenEnabled() {
 async function offerPanel(tabId, url) {
   if (!chrome.sidePanel || !chrome.sidePanel.setOptions) return;
   try {
-    await chrome.sidePanel.setOptions({ tabId, path: "sidepanel.html", enabled: isDhan(url) });
+    await chrome.sidePanel.setOptions({ tabId, path: "sidepanel.html", enabled: isChartPage(url) });
   } catch (_) {
     /* the tab closed mid-navigation */
   }
@@ -143,17 +145,17 @@ async function offerPanel(tabId, url) {
 
 // The content scripts only attach on a page load, so an extension that was just
 // enabled or updated is not talking to any tab that was already open. Reload the
-// Dhan tabs once, rather than leaving the panel silently inert.
-function refreshDhanTabs() {
+// chart tabs once, rather than leaving the panel silently inert.
+function refreshChartTabs() {
   if (!chrome.tabs || !chrome.tabs.query) return;
-  chrome.tabs.query({ url: `${DHAN_PREFIX}*` }, (tabs) => {
+  chrome.tabs.query({ url: CHART_PAGES }, (tabs) => {
     void chrome.runtime.lastError;
     (tabs || []).forEach((tab) => chrome.tabs.reload(tab.id, { bypassCache: false }));
   });
 }
 
-if (chrome.runtime.onInstalled) chrome.runtime.onInstalled.addListener(refreshDhanTabs);
-if (chrome.runtime.onStartup) chrome.runtime.onStartup.addListener(refreshDhanTabs);
+if (chrome.runtime.onInstalled) chrome.runtime.onInstalled.addListener(refreshChartTabs);
+if (chrome.runtime.onStartup) chrome.runtime.onStartup.addListener(refreshChartTabs);
 
 function openPanel(tabId) {
   if (tabId == null || !chrome.sidePanel || !chrome.sidePanel.open) return;
@@ -177,7 +179,7 @@ if (chrome.contextMenus) {
     id: "tradebaba-open",
     title: "Open TradeBaba",
     contexts: ["page", "action"],
-    documentUrlPatterns: [`${DHAN_PREFIX}*`],
+    documentUrlPatterns: CHART_PAGES,
   }, () => void chrome.runtime.lastError);
   chrome.runtime.onInstalled.addListener(menu);
   chrome.contextMenus.onClicked.addListener((info, tab) => {
@@ -186,7 +188,7 @@ if (chrome.contextMenus) {
 }
 
 
-// Keyboard shortcuts fired while the Dhan chart has focus. The worker cannot
+// Keyboard shortcuts fired while a chart has focus. The worker cannot
 // read the panel's watchlists, so it resolves what is charted and hands the
 // panel the verb; the panel owns the model. A command counts as a user gesture,
 // so the panel may be opened first when it is closed.
@@ -223,7 +225,7 @@ if (chrome.commands && chrome.commands.onCommand) {
     if (command !== "add-to-watchlist" && command !== "next-symbol" && !isFlag) return;
     const tabId = tab && tab.id;
     if (tabId == null) return;
-    if (!isDhan(tab.url)) return;
+    if (!isChartPage(tab.url)) return;
     openPanel(tabId);
     // Stepping through the list needs no symbol from the page: the panel knows
     // which row the chart is on and which one follows it.
@@ -287,7 +289,8 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       .filter((s) => CHART_SYMBOL_RE.test(s))
       .slice(0, 1000);
     const names = (Array.isArray(msg.names) ? msg.names : []).map((n) => String(n).trim()).filter((n) => QUERY_RE.test(n)).slice(0, 200);
-    const source = msg.source === "published" || msg.source === "ath" ? msg.source : "";
+    const PUBLISHED_SOURCES = ["published", "ath"];
+    const source = PUBLISHED_SOURCES.includes(msg.source) ? msg.source : "";
     const valid = msg.type === "setChart"
       ? CHART_SYMBOL_RE.test(symbol)
       : msg.type === "searchSymbols"
