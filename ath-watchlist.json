@@ -1,6 +1,6 @@
 {
   "watchlist_name": "ATH Below 20%",
-  "generated_on": "2026-10-02",
+  "generated_on": "2026-10-03",
   "source": "https://scanner.tradingview.com/india/scan",
   "market": "india",
   "exchange": "NSE",
@@ -10,8 +10,8 @@
     "maximum_close_pct": 100
   },
   "filter_semantics": "market cap > INR 100cr (1e9); close between High.All*lower and High.All, inclusive, applied locally",
-  "count": 719,
-  "matched_total": 719,
+  "count": 721,
+  "matched_total": 721,
   "truncated_to_cap": false,
   "symbols": [
     "NSE:3BBLACKBIO",
@@ -374,6 +374,7 @@
     "NSE:LOKESHMACH",
     "NSE:LOTUSCHO",
     "NSE:LOTUSDEV",
+    "NSE:LRRPL",
     "NSE:LT",
     "NSE:LUMAXIND",
     "NSE:LUMAXTECH",
@@ -423,6 +424,7 @@
     "NSE:MODISONLTD",
     "NSE:MOLBIO",
     "NSE:MOMSBELIEF",
+    "NSE:MONEYVIEW",
     "NSE:MONOLITH",
     "NSE:MOTHERSON",
     "NSE:MOTILALOFS",
@@ -1594,7 +1596,7 @@
       "name": "ATHERENERG",
       "close": 1406.1,
       "volume": 4210984,
-      "market_cap": 554302378073,
+      "market_cap": 556587080582,
       "change": -1.3263157894736906,
       "all_time_high": 1744,
       "pct_below_ath": 19.38
@@ -3214,7 +3216,7 @@
       "name": "FEDERALBNK",
       "close": 318.2,
       "volume": 11278668,
-      "market_cap": 774581977173,
+      "market_cap": 774606862207,
       "change": 0.2520478890989324,
       "all_time_high": 371.7,
       "pct_below_ath": 14.39
@@ -5056,6 +5058,18 @@
       "pct_below_ath": 2.41
     },
     {
+      "symbol": "LRRPL",
+      "exchange": "NSE",
+      "qualified_symbol": "NSE:LRRPL",
+      "name": "LRRPL",
+      "close": 109.95,
+      "volume": 27000,
+      "market_cap": 1070370176.85,
+      "change": 1.6173752310536045,
+      "all_time_high": 121.65,
+      "pct_below_ath": 9.62
+    },
+    {
       "symbol": "LT",
       "exchange": "NSE",
       "qualified_symbol": "NSE:LT",
@@ -5642,6 +5656,18 @@
       "change": -3.2901466075690418,
       "all_time_high": 267.61,
       "pct_below_ath": 15.2
+    },
+    {
+      "symbol": "MONEYVIEW",
+      "exchange": "NSE",
+      "qualified_symbol": "NSE:MONEYVIEW",
+      "name": "MONEYVIEW",
+      "close": 53.88,
+      "volume": 655464953,
+      "market_cap": 95105289651,
+      "change": null,
+      "all_time_high": 62,
+      "pct_below_ath": 13.1
     },
     {
       "symbol": "MONOLITH",
@@ -7042,7 +7068,7 @@
       "name": "SAILIFE",
       "close": 1541.2,
       "volume": 584535,
-      "market_cap": 327065309989,
+      "market_cap": 327102270785,
       "change": 1.0954411282387697,
       "all_time_high": 1697,
       "pct_below_ath": 9.18
@@ -8050,7 +8076,7 @@
       "name": "STLNETWORK",
       "close": 47.18,
       "volume": 13627273,
-      "market_cap": 23058245886,
+      "market_cap": 23065960158,
       "change": -3.6552991627527045,
       "all_time_high": 56.5,
       "pct_below_ath": 16.5
