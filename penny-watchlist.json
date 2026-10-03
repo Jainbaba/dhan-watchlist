@@ -1,0 +1,38 @@
+{
+  "watchlist_name": "Penny 10-200",
+  "generated_on": "2026-09-13",
+  "session_date": "2026-09-11",
+  "sources": {
+    "scan": "https://scanner.tradingview.com/india/scan",
+    "delivery": "https://nsearchives.nseindia.com/products/content/sec_bhavdata_full_DDMMYYYY.csv",
+    "shareholding": "https://www.nseindia.com/api/corporate-share-holdings-master?index=equities&symbol=SYMBOL"
+  },
+  "market": "india",
+  "exchange": "NSE",
+  "criteria": {
+    "price": [
+      10.0,
+      200.0
+    ],
+    "instrument_type": "stock",
+    "min_avg_turnover_90d": 30000000,
+    "min_volume_burst_10d_over_90d": 1.5,
+    "min_week_move_percent": 0.0,
+    "max_percent_below_all_time_high": 25.0,
+    "min_delivery_percent": 50.0,
+    "min_trades": 2000,
+    "min_institutional_percent": 1.0,
+    "institutional_must_not_fall": true,
+    "series": [
+      "EQ",
+      "BE"
+    ]
+  },
+  "count": 0,
+  "matched_total": 0,
+  "truncated_to_cap": false,
+  "dropped_on_institutional": 1,
+  "shareholding_lookup_failed": {},
+  "symbols": [],
+  "entries": []
+}
