@@ -10,8 +10,8 @@
     "maximum_close_pct": 100
   },
   "filter_semantics": "market cap > INR 100cr (1e9); close between High.All*lower and High.All, inclusive, applied locally",
-  "count": 696,
-  "matched_total": 696,
+  "count": 697,
+  "matched_total": 697,
   "truncated_to_cap": false,
   "symbols": [
     "NSE:360ONE",
@@ -508,6 +508,7 @@
     "NSE:RENTOMOJO",
     "NSE:RIR",
     "NSE:RISHABH",
+    "NSE:RKFAL",
     "NSE:RML",
     "NSE:RNFI",
     "NSE:ROSSTECH",
@@ -6639,6 +6640,18 @@
       "change": 1.3685527187109219,
       "all_time_high": 852,
       "pct_below_ath": 19.15
+    },
+    {
+      "symbol": "RKFAL",
+      "exchange": "NSE",
+      "qualified_symbol": "NSE:RKFAL",
+      "name": "RKFAL",
+      "close": 72.2,
+      "volume": 6400,
+      "market_cap": 1179273988,
+      "change": -4.9999999999999964,
+      "all_time_high": 82,
+      "pct_below_ath": 11.95
     },
     {
       "symbol": "RML",
