@@ -6,7 +6,7 @@
     "EQ",
     "BE"
   ],
-  "count": 84,
+  "count": 86,
   "excluded_by_security_type": {
     "DEBT": 2,
     "IV": 1,
@@ -20,6 +20,8 @@
   "dropped_not_on_nse": [],
   "truncated_to_cap": false,
   "symbols": [
+    "SFCTECH",
+    "BLSPOLY",
     "EDELALTS",
     "PARASHLTH",
     "JPL",
@@ -106,6 +108,22 @@
     "KISSHT"
   ],
   "listings": [
+    {
+      "symbol": "SFCTECH",
+      "name": "SFC Environmental Technologies Limited",
+      "listed_on": "2026-11-03",
+      "security_type": "EQ",
+      "issue_price": "330",
+      "ipo_opened_on": "27-OCT-2026"
+    },
+    {
+      "symbol": "BLSPOLY",
+      "name": "BLS Polymers Limited",
+      "listed_on": "2026-11-03",
+      "security_type": "EQ",
+      "issue_price": "150",
+      "ipo_opened_on": "27-OCT-2026"
+    },
     {
       "symbol": "EDELALTS",
       "name": "EAAA India Alternatives Limited",
